@@ -1,0 +1,29 @@
+item_id,item_name,category,price,active
+1,Classic Tea,BREWED,7.99,1
+2,Honey Tea,BREWED,7.99,1
+3,Ginger Tea,BREWED,7.99,1
+4,Wintermelon Tea,BREWED,7.99,1
+5,Honey Milk Tea,MILK,6.99,1
+6,Coffee Milk Tea,MILK,6.99,1
+7,Thai Pearl Milk Tea,MILK,6.99,1
+8,Classic Pearl Milk Tea,MILK,6.99,1
+9,Taro Pearl Milk Tea,MILK,6.99,1
+10,Ginger Milk Tea,MILK,6.99,1
+11,Honey Lemonade,FRUIT,8.99,1
+12,Kiwi Fruit Tea,FRUIT,8.99,1
+13,Strawberry Tea,FRUIT,8.99,1
+14,Peach Kiwi Tea,FRUIT,8.99,1
+15,Peach Tea,FRUIT,8.99,1
+16,Creama Tea,CREAMA,9.99,1
+17,Wintermelon Creama,CREAMA,9.99,1
+18,Mango Creama,CREAMA,9.99,1
+19,Coffee Creama,CREAMA,9.99,1
+20,Cocoa Creama,CREAMA,9.99,1
+21,Cups,SUPPLY,0,1
+22,Straws,SUPPLY,0,1
+23,Lids,SUPPLY,0,1
+24,Bags,SUPPLY,0,1
+25,Napkins,SUPPLY,0,1
+26,Paper Towels,SUPPLY,0,1
+27,Soap,SUPPLY,0,1
+28,Gloves,SUPPLY,0,1

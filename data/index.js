@@ -4,7 +4,7 @@ const pool = require('./config/database');
 const itemsRouter = require('./routes/items');
 
 const app = express();
-const port = 3000;
+const port = 4001;
 
 app.use(express.json());
 app.use(cors());

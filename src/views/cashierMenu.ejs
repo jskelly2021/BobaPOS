@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <head>
     <title>Home Page</title>
+    <link id="stylesheet" rel="stylesheet" href="/stylesheets/stylesheet.css">
 </head>
 <body>
+
     <h1>Items</h1>
+    <!-- List Menu Items -->
     <% for (var i in items) { %>
-        <button class="itemButton"><%= items[i].item_name %>, <%= items[i].price %></button>
+        <button type="button" class="itemButton" data-item_id="<%= items[i].item_id %>">
+            <%= items[i].item_name %>
+        </button>
     <% } %>
+
 </body>

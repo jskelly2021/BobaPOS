@@ -3,10 +3,16 @@ const express = require('express');
 const router = express.Router();
 
 // Gets all items
-router.get('/', async (req, res) => {
+router.get('/items', async (req, res) => {
+    items = []
+
     try {
         const result = await pool.query('SELECT * FROM item');
-        res.json(result.rows);
+        items = result.rows;
+
+        const data = {items: items};
+        console.log(items);
+        res.render('item', data);   
     }
     catch (err) {
         console.error('Error executing query', err);
@@ -22,7 +28,8 @@ router.get('/category/:category', async (req, res) => {
         if (result.rows.length === 0) {
             return res.status(404).send('No items found for this category');
         }
-        res.json(result.rows);
+        const data = { items: result.rows }
+        res.render('item', data);
     }
     catch (err) {
         console.error('Error executing query', err);

@@ -12,7 +12,7 @@ router.get('/items', async (req, res) => {
 
         const data = {items: items};
         console.log(items);
-        res.render('item', data);   
+        res.render('cashierMenu', data);   
     }
     catch (err) {
         console.error('Error executing query', err);
@@ -29,7 +29,7 @@ router.get('/category/:category', async (req, res) => {
             return res.status(404).send('No items found for this category');
         }
         const data = { items: result.rows }
-        res.render('item', data);
+        res.render('cashierMenu', data);
     }
     catch (err) {
         console.error('Error executing query', err);

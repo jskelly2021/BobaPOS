@@ -3,10 +3,16 @@ const express = require('express');
 const router = express.Router();
 
 // Gets all items
-router.get('/', async (req, res) => {
+router.get('/items', async (req, res) => {
+    items = []
+
     try {
         const result = await pool.query('SELECT * FROM item');
-        res.json(result.rows);
+        items = result.rows;
+
+        const data = {items: items};
+        console.log(items);
+        res.render('item', data);   
     }
     catch (err) {
         console.error('Error executing query', err);

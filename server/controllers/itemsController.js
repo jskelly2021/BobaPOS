@@ -1,5 +1,6 @@
-const pool = require('../config/database');
+import pool from '../config/database.js';
 
+// Get all items
 export const getAllItems = async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM item');
@@ -7,10 +8,11 @@ export const getAllItems = async (req, res) => {
     }
     catch (err) {
         console.error('Error getAllItems', err);
-        res.status(500).json({ success: false });
+        res.status(500).json({ success: false, message: "Server Error" });
     }
 }
 
+// Get single item by id
 export const getItem = async (req, res) => {
     const { id } = req.params;
     try {
@@ -19,6 +21,6 @@ export const getItem = async (req, res) => {
     }
     catch (err) {
         console.error('Error getItem', err);
-        res.status(500).json({ success: false });
+        res.status(500).json({ success: false, message: "Item not found" });
     }
 }

@@ -5,13 +5,16 @@ function ItemList() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:4001/api';
+    const itemURL = `${API_BASE_URL}/items`;
+
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             setError(null);
 
             try {
-                const response = await fetch('http://localhost:4001/api/items');
+                const response = await fetch(itemURL);
                 if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -27,7 +30,7 @@ function ItemList() {
         };
 
         fetchData();
-    }, []);
+    }, [itemURL]);
 
     if (loading) {
         return <div>Loading items...</div>;

@@ -10,4 +10,10 @@ const pool = new Pool({
     port: process.env.DB_PORT || 5432,
 });
 
+process.on('SIGINT', async () => {
+    await pool.end();
+    console.log('Database connection closed');
+    process.exit(0);
+});
+
 module.exports = pool;

@@ -8,7 +8,7 @@ const port = 4001;
 
 app.use(express.json());
 app.use(cors());
-app.use('/items', itemsRouter);
+app.use('/api/items', itemsRouter);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

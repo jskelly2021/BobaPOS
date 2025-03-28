@@ -1,15 +1,17 @@
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import EmployeeLogin from './components/EmployeeLogin'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import CashierMenu from './pages/CashierMenu'
+import EmployeeLogin from './pages/EmployeeLogin'
 
 function App() {
   return (
     <BrowserRouter>
         <div className="App">
-            <switch>
-                <Route exact path="/" component={EmployeeLogin} />
-                <Route exact path="/menu" component={ItemList} />
-            </switch>
+            <Routes>
+                <Route path="/" element={<EmployeeLogin />} />
+                <Route path="/menu" element={<CashierMenu />} />
+            </Routes>
         </div>
     </BrowserRouter>
   );

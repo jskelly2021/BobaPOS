@@ -1,3 +1,28 @@
 body {
     font-family: sans-serif;
+    margin: 0;
+}
+
+.ItemList {
+    list-style: none;
+
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-evenly;
+
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+
+    gap: 1vw;
+}
+.ItemList .ItemButton {
+    border-color: grey;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: ghostwhite;
+
+    width: 25vw;
+    height: 25vh;
 }

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import ItemButton from './ItemButton'
 
 function ItemList() {
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:4001/api';
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
     const itemURL = `${API_BASE_URL}/items`;
 
     useEffect(() => {
@@ -20,11 +21,9 @@ function ItemList() {
                 }
                 const data = await response.json();
                 setItems(data);
-            }
-            catch (e) {
+            } catch (e) {
                 setError(e);
-            }
-            finally {
+            } finally {
                 setLoading(false);
             }
         };
@@ -32,21 +31,20 @@ function ItemList() {
         fetchData();
     }, [itemURL]);
 
-    if (loading) {
-        return <div>Loading items...</div>;
-    }
+    if (loading) return <div>Loading items...</div>;
+    if (error) return <div>Error fetching items: {error.message}</div>;
 
-    if (error) {
-        return <div>Error fetching items: {error.message}</div>;
+    const handleMenuItemButton = (item) => {
+        console.log(`Selected Item: ${item.item_name}`);
     }
 
     return (
         <div>
         <h2>Items</h2>
-        <ul>
+        <ul className='ItemList'>
             {items.map((item, index) => (
-                <li key={index}>
-                    {item.item_name} - {item.price}
+                <li key={index}> 
+                    <ItemButton item={item} onClick={handleMenuItemButton}/>
                 </li> 
             ))}
         </ul>

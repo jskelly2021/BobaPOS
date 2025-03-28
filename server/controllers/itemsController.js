@@ -1,4 +1,4 @@
-import pool from '../config/database.js';
+const pool = require('../config/database.js');
 
 // Get all items
 export const getAllItems = async (req, res) => {

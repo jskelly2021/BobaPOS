@@ -1,0 +1,7 @@
+<h1>Items</h1>
+<!-- List Menu Items -->
+<% for (var i in items) { %>
+    <button type="button" class="itemButton" data-item_id="<%= items[i].item_id %>">
+        <%= items[i].item_name %>
+    </button>
+<% } %>

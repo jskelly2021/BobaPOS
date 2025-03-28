@@ -41,7 +41,7 @@ function ItemList() {
     return (
         <div>
         <h2>Items</h2>
-        <ul>
+        <ul className='ItemList'>
             {items.map((item, index) => (
                 <li key={index}> 
                     <ItemButton item={item} onClick={handleMenuItemButton}/>

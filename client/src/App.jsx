@@ -4,7 +4,7 @@ import ItemList from './components/ItemList'
 function App() {
   return (
     <div className="App">
-        <h1>Items</h1>
+        <h1>Menu</h1>
         <ItemList />
     </div>
   );

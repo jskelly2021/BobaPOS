@@ -1,33 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
+import useMenuItems from '../hooks/useMenuItems';
 import OrderMenu from '../components/OrderMenu'
 import OrderCart from '../components/OrderCart';
-import { fetchItems } from '../services/itemService';
 
 function CashierMenu() {
-    const [menuItems, setMenuItems] = useState([]);
+    const [menuItems, loading, error] = useMenuItems();
     const [orderItems, setOrderItems] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        const loadMenuItems = async () => {
-            setLoading(true);
-            setError(null);
-
-            try {
-                const data = await fetchItems();
-                setMenuItems(data);
-            } catch (e) {
-                setError(e);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        loadMenuItems();
-    }, []);
 
     if (loading) return <div>Loading items...</div>;
     if (error) return <div>Error fetching items: {error.message}</div>;

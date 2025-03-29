@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { fetchItems } from '../services/itemService';
 import ItemButton from './ItemButton'
 
 function ItemList({ onItemButtonClick }) {
@@ -6,20 +7,13 @@ function ItemList({ onItemButtonClick }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
-    const itemURL = `${API_BASE_URL}/items`;
-
     useEffect(() => {
-        const fetchData = async () => {
+        const loadItems = async () => {
             setLoading(true);
             setError(null);
 
             try {
-                const response = await fetch(itemURL);
-                if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
+                const data = await fetchItems();
                 setItems(data);
             } catch (e) {
                 setError(e);
@@ -28,15 +22,11 @@ function ItemList({ onItemButtonClick }) {
             }
         };
 
-        fetchData();
-    }, [itemURL]);
+        loadItems();
+    }, []);
 
     if (loading) return <div>Loading items...</div>;
     if (error) return <div>Error fetching items: {error.message}</div>;
-
-    const handleItemButtonClick = (item) => {
-        onItemButtonClick(item);
-    }
 
     return (
         <div>
@@ -44,7 +34,7 @@ function ItemList({ onItemButtonClick }) {
             <ul className='ItemList'>
                 {items.map((item, index) => (
                     <li key={index}> 
-                        <ItemButton item={item} onClick={handleItemButtonClick(item)}/>
+                        <ItemButton item={item} onClick={() => onItemButtonClick(item)}/>
                     </li> 
                 ))}
             </ul>

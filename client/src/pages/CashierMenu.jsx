@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import ItemList from '../components/ItemList'
+import OrderMenu from '../components/OrderMenu'
 import OrderCart from '../components/OrderCart';
 import { fetchItems } from '../services/itemService';
 
@@ -42,12 +42,11 @@ function CashierMenu() {
     }
 
     return (
-        <div className='cashierMenu'>
-            <button>
+        <div className='CashierMenu'>
+            <button className='LogoutButton'>
                 <Link to="/">Logout</Link>
             </button>
-            <h1>Cashier Menu</h1>
-            <ItemList items={menuItems} onItemButtonClick={addToOrder} />
+            <OrderMenu menuItems={menuItems} onItemButtonClick={addToOrder} />
             <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />
         </div>
     );

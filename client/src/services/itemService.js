@@ -10,6 +10,6 @@ export const fetchItems = async () => {
         const { data } = await axios.get(itemURL);
         return data;
     } catch (e) {
-        throw new Error('Failed to fetch items: ${e.message)');
+        throw new Error(`Failed to fetch items: ${e.message}`);
     }
 }

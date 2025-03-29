@@ -44,6 +44,7 @@ function CashierMenu() {
 
     const removeFromOrder = (item) => {
         console.log(`Removing Item: ${item.orderItemId} - ${item.item_name}`);
+        setOrderItems((prevOrder) => prevOrder.filter(i => i.orderItemId !== item.orderItemId))
     }
 
     return (

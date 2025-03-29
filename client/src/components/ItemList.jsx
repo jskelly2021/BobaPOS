@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ItemButton from './ItemButton'
 
-function ItemList() {
+function ItemList({ onItemButtonClick }) {
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -34,20 +34,16 @@ function ItemList() {
     if (loading) return <div>Loading items...</div>;
     if (error) return <div>Error fetching items: {error.message}</div>;
 
-    const handleMenuItemButton = (item) => {
-        console.log(`Selected Item: ${item.item_name}`);
-    }
-
     return (
         <div>
-        <h2>Items</h2>
-        <ul className='ItemList'>
-            {items.map((item, index) => (
-                <li key={index}> 
-                    <ItemButton item={item} onClick={handleMenuItemButton}/>
-                </li> 
-            ))}
-        </ul>
+            <h2>Items</h2>
+            <ul className='ItemList'>
+                {items.map((item, index) => (
+                    <li key={index}> 
+                        <ItemButton item={item} onClick={onItemButtonClick(item)}/>
+                    </li> 
+                ))}
+            </ul>
         </div>
     );
 }

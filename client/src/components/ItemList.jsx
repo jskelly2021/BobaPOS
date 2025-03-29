@@ -34,13 +34,17 @@ function ItemList({ onItemButtonClick }) {
     if (loading) return <div>Loading items...</div>;
     if (error) return <div>Error fetching items: {error.message}</div>;
 
+    const handleItemButtonClick = (item) => {
+        onItemButtonClick(item);
+    }
+
     return (
         <div>
             <h2>Items</h2>
             <ul className='ItemList'>
                 {items.map((item, index) => (
                     <li key={index}> 
-                        <ItemButton item={item} onClick={onItemButtonClick(item)}/>
+                        <ItemButton item={item} onClick={handleItemButtonClick(item)}/>
                     </li> 
                 ))}
             </ul>

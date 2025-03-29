@@ -33,12 +33,17 @@ function CashierMenu() {
     if (error) return <div>Error fetching items: {error.message}</div>;
 
     const addToOrder = (item) => {
-        console.log(`Adding Item: ${item.item_name}`);
-        setOrderItems((prevOrder) => [...prevOrder, item]);
+        const uniqueItem = {
+            ...item,
+            orderItemId: Date.now() 
+        }
+
+        console.log(`Adding Item: ${uniqueItem.orderItemId} - ${uniqueItem.item_name} `);
+        setOrderItems((prevOrder) => [...prevOrder, uniqueItem]);
     }
 
     const removeFromOrder = (item) => {
-        console.log(`Removing Item: ${item.item_name}`);
+        console.log(`Removing Item: ${item.orderItemId} - ${item.item_name}`);
     }
 
     return (

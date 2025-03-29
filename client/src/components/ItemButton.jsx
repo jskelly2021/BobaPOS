@@ -1,5 +1,5 @@
 
-const ItemButton = ({ item, onClick}) => {
+const ItemButton = ({ item, onClick }) => {
     return (
         <button className='ItemButton' onClick={() => onClick(item)}>
             {item.item_name} - ${item.price}

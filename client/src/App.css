@@ -3,6 +3,12 @@ body {
     margin: 0;
 }
 
+.CashierMenu {
+    display: flex;
+    flex-flow: nowrap;
+    flex-direction: row;
+}
+
 .ItemList {
     list-style: none;
 
@@ -25,4 +31,17 @@ body {
 
     width: 25vw;
     height: 25vh;
+}
+.OrderCart .ItemList .ItemButton {
+    width: 10vw;
+    height: 5vh;
+}
+
+.LogoutButton {
+    border-color: grey;
+    border-style: solid;
+    border-radius: 10px;
+
+    width: 5vw;
+    height: 5vh;
 }

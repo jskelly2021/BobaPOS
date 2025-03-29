@@ -20,6 +20,9 @@ function CashierMenu() {
             </button>
             <OrderMenu menuItems={menuItems} onItemButtonClick={addToOrder} />
             <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />
+            <button className='ReviewOrderBtn'>
+                <Link to="/review">Review Order</Link>
+            </button>
         </div>
     );
 }

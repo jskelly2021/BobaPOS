@@ -1,11 +1,11 @@
 import ItemList from './ItemList';
 
-function OrderCart() {
+function OrderCart({ orderItems, onItemButtonClick }) {
     return (
-        <div>
+        <div className='orderCart'>
             <h2>Your Order</h2>
             <ul>
-                <ItemList />
+                <ItemList items={orderItems} onItemButtonClick={onItemButtonClick} />
             </ul>
         </div>
     );

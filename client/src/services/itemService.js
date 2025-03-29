@@ -1,6 +1,7 @@
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
+// Returns a list of all items from the backend
 export const fetchItems = async () => {
-    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
     const itemURL = `${API_BASE_URL}/items`;
 
     try {

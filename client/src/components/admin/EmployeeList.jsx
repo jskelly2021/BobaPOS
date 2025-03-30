@@ -1,5 +1,5 @@
 import React from 'react';
-import useEmployees from '../hooks/useEmployees';
+import useEmployees from '../../hooks/useEmployees';
 
 const EmployeeList = () => {
     const { employees, loadingEmployees, errorEmployees } = useEmployees();
@@ -11,7 +11,8 @@ const EmployeeList = () => {
         <ul>
         {employees.map((employee) => (
             <li key={employee.id}> 
-                {employee.employee_name}
+                <p>{employee.employee_name}</p>
+                <p>{employee.position}</p>
             </li> 
         ))}
     </ul>

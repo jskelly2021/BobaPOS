@@ -1,5 +1,5 @@
 import React from 'react';
-import useIngredients from '../hooks/useIngredients';
+import useIngredients from '../../hooks/useIngredients';
 
 const IngredientList = () => {
     const { ingredients, loadingIngredients, errorIngredients } = useIngredients();
@@ -11,7 +11,8 @@ const IngredientList = () => {
         <ul>
             {ingredients.map((ingredient) => (
                 <li key={ingredient.id}> 
-                    {ingredient.ingredient_name}
+                    <p>{ingredient.ingredient_name}</p>
+                    <p>{ingredient.quantity}</p>
                 </li> 
             ))}
         </ul>

@@ -25,7 +25,18 @@ const useIngredient = () => {
         loadIngredients();
     }, []);
 
-    return { ingredients, loadingIngredient, errorIngredient };
+    const updateQuantity = (ingredientId, quantityToAdd) => {
+        setIngredients((prevIngredients) =>
+            prevIngredients.map((ingredient) =>
+                ingredientId === ingredient.ingredient_id
+                    ? { ...ingredient, quantity: Number(ingredient.quantity) + quantityToAdd }
+                    : ingredient
+            )
+        );
+        console.log(`Adding ${quantityToAdd} to ingredient: ${ingredientId}`);
+    }
+
+    return { ingredients, loadingIngredient, errorIngredient, updateQuantity };
 }
 
 export default useIngredient;

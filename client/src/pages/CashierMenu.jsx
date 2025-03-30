@@ -16,8 +16,8 @@ function CashierMenu() {
 
     return (
         <div className='CashierMenu'>
-            <button className='LogoutBtn' onClick={() => nav('/')}>
-                Logout
+            <button className='DashboardBtn' onClick={() => nav('/dashboard')}>
+                Dashboard
             </button>
             <OrderMenu menuItems={menuItems} onItemButtonClick={addToOrder} />
             <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />

@@ -37,13 +37,8 @@ body {
     height: 5vh;
 }
 
-.LogoutBtn, .ReviewOrderBtn {
-    border-color: grey;
-    border-style: solid;
-    border-radius: 10px;
-
-    width: 5vw;
-    height: 5vh;
+.DashboardBtn, .LogoutBtn, .ReviewOrderBtn {
+    max-height: 5vh;
 }
 
 /* Oreder Review */

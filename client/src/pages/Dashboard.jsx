@@ -6,15 +6,20 @@ function Dashboard() {
 
     return (
         <div className='Dashboard'>
-            <button className='LogoutBtn' onClick={() => nav('/')}>
-                Logout
-            </button>
-            <button className='MenuBtn' onClick={() => nav('/menu')}>
-                Menu
-            </button>
-            <button className='InventoryBtn' onClick={() => nav('/inventory')}>
-                Inventory
-            </button>
+            <h1>Dashboard</h1>
+            <h4>Currently Logged in as:</h4>
+
+            <div className='DashboardNav'>
+                <button className='LogoutBtn' onClick={() => nav('/')}>
+                    Logout
+                </button>
+                <button className='MenuBtn' onClick={() => nav('/menu')}>
+                    Menu
+                </button>
+                <button className='AdminBtn' onClick={() => nav('/admin')}>
+                    Admin
+                </button>
+            </div>
         </div>
     );
 }

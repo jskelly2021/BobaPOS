@@ -18,11 +18,11 @@ const IngredientList = () => {
     const handleOrderBtnClick = (ingredient) => {
         const id = ingredient.ingredient_id;
         const quantityToAdd = Number(orderAmounts[id]) || 0;
-        if (quantityToAdd <= 0) {
-            return;
-        }
+
+        if (quantityToAdd <= 0) return;
+
         updateQuantity(id, quantityToAdd);
-        setOrderAmounts(prevAmounts => ({ 
+        setOrderAmounts(prevAmounts => ({
             ...prevAmounts,
             [id]: ''
         }))

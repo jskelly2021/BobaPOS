@@ -14,12 +14,19 @@ const EmployeeList = () => {
                 <li className='Labels'>
                     <h3>Name</h3>
                     <h3>Position</h3>
+                    <h3>Password</h3>
+                    <div></div>
                 </li>
                 {employees.map((employee) => (
                     <li key={employee.employee_id}> 
                         <p>{employee.employee_name}</p>
                         <p>{employee.position}</p>
-                    </li> 
+                        <p>{employee.passwords}</p>
+                        <button className='EditEmployeeBtn'>
+                            edit
+                        </button>
+                    </li>
+                    
             ))}
             </ul>
         </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 // Maintains list of items added to the current order. Stores the order items in session storage for persistence.
-const useOrderItems = () => {
+const useOrderItem = () => {
     const [orderItems, setOrderItems] = useState(() => {
         const storedOrder = sessionStorage.getItem('orderItems');
         console.log("Stored order data:", storedOrder);
@@ -35,4 +35,4 @@ const useOrderItems = () => {
     return { orderItems, addToOrder, removeFromOrder, clearOrder };
 }
 
-export default useOrderItems;
+export default useOrderItem;

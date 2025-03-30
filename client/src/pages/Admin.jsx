@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import EmployeesList from '../components/admin/EmployeesList';
-import IngredientsList from '../components/admin/IngredientsList';
-import ItemsList from '../components/admin/ItemsList';
+import EmployeeList from '../components/admin/EmployeeList';
+import IngredientList from '../components/admin/IngredientList';
+import ItemList from '../components/admin/ItemList';
 
 function Inventory() {
     const nav = useNavigate();
@@ -22,9 +22,9 @@ function Inventory() {
             </div>
 
             <h1>Admin</h1>
-            {activePage === 'ingredients' && <IngredientsList />}
-            {activePage === 'items' && <ItemsList />}
-            {activePage === 'employees' && <EmployeesList />}
+            {activePage === 'ingredients' && <IngredientList />}
+            {activePage === 'items' && <ItemList />}
+            {activePage === 'employees' && <EmployeeList />}
         </div>
     );
 }

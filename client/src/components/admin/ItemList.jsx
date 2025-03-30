@@ -1,6 +1,12 @@
 import React from 'react';
+import useItem from '../../hooks/useItem';
 
-const ItemsList = () => {
+const ItemList = () => {
+    const { items, loadingItem, errorItem} = useItem();
+
+    if (loadingItem) return <div>Loading items...</div>;
+    if (errorItem) return <div>Error fetching items: {error.message}</div>;
+
     return (
         <div>
             <ul className='ItemList'>
@@ -15,4 +21,4 @@ const ItemsList = () => {
     );
 }
 
-export default ItemsList;
+export default ItemList;

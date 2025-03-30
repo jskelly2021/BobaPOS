@@ -1,18 +1,18 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import useMenuItems from '../hooks/useMenuItems';
-import useOrderItems from '../hooks/useOrderItems';
-import MenuItemsList from '../components/MenuItemsList'
+import useOrderItem from '../hooks/useOrderItem';
+import useItem from '../hooks/useItem';
+import MenuItemList from '../components/MenuItemList'
 import OrderCart from '../components/OrderCart';
 
 function CashierMenu() {
     const nav = useNavigate();
-    const { menuItems, loading, error } = useMenuItems();
-    const { orderItems, addToOrder, removeFromOrder } = useOrderItems();
+    const { items, loadingItem, errorItem } = useItem();
+    const { orderItems, addToOrder, removeFromOrder } = useOrderItem();
 
-    if (loading) return <div>Loading items...</div>;
-    if (error) return <div>Error fetching items: {error.message}</div>;
+    if (loadingItem) return <div>Loading items...</div>;
+    if (errorItem) return <div>Error fetching items: {errorItem.message}</div>;
 
     return (
         <div className='CashierMenu'>
@@ -20,7 +20,7 @@ function CashierMenu() {
                 Dashboard
             </button>
 
-            <MenuItemsList menuItems={menuItems} onItemButtonClick={addToOrder} />
+            <MenuItemList menuItems={items} onItemButtonClick={addToOrder} />
             <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />
 
             <button className='ReviewOrderBtn' onClick={() => nav('/review')}>

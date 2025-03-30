@@ -1,8 +1,10 @@
 .Admin .List {
     background-color: antiquewhite;
     list-style: none;
+    padding: 0;
 }
 .Admin .List li {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(5vw, 1fr));
+    border-bottom: solid;
 }

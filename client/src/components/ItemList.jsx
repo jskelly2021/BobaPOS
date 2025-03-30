@@ -5,8 +5,8 @@ function ItemList({ items, onItemButtonClick }) {
     return (
         <div>
             <ul className='ItemList'>
-                {items.map((item, index) => (
-                    <li key={index}> 
+                {items.map((item) => (
+                    <li key={item.id}> 
                         <ItemButton item={item} onClick={() => onItemButtonClick(item)}/>
                     </li> 
                 ))}

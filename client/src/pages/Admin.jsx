@@ -1,14 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import useIngredients from '../hooks/useIngredients';
+
+import EmployeeList from '../components/EmployeeList';
+import IngredientList from '../components/IngredientList';
 
 function Inventory() {
     const nav = useNavigate();
-
-    const { ingredients, loadingIngredients, errorIngredients } = useIngredients();
-
-    if (loadingIngredients) return <div>Loading ingredients...</div>;
-    if (errorIngredients) return <div>Error fetching ingredients: {errorIngredients.message}</div>;
 
     return (
         <div className='Admin'>
@@ -27,14 +24,8 @@ function Inventory() {
                 </button>
             </div>
             <h1>Admin</h1>
-            <ul>
-                {ingredients.map((ingredient) => (
-                    <li key={ingredient.id}> 
-                        {ingredient.ingredient_name}
-                    </li> 
-                ))}
-            </ul>
-
+            <IngredientList />
+            <EmployeeList />
         </div>
     );
 }

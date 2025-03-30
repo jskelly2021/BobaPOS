@@ -1,4 +1,4 @@
-import ItemList from './ItemList';
+import ItemList from './admin/ItemsList';
 
 function OrderCart({ orderItems, onItemButtonClick }) {
     return (

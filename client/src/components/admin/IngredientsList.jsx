@@ -1,7 +1,7 @@
 import React from 'react';
 import useIngredients from '../../hooks/useIngredients';
 
-const IngredientList = () => {
+const IngredientsList = () => {
     const { ingredients, loadingIngredients, errorIngredients } = useIngredients();
 
     if (loadingIngredients) return <div>Loading ingredients...</div>;
@@ -19,4 +19,4 @@ const IngredientList = () => {
     );
 }
 
-export default IngredientList;
+export default IngredientsList;

@@ -1,13 +1,13 @@
 import React from 'react';
-import ItemButton from './ItemButton'
 
-function ItemList({ items, onItemButtonClick }) {
+const ItemsList = () => {
     return (
         <div>
             <ul className='ItemList'>
                 {items.map((item) => (
                     <li key={item.id}> 
-                        <ItemButton item={item} onClick={() => onItemButtonClick(item)}/>
+                        <p>{item.item_name}</p>
+                        <p>{item.price}</p>
                     </li> 
                 ))}
             </ul>
@@ -15,4 +15,4 @@ function ItemList({ items, onItemButtonClick }) {
     );
 }
 
-export default ItemList;
+export default ItemsList;

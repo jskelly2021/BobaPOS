@@ -1,7 +1,7 @@
 import React from 'react';
 import useEmployees from '../../hooks/useEmployees';
 
-const EmployeeList = () => {
+const EmployeesList = () => {
     const { employees, loadingEmployees, errorEmployees } = useEmployees();
 
     if (loadingEmployees) return <div>Loading employees...</div>;
@@ -19,4 +19,4 @@ const EmployeeList = () => {
     );
 }
 
-export default EmployeeList;
+export default EmployeesList;

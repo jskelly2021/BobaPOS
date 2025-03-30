@@ -17,7 +17,7 @@ const ItemList = () => {
                     <h3>Price</h3>
                 </li>
                 {items.map((item) => (
-                    <li key={item.id}> 
+                    <li key={item.item_id}> 
                         <p>{item.item_name}</p>
                         <p>{item.price}</p>
                     </li> 

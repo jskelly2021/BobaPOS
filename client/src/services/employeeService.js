@@ -13,3 +13,19 @@ export const fetchAllEmployees = async () => {
         throw new Error(`Failed to fetch employees: ${e.message}`);
     }
 }
+
+// Updates a specific employee
+export const updateEmployee = async (employee) => {
+    const updateURL = `${API_BASE_URL}/employees/${employee.employee_id}`;
+
+    try {
+        const { data } = await axios.put(updateURL, {
+            employee_name: employee.employee_name,
+            position: employee.position,
+            passwords: employee.passwords
+        });
+        return data;
+    } catch (e) {
+        throw new Error(`Failed to update employee ${e.message}`);
+    }
+}

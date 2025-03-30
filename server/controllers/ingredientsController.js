@@ -32,6 +32,7 @@ export const updateIngredientQuantity = async (req, res) => {
     try {
         const result = await pool.query('UPDATE ingredient SET quantity=$1 WHERE ingredient_id=$2 RETURNING *', [quantity, id]);
         res.status(200).json(result.rows);
+        console.log(`Updating ingredient ${id}: New Quantity = ${quantity}`);
     }
     catch (err) {
         console.error('Error updateIngredientQuantity', err);

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import './Admin.css'
 import EmployeeList from '../components/admin/EmployeeList';
 import IngredientList from '../components/admin/IngredientList';
 import ItemList from '../components/admin/ItemList';

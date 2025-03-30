@@ -14,8 +14,8 @@ function OrderReview() {
             </button>
             <h1>Review Order</h1>
             <ul className='OrderItemList'>
-                {orderItems.map((item, index) => (
-                        <li className="OrderItem" key={index}> 
+                {orderItems.map((item) => (
+                        <li className="OrderItem" key={item.item_id}> 
                             <div>
                                 <h3>{item.item_name}</h3>
                                 <p>{item.price}</p>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchAllIngredients } from '../services/ingredientService';
+import { fetchAllIngredients, updateIngredientQuantity } from '../services/ingredientService';
 
 // Returns a list of all ingredients
 const useIngredient = () => {
@@ -25,15 +25,20 @@ const useIngredient = () => {
         loadIngredients();
     }, []);
 
-    const updateQuantity = (ingredientId, quantityToAdd) => {
-        setIngredients((prevIngredients) =>
-            prevIngredients.map((ingredient) =>
-                ingredientId === ingredient.ingredient_id
-                    ? { ...ingredient, quantity: Number(ingredient.quantity) + quantityToAdd }
-                    : ingredient
-            )
-        );
-        console.log(`Adding ${quantityToAdd} to ingredient: ${ingredientId}`);
+    const updateQuantity = async (ingredientId, quantityToAdd) => {
+        try {
+            const ingredient = ingredients.find(i => i.ingredient_id === ingredientId);
+            if (!ingredient)
+                return;
+
+            const newQuantity = Number(ingredient.quantity) + quantityToAdd;
+
+            await updateIngredientQuantity(ingredientId, newQuantity);
+            console.log(`Updated ingredient ${ingredientId}: New quantity = ${newQuantity}`);
+            
+        } catch (e) {
+            console.error('Error updating ingredient quantity: ', e.message());
+        }
     }
 
     return { ingredients, loadingIngredient, errorIngredient, updateQuantity };

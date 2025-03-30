@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { getIngredient } from '../../../server/controllers/ingredientsController';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 

@@ -15,7 +15,6 @@ body {
 }
 
 .MenuItemList {
-    background-color: beige;
     list-style: none;
 
     display: flex;
@@ -37,10 +36,8 @@ body {
 }
 
 .OrderCart {
-    
     width: 25vw;
 }
-
 .OrderItemList {
     list-style: none;
     display: block;
@@ -55,8 +52,20 @@ body {
     height: 5vh;
 }
 
-.DashboardBtn, .LogoutBtn, .ReviewOrderBtn {
-    max-height: 5vh;
+.Menu .DashboardBtn, .ReviewOrderBtn {
+    position: fixed;
+    width: 15vw;
+    height: 5vh;
+    bottom: 0;
+    font-size: 1.2rem;
+}
+.Menu .DashboardBtn {
+    background-color: darkgray;
+    left: 0;
+}
+.ReviewOrderBtn {
+    background-color: cornflowerblue;
+    right: 0;
 }
 
 /* Order Review */

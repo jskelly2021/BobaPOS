@@ -27,7 +27,12 @@ const useOrderItems = () => {
         setOrderItems((prevOrder) => prevOrder.filter(i => i.orderItemId !== item.orderItemId))
     }
 
-    return { orderItems, addToOrder, removeFromOrder };
+    const clearOrder = () => {
+        setOrderItems([]);
+        localStorage.removeItem('orderItems');
+    }
+
+    return { orderItems, addToOrder, removeFromOrder, clearOrder };
 }
 
 export default useOrderItems;

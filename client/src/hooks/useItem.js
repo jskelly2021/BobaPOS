@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react';
 import { fetchItems } from '../services/itemService';
 
-const useMenuItems = () => {
-    const [menuItems, setMenuItems] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+// Returns a list of all items
+const useItem = () => {
+    const [items, setItems] = useState([]);
+    const [loadingItem, setLoading] = useState(true);
+    const [errorItem, setError] = useState(null);
 
     useEffect(() => {
-        const loadMenuItems = async () => {
+        const loadItems = async () => {
             setLoading(true);
             setError(null);
 
             try {
                 const data = await fetchItems();
-                setMenuItems(data);
+                setItems(data);
             } catch (e) {
                 setError(e);
             } finally {
@@ -21,10 +22,10 @@ const useMenuItems = () => {
             }
         };
 
-        loadMenuItems();
+        loadItems();
     }, []);
 
-    return { menuItems, loading, error };
+    return { items, loadingItem, errorItem };
 }
 
-export default useMenuItems;
+export default useItem;

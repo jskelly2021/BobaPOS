@@ -3,50 +3,72 @@ body {
     margin: 0;
 }
 
-.CashierMenu {
+/* Cashier Menu */
+.CashierMenu .content{
     display: flex;
     flex-flow: nowrap;
     flex-direction: row;
 }
 
-.ItemList {
+.Menu {
+    width: 75vw;
+}
+
+.MenuItemList {
     list-style: none;
 
     display: flex;
     flex-flow: wrap;
     justify-content: space-evenly;
 
-    padding-left: 1vw;
-    padding-right: 1vw;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-
+    padding: 0;
+    margin: 0;
     gap: 1vw;
 }
-.ItemList .ItemButton {
+.MenuItemList .ItemButton {
     border-color: grey;
     border-style: solid;
     border-radius: 10px;
     background-color: ghostwhite;
 
-    width: 25vw;
-    height: 25vh;
-}
-.OrderCart .ItemList .ItemButton {
-    width: 10vw;
+    width: 20vw;
     height: 5vh;
 }
 
-.LogoutBtn, .ReviewOrderBtn {
+.OrderCart {
+    width: 25vw;
+}
+.OrderItemList {
+    list-style: none;
+    display: block;
+    padding: 0;
+}
+.OrderItemList .ItemButton {
     border-color: grey;
     border-style: solid;
-    border-radius: 10px;
+    background-color: ghostwhite;
 
-    width: 5vw;
+    width: 100%;
     height: 5vh;
 }
 
-/* Oreder Review */
+.CashierMenu .DashboardBtn, .ReviewOrderBtn {
+    position: fixed;
+    width: 15vw;
+    height: 5vh;
+    bottom: 0;
+    font-size: 1.2rem;
+}
+.CashierMenu .DashboardBtn {
+    background-color: darkgray;
+    left: 0;
+}
+.ReviewOrderBtn {
+    background-color: cornflowerblue;
+    right: 0;
+}
+
+/* Order Review */
 .OrderReview .OrderItemList {
     background-color: bisque;
     margin: 0;

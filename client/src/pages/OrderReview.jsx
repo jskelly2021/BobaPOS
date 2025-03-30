@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import useOrderItems from '../hooks/useOrderItems';
+import useOrderItem from '../hooks/useOrderItem';
 
 function OrderReview() {
     const nav = useNavigate();
-    const { orderItems, clearOrder } = useOrderItems();
+    const { orderItems, clearOrder } = useOrderItem();
 
     return (
         <div className='OrderReview'>

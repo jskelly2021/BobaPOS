@@ -1,15 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function EmployeeLogin() {
-    return (
-        <div>
-          <h1>Employee Login</h1>
-          <button>
-            <Link to="/menu">Login</Link>
-          </button>
-        </div>
-      );
+    const nav = useNavigate();
+
+        return (
+            <div>
+            <h1>Employee Login</h1>
+            <button className='LoginBtn' onClick={() => nav('/dashboard')}>
+                Login
+            </button>
+            </div>
+        );
 }
 
 export default EmployeeLogin;

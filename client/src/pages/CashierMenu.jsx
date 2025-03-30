@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import useOrderItem from '../hooks/useOrderItem';
 import useItem from '../hooks/useItem';
-import MenuItemList from '../components/MenuItemList'
+import Menu from '../components/Menu'
 import OrderCart from '../components/OrderCart';
 
 function CashierMenu() {
@@ -20,8 +20,10 @@ function CashierMenu() {
                 Dashboard
             </button>
 
-            <MenuItemList menuItems={items} onItemButtonClick={addToOrder} />
-            <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />
+            <div className='content'>
+                <Menu menuItems={items} onItemButtonClick={addToOrder} />
+                <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />
+            </div>
 
             <button className='ReviewOrderBtn' onClick={() => nav('/review')}>
                 Review Order

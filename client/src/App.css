@@ -3,37 +3,55 @@ body {
     margin: 0;
 }
 
-.CashierMenu {
+/* Cashier Menu */
+.CashierMenu .content{
     display: flex;
     flex-flow: nowrap;
     flex-direction: row;
 }
 
-.ItemList {
+.Menu {
+    width: 75vw;
+}
+
+.MenuItemList {
+    background-color: beige;
     list-style: none;
 
     display: flex;
     flex-flow: wrap;
     justify-content: space-evenly;
 
-    padding-left: 1vw;
-    padding-right: 1vw;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-
+    padding: 0;
+    margin: 0;
     gap: 1vw;
 }
-.ItemList .ItemButton {
+.MenuItemList .ItemButton {
     border-color: grey;
     border-style: solid;
     border-radius: 10px;
     background-color: ghostwhite;
 
-    width: 25vw;
-    height: 25vh;
+    width: 20vw;
+    height: 5vh;
 }
-.OrderCart .ItemList .ItemButton {
-    width: 10vw;
+
+.OrderCart {
+    
+    width: 25vw;
+}
+
+.OrderItemList {
+    list-style: none;
+    display: block;
+    padding: 0;
+}
+.OrderItemList .ItemButton {
+    border-color: grey;
+    border-style: solid;
+    background-color: ghostwhite;
+
+    width: 100%;
     height: 5vh;
 }
 
@@ -41,7 +59,7 @@ body {
     max-height: 5vh;
 }
 
-/* Oreder Review */
+/* Order Review */
 .OrderReview .OrderItemList {
     background-color: bisque;
     margin: 0;

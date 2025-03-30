@@ -8,6 +8,14 @@ const EmployeeList = () => {
     if (loadingEmployee) return <div>Loading employees...</div>;
     if (errorEmployee) return <div>Error fetching employees: {errorEmployee.message}</div>;
 
+    const handleEditClick = (employee) => {
+        setEditingEmployeeId(employee.employee_id);
+    }
+
+    const handleCancelClick = () => {
+        setEditingEmployeeId(null);
+    }
+
     return(
         <div>
             <h2>Employees</h2>
@@ -26,7 +34,7 @@ const EmployeeList = () => {
                                 <input type='text'></input>
                                 <input type='text'></input>
                                 <div>
-                                    <button className='CancelEditBtn'>Cancel</button>
+                                    <button className='CancelEditBtn' onClick={() => handleCancelClick()}>Cancel</button>
                                     <button className='SaveEditBtn'>Save</button>
                                 </div>
                             </>
@@ -37,7 +45,7 @@ const EmployeeList = () => {
                                 <p>{employee.position}</p>
                                 <p>{employee.passwords}</p>
                                 <div>
-                                    <button className='EditBtn'>Edit</button>
+                                    <button className='EditBtn' onClick={() => handleEditClick(employee)}>Edit</button>
                                 </div>
                             </>
                         )}

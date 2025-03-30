@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import useOrderItems from '../hooks/useOrderItems';
 
@@ -13,17 +13,20 @@ function OrderReview() {
                 Continue Order
             </button>
             <h1>Review Order</h1>
-            <button className='PlaceOrderBtn' onClick={() => clearOrder()}>
-                Place Order
-            </button>
-            <ul className='orderOverView'>
+            <ul className='OrderItemList'>
                 {orderItems.map((item, index) => (
-                        <li key={index}> 
-                            <p>{item.item_name}</p>
-                            <p>{item.price}</p>
+                        <li className="OrderItem" key={index}> 
+                            <div>
+                                <h3>{item.item_name}</h3>
+                                <p>{item.price}</p>
+                            </div> 
+                            <h4>Toppings:</h4>
                         </li> 
                     ))}
             </ul>
+            <button className='PlaceOrderBtn' onClick={() => clearOrder()}>
+                Place Order
+            </button>
         </div>
     );
 }

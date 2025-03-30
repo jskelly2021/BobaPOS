@@ -4,8 +4,8 @@ import { fetchAllEmployees } from '../services/employeeService';
 // Returns a list of all employees
 const useEmployees = () => {
     const [employees, setEmployees] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [loadingEmployees, setLoading] = useState(true);
+    const [errorEmployees, setError] = useState(null);
 
     useEffect(() => {
         const loadEmployees = async () => {
@@ -25,7 +25,7 @@ const useEmployees = () => {
         loadEmployees();
     }, []);
 
-    return { employees, loading, error };
+    return { employees, loadingEmployees, errorEmployees };
 }
 
 export default useEmployees;

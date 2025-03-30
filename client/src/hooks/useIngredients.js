@@ -4,8 +4,8 @@ import { fetchAllIngredients } from '../services/ingredientService';
 // Returns a list of all ingredients
 const useIngredients = () => {
     const [ingredients, setIngredients] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [loadingIngredients, setLoading] = useState(true);
+    const [errorIngredients, setError] = useState(null);
 
     useEffect(() => {
         const loadIngredients = async () => {
@@ -25,7 +25,7 @@ const useIngredients = () => {
         loadIngredients();
     }, []);
 
-    return { ingredients, loading, error };
+    return { ingredients, loadingIngredients, errorIngredients };
 }
 
 export default useIngredients;

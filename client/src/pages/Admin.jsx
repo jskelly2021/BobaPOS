@@ -1,8 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import useIngredients from '../hooks/useIngredients';
+import useEmployees from '../hooks/useEmployees';
 
 function Inventory() {
     const nav = useNavigate();
+
+    const { ingredients, loadingIngredients, errorIngredients } = useIngredients();
+    const { employees, loadingEmployees, errorEmployees } = useEmployees();
 
     return (
         <div className='Admin'>

@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useIngredient from '../../hooks/useIngredient';
 
 const IngredientList = () => {
     const { ingredients, loadingIngredient, errorIngredient, updateQuantity } = useIngredient();
+    const [orderAmounts, setOrderAmount] = useState({});
 
     if (loadingIngredient) return <div>Loading ingredients...</div>;
     if (errorIngredient) return <div>Error fetching ingredients: {errorIngredient.message}</div>;
+
+    const handleOnInputChange = (ingredient, value) => {
+        setOrderAmount(prevAmounts => ({
+            ...prevAmounts,
+            [ingredient.ingredient_id]: value
+        }))
+    }
+
+    const handleOrderBtnClick = (ingredient) => {
+        const quantityToAdd = Number(orderAmounts[ingredient.ingredient_id]) || 0;
+        if (quantityToAdd <= 0) {
+            return;
+        }
+        updateQuantity(ingredient.ingredient_id, quantityToAdd);
+    }
 
     return(
         <div>
@@ -15,16 +31,26 @@ const IngredientList = () => {
                 <li className='Labels'>
                     <h3>Name</h3>
                     <h3>Quantity</h3>
-                    <h3>Place Order</h3>
+                    <h3>Order Product</h3>
                 </li>
-                {ingredients.map((ingredient) => (
+                {ingredients.map(ingredient => (
                     <li key={ingredient.ingredient_id}> 
                         <p>{ingredient.ingredient_name}</p>
                         <p>{ingredient.quantity}</p>
 
-                        <button className='OrderBtn' onClick={() => updateQuantity(ingredient.ingredient_id, 10)}>
-                            Order
-                        </button>
+                        <div className='OrderProductForm'>
+                            <input 
+                                type='number' 
+                                min='0.1'
+                                value={orderAmounts[ingredient.ingredient_id]}
+                                onChange={(e) => handleOnInputChange(ingredient, e.target.value)}
+                                placeholder='Enter Amount'>
+                            </input>
+
+                            <button className='OrderBtn' onClick={() => handleOrderBtnClick(ingredient)}>
+                                Order
+                            </button>
+                        </div>
                     </li> 
                 ))}
             </ul>

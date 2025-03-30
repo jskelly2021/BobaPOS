@@ -37,11 +37,24 @@ body {
     height: 5vh;
 }
 
-.LogoutButton {
+.LogoutBtn, .ReviewOrderBtn {
     border-color: grey;
     border-style: solid;
     border-radius: 10px;
 
     width: 5vw;
     height: 5vh;
+}
+
+/* Oreder Review */
+.OrderReview .OrderItemList {
+    background-color: bisque;
+    margin: 0;
+    padding: 0;
+}
+.OrderReview .OrderItem {
+    border-color: grey;
+    border-style: solid;
+    display: flex;
+    flex-direction: column;
 }

@@ -1,7 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
+// Maintains list of items added to the current order. Stores the order items in session storage for persistence.
 const useOrderItems = () => {
-    const [orderItems, setOrderItems] = useState([]);
+    const [orderItems, setOrderItems] = useState(() => {
+        const storedOrder = sessionStorage.getItem('orderItems');
+        console.log("Stored order data:", storedOrder);
+        return storedOrder ? JSON.parse(storedOrder) : [];
+    });
+
+    useEffect(() => {
+        sessionStorage.setItem('orderItems', JSON.stringify(orderItems));
+    }, [orderItems]);
 
     const addToOrder = (item) => {
         const uniqueItem = {
@@ -18,7 +27,12 @@ const useOrderItems = () => {
         setOrderItems((prevOrder) => prevOrder.filter(i => i.orderItemId !== item.orderItemId))
     }
 
-    return { orderItems, addToOrder, removeFromOrder };
+    const clearOrder = () => {
+        setOrderItems([]);
+        localStorage.removeItem('orderItems');
+    }
+
+    return { orderItems, addToOrder, removeFromOrder, clearOrder };
 }
 
 export default useOrderItems;

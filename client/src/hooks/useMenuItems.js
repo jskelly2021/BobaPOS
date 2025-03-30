@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchItems } from '../services/itemService';
 
+// Returns a list of all items
 const useMenuItems = () => {
     const [menuItems, setMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);

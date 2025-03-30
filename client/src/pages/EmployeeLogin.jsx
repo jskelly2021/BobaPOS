@@ -7,7 +7,7 @@ function EmployeeLogin() {
         return (
             <div>
             <h1>Employee Login</h1>
-            <button className='LoginBtn' onClick={() => nav('/menu')}>
+            <button className='LoginBtn' onClick={() => nav('/dashboard')}>
                 Login
             </button>
             </div>

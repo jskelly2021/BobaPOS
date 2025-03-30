@@ -3,24 +3,29 @@ import useIngredient from '../../hooks/useIngredient';
 
 const IngredientList = () => {
     const { ingredients, loadingIngredient, errorIngredient, updateQuantity } = useIngredient();
-    const [orderAmounts, setOrderAmount] = useState({});
+    const [orderAmounts, setOrderAmounts] = useState({});
 
     if (loadingIngredient) return <div>Loading ingredients...</div>;
     if (errorIngredient) return <div>Error fetching ingredients: {errorIngredient.message}</div>;
 
     const handleOnInputChange = (ingredient, value) => {
-        setOrderAmount(prevAmounts => ({
+        setOrderAmounts(prevAmounts => ({
             ...prevAmounts,
             [ingredient.ingredient_id]: value
         }))
     }
 
     const handleOrderBtnClick = (ingredient) => {
-        const quantityToAdd = Number(orderAmounts[ingredient.ingredient_id]) || 0;
+        const id = ingredient.ingredient_id;
+        const quantityToAdd = Number(orderAmounts[id]) || 0;
         if (quantityToAdd <= 0) {
             return;
         }
-        updateQuantity(ingredient.ingredient_id, quantityToAdd);
+        updateQuantity(id, quantityToAdd);
+        setOrderAmounts(prevAmounts => ({ 
+            ...prevAmounts,
+            [id]: ''
+        }))
     }
 
     return(
@@ -42,7 +47,7 @@ const IngredientList = () => {
                             <input 
                                 type='number' 
                                 min='0.1'
-                                value={orderAmounts[ingredient.ingredient_id]}
+                                value={orderAmounts[ingredient.ingredient_id] || ''}
                                 onChange={(e) => handleOnInputChange(ingredient, e.target.value)}
                                 placeholder='Enter Amount'>
                             </input>

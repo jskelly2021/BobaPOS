@@ -34,8 +34,12 @@ const useIngredient = () => {
             const newQuantity = Number(ingredient.quantity) + quantityToAdd;
 
             await updateIngredientQuantity(ingredientId, newQuantity);
+            setIngredients((prevIngredients) =>
+                prevIngredients.map(i =>
+                    i.ingredient_id === ingredientId ? { ...i, quantity: newQuantity } : i
+                )
+            );
             console.log(`Updated ingredient ${ingredientId}: New quantity = ${newQuantity}`);
-            
         } catch (e) {
             console.error('Error updating ingredient quantity: ', e.message());
         }

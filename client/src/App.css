@@ -37,7 +37,7 @@ body {
     height: 5vh;
 }
 
-.LogoutButton {
+.LogoutBtn, .ReviewOrderBtn {
     border-color: grey;
     border-style: solid;
     border-radius: 10px;

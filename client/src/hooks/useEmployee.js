@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchAllEmployees } from '../services/employeeService';
+import { fetchAllEmployees, updateEmployee } from '../services/employeeService';
 
 // Returns a list of all employees
 const useEmployee = () => {
@@ -25,20 +25,27 @@ const useEmployee = () => {
         loadEmployees();
     }, []);
 
-    const updateEmployee = async (employee) => {
-        setEmployees(prevEmployees =>
-            prevEmployees.map(e =>
-                e.employee_id === employee.employee_id ? { 
-                    ...e,
-                    employee_name: employee.employee_name,
-                    position: employee.position,
-                    passwords: employee.passwords
-                } : e
-            )
-        );
+    const editEmployee = async (employee) => {
+        try {
+            await updateEmployee(employee);
+
+            setEmployees(prevEmployees =>
+                prevEmployees.map(e =>
+                    e.employee_id === employee.employee_id ? { 
+                        ...e,
+                        employee_name: employee.employee_name,
+                        position: employee.position,
+                        passwords: employee.passwords
+                    } : e
+                )
+            );
+            console.log(`Updated employee ${employee.employee_id}`);
+        } catch (e) {
+            console.error('Error updating employee: ', e);
+        }
     }
 
-    return { employees, loadingEmployee, errorEmployee, updateEmployee };
+    return { employees, loadingEmployee, errorEmployee, editEmployee };
 }
 
 export default useEmployee;

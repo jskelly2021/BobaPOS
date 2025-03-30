@@ -41,7 +41,7 @@ const useIngredient = () => {
             );
             console.log(`Updated ingredient ${ingredientId}: New quantity = ${newQuantity}`);
         } catch (e) {
-            console.error('Error updating ingredient quantity: ', e.message());
+            console.error('Error updating ingredient quantity: ', e);
         }
     }
 

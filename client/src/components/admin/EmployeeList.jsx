@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import useEmployees from '../../hooks/useEmployee';
 
 const EmployeeList = () => {
-    const { employees, loadingEmployee, errorEmployee, updateEmployee } = useEmployees();
+    const { employees, loadingEmployee, errorEmployee, editEmployee } = useEmployees();
     const [editingEmployeeId, setEditingEmployeeId] = useState(null);
     const [editedEmployee, setEditedEmployee] = useState({});
 
@@ -26,7 +26,7 @@ const EmployeeList = () => {
     }
 
     const handleSaveclick = async () => {
-        await updateEmployee(editedEmployee);
+        await editEmployee(editedEmployee);
         setEditingEmployeeId(null);
     }
 

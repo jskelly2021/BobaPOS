@@ -25,7 +25,20 @@ const useEmployee = () => {
         loadEmployees();
     }, []);
 
-    return { employees, loadingEmployee, errorEmployee };
+    const updateEmployee = async (employee) => {
+        setEmployees(prevEmployees =>
+            prevEmployees.map(e =>
+                e.employee_id === employee.employee_id ? { 
+                    ...e,
+                    employee_name: employee.employee_name,
+                    position: employee.position,
+                    passwords: employee.passwords
+                } : e
+            )
+        );
+    }
+
+    return { employees, loadingEmployee, errorEmployee, updateEmployee };
 }
 
 export default useEmployee;

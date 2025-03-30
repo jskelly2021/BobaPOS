@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import useEmployees from '../../hooks/useEmployee';
 
 const EmployeeList = () => {
-    const { employees, loadingEmployee, errorEmployee } = useEmployees();
+    const { employees, loadingEmployee, errorEmployee, updateEmployee } = useEmployees();
     const [editingEmployeeId, setEditingEmployeeId] = useState(null);
     const [editedEmployee, setEditedEmployee] = useState({});
 
@@ -25,8 +25,8 @@ const EmployeeList = () => {
         })
     }
 
-    const handleSaveclick = (employee) => {
-
+    const handleSaveclick = async () => {
+        await updateEmployee(editedEmployee);
         setEditingEmployeeId(null);
     }
 
@@ -60,8 +60,8 @@ const EmployeeList = () => {
                                     onChange={(e) => handleOnEditChange('passwords', e.target.value)}>
                                 </input>
                                 <div>
-                                    <button className='CancelEditBtn' onClick={() => handleCancelClick()}>Cancel</button>
                                     <button className='SaveEditBtn'onClick={() => handleSaveclick(employee)}>Save</button>
+                                    <button className='CancelEditBtn' onClick={() => handleCancelClick()}>Cancel</button>
                                 </div>
                             </>
                         )

@@ -1,53 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import OrderMenu from '../components/OrderMenu'
+import useOrderItem from '../hooks/useOrderItem';
+import useItem from '../hooks/useItem';
+import Menu from '../components/Menu'
 import OrderCart from '../components/OrderCart';
-import { fetchItems } from '../services/itemService';
 
 function CashierMenu() {
-    const [menuItems, setMenuItems] = useState([]);
-    const [orderItems, setOrderItems] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const nav = useNavigate();
+    const { items, loadingItem, errorItem } = useItem();
+    const { orderItems, addToOrder, removeFromOrder } = useOrderItem();
 
-    useEffect(() => {
-        const loadMenuItems = async () => {
-            setLoading(true);
-            setError(null);
-
-            try {
-                const data = await fetchItems();
-                setMenuItems(data);
-            } catch (e) {
-                setError(e);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        loadMenuItems();
-    }, []);
-
-    if (loading) return <div>Loading items...</div>;
-    if (error) return <div>Error fetching items: {error.message}</div>;
-
-    const addToOrder = (item) => {
-        console.log(`Adding Item: ${item.item_name}`);
-        setOrderItems((prevOrder) => [...prevOrder, item]);
-    }
-
-    const removeFromOrder = (item) => {
-        console.log(`Removing Item: ${item.item_name}`);
-    }
+    if (loadingItem) return <div>Loading items...</div>;
+    if (errorItem) return <div>Error fetching items: {errorItem.message}</div>;
 
     return (
         <div className='CashierMenu'>
-            <button className='LogoutButton'>
-                <Link to="/">Logout</Link>
+            <button className='DashboardBtn' onClick={() => nav('/dashboard')}>
+                Dashboard
             </button>
-            <OrderMenu menuItems={menuItems} onItemButtonClick={addToOrder} />
-            <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />
+
+            <div className='content'>
+                <Menu menuItems={items} onItemButtonClick={addToOrder} />
+                <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />
+            </div>
+
+            <button className='ReviewOrderBtn' onClick={() => nav('/review')}>
+                Review Order
+            </button>
         </div>
     );
 }

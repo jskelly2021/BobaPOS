@@ -1,9 +1,6 @@
 import pool from '../config/database.js';
 
-
-
 //Create a get all toppings function
-
 export const getAllToppings = async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM topping');

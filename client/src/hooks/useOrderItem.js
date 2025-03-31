@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { insertOrders, insertOrdersItems, insertOrdersItemTopping } from '../services/orderService';
 
 // Maintains list of items added to the current order. Stores the order items in session storage for persistence.
 const useOrderItem = () => {
@@ -27,12 +28,16 @@ const useOrderItem = () => {
         setOrderItems((prevOrder) => prevOrder.filter(i => i.orderItemId !== item.orderItemId))
     }
 
-    const clearOrder = () => {
+    // HARD CODED FOR THIS VALUE, WAITING FOR TIP AND PAYMENT METHOD READ IN
+    const placeOrder = () => {
+        
+        insertOrders(0, new Date().toISOString(), 1, "CARD", 1000);
+        
         setOrderItems([]);
         localStorage.removeItem('orderItems');
     }
 
-    return { orderItems, addToOrder, removeFromOrder, clearOrder };
+    return { orderItems, addToOrder, removeFromOrder, placeOrder };
 }
 
 export default useOrderItem;

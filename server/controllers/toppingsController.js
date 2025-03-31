@@ -17,7 +17,6 @@ export const getAllToppings = async (req, res) => {
 
 
 //get topping based on ID
- main
 export const getTopping = async (req, res) => 
 {
     const { id } = req.params;

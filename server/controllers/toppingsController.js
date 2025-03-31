@@ -1,6 +1,9 @@
 import pool from '../config/database.js';
 
-//get all toppings
+
+
+//Create a get all toppings function
+
 export const getAllToppings = async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM topping');
@@ -12,14 +15,18 @@ export const getAllToppings = async (req, res) => {
     }
 }
 
+
 //get topping based on ID
-export const getTopping = async (req, res) => {
+ main
+export const getTopping = async (req, res) => 
+{
     const { id } = req.params;
     try {
         const result = await pool.query('SELECT * FROM topping WHERE topping_id=$1', [id]);
         res.status(200).json(result.rows);
     }
-    catch (err) {
+    catch (err) 
+    {
         console.error('Error getTopping', err);
         res.status(500).json("Server Error");
     }
@@ -39,3 +46,4 @@ export const updateToppingQuantity = async (req, res) => {
         res.status(500).json("Server Error");
     }
 }
+

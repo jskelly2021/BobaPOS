@@ -14,6 +14,7 @@ app.use(cors());
 app.use('/api/items', itemsRouter);
 app.use('/api/ingredients', ingredientsRouter);
 app.use('/api/employees', employeesRouter);
+app.use('/api/orders', ordersRouter);
 app.use('/api/toppings', toppingsRouter);
 
 app.listen(port, () => {

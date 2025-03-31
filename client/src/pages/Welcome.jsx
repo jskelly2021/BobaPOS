@@ -6,12 +6,12 @@ function EmployeeLogin() {
 
         return (
             <div>
-                <button className='UserModeBtn' onClick={() => nav('/welcome')}>
+                <button className='UserModeBtn' onClick={() => nav('/')}>
                     Toggle User Mode
                 </button>
-                <h1>Employee Login</h1>
-                <button className='LoginBtn' onClick={() => nav('/dashboard')}>
-                    Login
+                <h1>Welcome</h1>
+                <button className='StartBtn' onClick={() => nav('/menu')}>
+                    Start Order
                 </button>
             </div>
         );

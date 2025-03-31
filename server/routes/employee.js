@@ -6,6 +6,6 @@ router.get('/', getAllEmployees);
 router.get('/:id', getEmployee);
 router.delete('/:id', deleteEmployee);
 router.put('/:id', updateEmployee);
-router.post('/create', createEmployee);
+router.post('/', createEmployee);
 
 module.exports = router;  // Export the router for use in the main app file

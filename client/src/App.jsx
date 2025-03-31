@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import CashierMenu from './pages/CashierMenu'
 import EmployeeLogin from './pages/EmployeeLogin'
+import Welcome from './pages/Welcome'
 import OrderReview from './pages/OrderReview'
 import Dashboard from './pages/Dashboard'
 import Admin from './pages/Admin'
@@ -13,6 +14,7 @@ function App() {
         <div className="App">
             <Routes>
                 <Route path="/" element={<EmployeeLogin />} />
+                <Route path="/welcome" element={<Welcome />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/menu" element={<CashierMenu />} />
                 <Route path="/admin" element={<Admin />} />

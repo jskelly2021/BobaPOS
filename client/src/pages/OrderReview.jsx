@@ -5,7 +5,7 @@ import useOrderItem from '../hooks/useOrderItem';
 
 function OrderReview() {
     const nav = useNavigate();
-    const { orderItems, clearOrder } = useOrderItem();
+    const { orderItems, placeOrder } = useOrderItem();
 
     return (
         <div className='OrderReview'>
@@ -24,7 +24,7 @@ function OrderReview() {
                         </li> 
                     ))}
             </ul>
-            <button className='PlaceOrderBtn' onClick={() => clearOrder()}>
+            <button className='PlaceOrderBtn' onClick={() => placeOrder()}>
                 Place Order
             </button>
         </div>

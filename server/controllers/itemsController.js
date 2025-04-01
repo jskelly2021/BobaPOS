@@ -25,6 +25,7 @@ export const getItem = async (req, res) => {
     }
 }
 
+
 //Get Default Toppings For an Item 
 export const getDefaultToppings = async (req, res) => {
     const { id } = req.params;
@@ -37,6 +38,67 @@ export const getDefaultToppings = async (req, res) => {
         } 
         catch (err) {
         console.error('Error getDefaultToppings', err);
+        res.status(500).json("Item not found");
+    }
+}
+
+//Delete item
+export const deleteItem = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await pool.query('DELETE FROM item WHERE item_id=$1 RETURNING *', [id]);
+        res.status(200).json(result.rows[0]);
+    }
+    catch (err) {
+        console.error('Error deleteItem', err);
+        res.status(500).json("Item not found");
+    }
+}
+
+// Create a new item
+export const createItem = async (req, res) => {
+    try {
+        const { item_name, category, price, active} = req.body;
+        // Get the next available ID from the item_id sequence.
+        const seqResult = await pool.query("SELECT COUNT (*) as new_id FROM item");
+        const newId = Number(seqResult.rows[0].new_id) + 1;
+        console.log("New ID:", newId);
+
+        const result = await pool.query(
+            "INSERT INTO item (item_id, item_name, category, price, active) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+            [newId, item_name, category, price, active]
+        );
+        res.status(201).json(result.rows[0]);
+    } catch (err) {
+        console.error('Error createItem', err);
+        res.status(500).json("Server Error");
+    }
+}
+
+// Update Specific Item
+export const updateItem = async (req, res) => {
+    const { id } = req.params;
+    const { item_name, category, price, active } = req.body;
+    try {
+        const result = await pool.query('UPDATE item SET item_name=$1, category=$2, price=$3, active=$4 WHERE item_id=$5 RETURNING *',
+            [item_name, category, price, active, id]);
+        res.status(200).json(result.rows[0]);
+    } catch (err) {
+        console.error('Error updateItem', err);
+        res.status(500).json("Item not found");
+    }
+}
+
+//Update item quantity
+export const updateItemQuantity = async (req, res) => {
+    const { id } = req.params;
+    const { quantity } = req.body;
+    try {
+        const result = await pool.query('UPDATE item SET quantity=$1 WHERE item_id=$2 RETURNING *', [quantity, id]);
+        res.status(200).json(result.rows);
+        console.log(`Updating item ${id}: New Quantity = ${quantity}`);
+    } catch (err) {
+        console.error('Error updateItemQuantity', err);
         res.status(500).json("Item not found");
     }
 }

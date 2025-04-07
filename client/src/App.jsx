@@ -7,6 +7,7 @@ import Welcome from './pages/Welcome'
 import OrderReview from './pages/OrderReview'
 import Dashboard from './pages/Dashboard'
 import Admin from './pages/Admin'
+import Payment from './pages/Payment'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
                 <Route path="/menu" element={<CashierMenu />} />
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/review" element={<OrderReview />} />
+                <Route path="/payment" element={<Payment />} />
             </Routes>
         </div>
     </BrowserRouter>

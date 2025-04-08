@@ -35,6 +35,25 @@ body {
     height: 5vh;
 }
 
+.ItemImg {
+    display: none;
+    width: 5vw;
+}
+
+.CategorySelector {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    background-color: bisque;
+    height: 100vh;
+    width: 10vw;
+}
+.CategorySelector button {
+    height: 25vh;
+    width: auto;
+}
+
 .OrderCart {
     width: 25vw;
 }

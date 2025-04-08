@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { insertOrders, insertOrdersItems, insertOrdersItemTopping } from '../services/orderService';
+import { useNavigate } from 'react-router-dom';
 
 // Maintains list of items added to the current order. Stores the order items in session storage for persistence.
 const useOrderItem = () => {
+    const nav = useNavigate();
+
     const [orderItems, setOrderItems] = useState(() => {
         const storedOrder = sessionStorage.getItem('orderItems');
         console.log("Stored order data:", storedOrder);
@@ -28,16 +31,26 @@ const useOrderItem = () => {
         setOrderItems((prevOrder) => prevOrder.filter(i => i.orderItemId !== item.orderItemId))
     }
 
-    // HARD CODED FOR THIS VALUE, WAITING FOR TIP AND PAYMENT METHOD READ IN
-    const placeOrder = () => {
+    const orderPrice = () => {
+        const total = orderItems.reduce((subtotal, item) => subtotal + parseFloat(item.price), 0);
+        return parseFloat(total).toFixed(2);
+    }
+
+    const placeOrder = async (price, paymentMethod, tip) => {
         
-        insertOrders(0, new Date().toISOString(), 1, "CARD", 1000);
+        const order_id = await insertOrders(price, new Date().toISOString(), 1, paymentMethod, tip);
+
+        for (const item of orderItems) {
+            await insertOrdersItems(order_id, item.item_id, 100);
+        }
         
         setOrderItems([]);
         localStorage.removeItem('orderItems');
+
+        nav('/menu');
     }
 
-    return { orderItems, addToOrder, removeFromOrder, placeOrder };
+    return { orderItems, addToOrder, removeFromOrder, orderPrice, placeOrder };
 }
 
 export default useOrderItem;

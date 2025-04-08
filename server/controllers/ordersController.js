@@ -5,8 +5,10 @@ export const addOrder = async (req, res) => {
     const { price, order_date, cashier_id, payment_method, tip } = req.body;
     try {
         const result = await pool.query(`INSERT INTO orders (price, order_date, cashier_id, payment_method, tip) 
-                                     VALUES ($1, $2, $3, $4, $5) RETURNING *`, [price, order_date, cashier_id, payment_method, tip]);
-        res.status(201).json(result.rows);
+                                     VALUES ($1, $2, $3, $4, $5) RETURNING order_id`, [price, order_date, cashier_id, payment_method, tip]);
+        
+        const order_id = result.rows[0].order_id
+        res.status(201).json( { order_id });
         console.log(`Inserting New Order`);
     }
     catch (err) {

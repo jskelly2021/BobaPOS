@@ -9,7 +9,7 @@ export const insertOrders = async (price, order_date, cashier_id, payment_method
     try {
         const { data } = await axios.post(updateURL, {price: price, order_date: order_date, cashier_id: cashier_id, 
                                         payment_method: payment_method, tip: tip});
-        return data;
+        return data.order_id;
     } catch (e) {
         throw new Error(`Failed to insert order ${e.message}`);
     }

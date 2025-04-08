@@ -36,9 +36,13 @@ const useOrderItem = () => {
         return parseFloat(total).toFixed(2);
     }
 
-    const placeOrder = (price, paymentMethod, tip) => {
+    const placeOrder = async (price, paymentMethod, tip) => {
         
-        insertOrders(price, new Date().toISOString(), 1, paymentMethod, tip);
+        const order_id = await insertOrders(price, new Date().toISOString(), 1, paymentMethod, tip);
+
+        for (const item of orderItems) {
+            await insertOrdersItems(order_id, item.item_id, 100);
+        }
         
         setOrderItems([]);
         localStorage.removeItem('orderItems');

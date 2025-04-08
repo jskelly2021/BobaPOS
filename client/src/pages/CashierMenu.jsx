@@ -5,10 +5,11 @@ import useOrderItem from '../hooks/useOrderItem';
 import useItem from '../hooks/useItem';
 import Menu from '../components/Menu'
 import OrderCart from '../components/OrderCart';
+import CategorySelector from '../components/CategorySelector';
 
 function CashierMenu() {
     const nav = useNavigate();
-    const { items, loadingItem, errorItem } = useItem();
+    const { items, loadingItem, errorItem, updateCategory } = useItem("BREWED");
     const { orderItems, addToOrder, removeFromOrder } = useOrderItem();
 
     if (loadingItem) return <div>Loading items...</div>;
@@ -21,6 +22,7 @@ function CashierMenu() {
             </button>
 
             <div className='content'>
+                <CategorySelector changeCategory={updateCategory}/>
                 <Menu menuItems={items} onItemButtonClick={addToOrder} />
                 <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />
             </div>

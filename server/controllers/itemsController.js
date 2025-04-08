@@ -25,6 +25,18 @@ export const getItem = async (req, res) => {
     }
 }
 
+// Get all items in given category
+export const getItemsByCategory = async(req, res) => {
+    const { category } = req.params;
+    try {
+        const result = await pool.query('SELECT * FROM item WHERE category = $1', [category]);
+        res.status(200).json(result.rows);
+    }
+    catch (err) {
+        console.error('Error getItemsByCategory', err);
+        res.status(500).json("Server Error" );
+    }
+}
 
 //Get Default Toppings For an Item 
 export const getDefaultToppings = async (req, res) => {

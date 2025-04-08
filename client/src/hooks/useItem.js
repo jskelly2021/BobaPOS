@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { fetchItems, updateItem } from '../services/itemService';
 
-// Returns a list of all items
-const useItem = () => {
+// Returns a list of items
+const useItem = (defaultCategory = null) => {
     const [items, setItems] = useState([]);
+    const [category, setCategory] = useState(defaultCategory);
     const [loadingItem, setLoading] = useState(true);
     const [errorItem, setError] = useState(null);
 
@@ -13,7 +14,7 @@ const useItem = () => {
             setError(null);
 
             try {
-                const data = await fetchItems();
+                const data = await fetchItems(category);
                 setItems(data);
             } catch (e) {
                 setError(e);
@@ -23,12 +24,16 @@ const useItem = () => {
         };
 
         loadItems();
-    }, []);
+    }, [category]);
+
+    const updateCategory = (newCategory) => {
+        setCategory(newCategory);
+    }
 
     const editItem = async (item) => {
         try {
           await updateItem(item);
-    
+
           setItems(prevItems =>
             prevItems.map(i =>
               i.item_id === item.item_id ? { 
@@ -46,7 +51,7 @@ const useItem = () => {
         }
       };
 
-    return { items, loadingItem, errorItem, editItem};
+    return { items, loadingItem, errorItem, updateCategory, editItem};
 }
 
 export default useItem;

@@ -4,7 +4,13 @@ const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 // Returns a list of items from the given category
 export const fetchItems = async (category="") => {
-    const itemURL = `${API_BASE_URL}/items/${category}`;
+    let itemURL;
+    if (!category) {
+        itemURL = `${API_BASE_URL}/items`;
+    }
+    else {
+        itemURL = `${API_BASE_URL}/items/category/${category}`;
+    }
 
     try {
         const { data } = await axios.get(itemURL);

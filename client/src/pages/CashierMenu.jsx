@@ -14,7 +14,6 @@ function CashierMenu() {
 
     if (loadingItem) return <div>Loading items...</div>;
     if (errorItem) return <div>Error fetching items: {errorItem.message}</div>;
-    updateCategory("brewed");
 
     return (
         <div className='CashierMenu'>
@@ -23,7 +22,7 @@ function CashierMenu() {
             </button>
 
             <div className='content'>
-                <CategorySelector />
+                <CategorySelector changeCategory={updateCategory}/>
                 <Menu menuItems={items} onItemButtonClick={addToOrder} />
                 <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />
             </div>

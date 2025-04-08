@@ -2,9 +2,9 @@ import axios from 'axios';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-// Returns a list of all items from the backend
-export const fetchItems = async () => {
-    const itemURL = `${API_BASE_URL}/items`;
+// Returns a list of items from the given category
+export const fetchItems = async (category="") => {
+    const itemURL = `${API_BASE_URL}/items/${category}`;
 
     try {
         const { data } = await axios.get(itemURL);

@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { fetchItems, updateItem } from '../services/itemService';
 
 // Returns a list of items
-const useItem = () => {
+const useItem = (defaultCategory = null) => {
     const [items, setItems] = useState([]);
-    const [category, setCategory] = useState(null);
+    const [category, setCategory] = useState(defaultCategory);
     const [loadingItem, setLoading] = useState(true);
     const [errorItem, setError] = useState(null);
 

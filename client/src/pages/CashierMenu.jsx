@@ -9,7 +9,7 @@ import CategorySelector from '../components/CategorySelector';
 
 function CashierMenu() {
     const nav = useNavigate();
-    const { items, loadingItem, errorItem, updateCategory } = useItem();
+    const { items, loadingItem, errorItem, updateCategory } = useItem("BREWED");
     const { orderItems, addToOrder, removeFromOrder } = useOrderItem();
 
     if (loadingItem) return <div>Loading items...</div>;

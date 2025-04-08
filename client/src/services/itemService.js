@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 // Returns a list of items from the given category
-export const fetchItems = async (category="") => {
+export const fetchItems = async (category = null) => {
     let itemURL;
     if (!category) {
         itemURL = `${API_BASE_URL}/items`;

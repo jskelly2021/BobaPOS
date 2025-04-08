@@ -5,6 +5,7 @@ import useOrderItem from '../hooks/useOrderItem';
 import useItem from '../hooks/useItem';
 import Menu from '../components/Menu'
 import OrderCart from '../components/OrderCart';
+import CategorySelector from '../components/CategorySelector';
 
 function CashierMenu() {
     const nav = useNavigate();
@@ -19,6 +20,8 @@ function CashierMenu() {
             <button className='DashboardBtn' onClick={() => nav('/dashboard')}>
                 Dashboard
             </button>
+
+            <CategorySelector />
 
             <div className='content'>
                 <Menu menuItems={items} onItemButtonClick={addToOrder} />

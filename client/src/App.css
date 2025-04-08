@@ -80,3 +80,7 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+.ItemImg {
+    width: 5vw;
+}

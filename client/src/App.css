@@ -82,5 +82,6 @@ body {
 }
 
 .ItemImg {
+    display: none;
     width: 5vw;
 }

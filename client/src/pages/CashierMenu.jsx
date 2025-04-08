@@ -21,9 +21,9 @@ function CashierMenu() {
                 Dashboard
             </button>
 
-            <CategorySelector />
 
             <div className='content'>
+                <CategorySelector />
                 <Menu menuItems={items} onItemButtonClick={addToOrder} />
                 <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />
             </div>

@@ -1,7 +1,7 @@
 
 const CategorySelector = () => {
     return (
-        <div>
+        <div className='CategorySelector'>
             <button>Brewed Tea</button>
             <button>Milk Tea</button>
             <button>Fruit Tea</button>

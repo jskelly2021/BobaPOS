@@ -1,11 +1,14 @@
+import useItem from '../hooks/useItem';
 
 const CategorySelector = () => {
+    const { updateCategory } = useItem();
+
     return (
         <div className='CategorySelector'>
-            <button>Brewed Tea</button>
-            <button>Milk Tea</button>
-            <button>Fruit Tea</button>
-            <button>Creama</button>
+            <button onClick={() => updateCategory("brewed")}>Brewed Tea</button>
+            <button onClick={() => updateCategory("milk")}>Milk Tea</button>
+            <button onClick={() => updateCategory("fruit")}>Fruit Tea</button>
+            <button onClick={() => updateCategory("creama")}>Creama</button>
         </div>
     );
 }

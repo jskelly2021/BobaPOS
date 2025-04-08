@@ -9,18 +9,18 @@ import CategorySelector from '../components/CategorySelector';
 
 function CashierMenu() {
     const nav = useNavigate();
-    const { items, loadingItem, errorItem } = useItem();
+    const { items, loadingItem, errorItem, updateCategory } = useItem();
     const { orderItems, addToOrder, removeFromOrder } = useOrderItem();
 
     if (loadingItem) return <div>Loading items...</div>;
     if (errorItem) return <div>Error fetching items: {errorItem.message}</div>;
+    updateCategory("brewed");
 
     return (
         <div className='CashierMenu'>
             <button className='DashboardBtn' onClick={() => nav('/dashboard')}>
                 Dashboard
             </button>
-
 
             <div className='content'>
                 <CategorySelector />

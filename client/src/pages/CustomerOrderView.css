@@ -12,10 +12,14 @@
     display: flex;
     align-items: center;
 
-    width: 100vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    gap: 1vw;
+
+    width: 98vw;
     height: 10vh;
     min-height: 10vh;
-    gap: 1vw;
+
 }
 .CustomerOrderView .UtilBar button {
     height: 8vh;
@@ -32,6 +36,7 @@
 }
 .CustomerOrderView .UtilBar .ReviewOrderBtn {
     flex-grow: 2;
+    max-width: 50vw;
     background-color: cornflowerblue;
     border: none;
 }
@@ -105,16 +110,25 @@
     position: fixed;
     right: 0;
     top: 0;
+    height: 90vh;
     width: 15vw;
+    overflow: scroll;
 
+    border-left: solid green;
 }
 .CustomerOrderView .OrderItemList {
     list-style: none;
     display: block;
     padding: 0;
+    overflow: scroll;
 }
 .CustomerOrderView .OrderItemList .ItemButton {
-    border-color: green;
-    border-style: solid;
+    display: flex;
+    flex-direction: row;
+    width: 15vw;
+
+    padding: 0;
+
+    border-bottom: solid green;
     background-color: ghostwhite;
 }

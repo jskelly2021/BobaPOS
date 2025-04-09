@@ -28,8 +28,8 @@ function OrderView() {
             </div>
 
             <div className='UtilBar'>
-                <button className='LogoutBtn' onClick={() => nav('/login')}>
-                    Logout
+                <button className='CancelBtn' onClick={() => nav('/welcome')}>
+                    Cancel Order
                 </button>
 
                 <button className='LanguagesBtn'>

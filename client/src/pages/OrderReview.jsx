@@ -16,6 +16,9 @@ function OrderReview() {
         else if (userMode === 'customer') {
             nav('/menu/customer');
         }
+        else {
+            nav('/menu/cashier');
+        }
     }
 
     return (

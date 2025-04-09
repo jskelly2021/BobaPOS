@@ -5,6 +5,7 @@
 
 /* Utility Bar */
 .CustomerOrderView .UtilBar {
+    Border-top: solid green;
     background-color: green;
     position: fixed;
     bottom: 0;
@@ -17,17 +18,28 @@
 .CustomerOrderView .UtilBar button {
     height: 10vh;
 }
-.CustomerOrderView .UtilBar .LogoutBtn { flex-grow: 1; }
-.CustomerOrderView .UtilBar .LanguagesBtn { flex-grow: 1; }
-.CustomerOrderView .UtilBar .ReviewOrderBtn { flex-grow: 2; }
-
+.CustomerOrderView .UtilBar .CancelBtn {
+    border: solid grey;
+    background-color: grey;
+    flex-grow: 1;
+}
+.CustomerOrderView .UtilBar .LanguagesBtn { flex-grow: .25; }
+.CustomerOrderView .UtilBar .ReviewOrderBtn {
+    flex-grow: 2;
+    background-color: green;
+    border: solid green;
+}
 
 
 /* Content */
-.CustomerOrderView .content{
+.CustomerOrderView .content {
     display: flex;
-    flex-flow: nowrap;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10vw;
+    margin-right: 15vw;
+    background-color: beige;
+    padding-bottom: 15vh;
 }
 
 
@@ -37,8 +49,7 @@
 
     display: flex;
     flex-flow: wrap;
-    justify-content: space-evenly;
-
+    justify-content: center;
     padding: 0;
     margin: 0;
     gap: 1vw;
@@ -52,13 +63,12 @@
     justify-content: center;
     align-items: center;
 
-    border-color: green;
-    border-style: solid;
+    border: solid green;
     border-radius: 10px;
     background-color: ghostwhite;
 
     width: 30vw;
-    height: 25vh;
+    height: 50vh;
 }
 
 .CustomerOrderView .ItemImg {
@@ -68,6 +78,10 @@
 
 /* Category Selector */
 .CustomerOrderView .CategorySelector {
+    position: fixed;
+    left: 0;
+    top: 0;
+
     display: flex;
     flex-direction: column;
 
@@ -77,13 +91,16 @@
 }
 .CustomerOrderView .CategorySelector button {
     height: 25vh;
-    width: auto;
 }
 
 
 /* Order Cart */
 .CustomerOrderView .OrderCart {
-    width: 25vw;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 15vw;
+
 }
 .CustomerOrderView .OrderItemList {
     list-style: none;

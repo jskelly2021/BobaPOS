@@ -19,9 +19,7 @@ function OrderView() {
 
     return (
         <div className='OrderView CustomerOrderView'>
-            <button className='LogoutBtn' onClick={() => nav('/')}>
-                Logout
-            </button>
+
 
             <div className='content'>
                 <CategorySelector changeCategory={updateCategory}/>
@@ -29,9 +27,15 @@ function OrderView() {
                 <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />
             </div>
 
-            <button className='ReviewOrderBtn' onClick={() => nav('/review')}>
-                Review Order
-            </button>
+            <div className='UtilBar'>
+                <button className='LogoutBtn' onClick={() => nav('/')}>
+                    Logout
+                </button>
+
+                <button className='ReviewOrderBtn' onClick={() => nav('/review')}>
+                    Review Order
+                </button>
+            </div>
         </div>
     );
 }

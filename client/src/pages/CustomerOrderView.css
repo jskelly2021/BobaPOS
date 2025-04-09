@@ -1,6 +1,25 @@
 .CustomerOrderView {
-    background-color:beige
+    background-color: white;
+
 }
+
+/* Utility Bar */
+.CustomerOrderView .UtilBar {
+    background-color: green;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+
+    width: 100vw;
+    height: 10vh;
+    min-height: 10vh;
+}
+.CustomerOrderView .UtilBar button {
+    height: 10vh;
+    width: auto;
+}
+
 
 /* Content */
 .CustomerOrderView .content{
@@ -8,6 +27,7 @@
     flex-flow: nowrap;
     flex-direction: row;
 }
+
 
 /* Item List */
 .CustomerOrderView .MenuItemList {
@@ -44,3 +64,35 @@
 }
 
 
+/* Category Selector */
+.CustomerOrderView .CategorySelector {
+    display: flex;
+    flex-direction: column;
+
+    height: 90vh;
+    width: 10vw;
+    min-width: 10vw;
+}
+.CustomerOrderView .CategorySelector button {
+    height: 25vh;
+    width: auto;
+}
+
+
+/* Order Cart */
+.CustomerOrderView .OrderCart {
+    width: 25vw;
+}
+.CustomerOrderView .OrderItemList {
+    list-style: none;
+    display: block;
+    padding: 0;
+}
+.CutstomerOrderView .OrderItemList .ItemButton {
+    border-color: grey;
+    border-style: solid;
+    background-color: ghostwhite;
+
+    width: 100%;
+    height: 5vh;
+}

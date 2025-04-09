@@ -1,16 +1,16 @@
 .CashierOrderView {
-    background-color: aqua;
+    background-color: white;
 }
 
 
-/* Cashier Menu */
+/* Content*/
 .CashierOrderView .content{
     display: flex;
     flex-flow: nowrap;
     flex-direction: row;
 }
 
-.MenuItemList {
+.CashierOrderView .MenuItemList {
     list-style: none;
 
     display: flex;
@@ -21,7 +21,7 @@
     margin: 0;
     gap: 1vw;
 }
-.MenuItemList .ItemButton {
+.CashierOrderView .MenuItemList .ItemButton {
     border-color: grey;
     border-style: solid;
     border-radius: 10px;
@@ -33,7 +33,7 @@
 
 .CashierOrderView .ItemImg { display: none; }
 
-.CategorySelector {
+.CashierOrderView .CategorySelector {
     display: flex;
     flex-direction: column;
     padding: 0;
@@ -42,20 +42,20 @@
     height: 100vh;
     width: 10vw;
 }
-.CategorySelector button {
+.CashierOrderView .CategorySelector button {
     height: 25vh;
     width: auto;
 }
 
-.OrderCart {
+.CashierOrderView .OrderCart {
     width: 25vw;
 }
-.OrderItemList {
+.CashierOrderView .OrderItemList {
     list-style: none;
     display: block;
     padding: 0;
 }
-.OrderItemList .ItemButton {
+.CashierOrderView .OrderItemList .ItemButton {
     border-color: grey;
     border-style: solid;
     background-color: ghostwhite;
@@ -64,7 +64,8 @@
     height: 5vh;
 }
 
-.CashierOrderView .DashboardBtn, .ReviewOrderBtn {
+.CashierOrderView .DashboardBtn,
+.CashierOrderView .ReviewOrderBtn {
     position: fixed;
     width: 15vw;
     height: 5vh;
@@ -75,7 +76,7 @@
     background-color: darkgray;
     left: 0;
 }
-.ReviewOrderBtn {
+.CashierOrderView .ReviewOrderBtn {
     background-color: cornflowerblue;
     right: 0;
 }

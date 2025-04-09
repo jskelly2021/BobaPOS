@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import './CustomerOrderView.css'
+
 import useOrderItem from '../hooks/useOrderItem';
 import useItem from '../hooks/useItem';
 import ItemMenu from '../components/ItemMenu'

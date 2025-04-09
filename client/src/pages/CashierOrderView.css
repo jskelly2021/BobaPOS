@@ -1,3 +1,81 @@
 .CashierOrderView {
     background-color: aqua;
 }
+
+
+/* Cashier Menu */
+.CashierOrderView .content{
+    display: flex;
+    flex-flow: nowrap;
+    flex-direction: row;
+}
+
+.MenuItemList {
+    list-style: none;
+
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-evenly;
+
+    padding: 0;
+    margin: 0;
+    gap: 1vw;
+}
+.MenuItemList .ItemButton {
+    border-color: grey;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: ghostwhite;
+
+    width: 20vw;
+    height: 5vh;
+}
+
+.CashierOrderView .ItemImg { display: none; }
+
+.CategorySelector {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    background-color: bisque;
+    height: 100vh;
+    width: 10vw;
+}
+.CategorySelector button {
+    height: 25vh;
+    width: auto;
+}
+
+.OrderCart {
+    width: 25vw;
+}
+.OrderItemList {
+    list-style: none;
+    display: block;
+    padding: 0;
+}
+.OrderItemList .ItemButton {
+    border-color: grey;
+    border-style: solid;
+    background-color: ghostwhite;
+
+    width: 100%;
+    height: 5vh;
+}
+
+.CashierOrderView .DashboardBtn, .ReviewOrderBtn {
+    position: fixed;
+    width: 15vw;
+    height: 5vh;
+    bottom: 0;
+    font-size: 1.2rem;
+}
+.CashierOrderView .DashboardBtn {
+    background-color: darkgray;
+    left: 0;
+}
+.ReviewOrderBtn {
+    background-color: cornflowerblue;
+    right: 0;
+}

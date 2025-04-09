@@ -1,3 +1,46 @@
 .CustomerOrderView {
     background-color:beige
 }
+
+/* Content */
+.CustomerOrderView .content{
+    display: flex;
+    flex-flow: nowrap;
+    flex-direction: row;
+}
+
+/* Item List */
+.CustomerOrderView .MenuItemList {
+    list-style: none;
+
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-evenly;
+
+    padding: 0;
+    margin: 0;
+    gap: 1vw;
+}
+
+
+/* Item Button */
+.CustomerOrderView .MenuItemList .ItemButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border-color: green;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: ghostwhite;
+
+    width: 30vw;
+    height: 25vh;
+}
+
+.CustomerOrderView .ItemImg {
+    width: 10vw;
+}
+
+

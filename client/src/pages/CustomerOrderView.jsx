@@ -20,7 +20,6 @@ function OrderView() {
     return (
         <div className='OrderView CustomerOrderView'>
 
-
             <div className='content'>
                 <CategorySelector changeCategory={updateCategory}/>
                 <ItemMenu menuItems={items} onItemButtonClick={addToOrder} />

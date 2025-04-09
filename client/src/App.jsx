@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import Redirect from './Redirect'
 import CashierOrderView from './pages/CashierOrderView'
 import CustomerOrderView from './pages/CustomerOrderView'
 import EmployeeLogin from './pages/EmployeeLogin'
@@ -15,7 +16,8 @@ function App() {
     <BrowserRouter>
         <div className="App">
             <Routes>
-                <Route path="/" element={<EmployeeLogin />} />
+                <Route path="/" element={<Redirect />} />
+                <Route path="/login" element={<EmployeeLogin />} />
                 <Route path="/welcome" element={<Welcome />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/menu/cashier" element={<CashierOrderView />} />

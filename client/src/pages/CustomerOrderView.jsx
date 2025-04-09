@@ -28,7 +28,7 @@ function OrderView() {
             </div>
 
             <div className='UtilBar'>
-                <button className='LogoutBtn' onClick={() => nav('/')}>
+                <button className='LogoutBtn' onClick={() => nav('/login')}>
                     Logout
                 </button>
 

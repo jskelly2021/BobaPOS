@@ -5,8 +5,8 @@ function EmployeeLogin() {
     const nav = useNavigate();
 
     const handleToggleMode = () => {
-        localStorage.setItem("userMode", "cashier");
-        nav('/');
+        localStorage.setItem("userMode", "employee");
+        nav('/login');
     }
 
     return (

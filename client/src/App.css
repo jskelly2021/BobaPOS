@@ -3,12 +3,224 @@ body {
     margin: 0;
 }
 
+
+/* Dashboard */
+.Dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.DashboardNav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100vw;
+    height: 10vh;
+}
+
+
+.DashboardNav .LogoutBtn {
+    background-color: darkgray;
+    border-radius: 10px;
+    width: 15vw;
+    height: 5vh;
+    font-size: 1.2rem;
+}
+
+
+.DashboardNav .MenuBtn {
+    background-color: darkgray;
+    border-radius: 10px;
+    width: 15vw;
+    height: 5vh;
+    font-size: 1.2rem;
+}
+
+
+.DashboardNav .AdminBtn {
+    background-color: darkgray;
+    border-radius: 10px;
+    width: 15vw;
+    height: 5vh;
+    font-size: 1.2rem;
+}
+
+
+/* Employee Login */
+.UserMode {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    position: relative;
+    padding-top: 3vh;
+    padding-left: 3vw;
+}
+
+
+.UserMode .UserModeBtn {
+    background-color: darkgray;
+    border-radius: 10px;
+    width: 15vw;
+    height: 5vh;
+    font-size: 1.2rem;
+}
+
+
+.EmployeeLogin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-top: 10vh;
+}
+
+
+.EmployeeLogin .LoginText {
+    font-size: 2rem;
+    margin-bottom: 2vh;
+}
+
+
+.EmployeeLogin .LoginBtn {
+    background-color: darkgray;
+    border-radius: 10px;
+    width: 15vw;
+    height: 5vh;
+    font-size: 1.2rem;
+}
+
+
+/* Menu Imported */
+.Menu {
+    width: 75vw;
+}
+
+
+.Menu h1 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+
+.MenuItemList {
+    list-style: none;
+
+
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-evenly;
+
+
+    padding: 0;
+    margin: 0;
+    gap: 1vw;
+}
+
+
+.MenuItemList .ItemButton {
+    border-color: grey;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: ghostwhite;
+
+
+    width: 20vw;
+    height: 5vh;
+}
+
+.ItemImg {
+    width: 10vh;
+    height: 10vh;
+    border-radius: 10px;
+    margin: 0;
+    padding: 0;
+    object-fit: contain;
+}
+
+
+/* Order Cart Imported */
+.OrderCart {
+    width: 25vw;
+}
+
+
+.OrderCart h1 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+
+.OrderItemList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    gap: 1.5vh;
+}
+
+
+.OrderItemList .ItemButton {
+    border-color: grey;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: ghostwhite;
+
+
+    width: 20vw;
+    height: 5vh;
+}
+
+
+/* Cashier Menu */
+.CashierMenu .content {
+    display: flex;
+    flex-flow: nowrap;
+    flex-direction: row;
+}
+
+
+.CashierMenu .ButtonAlignment {
+    display: flex;
+    padding-left: 15vw;
+    padding-top: 5vh;
+}
+
+
+.CashierMenu .DashboardBtn,
+.ReviewOrderBtn {
+    position: fixed;
+    width: 15vw;
+    height: 5vh;
+    bottom: 0;
+    font-size: 1.2rem;
+    border-radius: 10px;
+}
+
+
+.CashierMenu .DashboardBtn {
+    background-color: darkgray;
+    left: 0;
+}
+
+
+.ReviewOrderBtn {
+    background-color: cornflowerblue;
+    right: 0;
+}
+
+
 /* Order Review */
 .OrderReview .OrderItemList {
     background-color: bisque;
     margin: 0;
     padding: 0;
 }
+
+
 .OrderReview .OrderItem {
     border-color: grey;
     border-style: solid;

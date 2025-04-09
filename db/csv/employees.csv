@@ -1,4 +1,4 @@
-employee_id,employee_name,position,password
+employee_id,employee_name,position,passwords
 1,Jacob Kelly,MANAGER,MAN123
 2,Dahbin Behk,MANAGER,MAN234
 3,Cody Wu,MANAGER,MAN345

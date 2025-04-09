@@ -4,7 +4,7 @@ body {
 }
 
 /* Cashier Menu */
-.CashierMenu .content{
+.CashierOrderView .content{
     display: flex;
     flex-flow: nowrap;
     flex-direction: row;
@@ -71,14 +71,14 @@ body {
     height: 5vh;
 }
 
-.CashierMenu .DashboardBtn, .ReviewOrderBtn {
+.CashierOrderView .DashboardBtn, .ReviewOrderBtn {
     position: fixed;
     width: 15vw;
     height: 5vh;
     bottom: 0;
     font-size: 1.2rem;
 }
-.CashierMenu .DashboardBtn {
+.CashierOrderView .DashboardBtn {
     background-color: darkgray;
     left: 0;
 }

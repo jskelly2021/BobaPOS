@@ -1,8 +1,8 @@
 import ItemButton from "./ItemButton";
 
-function Menu({ menuItems, onItemButtonClick}) {
+function ItemMenu({ menuItems, onItemButtonClick}) {
     return (
-        <div className='Menu'>
+        <div className='ItemMenu'>
             <h1>Cashier Menu</h1>
 
             <ul className='MenuItemList'>
@@ -16,4 +16,4 @@ function Menu({ menuItems, onItemButtonClick}) {
     );
 }
 
-export default Menu;
+export default ItemMenu;

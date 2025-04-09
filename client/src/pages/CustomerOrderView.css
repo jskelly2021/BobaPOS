@@ -1,0 +1,141 @@
+.CustomerOrderView {
+    background-color: white;
+
+}
+
+/* Utility Bar */
+.CustomerOrderView .UtilBar {
+    Border-top: solid green;
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+
+    padding-left: 1vw;
+    padding-right: 1vw;
+    gap: 1vw;
+
+    width: 98vw;
+    height: 10vh;
+    min-height: 10vh;
+
+}
+.CustomerOrderView .UtilBar button {
+    height: 8vh;
+    border-radius: 10px;
+}
+.CustomerOrderView .UtilBar .CancelBtn {
+    border: none;
+    background-color: grey;
+    flex-grow: 1;
+}
+.CustomerOrderView .UtilBar .LanguagesBtn {
+    flex-grow: .25; 
+    border: none;
+}
+.CustomerOrderView .UtilBar .ReviewOrderBtn {
+    flex-grow: 2;
+    background-color: cornflowerblue;
+    border: none;
+}
+
+
+/* Content */
+.CustomerOrderView .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10vw;
+    margin-right: 15vw;
+    background-color: white;
+    padding-bottom: 15vh;
+}
+
+
+/* Item List */
+.CustomerOrderView .MenuItemList {
+    list-style: none;
+
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    gap: 1vw;
+}
+
+
+/* Item Button */
+.CustomerOrderView .MenuItemList .ItemButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: solid green;
+    border-radius: 10px;
+    background-color: ghostwhite;
+
+    width: 30vw;
+    height: 50vh;
+}
+
+.CustomerOrderView .ItemImg {
+    width: 10vw;
+}
+
+
+/* Category Selector */
+.CustomerOrderView .CategorySelector {
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    height: 90vh;
+    width: 10vw;
+    min-width: 10vw;
+}
+.CustomerOrderView .CategorySelector button {
+    height: 25vh;
+}
+
+
+/* Order Cart */
+.CustomerOrderView .OrderCart {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 90vh;
+    width: 15vw;
+    overflow: scroll;
+    background-color: ghostwhite;
+    text-align: center;
+}
+
+.CustomerOrderView .OrderCart h2 { margin: 2vh; }
+
+.CustomerOrderView .OrderItemList {
+    list-style: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+    overflow: scroll;
+}
+
+.CustomerOrderView .OrderItemList .ItemButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 15vw;
+    border: none;
+    background-color: ghostwhite;
+}
+
+.CustomerOrderView .OrderItemList .ItemButton:hover {
+    background-color: white;
+}

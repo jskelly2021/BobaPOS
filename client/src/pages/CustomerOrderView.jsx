@@ -1,13 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import './CustomerOrderView.css'
+
 import useOrderItem from '../hooks/useOrderItem';
 import useItem from '../hooks/useItem';
-import Menu from '../components/Menu'
+import ItemMenu from '../components/ItemMenu'
 import OrderCart from '../components/OrderCart';
 import CategorySelector from '../components/CategorySelector';
 
-function CashierMenu() {
+function OrderView() {
     const nav = useNavigate();
     const { items, loadingItem, errorItem, updateCategory } = useItem("BREWED");
     const { orderItems, addToOrder, removeFromOrder } = useOrderItem();
@@ -16,22 +18,30 @@ function CashierMenu() {
     if (errorItem) return <div>Error fetching items: {errorItem.message}</div>;
 
     return (
-        <div className='CashierMenu'>
-            <button className='DashboardBtn' onClick={() => nav('/dashboard')}>
-                Dashboard
-            </button>
+        <div className='OrderView CustomerOrderView'>
 
             <div className='content'>
                 <CategorySelector changeCategory={updateCategory}/>
-                <Menu menuItems={items} onItemButtonClick={addToOrder} />
+                <h1>Customer Menu</h1>
+                <ItemMenu menuItems={items} onItemButtonClick={addToOrder} />
                 <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />
             </div>
 
-            <button className='ReviewOrderBtn' onClick={() => nav('/review')}>
-                Review Order
-            </button>
+            <div className='UtilBar'>
+                <button className='CancelBtn' onClick={() => nav('/welcome')}>
+                    Cancel Order
+                </button>
+
+                <button className='LanguagesBtn'>
+                    Languages
+                </button>
+
+                <button className='ReviewOrderBtn' onClick={() => nav('/review')}>
+                    Review Order
+                </button>
+            </div>
         </div>
     );
 }
 
-export default CashierMenu;
+export default OrderView;

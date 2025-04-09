@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 function EmployeeLogin() {
   const navigate = useNavigate();
-  // State variables for the login form
   const [employeeName, setEmployeeName] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -12,7 +11,7 @@ function EmployeeLogin() {
   const handleLogin = async (e) => {
     e.preventDefault();
     setError(null);
-  
+
     try {
       const response = await fetch('http://localhost:4001/auth/login', {
         method: 'POST',
@@ -20,9 +19,9 @@ function EmployeeLogin() {
         credentials: 'include',
         body: JSON.stringify({ employee_name: employeeName, passwords: password }),
       });
-  
-      const data = await response.json(); // Now data will contain JSON
-  
+
+      const data = await response.json();
+
       if (response.ok) {
         navigate('/dashboard');
       } else {
@@ -34,15 +33,21 @@ function EmployeeLogin() {
     }
   };
 
-  
+    const handleToggleMode = () => {
+        localStorage.setItem("userMode", "customer");
+        navigate('/welcome');
+    }
 
   return (
     <div>
-      <button className='UserModeBtn' onClick={() => navigate('/welcome')}>
+      <button className='UserModeBtn' onClick={() => handleToggleMode()}>
         Toggle User Mode
       </button>
+
       <h1>Employee Login</h1>
+
       {error && <div style={{ color: 'red' }}>{error}</div>}
+
       <form onSubmit={handleLogin}>
         <div>
           <label htmlFor="employeeName">Employee Name:</label>
@@ -54,6 +59,7 @@ function EmployeeLogin() {
             required
           />
         </div>
+
         <div>
           <label htmlFor="password">Password:</label>
           <input
@@ -64,6 +70,7 @@ function EmployeeLogin() {
             required
           />
         </div>
+
         <button className='LoginBtn' type="submit">
           Login
         </button>

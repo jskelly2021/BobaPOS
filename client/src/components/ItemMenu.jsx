@@ -1,10 +1,8 @@
 import ItemButton from "./ItemButton";
 
-function Menu({ menuItems, onItemButtonClick}) {
+function ItemMenu({ menuItems, onItemButtonClick}) {
     return (
-        <div className='Menu'>
-            <h1>Cashier Menu</h1>
-
+        <div className='ItemMenu'>
             <ul className='MenuItemList'>
                 {menuItems.map((item) => (
                     <li key={item.id}> 
@@ -16,4 +14,4 @@ function Menu({ menuItems, onItemButtonClick}) {
     );
 }
 
-export default Menu;
+export default ItemMenu;

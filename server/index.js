@@ -2,27 +2,27 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
-const session = require('express-session');     // Import express-session
-const passport = require('./config/passportConfig');     // Import your passport configuration (ensure your file path is correct)
+const session = require('express-session');
+const passport = require('./config/passportConfig');
 
 const itemsRouter = require('./routes/items');
 const ingredientsRouter = require('./routes/ingredients');
 const employeesRouter = require('./routes/employee');
 const ordersRouter = require('./routes/orders');
 const toppingsRouter = require('./routes/toppings');
-const authRouter = require('./routes/auth');        // Import your new auth routes
+const authRouter = require('./routes/auth');
 
 const app = express();
 const port = 4001;
 
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:3000', // Allow requests from the client origin
-    credentials: true,               // Allow credentials (cookies, session) to be sent
+    origin: 'http://localhost:3000',
+    credentials: true,
 }));
 
 
-// Set up session middleware (make sure SESSION_SECRET is defined in your server-side .env)
+// Session middleware
 app.use( session({
       secret: process.env.SESSION_SECRET,
       resave: false,

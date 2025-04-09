@@ -10,7 +10,7 @@ function EmployeeLogin() {
                     Toggle User Mode
                 </button>
                 <h1>Welcome</h1>
-                <button className='StartBtn' onClick={() => nav('/menu')}>
+                <button className='StartBtn' onClick={() => nav('/menu/customer')}>
                     Start Order
                 </button>
             </div>

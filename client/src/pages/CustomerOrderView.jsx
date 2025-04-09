@@ -16,9 +16,9 @@ function OrderView() {
     if (errorItem) return <div>Error fetching items: {errorItem.message}</div>;
 
     return (
-        <div className='OrderView CashierOrderView'>
-            <button className='DashboardBtn' onClick={() => nav('/dashboard')}>
-                Dashboard
+        <div className='OrderView CustomerOrderView'>
+            <button className='LogoutBtn' onClick={() => nav('/')}>
+                Logout
             </button>
 
             <div className='content'>

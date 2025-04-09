@@ -36,7 +36,6 @@
 }
 .CustomerOrderView .UtilBar .ReviewOrderBtn {
     flex-grow: 2;
-    max-width: 50vw;
     background-color: cornflowerblue;
     border: none;
 }

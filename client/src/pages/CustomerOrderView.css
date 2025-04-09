@@ -9,7 +9,6 @@
     position: fixed;
     bottom: 0;
     display: flex;
-    justify-content: space-between;
 
     width: 100vw;
     height: 10vh;
@@ -17,8 +16,11 @@
 }
 .CustomerOrderView .UtilBar button {
     height: 10vh;
-    width: auto;
 }
+.CustomerOrderView .UtilBar .LogoutBtn { flex-grow: 1; }
+.CustomerOrderView .UtilBar .LanguagesBtn { flex-grow: 1; }
+.CustomerOrderView .UtilBar .ReviewOrderBtn { flex-grow: 2; }
+
 
 
 /* Content */
@@ -88,11 +90,8 @@
     display: block;
     padding: 0;
 }
-.CutstomerOrderView .OrderItemList .ItemButton {
-    border-color: grey;
+.CustomerOrderView .OrderItemList .ItemButton {
+    border-color: green;
     border-style: solid;
     background-color: ghostwhite;
-
-    width: 100%;
-    height: 5vh;
 }

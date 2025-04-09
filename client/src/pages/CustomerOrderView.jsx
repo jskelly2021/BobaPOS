@@ -32,6 +32,10 @@ function OrderView() {
                     Logout
                 </button>
 
+                <button className='LanguagesBtn'>
+                    Languages
+                </button>
+
                 <button className='ReviewOrderBtn' onClick={() => nav('/review')}>
                     Review Order
                 </button>

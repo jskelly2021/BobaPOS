@@ -107,14 +107,15 @@
 
 /* Order Cart */
 .CustomerOrderView .OrderCart {
+    background-color: ghostwhite;
+
     position: fixed;
     right: 0;
     top: 0;
+    padding: 0;
     height: 90vh;
     width: 15vw;
     overflow: scroll;
-
-    border-left: solid green;
 }
 .CustomerOrderView .OrderItemList {
     list-style: none;
@@ -124,11 +125,13 @@
 }
 .CustomerOrderView .OrderItemList .ItemButton {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 15vw;
-
-    padding: 0;
-
-    border-bottom: solid green;
+    border: none;
     background-color: ghostwhite;
+}
+.CustomerOrderView .OrderItemList .ItemButton:hover {
+    background-color: white;
 }

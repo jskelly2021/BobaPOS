@@ -209,4 +209,46 @@ export const resetTotals = async (req, res) => {
     }
 };
 
+// Returns the usage for a given ingredient over a specified start and end time
+export const getIngredientUsageOverTime = async (req, res) => {
+    const { ingredientId } = req.params;
+    const { interval, start, end } = req.body;
 
+    const allowedIntervals = ['hour', 'day', 'week', 'month'];
+    if (!allowedIntervals.includes(interval)) {
+        return res.status(400).json({ error: 'Invalid interval' });
+    }
+
+    const sql = `
+        SELECT DATE_TRUNC(${interval}, o.order_date) AS period, SUM(combined_usage.usage) AS total_usage
+        FROM (
+            SELECT o.order_date, ii.quantity * oi.quantity AS usage
+            FROM ingredient i
+            JOIN item_ingredient ii ON i.ingredient_id = ii.ingredient_id
+            JOIN item it ON ii.item_id = it.item_id
+            JOIN order_item oi ON it.item_id = oi.item_id
+            JOIN orders o ON oi.order_id = o.order_id
+            WHERE i.ingredient_id = $1 AND o.order_date BETWEEN $2 AND $3
+
+            UNION ALL
+
+            SELECT o.order_date, ti.quantity AS usage
+            FROM ingredient i
+            JOIN topping_ingredient ti ON i.ingredient_id = ti.ingredient_id
+            JOIN topping t ON ti.topping_id = t.topping_id
+            JOIN order_item_topping oit ON t.topping_id = oit.topping_id
+            JOIN order_item oi ON oit.order_item_id = oi.order_item_id
+            JOIN orders o ON oi.order_id = o.order_id
+            WHERE i.ingredient_id = $1 AND o.order_date BETWEEN $2 AND $3
+        ) AS combined_usage
+        GROUP BY period
+        ORDER BY period;
+    `;
+    try {
+        const result = await pool.query(sql, [ingredientId, start, end]);
+        res.status(200).json(result.rows);
+    } catch (err) {
+        console.error("Error returning ingredient usage over time:", err);
+        res.status(500).json("Failed to get ingredient usage over time");
+    }
+}

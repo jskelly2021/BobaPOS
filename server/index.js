@@ -43,7 +43,7 @@ app.use('/api/ingredients', ingredientsRouter);
 app.use('/api/employees', employeesRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/toppings', toppingsRouter);
-app.use('/api/analytics', analyticsRouter); // Use the analytics routes
+app.use('/api/analytics', analyticsRouter);
 
 
 app.listen(port, () => {

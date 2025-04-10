@@ -1,0 +1,51 @@
+.Payment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.ExitBtn {
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    font-size: 15;
+    padding: 5px;
+    border-color: grey;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: ghostwhite;
+}
+
+.tipSummary, .tipName{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.tipBtn, .customTip, .CardBtn, .CashBtn {
+    margin: 15px;
+    padding: 10px;
+    font-size: 25px;
+
+    border-color: grey;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: ghostwhite;
+}
+
+.tipBtn.active {
+    background-color: grey;
+    color: white; 
+}
+
+.cashCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

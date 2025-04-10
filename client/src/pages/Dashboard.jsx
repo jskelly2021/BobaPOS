@@ -13,7 +13,7 @@ function Dashboard() {
                 <button className='LogoutBtn' onClick={() => nav('/')}>
                     Logout
                 </button>
-                <button className='MenuBtn' onClick={() => nav('/menu')}>
+                <button className='MenuBtn' onClick={() => nav('/menu/cashier')}>
                     Menu
                 </button>
                 <button className='AdminBtn' onClick={() => nav('/admin')}>

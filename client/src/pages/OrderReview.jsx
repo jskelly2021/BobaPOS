@@ -7,9 +7,23 @@ function OrderReview() {
     const nav = useNavigate();
     const { orderItems } = useOrderItem();
 
+    const handleContinueOrder = () => {
+        const userMode = localStorage.getItem('userMode');
+
+        if (userMode === 'employee') {
+            nav('/menu/cashier');
+        }
+        else if (userMode === 'customer') {
+            nav('/menu/customer');
+        }
+        else {
+            nav('/menu/cashier');
+        }
+    }
+
     return (
         <div className='OrderReview'>
-            <button className='ContinueOrderBtn' onClick={() => nav('/menu')}>
+            <button className='ContinueOrderBtn' onClick={() => handleContinueOrder()}>
                 Continue Order
             </button>
             <h1>Review Order</h1>

@@ -8,12 +8,28 @@ function Payment() {
     const nav = useNavigate();
     const { placeOrder, orderPrice } = useOrderItem();
     const [ tip, setTip ] = useState(0);
-    
+
     const subtotal = orderPrice() || 0;
+
+    const handlePlaceOrder = (subtotal, paymentMethod, tip) => {
+        placeOrder(subtotal, paymentMethod, tip);
+
+        const userMode = localStorage.getItem('userMode');
+
+        if (userMode === 'employee') {
+            nav('/menu/cashier');
+        }
+        else if (userMode === 'customer') {
+            nav('/welcome');
+        }
+        else {
+            nav('/menu/cashier');
+        }
+    }
 
     return (
         <div className="Payment">
-            <button className='ExitBtn' onClick={() => nav('/menu')}>
+            <button className='ExitBtn' onClick={() => nav('/review')}>
                 Cancel
             </button>
 
@@ -30,6 +46,7 @@ function Payment() {
                     </button>
                 </div>
             </div>
+
         </div>
     );
 }

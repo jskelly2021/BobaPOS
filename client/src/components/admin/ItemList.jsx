@@ -67,8 +67,8 @@ const ItemList = () => {
                                     checked={editedItem.active || false}
                                     onChange={(e) => handleOnEditChange('active', e.target.checked)}>
                                 </input>
-                                <button onClick={handleSaveClick}>Save</button>
-                                <button onClick={handleCancelClick}>Cancel</button>
+                                <button className='SaveEditBtn'onClick={() => handleSaveClick(item)}>Save</button>
+                                <button className='CancelEditBtn' onClick={() => handleCancelClick()}>Cancel</button>
                             </>
                         ) : (
                             <>
@@ -76,7 +76,9 @@ const ItemList = () => {
                                 <h3>{item.category}</h3>
                                 <h3>{item.price}</h3>
                                 <h3>{item.active ? 1 : 0}</h3>
-                                <button onClick={() => handleEditClick(item)}>Edit</button>
+                                <div>
+                                    <button className='EditBtn' onClick={() => handleEditClick(item)}>Edit</button>
+                                </div>
                             </>
                         )}
                     </li> 

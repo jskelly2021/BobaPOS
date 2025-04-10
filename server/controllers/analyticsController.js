@@ -1,4 +1,4 @@
-import pool from "../config/database";
+import pool from "../config/database.js";
 
 //Get Top Selling Products
 export const getTopSellingProducts = async (req, res) => {
@@ -10,7 +10,7 @@ export const getTopSellingProducts = async (req, res) => {
                 "JOIN item i ON oi.item_id = i.item_id " +
                 "GROUP BY i.item_name " +
                 "ORDER BY total_sold DESC " +
-                "LIMIT = $1",
+                "LIMIT $1",
             [limit] // Use the limit from the query parameters
         );
         res.status(200).json(result.rows);

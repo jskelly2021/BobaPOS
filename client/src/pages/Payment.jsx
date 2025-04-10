@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useOrderItem from '../hooks/useOrderItem';
 import TipSelector from '../components/tipSelector';
+import './Payment.css'
 
 function Payment() {
     const nav = useNavigate();
@@ -16,14 +17,19 @@ function Payment() {
                 Cancel
             </button>
 
-            <TipSelector subtotal = {subtotal} onTipSelect = {setTip}/>
-            <button className='CardBtn' onClick={() => placeOrder(subtotal, "CARD", tip)}>
-                Credit Card
-            </button>
+            <div className='PaymentBtn'>
+                <TipSelector className='Tip' subtotal = {subtotal} onTipSelect = {setTip}/>
 
-            <button className='CashBtn' onClick={() => placeOrder(subtotal, "CASH", tip)}>
-                Cash
-            </button>
+                <div className='cashCard'>
+                    <button className='CardBtn' onClick={() => placeOrder(subtotal, "CARD", tip)}>
+                        Credit Card
+                    </button>
+
+                    <button className='CashBtn' onClick={() => placeOrder(subtotal, "CASH", tip)}>
+                        Cash
+                    </button>
+                </div>
+            </div>
         </div>
     );
 }

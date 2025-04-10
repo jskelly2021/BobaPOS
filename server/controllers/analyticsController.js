@@ -211,7 +211,7 @@ export const resetTotals = async (req, res) => {
 
 // Returns the usage for a given ingredient over a specified start and end time
 export const getIngredientUsageOverTime = async (req, res) => {
-    const { ingredientId } = req.params;
+    const { id } = req.params;
     const { interval, start, end } = req.body;
 
     const allowedIntervals = ['hour', 'day', 'week', 'month'];
@@ -220,7 +220,7 @@ export const getIngredientUsageOverTime = async (req, res) => {
     }
 
     const sql = `
-        SELECT DATE_TRUNC(${interval}, o.order_date) AS period, SUM(combined_usage.usage) AS total_usage
+        SELECT DATE_TRUNC('${interval}', combined_usage.order_date) AS period, SUM(combined_usage.usage) AS total_usage
         FROM (
             SELECT o.order_date, ii.quantity * oi.quantity AS usage
             FROM ingredient i
@@ -245,7 +245,8 @@ export const getIngredientUsageOverTime = async (req, res) => {
         ORDER BY period;
     `;
     try {
-        const result = await pool.query(sql, [ingredientId, start, end]);
+        const result = await pool.query(sql, [id, start, end]);
+        console.log({ id, start, end, interval });
         res.status(200).json(result.rows);
     } catch (err) {
         console.error("Error returning ingredient usage over time:", err);

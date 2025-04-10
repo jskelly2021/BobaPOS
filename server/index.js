@@ -10,7 +10,10 @@ const ingredientsRouter = require('./routes/ingredients');
 const employeesRouter = require('./routes/employee');
 const ordersRouter = require('./routes/orders');
 const toppingsRouter = require('./routes/toppings');
-const authRouter = require('./routes/auth');
+
+const authRouter = require('./routes/auth');        // Import your new auth routes
+const analyticsRouter = require('./routes/analytics'); // Import your new analytics routes
+
 
 const app = express();
 const port = 4001;
@@ -40,6 +43,7 @@ app.use('/api/ingredients', ingredientsRouter);
 app.use('/api/employees', employeesRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/toppings', toppingsRouter);
+app.use('/api/analytics', analyticsRouter); // Use the analytics routes
 
 
 app.listen(port, () => {

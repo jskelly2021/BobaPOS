@@ -1,4 +1,3 @@
-// hooks/useTopping.js
 import { useState, useEffect } from 'react';
 import { fetchToppings, updateTopping } from '../services/toppingService';
 

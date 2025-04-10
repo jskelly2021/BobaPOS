@@ -1,4 +1,4 @@
-import pool from "../config/database";
+import pool from '../config/database.js';
 
 // Get Top Selling Products
 export const getTopSellingProducts = async (req, res) => {

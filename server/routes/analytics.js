@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { getTopSellingProducts, getSalesDuringDay,getSalesOverDays, getSalesDuringMonth, getSalesDuringWeek, getTotals, getItemSales, 
+const { getTopSellingProducts, getSalesDuringDay, getSalesOverDays, getSalesDuringMonth, getSalesDuringWeek, getTotals, getItemSales, 
     getIngredientUsage, resetTotals, getIngredientUsageOverTime} = require('../controllers/analyticsController');
+
 
 router.get('/top-selling-products', getTopSellingProducts);
 router.post('/sales-over-days', getSalesOverDays);

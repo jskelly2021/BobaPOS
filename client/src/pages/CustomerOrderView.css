@@ -21,21 +21,33 @@
     min-height: 10vh;
 
 }
+
 .CustomerOrderView .UtilBar button {
     height: 8vh;
     border-radius: 10px;
+    font-size: 1vw;
+    font-weight: bold;
 }
+
 .CustomerOrderView .UtilBar .CancelBtn {
     border: none;
     background-color: grey;
-    flex-grow: 1;
+    flex-grow: 4;
 }
+
 .CustomerOrderView .UtilBar .LanguagesBtn {
-    flex-grow: .25; 
+    flex-grow: 1; 
     border: none;
 }
+.CustomerOrderView .UtilBar .Separator { flex-grow: 4 } 
+
+.CustomerOrderView .UtilBar .OrderPriceLabel {
+    border: none;
+    flex-grow: 1;
+}
+
 .CustomerOrderView .UtilBar .ReviewOrderBtn {
-    flex-grow: 2;
+    flex-grow: 8;
     background-color: cornflowerblue;
     border: none;
 }
@@ -52,6 +64,11 @@
     padding-bottom: 15vh;
 }
 
+.CustomerOrderView .content h1 {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+}
+
 
 /* Item List */
 .CustomerOrderView .MenuItemList {
@@ -63,6 +80,7 @@
     padding: 0;
     margin: 0;
     gap: 1vw;
+    width: 75vw;
 }
 
 
@@ -77,13 +95,16 @@
     border-radius: 10px;
     background-color: ghostwhite;
 
-    width: 30vw;
+    width: 23.5vw;
+    min-width: 200px;
     height: 50vh;
+    font-size: 1.5vw;
 }
+.CustomerOrderView .MenuItemList .ItemButton:hover { background-color: white; }
 
-.CustomerOrderView .ItemImg {
-    width: 10vw;
-}
+.CustomerOrderView .MenuItemList .ItemImg { height: 25vh; }
+.CustomerOrderView .MenuItemList .ItemDetails { font-size: 2vh; }
+.CustomerOrderView .MenuItemList .ItemDetails .ItemName { font-weight: bold; }
 
 
 /* Category Selector */
@@ -99,9 +120,17 @@
     width: 10vw;
     min-width: 10vw;
 }
+
 .CustomerOrderView .CategorySelector button {
+    border: solid green 1px;
+    border-right-width: 2px; 
+    background-color: ghostwhite;
     height: 25vh;
+    font-size: 1.5vw;
+    font-weight: bold;
 }
+
+.CustomerOrderView .CategorySelector button:hover { background-color: white; }
 
 
 /* Order Cart */
@@ -113,6 +142,7 @@
     width: 15vw;
     overflow: scroll;
     background-color: ghostwhite;
+    border-left: solid green 2px;
     text-align: center;
 }
 
@@ -138,4 +168,8 @@
 
 .CustomerOrderView .OrderItemList .ItemButton:hover {
     background-color: white;
+}
+
+.CustomerOrderView .OrderItemList .ItemImg {
+    width: 10vw;
 }

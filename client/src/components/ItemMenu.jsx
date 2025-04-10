@@ -1,6 +1,9 @@
 import ItemButton from "./ItemButton";
 
-function ItemMenu({ menuItems, onItemButtonClick}) {
+function ItemMenu({ loadingItem, errorItem, menuItems, onItemButtonClick}) {
+    if (loadingItem) return <div>Loading items...</div>;
+    if (errorItem) return <div>Error fetching items: {errorItem.message}</div>;
+
     return (
         <div className='ItemMenu'>
             <ul className='MenuItemList'>

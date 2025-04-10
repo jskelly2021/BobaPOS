@@ -51,7 +51,22 @@ const useItem = (defaultCategory = null) => {
         }
       };
 
-    return { items, loadingItem, errorItem, updateCategory, editItem};
+      const getCategory = () => {
+        switch (category) {
+            case "BREWED":
+                return "Brewed Tea";
+            case "MILK":
+                return "Milk Tea";
+            case "FRUIT":
+                return "Fruit Tea";
+            case "CREAMA":
+                return "Creama";
+            default:
+                break;
+        }
+      }
+
+    return { items, loadingItem, errorItem, updateCategory, editItem, getCategory};
 }
 
 export default useItem;

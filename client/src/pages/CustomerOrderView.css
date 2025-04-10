@@ -85,12 +85,12 @@
     width: 23.5vw;
     min-width: 200px;
     height: 50vh;
+    font-size: 1.5vw;
 }
 
-.CustomerOrderView .ItemImg {
-    width: 10vw;
-}
-
+.CustomerOrderView .MenuItemList .ItemImg { height: 25vh; }
+.CustomerOrderView .MenuItemList .ItemDetails { font-size: 2vh; }
+.CustomerOrderView .MenuItemList .ItemDetails .ItemName { font-weight: bold; }
 
 /* Category Selector */
 .CustomerOrderView .CategorySelector {
@@ -153,4 +153,8 @@
 
 .CustomerOrderView .OrderItemList .ItemButton:hover {
     background-color: white;
+}
+
+.CustomerOrderView .OrderItemList .ItemImg {
+    width: 10vw;
 }

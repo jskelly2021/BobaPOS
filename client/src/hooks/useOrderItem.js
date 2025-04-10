@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react';
 import { insertOrders, insertOrdersItems, insertOrdersItemTopping } from '../services/orderService';
-import { useNavigate } from 'react-router-dom';
 
 // Maintains list of items added to the current order. Stores the order items in session storage for persistence.
 const useOrderItem = () => {
-    const nav = useNavigate();
-
     const [orderItems, setOrderItems] = useState(() => {
         const storedOrder = sessionStorage.getItem('orderItems');
         console.log("Stored order data:", storedOrder);
@@ -46,8 +43,6 @@ const useOrderItem = () => {
         
         setOrderItems([]);
         localStorage.removeItem('orderItems');
-
-        nav('/menu');
     }
 
     return { orderItems, addToOrder, removeFromOrder, orderPrice, placeOrder };

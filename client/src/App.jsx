@@ -1,7 +1,9 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import CashierMenu from './pages/CashierMenu'
+import Redirect from './Redirect'
+import CashierOrderView from './pages/CashierOrderView'
+import CustomerOrderView from './pages/CustomerOrderView'
 import EmployeeLogin from './pages/EmployeeLogin'
 import Welcome from './pages/Welcome'
 import OrderReview from './pages/OrderReview'
@@ -14,10 +16,12 @@ function App() {
     <BrowserRouter>
         <div className="App">
             <Routes>
-                <Route path="/" element={<EmployeeLogin />} />
+                <Route path="/" element={<Redirect />} />
+                <Route path="/login" element={<EmployeeLogin />} />
                 <Route path="/welcome" element={<Welcome />} />
                 <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/menu" element={<CashierMenu />} />
+                <Route path="/menu/cashier" element={<CashierOrderView />} />
+                <Route path="/menu/customer" element={<CustomerOrderView />} />
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/review" element={<OrderReview />} />
                 <Route path="/payment" element={<Payment />} />

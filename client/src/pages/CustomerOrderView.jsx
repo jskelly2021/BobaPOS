@@ -14,16 +14,13 @@ function OrderView() {
     const { items, loadingItem, errorItem, updateCategory, getCategory } = useItem("BREWED");
     const { orderItems, addToOrder, removeFromOrder } = useOrderItem();
 
-    if (loadingItem) return <div>Loading items...</div>;
-    if (errorItem) return <div>Error fetching items: {errorItem.message}</div>;
-
     return (
         <div className='OrderView CustomerOrderView'>
 
             <div className='content'>
                 <CategorySelector changeCategory={updateCategory}/>
                 <h1>{getCategory()}</h1>
-                <ItemMenu menuItems={items} onItemButtonClick={addToOrder} />
+                <ItemMenu loadingItem={loadingItem} errorItem={errorItem} menuItems={items} onItemButtonClick={addToOrder} />
                 <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />
             </div>
 

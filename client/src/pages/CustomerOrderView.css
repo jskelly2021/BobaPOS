@@ -21,19 +21,23 @@
     min-height: 10vh;
 
 }
+
 .CustomerOrderView .UtilBar button {
     height: 8vh;
     border-radius: 10px;
 }
+
 .CustomerOrderView .UtilBar .CancelBtn {
     border: none;
     background-color: grey;
     flex-grow: 1;
 }
+
 .CustomerOrderView .UtilBar .LanguagesBtn {
     flex-grow: .25; 
     border: none;
 }
+
 .CustomerOrderView .UtilBar .ReviewOrderBtn {
     flex-grow: 2;
     background-color: cornflowerblue;
@@ -99,9 +103,15 @@
     width: 10vw;
     min-width: 10vw;
 }
+
 .CustomerOrderView .CategorySelector button {
+    border: solid green 1px;
+    border-right-width: 2px; 
+    background-color: ghostwhite;
     height: 25vh;
 }
+
+.CustomerOrderView .CategorySelector button:hover { background-color: white; }
 
 
 /* Order Cart */
@@ -113,6 +123,7 @@
     width: 15vw;
     overflow: scroll;
     background-color: ghostwhite;
+    border-left: solid green 2px;
     text-align: center;
 }
 

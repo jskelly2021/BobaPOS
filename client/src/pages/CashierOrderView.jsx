@@ -11,7 +11,7 @@ import CategorySelector from '../components/CategorySelector';
 
 function OrderView() {
     const nav = useNavigate();
-    const { items, loadingItem, errorItem, updateCategory } = useItem("BREWED");
+    const { items, loadingItem, errorItem, updateCategory, getCategory } = useItem("BREWED");
     const { orderItems, addToOrder, removeFromOrder } = useOrderItem();
 
     if (loadingItem) return <div>Loading items...</div>;
@@ -25,7 +25,7 @@ function OrderView() {
 
             <div className='content'>
                 <CategorySelector changeCategory={updateCategory}/>
-                <h1>Cashier Menu</h1>
+                <h1>{getCategory()}</h1>
                 <ItemMenu menuItems={items} onItemButtonClick={addToOrder} />
                 <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />
             </div>

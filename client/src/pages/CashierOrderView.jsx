@@ -15,7 +15,7 @@ import useToppings from '../hooks/useToppings';
 function OrderView() {
     const nav = useNavigate();
     const { items, loadingItem, errorItem, updateCategory, getCategory } = useItem("BREWED");
-    const { orderItems, addToOrder, removeFromOrder } = useOrderItem();
+    const { orderItems, addToOrder, removeFromOrder } = useOrderItem(nav);
     //toppings
     const { toppings } = useToppings();
     console.log("Toppings from useToppings:", toppings);
@@ -45,7 +45,7 @@ function OrderView() {
 
             <div className='content'>
                 <CategorySelector changeCategory={updateCategory} />
-                <Menu menuItems={items} onItemButtonClick={handleItemClick} />
+                <ItemMenu menuItems={items} onItemButtonClick={handleItemClick} />
                 <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />
             </div>
 

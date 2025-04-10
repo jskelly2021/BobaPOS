@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { insertOrders, insertOrdersItems, insertOrdersItemTopping } from '../services/orderService';
 
 // Maintains list of items added to the current order. Stores the order items in session storage for persistence.
-const useOrderItem = () => {
+const useOrderItem = (nav) => {
     const [orderItems, setOrderItems] = useState(() => {
         const storedOrder = sessionStorage.getItem('orderItems');
         console.log("Stored order data:", storedOrder);

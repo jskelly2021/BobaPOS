@@ -9,10 +9,11 @@ import ItemMenu from '../components/ItemMenu'
 import OrderCart from '../components/OrderCart';
 import CategorySelector from '../components/CategorySelector';
 
+
 function OrderView() {
     const nav = useNavigate();
     const { items, loadingItem, errorItem, updateCategory, getCategory } = useItem("BREWED");
-    const { orderItems, addToOrder, removeFromOrder } = useOrderItem();
+    const { orderItems, addToOrder, removeFromOrder, orderPrice } = useOrderItem();
 
     return (
         <div className='OrderView CustomerOrderView'>
@@ -31,6 +32,12 @@ function OrderView() {
 
                 <button className='LanguagesBtn'>
                     Languages
+                </button>
+
+                <div className="Separator"></div>
+
+                <button className="OrderPriceLabel">
+                    {'$'+orderPrice()}
                 </button>
 
                 <button className='ReviewOrderBtn' onClick={() => nav('/review')}>

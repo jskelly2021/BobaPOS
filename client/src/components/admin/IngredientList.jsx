@@ -37,12 +37,13 @@ const IngredientList = () => {
                     <h3>Name</h3>
                     <h3>Quantity</h3>
                     <h3>Order Product</h3>
+                    <h3>Threshold</h3>
+                    <h3>Status</h3>
                 </li>
                 {ingredients.map(ingredient => (
                     <li key={ingredient.ingredient_id}> 
                         <p>{ingredient.ingredient_name}</p>
                         <p>{ingredient.quantity}</p>
-
                         <div className='OrderProductForm'>
                             <input 
                                 type='number' 
@@ -55,6 +56,13 @@ const IngredientList = () => {
                             <button className='OrderBtn' onClick={() => handleOrderBtnClick(ingredient)}>
                                 Order
                             </button>
+                        </div>
+                        <div className='Threshold'>
+                            <p>0.00</p>
+                            <button>Edit</button>
+                        </div>
+                        <div className='StatusLabel'>
+                            <p>Good</p>
                         </div>
                     </li> 
                 ))}

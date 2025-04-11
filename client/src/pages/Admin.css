@@ -1,10 +1,88 @@
+.Admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+}
+
+
+/* Navigation Bar */
+.AdminPages {
+    background-color: ghostwhite;
+    display: flex;
+    position: sticky;
+    top: 0;
+
+    width: 98vw;
+    height: 4vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    border-bottom: solid black 2px;
+}
+
+.AdminPages button {
+    background-color: ghostwhite;
+    border: none;
+    border-radius: 10px;
+    flex-grow: 1;
+    font-size: large;
+    font-weight: bold;
+}
+.AdminPages button:hover { background-color: green; }
+
+
+/* Content */
+.Admin h1 { padding: 10vh; }
+
 .Admin .List {
-    background-color: antiquewhite;
     list-style: none;
+    width: 98vw;
     padding: 0;
 }
+
 .Admin .List li {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(5vw, 1fr));
     border-bottom: solid;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+
+/* Ingredient List */
+.Admin .IngredientList .OrderProductForm {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1vw;
+}
+
+.Admin .IngredientList .OrderProductForm Input {
+    width: 10vw;
+    min-width: 100px;
+}
+
+.Admin .IngredientList .Threshold {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+}
+
+.Admin .IngredientList .StatusLabel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    margin-left: 8vw;
+    margin-right: 8vw;
+    background-color: green;
+    border-radius: 10px;
+    min-width: 50px;
+    height: 5vh;
 }

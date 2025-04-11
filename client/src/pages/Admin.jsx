@@ -25,6 +25,7 @@ function Inventory() {
             </div>
 
             <h1>Admin</h1>
+
             {activePage === 'ingredients' && <IngredientList />}
             {activePage === 'items' && <ItemList />}
             {activePage === 'employees' && <EmployeeList />}

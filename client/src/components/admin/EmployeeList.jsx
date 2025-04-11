@@ -54,7 +54,7 @@ const EmployeeList = () => {
 
                                 <p>{employee.employee_id}</p>
 
-                                <div className='PositionSelectors'>
+                                <div className='RadioBtns'>
                                     <label>
                                         <input
                                             type="radio"

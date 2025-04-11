@@ -49,6 +49,19 @@
     padding: 0;
 }
 
+.Admin .List input[type="text"],
+.Admin .List input[type="number"] {
+    text-align: center;
+    width: 10vw;
+    min-width: 100px;
+}
+
+.Admin .List .Save-Cancel-Btns {
+    display: flex;
+    justify-content: center;
+    gap: 1vw;
+}
+
 
 /* Ingredient List */
 .Admin .IngredientList .OrderProductForm {
@@ -57,11 +70,6 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 1vw;
-}
-
-.Admin .IngredientList .OrderProductForm Input {
-    width: 10vw;
-    min-width: 100px;
 }
 
 .Admin .IngredientList .Threshold {
@@ -86,29 +94,22 @@
     height: 5vh;
 }
 
-/* Employee List */
-.Admin .EmployeeList input[type="text"] {
-    text-align: center;
-    width: 10vw;
-    min-width: 100px;
-}
 
-.Admin .EmployeeList .PositionSelectors {
+/* Employee List */
+.Admin .List .RadioBtns {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.Admin .EmployeeList .PositionSelectors label { 
+.Admin .List .RadioBtns label { 
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 0.2rem;
 }
 
-.Admin .EmployeeList .Save-Cancel-Btns {
-    display: flex;
-    justify-content: center;
-    gap: 1vw;
-}
+
+/* Item List */
+

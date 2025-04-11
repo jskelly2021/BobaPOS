@@ -49,26 +49,40 @@ const EmployeeList = () => {
                                     <input 
                                         type='text'
                                         value={editedEmployee.employee_name || ''}
-                                        onChange={(e) => handleOnEditChange('employee_name', e.target.value)}>
-                                    </input>
+                                        onChange={(e) => handleOnEditChange('employee_name', e.target.value)}/>
                                 </div>
 
                                 <p>{employee.employee_id}</p>
 
-                                <div>
-                                    <input 
-                                        type='text'
-                                        value={editedEmployee.position || ''}
-                                        onChange={(e) => handleOnEditChange('position', e.target.value)}>
-                                    </input>
+                                <div className='PositionSelectors'>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="position"
+                                            value="MANAGER"
+                                            checked={editedEmployee.position === 'MANAGER'}
+                                            onChange={(e) => handleOnEditChange('position', e.target.value)}
+                                        />
+                                        MANAGER
+                                    </label>
+
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="position"
+                                            value="CASHIER"
+                                            checked={editedEmployee.position === 'CASHIER'}
+                                            onChange={(e) => handleOnEditChange('position', e.target.value)}
+                                        />
+                                        CASHIER
+                                    </label>
                                 </div>
 
                                 <div>
                                     <input 
                                         type='text'
                                         value={editedEmployee.passwords || ''}
-                                        onChange={(e) => handleOnEditChange('passwords', e.target.value)}>
-                                    </input>
+                                        onChange={(e) => handleOnEditChange('passwords', e.target.value)}/>
                                 </div>
 
                                 <div className='Save-Cancel-Btns'>

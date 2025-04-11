@@ -36,6 +36,7 @@ const EmployeeList = () => {
             <ul className='List EmployeeList'>
                 <li className='Labels'>
                     <h3>Name</h3>
+                    <h3>Id</h3>
                     <h3>Position</h3>
                     <h3>Password</h3>
                     <div></div>
@@ -44,22 +45,33 @@ const EmployeeList = () => {
                     <li key={employee.employee_id}>
                         {editingEmployeeId === employee.employee_id ? (
                             <>
-                                <input 
-                                    type='text'
-                                    value={editedEmployee.employee_name || ''}
-                                    onChange={(e) => handleOnEditChange('employee_name', e.target.value)}>
-                                </input>
-                                <input 
-                                    type='text'
-                                    value={editedEmployee.position || ''}
-                                    onChange={(e) => handleOnEditChange('position', e.target.value)}>
-                                </input>
-                                <input 
-                                    type='text'
-                                    value={editedEmployee.passwords || ''}
-                                    onChange={(e) => handleOnEditChange('passwords', e.target.value)}>
-                                </input>
                                 <div>
+                                    <input 
+                                        type='text'
+                                        value={editedEmployee.employee_name || ''}
+                                        onChange={(e) => handleOnEditChange('employee_name', e.target.value)}>
+                                    </input>
+                                </div>
+
+                                <p>{employee.employee_id}</p>
+
+                                <div>
+                                    <input 
+                                        type='text'
+                                        value={editedEmployee.position || ''}
+                                        onChange={(e) => handleOnEditChange('position', e.target.value)}>
+                                    </input>
+                                </div>
+
+                                <div>
+                                    <input 
+                                        type='text'
+                                        value={editedEmployee.passwords || ''}
+                                        onChange={(e) => handleOnEditChange('passwords', e.target.value)}>
+                                    </input>
+                                </div>
+
+                                <div className='Save-Cancel-Btns'>
                                     <button className='SaveEditBtn'onClick={() => handleSaveclick(employee)}>Save</button>
                                     <button className='CancelEditBtn' onClick={() => handleCancelClick()}>Cancel</button>
                                 </div>
@@ -68,6 +80,7 @@ const EmployeeList = () => {
                         : (
                             <>
                                 <p>{employee.employee_name}</p>
+                                <p>{employee.employee_id}</p>
                                 <p>{employee.position}</p>
                                 <p>{employee.passwords}</p>
                                 <div>

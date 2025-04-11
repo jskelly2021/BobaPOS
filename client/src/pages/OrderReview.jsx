@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import useOrderItem from '../hooks/useOrderItem';
+import './OrderReview.css'
 
 function OrderReview() {
     const nav = useNavigate();

@@ -4,7 +4,6 @@ const { getAllToppings, getTopping, updateToppingQuantity } = require('../contro
 
 router.get('/', getAllToppings);
 router.get('/:id', getTopping);
-// router.get('/:id', getTopping);
 router.put('/:id', updateToppingQuantity);
 
 module.exports = router;

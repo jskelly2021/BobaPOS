@@ -13,13 +13,13 @@ import CategorySelector from '../components/CategorySelector';
 function OrderView() {
     const nav = useNavigate();
     const { items, loadingItem, errorItem, updateCategory, getCategory } = useItem("BREWED");
-    const { orderItems, addToOrder, removeFromOrder, orderPrice } = useOrderItem();
+    const { orderItems, addToOrder, removeFromOrder, orderPrice } = useOrderItem(nav);
 
     return (
         <div className='OrderView CustomerOrderView'>
 
             <div className='content'>
-                <CategorySelector changeCategory={updateCategory}/>
+                <CategorySelector changeCategory={updateCategory} />
                 <h1>{getCategory()}</h1>
                 <ItemMenu loadingItem={loadingItem} errorItem={errorItem} menuItems={items} onItemButtonClick={addToOrder} />
                 <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />
@@ -37,7 +37,7 @@ function OrderView() {
                 <div className="Separator"></div>
 
                 <button className="OrderPriceLabel">
-                    {'$'+orderPrice()}
+                    {'$' + orderPrice()}
                 </button>
 
                 <button className='ReviewOrderBtn' onClick={() => nav('/review')}>

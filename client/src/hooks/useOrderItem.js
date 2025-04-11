@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { insertOrders, insertOrdersItems, insertOrdersItemTopping } from '../services/orderService';
 
 // Maintains list of items added to the current order. Stores the order items in session storage for persistence.
-const useOrderItem = () => {
+const useOrderItem = (nav) => {
     const [orderItems, setOrderItems] = useState(() => {
         const storedOrder = sessionStorage.getItem('orderItems');
         console.log("Stored order data:", storedOrder);
@@ -16,7 +16,7 @@ const useOrderItem = () => {
     const addToOrder = (item) => {
         const uniqueItem = {
             ...item,
-            orderItemId: Date.now() 
+            orderItemId: Date.now()
         }
 
         console.log(`Adding Item: ${uniqueItem.orderItemId} - ${uniqueItem.item_name} `);
@@ -34,15 +34,23 @@ const useOrderItem = () => {
     }
 
     const placeOrder = async (price, paymentMethod, tip) => {
-        
+
         const order_id = await insertOrders(price, new Date().toISOString(), 1, paymentMethod, tip);
 
         for (const item of orderItems) {
-            await insertOrdersItems(order_id, item.item_id, 100);
+            const orderItemId = await insertOrdersItems(order_id, item.item_id, 100);
+
+            if (item.toppings && item.toppings.length > 0) {
+                for (const topping of item.toppings) {
+                    await insertOrdersItemTopping(orderItemId, topping.topping_id, "1");
+                    console.log(`Saved topping ${topping.topping_name} for item ${item.item_name}`);
+                }
+            }
         }
-        
+
         setOrderItems([]);
-        localStorage.removeItem('orderItems');
+        sessionStorage.removeItem('orderItems'); // this should be sessionStorage, not localStorage
+        nav('/menu');
     }
 
     return { orderItems, addToOrder, removeFromOrder, orderPrice, placeOrder };

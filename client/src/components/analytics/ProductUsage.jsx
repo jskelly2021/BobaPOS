@@ -6,7 +6,7 @@ import useAnalytics from '../../hooks/useAnalytics';
 const ProductUsage = () => {
     return (
         <div>
-
+            
         </div>
     );
 }

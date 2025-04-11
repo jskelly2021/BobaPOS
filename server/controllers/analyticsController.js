@@ -214,8 +214,7 @@ export const resetTotals = async (req, res) => {
 
 // Returns the usage for a given ingredient over a specified start and end time
 export const getIngredientUsageOverTime = async (req, res) => {
-    const { id } = req.params;
-    const { interval, start, end } = req.body;
+    const { id, interval, start, end } = req.params;
 
     const allowedIntervals = ['hour', 'day', 'week', 'month'];
     if (!allowedIntervals.includes(interval)) {

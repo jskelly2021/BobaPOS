@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import useEmployees from '../../hooks/useEmployee';
+import RadioSelector from './RadioSelector';
 
 const EmployeeList = () => {
     const { employees, loadingEmployee, errorEmployee, editEmployee } = useEmployees();
@@ -30,12 +31,15 @@ const EmployeeList = () => {
         setEditingEmployeeId(null);
     }
 
+    const positionOptions = [{ option: 'MANAGER', value: 'MANAGER' }, { option: 'CASHIER', value: 'CASHIER' }];
+
     return(
         <div>
             <h2>Employees</h2>
             <ul className='List EmployeeList'>
                 <li className='Labels'>
                     <h3>Name</h3>
+                    <h3>Id</h3>
                     <h3>Position</h3>
                     <h3>Password</h3>
                     <div></div>
@@ -44,22 +48,30 @@ const EmployeeList = () => {
                     <li key={employee.employee_id}>
                         {editingEmployeeId === employee.employee_id ? (
                             <>
-                                <input 
-                                    type='text'
-                                    value={editedEmployee.employee_name || ''}
-                                    onChange={(e) => handleOnEditChange('employee_name', e.target.value)}>
-                                </input>
-                                <input 
-                                    type='text'
-                                    value={editedEmployee.position || ''}
-                                    onChange={(e) => handleOnEditChange('position', e.target.value)}>
-                                </input>
-                                <input 
-                                    type='text'
-                                    value={editedEmployee.passwords || ''}
-                                    onChange={(e) => handleOnEditChange('passwords', e.target.value)}>
-                                </input>
                                 <div>
+                                    <input 
+                                        type='text'
+                                        value={editedEmployee.employee_name || ''}
+                                        onChange={(e) => handleOnEditChange('employee_name', e.target.value)}/>
+                                </div>
+
+                                <p>{employee.employee_id}</p>
+
+                                <RadioSelector
+                                    name='position'
+                                    options={positionOptions}
+                                    selectedValue={editedEmployee.position}
+                                    onChange={(value) => handleOnEditChange('position', value)}
+                                />
+
+                                <div>
+                                    <input 
+                                        type='text'
+                                        value={editedEmployee.passwords || ''}
+                                        onChange={(e) => handleOnEditChange('passwords', e.target.value)}/>
+                                </div>
+
+                                <div className='Save-Cancel-Btns'>
                                     <button className='SaveEditBtn'onClick={() => handleSaveclick(employee)}>Save</button>
                                     <button className='CancelEditBtn' onClick={() => handleCancelClick()}>Cancel</button>
                                 </div>
@@ -68,6 +80,7 @@ const EmployeeList = () => {
                         : (
                             <>
                                 <p>{employee.employee_name}</p>
+                                <p>{employee.employee_id}</p>
                                 <p>{employee.position}</p>
                                 <p>{employee.passwords}</p>
                                 <div>

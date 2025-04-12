@@ -13,11 +13,9 @@ function Inventory() {
 
     return (
         <div className='Admin'>
-            <button className='DashboardBtn' onClick={() => nav('/dashboard')}>
-                Dashboard
-            </button>
 
             <div className='AdminPages'>
+                <button className='DashboardBtn' onClick={() => nav('/dashboard')}>Dashboard</button>
                 <button onClick={() => setActivePage('ingredients')}>Ingredients</button>
                 <button onClick={() => setActivePage('items')}>Items</button>
                 <button onClick={() => setActivePage('employees')}>Employees</button>
@@ -25,6 +23,7 @@ function Inventory() {
             </div>
 
             <h1>Admin</h1>
+
             {activePage === 'ingredients' && <IngredientList />}
             {activePage === 'items' && <ItemList />}
             {activePage === 'employees' && <EmployeeList />}

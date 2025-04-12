@@ -15,6 +15,18 @@ export const fetchTopSellingProducts = async (limit = 5) => {
   }
 };
 
+// Fetches the usage by an ingredient in the given interval between the start and endTime
+export const fetchProductUsage = async (ingredientId, interval, startTime, endTime) => {
+    const url = `${API_BASE_URL}/analytics/usage/${ingredientId}/${interval}/${startTime}/${endTime}`;
+
+    try {
+        const { data } = await axios.get(url);
+        return data;
+    } catch (error) {
+        throw new Error(`Failed ot fetch ingredient usage for: ${ingredientId}`);
+    }
+}
+
 // Fetch sales over days data
 export const fetchSalesOverDays = async (start, end) => {
   const url = `${API_BASE_URL}/analytics/sales-over-days`;

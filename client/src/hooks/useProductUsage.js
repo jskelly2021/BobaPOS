@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { subHours, subDays, subWeeks, subMonths } from 'date-fns';
-import { fetchIngredientUsage } from '../services/analyticsService';
+import { fetchProductUsage } from '../services/analyticsService';
 
 const useProductUsage = () => {
     const [usageData, setUsageData]       = useState([]);
@@ -17,7 +17,7 @@ const useProductUsage = () => {
             setError(null);
 
             try {
-                const data = await fetchIngredientUsage(ingredientId, interval, start, end);
+                const data = await fetchProductUsage(ingredientId, interval, start, end);
                 setUsageData(data);
             } catch (e) {
                 setError(e);

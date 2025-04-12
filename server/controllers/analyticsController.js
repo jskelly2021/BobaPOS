@@ -221,7 +221,12 @@ export const resetTotals = async (req, res) => {
 
 // Returns the usage for a given ingredient over a specified start and end time
 export const getIngredientUsageOverTime = async (req, res) => {
-    const { id, interval, start, end } = req.params;
+    const { id, interval } = req.params;
+    const start = new Date(Number(req.params.start));
+    const end = new Date(Number(req.params.end));
+
+    console.log(`Start: ${start}`);
+    console.log(`End: ${end}`);
 
     const allowedIntervals = ['hour', 'day', 'week', 'month'];
     if (!allowedIntervals.includes(interval)) {
@@ -256,7 +261,10 @@ export const getIngredientUsageOverTime = async (req, res) => {
     try {
         const result = await pool.query(sql, [id, start, end]);
         console.log({ id, start, end, interval });
-        res.status(200).json(result.rows);
+        res.status(200).json(result.rows.map(row => ({
+            period: new Date(row.period).toISOString(),
+            total_usage: Number(row.total_usage),
+        })));
     } catch (err) {
         console.error("Error returning ingredient usage over time:", err);
         res.status(500).json("Failed to get ingredient usage over time");

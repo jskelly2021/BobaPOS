@@ -1,0 +1,37 @@
+.UserMode {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    position: relative;
+    padding-top: 3vh;
+    padding-left: 3vw;
+}
+
+.UserMode .UserModeBtn {
+    background-color: darkgray;
+    border-radius: 10px;
+    width: 15vw;
+    height: 5vh;
+    font-size: 1.2rem;
+}
+
+.EmployeeLogin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-top: 10vh;
+}
+
+.EmployeeLogin .LoginText {
+    font-size: 2rem;
+    margin-bottom: 2vh;
+}
+
+.EmployeeLogin .LoginBtn {
+    background-color: darkgray;
+    border-radius: 10px;
+    width: 15vw;
+    height: 5vh;
+    font-size: 1.2rem;
+}

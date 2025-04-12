@@ -1,0 +1,21 @@
+.Dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.DashboardNav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100vw;
+    height: 10vh;
+}
+
+.DashboardNav button {
+    background-color: darkgray;
+    border-radius: 10px;
+    width: 15vw;
+    height: 5vh;
+    font-size: 1.2rem;
+}

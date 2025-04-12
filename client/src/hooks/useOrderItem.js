@@ -34,7 +34,6 @@ const useOrderItem = (nav) => {
     }
 
     const placeOrder = async (price, paymentMethod, tip) => {
-
         const order_id = await insertOrders(price, new Date().toISOString(), 1, paymentMethod, tip);
 
         for (const item of orderItems) {
@@ -50,7 +49,6 @@ const useOrderItem = (nav) => {
 
         setOrderItems([]);
         sessionStorage.removeItem('orderItems'); // this should be sessionStorage, not localStorage
-        nav('/menu');
     }
 
     return { orderItems, addToOrder, removeFromOrder, orderPrice, placeOrder };

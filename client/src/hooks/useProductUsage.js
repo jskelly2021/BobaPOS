@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
+import { subHours, subDays, subWeeks, subMonths } from 'date-fns';
 import { fetchIngredientUsage } from '../services/analyticsService';
 
 const useProductUsage = () => {
-    const [usageData, setUsageData] = useState([]);
+    const [usageData, setUsageData]       = useState([]);
     const [ingredientId, setIngredientId] = useState(1);
-    const [interval, setInterval] = useState('day');
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [interval, setInterval]         = useState('day');
+    const [start, setStart]               = useState(subDays(Date.now(), 14));
+    const [end, setEnd]                   = useState(Date.now());
+    const [loading, setLoading]           = useState(true);
+    const [error, setError]               = useState(null);
 
     useEffect(() => {
         const loadUsageData = async () => {
@@ -14,7 +17,7 @@ const useProductUsage = () => {
             setError(null);
 
             try {
-                const data = await fetchItems(category);
+                const data = await fetchIngredientUsage(ingredientId, interval, start, end);
                 setUsageData(data);
             } catch (e) {
                 setError(e);
@@ -24,9 +27,29 @@ const useProductUsage = () => {
         };
 
         loadUsageData();
-    }, [ingredientId, interval]);
+    }, [ingredientId, interval, start, end]);
 
-    return { usageData, loading, error };
+    const getUsage = (id, interval, start, end) => {
+        setIngredientId(id);
+        setInterval(interval);
+        setStart(start);
+        setEnd(end);
+    }
+
+    const getUsageFromLast24Hours = (id) => { getUsage(id, 'hour', subHours(Date.now(), 24), Date.now()); }
+    const getUsageFromLast14Days = (id) =>  { getUsage(id, 'day', subDays(Date.now(), 14), Date.now()); }
+    const getUsageFromLast3Months = (id) => { getUsage(id, 'week', subWeeks(Date.now(), 12), Date.now()); }
+    const getUsageFromLastYear = (id) =>    { getUsage(id, 'month', subMonths(Date.now(), 12), Date.now()); }
+
+    return {
+        usageData,
+        loading,
+        error,
+        getUsageFromLast24Hours,
+        getUsageFromLast14Days,
+        getUsageFromLast3Months,
+        getUsageFromLastYear
+    };
 }
 
 export default useProductUsage;

@@ -45,6 +45,7 @@ function OrderView() {
 
             <div className='content'>
                 <CategorySelector changeCategory={updateCategory} />
+                <h1>{getCategory()}</h1>
                 <ItemMenu menuItems={items} onItemButtonClick={handleItemClick} />
                 <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />
             </div>

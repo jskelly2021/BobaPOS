@@ -37,11 +37,11 @@ function Payment() {
                 <TipSelector className='Tip' subtotal={subtotal} onTipSelect={setTip} />
 
                 <div className='cashCard'>
-                    <button className='CardBtn' onClick={() => placeOrder(subtotal, "CARD", tip)}>
+                    <button className='CardBtn' onClick={() => handlePlaceOrder(subtotal, "CARD", tip)}>
                         Credit Card
                     </button>
 
-                    <button className='CashBtn' onClick={() => placeOrder(subtotal, "CASH", tip)}>
+                    <button className='CashBtn' onClick={() => handlePlaceOrder(subtotal, "CASH", tip)}>
                         Cash
                     </button>
                 </div>

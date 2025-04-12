@@ -94,11 +94,12 @@
 
 .CashierOrderView .DashboardBtn,
 .CashierOrderView .ReviewOrderBtn {
-    border: none;
     position: fixed;
     width: 15vw;
     height: 5vh;
     bottom: 0;
+    font-size: 1.2rem;
+    border-radius: 10px;
 }
 
 .CashierOrderView .DashboardBtn {

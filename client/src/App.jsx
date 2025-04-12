@@ -9,6 +9,7 @@ import Welcome from './pages/Welcome'
 import OrderReview from './pages/OrderReview'
 import Dashboard from './pages/Dashboard'
 import Admin from './pages/Admin'
+import Analytics from './pages/Analytics'
 import Payment from './pages/Payment'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
                 <Route path="/menu/cashier" element={<CashierOrderView />} />
                 <Route path="/menu/customer" element={<CustomerOrderView />} />
                 <Route path="/admin" element={<Admin />} />
+                <Route path="/analytics" element={<Analytics />} />
                 <Route path="/review" element={<OrderReview />} />
                 <Route path="/payment" element={<Payment />} />
             </Routes>

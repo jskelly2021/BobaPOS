@@ -14,3 +14,51 @@ export const fetchTopSellingProducts = async (limit = 5) => {
     throw new Error(`Failed to fetch top selling products: ${error.message}`);
   }
 };
+
+// Fetch sales over days data
+export const fetchSalesOverDays = async (start, end) => {
+  const url = `${API_BASE_URL}/analytics/sales-over-days`;
+  try {
+    const { data } = await axios.post(url, 
+      { start: start, end: end },
+      {withCredentials: true},
+    );
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to fetch sales data: ${error.message}`);
+  }
+};
+
+// Fetch sales during a specific day
+export const fetchSalesDuringDay = async (start, end) => {
+  const url = `${API_BASE_URL}/analytics/sales-during-day`;
+  try {
+    const { data } = await axios.post(url, { start: start, end: end }, { withCredentials: true });
+    //console.log("Sales data during day:", data); // Debugging log
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to fetch sales data for : ${error.message}`);
+  }
+};
+
+// Get sales over weeks
+export const fetchSalesOverWeeks = async (start, end) => {
+  const url = `${API_BASE_URL}/analytics/sales-over-weeks`;
+  try {
+    const { data } = await axios.post(url, { start: start, end: end }, { withCredentials: true });
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to fetch sales data: ${error.message}`);
+  }
+};
+
+// Fetch sales over months data
+export const fetchSalesOverMonths = async (start, end) => {
+  const url = `${API_BASE_URL}/analytics/sales-over-months`;
+  try {
+    const { data } = await axios.post(url, { start: start, end: end }, { withCredentials: true });
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to fetch sales data: ${error.message}`);
+  }
+};

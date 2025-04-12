@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import useOrderItem from '../hooks/useOrderItem';
+import './OrderReview.css'
 
 function OrderReview() {
     const nav = useNavigate();
@@ -23,24 +24,27 @@ function OrderReview() {
 
     return (
         <div className='OrderReview'>
-            <button className='ContinueOrderBtn' onClick={() => handleContinueOrder()}>
-                Continue Order
+            <button className='BackOrderBtn' onClick={() => handleContinueOrder()}>
+                Back to Order
             </button>
-            <h1>Review Order</h1>
+            <h1 className='reviewOrderText'>Review Order</h1>
             <ul className='OrderItemList'>
                 {orderItems.map((item) => (
                         <li className="OrderItem" key={item.item_id}> 
-                            <div>
+                            <div className='ItemDetails'>
                                 <h3>{item.item_name}</h3>
-                                <p>{item.price}</p>
+                                <p>Price: {item.price}</p>
+                                <p>Quantity: 1</p>
+                                <h4>Toppings:</h4>
                             </div> 
-                            <h4>Toppings:</h4>
                         </li> 
                     ))}
             </ul>
-            <button className='PaymentBtn' onClick={() => nav('/payment')}>
-                Payment
-            </button>
+            <div className='continuePayment'>
+                <button className='PaymentBtn' onClick={() => nav('/payment')}>
+                    Continue to Payment
+                </button>
+            </div>
         </div>
     );
 }

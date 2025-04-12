@@ -47,52 +47,59 @@ export const getSalesOverDays = async (req, res) => {
 
 // Get sales during a given day
 export const getSalesDuringDay = async (req, res) => {
-    const { start, end } = req.body;
+    const { start, end } = req.body;  // Expects start and end timestamps (e.g., "2025-04-10T00:00:00.000Z")
     try {
-        const result = await pool.query(
-            "SELECT date_trunc('hour', order_date) AS period, SUM(price) AS total_sales " +
-                    "FROM orders " +
-                    "WHERE order_date BETWEEN $1 AND $2 " +
-                    "GROUP BY period " +
-                    "ORDER BY period"
-        , [start, end]);
-        res.status(200).json(result.rows[0]);
+        // Optionally, convert the string inputs to Date objects
+
+        const query = `
+            SELECT date_trunc('hour', order_date AT TIME ZONE 'UTC' AT TIME ZONE 'America/Chicago') AS hour,
+                   SUM(price) AS total_sales
+            FROM orders
+            WHERE order_date BETWEEN $1 AND $2
+            GROUP BY hour
+            ORDER BY hour;
+        `;
+        const result = await pool.query(query, [start, end]);
+
+        // Return all matching rows
+        res.status(200).json(result.rows);
     } catch (err) {
-        console.error('Error fetching sales today:', err);
+        console.error('Error fetching sales per hour:', err);
         res.status(500).json("Server Error");
     }
 }
 
 // Get sales over weeks
-export const getSalesDuringWeek = async (req, res) => {
+export const getSalesOverWeeks = async (req, res) => {
     const { start, end } = req.body;
     try {
         const result = await pool.query(
-            "SELECT date_trunc('week', order_date) AS period, SUM(price) AS total_sales " +
-                    "FROM orders " +
-                    "WHERE order_date BETWEEN $1 AND $2 " +
-                    "GROUP BY period " +
-                    "ORDER BY period"
+            `SELECT date_trunc('week', order_date) AS period, SUM(price) AS total_sales
+                    FROM orders
+                    WHERE order_date BETWEEN $1 AND $2
+                    GROUP BY period
+                    ORDER BY period;`
         , [start, end]);
-      res.status(200).json(result.rows[0]);
+        res.status(200).json(result.rows);
     } catch (err) {
         console.error('Error fetching sales today:', err);
         res.status(500).json("Server Error");
     }
 }
 
+
 // Get sales over months 
-export const getSalesDuringMonth = async (req, res) => {
+export const getSalesOverMonths = async (req, res) => {
     const { start, end } = req.body;
     try {
         const result = await pool.query(
-            "SELECT date_trunc('month', order_date) AS period, SUM(price) AS total_sales " +
-                    "FROM orders " +
-                    "WHERE order_date BETWEEN $1 AND $2 " +
-                    "GROUP BY period " +
-                    "ORDER BY period"
+            `SELECT date_trunc('month', order_date) AS period, SUM(price) AS total_sales
+                    FROM orders 
+                    WHERE order_date BETWEEN $1 AND $2 
+                    GROUP BY period 
+                    ORDER BY period`
         , [start, end]);
-        res.status(200).json(result.rows[0]);
+        res.status(200).json(result.rows);
     } catch (err) {
         console.error('Error fetching sales today:', err);
         res.status(500).json("Server Error");

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import useItems from '../../hooks/useItem';
-import CategorySelector from './CategorySelector';
+import RadioSelector from './RadioSelector';
 
 const ItemList = () => {
     const { items, loadingItem, errorItem, editItem} = useItems();
@@ -31,6 +31,13 @@ const ItemList = () => {
         setEditingItemId(null);
     }
 
+    const categoryOptions = [{ option: 'BREWED', value: 'BREWED' },
+                             { option: 'MILK',   value: 'MILK' },
+                             { option: 'FRUIT',  value: 'FRUIT' },
+                             { option: 'CREAMA', value: 'CREAMA'}];
+
+    const visibilityOptions = [{ option: 'Show', value: 1 },  { option: 'Hide',   value: 0 }];
+
     return (
         <div>
             <h2>Items</h2>
@@ -51,37 +58,31 @@ const ItemList = () => {
                                     <input 
                                         type='text'
                                         value={editedItem.item_name || ''}
-                                        onChange={(e) => handleOnEditChange('item_name', e.target.value)}/>
+                                        onChange={(e) => handleOnEditChange('item_name', e.target.value)}
+                                    />
                                 </div>
 
-                                <CategorySelector selected={editedItem.category} onChange={(value) => handleOnEditChange('category', value)}/>
+                                <RadioSelector
+                                    name='category'
+                                    options={categoryOptions}
+                                    selectedValue={editedItem.category}
+                                    onChange={(value) => handleOnEditChange('category', value)}
+                                />
 
                                 <div>
                                     <input 
                                         type='number' 
                                         value={editedItem.price || ''}
-                                        onChange={(e) => handleOnEditChange('price', e.target.value)}/>
+                                        onChange={(e) => handleOnEditChange('price', e.target.value)}
+                                    />
                                 </div>
 
-                                <div className='Selectors'>
-                                    <div className='RadioBtns'>
-                                        <label>
-                                            <input type="radio" name="visibility" value='1'
-                                                checked={editedItem.active === 1}
-                                                onChange={(e) => handleOnEditChange('active', 1)}
-                                            />
-                                            Show
-                                        </label>
-
-                                        <label>
-                                            <input type="radio" name="visibility" value='0'
-                                                    checked={editedItem.active === 0}
-                                                    onChange={(e) => handleOnEditChange('active', 0)}
-                                                />
-                                            Hide
-                                        </label>
-                                    </div>
-                                </div>
+                                <RadioSelector
+                                    name='visibility'
+                                    options={visibilityOptions}
+                                    selectedValue={editedItem.active}
+                                    onChange={(value) => handleOnEditChange('active', value)}
+                                />
 
                                 <div className='Save-Cancel-Btns'>
                                     <button className='SaveEditBtn'onClick={() => handleSaveClick(item)}>Save</button>

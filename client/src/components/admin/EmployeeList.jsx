@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import useEmployees from '../../hooks/useEmployee';
+import RadioSelector from './RadioSelector';
 
 const EmployeeList = () => {
     const { employees, loadingEmployee, errorEmployee, editEmployee } = useEmployees();
@@ -30,6 +31,8 @@ const EmployeeList = () => {
         setEditingEmployeeId(null);
     }
 
+    const positionOptions = [{ option: 'MANAGER', value: 'MANAGER' }, { option: 'CASHIER', value: 'CASHIER' }];
+
     return(
         <div>
             <h2>Employees</h2>
@@ -54,31 +57,12 @@ const EmployeeList = () => {
 
                                 <p>{employee.employee_id}</p>
 
-                                <div className='Selectors'>
-                                    <div className='RadioBtns'>
-                                        <label>
-                                            <input
-                                                type="radio"
-                                                name="position"
-                                                value="MANAGER"
-                                                checked={editedEmployee.position === 'MANAGER'}
-                                                onChange={(e) => handleOnEditChange('position', e.target.value)}
-                                            />
-                                            MANAGER
-                                        </label>
-
-                                        <label>
-                                            <input
-                                                type="radio"
-                                                name="position"
-                                                value="CASHIER"
-                                                checked={editedEmployee.position === 'CASHIER'}
-                                                onChange={(e) => handleOnEditChange('position', e.target.value)}
-                                            />
-                                            CASHIER
-                                        </label>
-                                    </div>
-                                </div>
+                                <RadioSelector
+                                    name='position'
+                                    options={positionOptions}
+                                    selectedValue={editedEmployee.position}
+                                    onChange={(value) => handleOnEditChange('position', value)}
+                                />
 
                                 <div>
                                     <input 

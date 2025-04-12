@@ -16,7 +16,6 @@ body {
     align-items: center;
 }
 
-
 .DashboardNav {
     display: flex;
     flex-direction: row;
@@ -25,26 +24,7 @@ body {
     height: 10vh;
 }
 
-
-.DashboardNav .LogoutBtn {
-    background-color: darkgray;
-    border-radius: 10px;
-    width: 15vw;
-    height: 5vh;
-    font-size: 1.2rem;
-}
-
-
-.DashboardNav .MenuBtn {
-    background-color: darkgray;
-    border-radius: 10px;
-    width: 15vw;
-    height: 5vh;
-    font-size: 1.2rem;
-}
-
-
-.DashboardNav .AdminBtn {
+.DashboardNav button {
     background-color: darkgray;
     border-radius: 10px;
     width: 15vw;

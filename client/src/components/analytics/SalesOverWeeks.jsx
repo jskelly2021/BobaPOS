@@ -1,7 +1,6 @@
-// client/src/components/SalesOverWeeksChart.jsx
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
-import useSalesOverWeeks from '../hooks/useSalesOverWeeks';
+import useSalesOverWeeks from '../../hooks/useSalesOverWeeks';
 
 const SalesOverWeeksChart = ({ start, end }) => {
   const { salesData, loading, error } = useSalesOverWeeks(start, end);

@@ -1,7 +1,6 @@
-// client/src/components/SalesDuringDayChart.jsx
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
-import useSalesDuringDay from '../hooks/useSalesDuringDay';
+import useSalesDuringDay from '../../hooks/useSalesDuringDay';
 
 const SalesDuringDayChart = ({ start, end }) => {
   const { salesData, loading, error } = useSalesDuringDay(start, end);

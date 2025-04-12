@@ -1,7 +1,6 @@
-// client/src/components/SalesOverMonthsChart.jsx
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
-import useSalesOverMonths from '../hooks/useSalesOverMonths';
+import useSalesOverMonths from '../../hooks/useSalesOverMonths';
 
 const SalesOverMonthsChart = ({ start, end }) => {
   const { salesData, loading, error } = useSalesOverMonths(start, end);

@@ -1,12 +1,12 @@
 // Example: client/src/pages/AnalyticsPage.jsx
 import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend, LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
-import SalesDuringDayChart from '../SalesDuringDay';
-import SalesOverWeeksChart from '../SalesOverWeeks';
-import SalesOverMonthsChart from '../SalesOverMonths';
-import useAnalytics from '../../hooks/useAnalytics';
+import SalesDuringDayChart from '../components/analytics/SalesDuringDay';
+import SalesOverWeeksChart from '../components/analytics/SalesOverWeeks';
+import SalesOverMonthsChart from '../components/analytics/SalesOverMonths';
+import useAnalytics from '../hooks/useAnalytics';
 
-const AnalyticsPage = () => {
+const Analytics = () => {
   // Optionally pass date parameters, or leave blank to use defaults.
   const { topSellingData, salesOverDaysData, loading, error } = useAnalytics();
 
@@ -67,4 +67,4 @@ const AnalyticsPage = () => {
   );
 };
 
-export default AnalyticsPage;
+export default Analytics;

@@ -1,0 +1,95 @@
+.ModalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.ModalContent {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.ModalTitle {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.ToppingGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    padding: 0;
+    margin: 1rem 0;
+    list-style: none;
+}
+
+.ToppingItem {
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.ToppingName {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.ButtonGroup {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.quantityBtn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+    border: 1px solid #ccc;
+    background: #eee;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+    text-transform: capitalize;
+}
+
+.quantityBtn:hover {
+    background: #ddd;
+}
+
+.quantityBtn.active {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+}
+
+.ModalActions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    gap: 1rem;
+}
+
+.ModalActions button {
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 1rem;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.ModalActions button:hover {
+    background: #111;
+}

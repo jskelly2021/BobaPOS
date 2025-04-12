@@ -11,29 +11,29 @@ const SalesDuringDayChart = ({ start, end }) => {
 
   return (
     <div>
-      <h2>Sales During Day</h2>
-      <LineChart width={600} height={400} data={salesData}>
-        <XAxis
-          dataKey="period"
-          tickFormatter={(value) => {
-            // Create a Date object from the value (which is in ISO format, in UTC)
-            const date = new Date(value);
-            // Format the hour in the 'America/Chicago' time zone (Central Time)
-            const formattedHour = new Intl.DateTimeFormat('en-US', {
-              timeZone: 'UTC',
-              hour: '2-digit',
-              hour12: false}).
-              format(date);
-            // Append ":00" if you like, or simply return the formatted hour.
-            return `${formattedHour}:00`;
-          }}
-        />
-        <YAxis />
-        <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
-        <Tooltip />
-        <Legend />
-        <Line type="monotone" dataKey="total_sales" stroke="#8884d8" />
-      </LineChart>
+        <h2>Sales During Day</h2>
+        <LineChart width={600} height={400} data={salesData}>
+            <XAxis
+            dataKey="period"
+            tickFormatter={(value) => {
+                // Create a Date object from the value (which is in ISO format, in UTC)
+                const date = new Date(value);
+                // Format the hour in the 'America/Chicago' time zone (Central Time)
+                const formattedHour = new Intl.DateTimeFormat('en-US', {
+                timeZone: 'UTC',
+                hour: '2-digit',
+                hour12: false}).
+                format(date);
+                // Append ":00" if you like, or simply return the formatted hour.
+                return `${formattedHour}:00`;
+            }}
+            />
+            <YAxis />
+            <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+            <Tooltip />
+            <Legend />
+            <Line type="monotone" dataKey="total_sales" stroke="#8884d8" />
+        </LineChart>
     </div>
   );
 };

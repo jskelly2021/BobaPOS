@@ -54,28 +54,30 @@ const EmployeeList = () => {
 
                                 <p>{employee.employee_id}</p>
 
-                                <div className='RadioBtns'>
-                                    <label>
-                                        <input
-                                            type="radio"
-                                            name="position"
-                                            value="MANAGER"
-                                            checked={editedEmployee.position === 'MANAGER'}
-                                            onChange={(e) => handleOnEditChange('position', e.target.value)}
-                                        />
-                                        MANAGER
-                                    </label>
+                                <div className='Selectors'>
+                                    <div className='RadioBtns'>
+                                        <label>
+                                            <input
+                                                type="radio"
+                                                name="position"
+                                                value="MANAGER"
+                                                checked={editedEmployee.position === 'MANAGER'}
+                                                onChange={(e) => handleOnEditChange('position', e.target.value)}
+                                            />
+                                            MANAGER
+                                        </label>
 
-                                    <label>
-                                        <input
-                                            type="radio"
-                                            name="position"
-                                            value="CASHIER"
-                                            checked={editedEmployee.position === 'CASHIER'}
-                                            onChange={(e) => handleOnEditChange('position', e.target.value)}
-                                        />
-                                        CASHIER
-                                    </label>
+                                        <label>
+                                            <input
+                                                type="radio"
+                                                name="position"
+                                                value="CASHIER"
+                                                checked={editedEmployee.position === 'CASHIER'}
+                                                onChange={(e) => handleOnEditChange('position', e.target.value)}
+                                            />
+                                            CASHIER
+                                        </label>
+                                    </div>
                                 </div>
 
                                 <div>

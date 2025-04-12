@@ -46,72 +46,82 @@ const ItemList = () => {
                     <li key={item.item_id}>
                         {editingItemId === item.item_id ? (
                             <>
-                                <input 
-                                    type='text'
-                                    value={editedItem.item_name || ''}
-                                    onChange={(e) => handleOnEditChange('item_name', e.target.value)}/>
-
-                                <div className='RadioBtns'>
-                                    <label>
-                                        <input type="radio" name="category" value="BREWED"
-                                            checked={editedItem.category === 'BREWED'}
-                                            onChange={(e) => handleOnEditChange('category', e.target.value)}
-                                        />
-                                        BREWED
-                                    </label>
-
-                                    <label>
-                                        <input type="radio" name="category" value="MILK"
-                                            checked={editedItem.category === 'MILK'}
-                                            onChange={(e) => handleOnEditChange('category', e.target.value)}
-                                        />
-                                        MILK
-                                    </label>
-
-                                    <label>
-                                        <input type="radio" name="category" value="FRUIT"
-                                            checked={editedItem.category === 'FRUIT'}
-                                            onChange={(e) => handleOnEditChange('category', e.target.value)}
-                                        />
-                                        FRUIT
-                                    </label>
-
-                                    <label>
-                                        <input type="radio" name="category" value="CREAMA"
-                                            checked={editedItem.category === 'CREAMA'}
-                                            onChange={(e) => handleOnEditChange('category', e.target.value)}
-                                        />
-                                        CREAMA
-                                    </label>
+                                <div>
+                                    <input 
+                                        type='text'
+                                        value={editedItem.item_name || ''}
+                                        onChange={(e) => handleOnEditChange('item_name', e.target.value)}/>
                                 </div>
 
-                                <input 
-                                    type='number' 
-                                    value={editedItem.price || ''}
-                                    onChange={(e) => handleOnEditChange('price', e.target.value)}/>
-
-                                <div className='RadioBtns'>
-                                    <label>
-                                        <input type="radio" name="visibility" value='1'
-                                            checked={editedItem.active === 1}
-                                            onChange={(e) => handleOnEditChange('active', 1)}
-                                        />
-                                        Show
-                                    </label>
-
-                                    <label>
-                                        <input type="radio" name="visibility" value='0'
-                                                checked={editedItem.active === 0}
-                                                onChange={(e) => handleOnEditChange('active', 0)}
+                                <div className='Selectors'>
+                                    <div className='RadioBtns'>
+                                        <label>
+                                            <input type="radio" name="category" value="BREWED"
+                                                checked={editedItem.category === 'BREWED'}
+                                                onChange={(e) => handleOnEditChange('category', e.target.value)}
                                             />
-                                        Hide
-                                    </label>
+                                            BREWED
+                                        </label>
+
+                                        <label>
+                                            <input type="radio" name="category" value="MILK"
+                                                checked={editedItem.category === 'MILK'}
+                                                onChange={(e) => handleOnEditChange('category', e.target.value)}
+                                            />
+                                            MILK
+                                        </label>
+
+                                        <label>
+                                            <input type="radio" name="category" value="FRUIT"
+                                                checked={editedItem.category === 'FRUIT'}
+                                                onChange={(e) => handleOnEditChange('category', e.target.value)}
+                                            />
+                                            FRUIT
+                                        </label>
+
+                                        <label>
+                                            <input type="radio" name="category" value="CREAMA"
+                                                checked={editedItem.category === 'CREAMA'}
+                                                onChange={(e) => handleOnEditChange('category', e.target.value)}
+                                            />
+                                            CREAMA
+                                        </label>
+                                    </div>
                                 </div>
+
+                                <div>
+                                    <input 
+                                        type='number' 
+                                        value={editedItem.price || ''}
+                                        onChange={(e) => handleOnEditChange('price', e.target.value)}/>
+                                </div>
+
+                                <div className='Selectors'>
+                                    <div className='RadioBtns'>
+                                        <label>
+                                            <input type="radio" name="visibility" value='1'
+                                                checked={editedItem.active === 1}
+                                                onChange={(e) => handleOnEditChange('active', 1)}
+                                            />
+                                            Show
+                                        </label>
+
+                                        <label>
+                                            <input type="radio" name="visibility" value='0'
+                                                    checked={editedItem.active === 0}
+                                                    onChange={(e) => handleOnEditChange('active', 0)}
+                                                />
+                                            Hide
+                                        </label>
+                                    </div>
+                                </div>
+
 
                                 <div className='Save-Cancel-Btns'>
                                     <button className='SaveEditBtn'onClick={() => handleSaveClick(item)}>Save</button>
                                     <button className='CancelEditBtn' onClick={() => handleCancelClick()}>Cancel</button>
                                 </div>
+
                             </>
                         ) : (
                             <>

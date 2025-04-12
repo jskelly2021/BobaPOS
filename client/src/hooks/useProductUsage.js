@@ -29,17 +29,18 @@ const useProductUsage = () => {
         loadUsageData();
     }, [ingredientId, interval, start, end]);
 
-    const getUsage = (id, interval, start, end) => {
-        setIngredientId(id);
+    const getUsage = (interval, start, end) => {
         setInterval(interval);
         setStart(start);
         setEnd(end);
     }
 
-    const getUsageFromLast24Hours = (id) => { getUsage(id, 'hour', subHours(Date.now(), 24), Date.now()); }
-    const getUsageFromLast14Days = (id) =>  { getUsage(id, 'day', subDays(Date.now(), 14), Date.now()); }
-    const getUsageFromLast3Months = (id) => { getUsage(id, 'week', subWeeks(Date.now(), 12), Date.now()); }
-    const getUsageFromLastYear = (id) =>    { getUsage(id, 'month', subMonths(Date.now(), 12), Date.now()); }
+    const getUsageFromLast24Hours = () => { getUsage( 'hour', subHours(Date.now(), 24), Date.now()); }
+    const getUsageFromLast14Days = () =>  { getUsage( 'day', subDays(Date.now(), 14), Date.now()); }
+    const getUsageFromLast3Months = () => { getUsage( 'week', subWeeks(Date.now(), 12), Date.now()); }
+    const getUsageFromLastYear = () =>    { getUsage( 'month', subMonths(Date.now(), 12), Date.now()); }
+
+    const setIngredient = (id) => { setIngredientId(id); }
 
     return {
         usageData,
@@ -48,7 +49,8 @@ const useProductUsage = () => {
         getUsageFromLast24Hours,
         getUsageFromLast14Days,
         getUsageFromLast3Months,
-        getUsageFromLastYear
+        getUsageFromLastYear,
+        setIngredient
     };
 }
 

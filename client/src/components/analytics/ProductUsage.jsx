@@ -1,23 +1,21 @@
 
 import React from 'react'
-import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 import useProductUsage from '../../hooks/useProductUsage';
+import ProductUsageChart from './ProductUsageChart';
 
 const ProductUsage = () => {
-    const { usageData, loading, error, getUsageFromLast24Hours } = useProductUsage();
-
-    if (loading) return <p>Loading data...</p>;
-    if (error) return <p>Error fetching ingredient usage data: {error.message}</p>;
+    const { usageData, loading, error, getUsageFromLast24Hours, 
+        getUsageFromLast14Days, getUsageFromLast3Months, getUsageFromLastYear } = useProductUsage();
 
     return (
         <div>
-            <LineChart width={600} height={300} data={usageData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="period" />
-                <YAxis />
-                <Tooltip />
-                <Line type="monotone" dataKey="total_usage" stroke="#8884d8" />
-            </LineChart>
+            <ProductUsageChart loading={loading} error={error} data={usageData} />
+
+            <button onClick={() => getUsageFromLast24Hours(6)}>Last 24 Hours</button>
+            <button onClick={() => getUsageFromLast14Days(6)}>Last 14 Days</button>
+            <button onClick={() => getUsageFromLast3Months(6)}>Last 3 Months</button>
+            <button onClick={() => getUsageFromLastYear(6)}>Last Year</button>
+
         </div>
     );
 }

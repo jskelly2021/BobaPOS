@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import useItems from '../../hooks/useItem';
+import CategorySelector from './CategorySelector';
 
 const ItemList = () => {
     const { items, loadingItem, errorItem, editItem} = useItems();
@@ -53,41 +54,7 @@ const ItemList = () => {
                                         onChange={(e) => handleOnEditChange('item_name', e.target.value)}/>
                                 </div>
 
-                                <div className='Selectors'>
-                                    <div className='RadioBtns'>
-                                        <label>
-                                            <input type="radio" name="category" value="BREWED"
-                                                checked={editedItem.category === 'BREWED'}
-                                                onChange={(e) => handleOnEditChange('category', e.target.value)}
-                                            />
-                                            BREWED
-                                        </label>
-
-                                        <label>
-                                            <input type="radio" name="category" value="MILK"
-                                                checked={editedItem.category === 'MILK'}
-                                                onChange={(e) => handleOnEditChange('category', e.target.value)}
-                                            />
-                                            MILK
-                                        </label>
-
-                                        <label>
-                                            <input type="radio" name="category" value="FRUIT"
-                                                checked={editedItem.category === 'FRUIT'}
-                                                onChange={(e) => handleOnEditChange('category', e.target.value)}
-                                            />
-                                            FRUIT
-                                        </label>
-
-                                        <label>
-                                            <input type="radio" name="category" value="CREAMA"
-                                                checked={editedItem.category === 'CREAMA'}
-                                                onChange={(e) => handleOnEditChange('category', e.target.value)}
-                                            />
-                                            CREAMA
-                                        </label>
-                                    </div>
-                                </div>
+                                <CategorySelector selected={editedItem.category} onChange={(value) => handleOnEditChange('category', value)}/>
 
                                 <div>
                                     <input 
@@ -115,7 +82,6 @@ const ItemList = () => {
                                         </label>
                                     </div>
                                 </div>
-
 
                                 <div className='Save-Cancel-Btns'>
                                     <button className='SaveEditBtn'onClick={() => handleSaveClick(item)}>Save</button>

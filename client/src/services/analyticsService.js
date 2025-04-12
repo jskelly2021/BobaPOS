@@ -74,3 +74,14 @@ export const fetchSalesOverMonths = async (start, end) => {
     throw new Error(`Failed to fetch sales data: ${error.message}`);
   }
 };
+
+// Fetch usage for a given ingredient between a start and end time in the specified interval
+export const fetchIngredientUsage = async (id, interval, start, end) => {
+    const url = `${API_BASE_URL}/analytics/usage/${id}/${interval}/${start}/${end}`;
+    try {
+        const { data } = await axios.get(url);
+        return data;
+    } catch (error) {
+        throw new Error(`Failed to fetch ingredient usage: ${error.message}`);
+    }
+};

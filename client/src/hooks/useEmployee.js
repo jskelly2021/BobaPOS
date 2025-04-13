@@ -57,6 +57,7 @@ const useEmployee = () => {
 
     const addEmployee = async (employee) => {
         try {
+            console.log(employee.employee_id);
             const newEmployee = await createEmployee(employee);
             setEmployees(prevEmployees => [...prevEmployees, newEmployee]);
             console.log(`Created employee ${newEmployee.employee_id}`);

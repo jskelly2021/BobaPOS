@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchAllEmployees, updateEmployee } from '../services/employeeService';
+import { fetchAllEmployees, updateEmployee, deleteEmployee, createEmployee, getNextEmployeeId} from '../services/employeeService';
 
 // Returns a list of all employees
 const useEmployee = () => {
@@ -45,7 +45,36 @@ const useEmployee = () => {
         }
     }
 
-    return { employees, loadingEmployee, errorEmployee, editEmployee };
+    const removeEmployee = async (employee) => {
+        try {
+            await deleteEmployee(employee);
+            setEmployees(prevEmployees => prevEmployees.filter(e => e.employee_id !== employee.employee_id));
+            console.log(`Deleted employee ${employee.employee_name}`);
+        } catch (e) {
+            console.error('Error deleting employee: ', e);
+        }
+    }
+
+    const addEmployee = async (employee) => {
+        try {
+            const newEmployee = await createEmployee(employee);
+            setEmployees(prevEmployees => [...prevEmployees, newEmployee]);
+            console.log(`Created employee ${newEmployee.employee_id}`);
+        } catch (e) {
+            console.error('Error creating employee: ', e);
+        }
+    }
+
+    const nextId = async () => {
+        try {
+            const nextId = await getNextEmployeeId();
+            return nextId
+        } catch (e) {
+            console.error('Error retrieving next employee id: ', e);
+        }
+    }
+
+    return { employees, loadingEmployee, errorEmployee, editEmployee, removeEmployee, addEmployee, nextId };
 }
 
 export default useEmployee;

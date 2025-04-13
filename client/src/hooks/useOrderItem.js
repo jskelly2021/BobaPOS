@@ -41,7 +41,7 @@ const useOrderItem = (nav) => {
 
             if (item.toppings && item.toppings.length > 0) {
                 for (const topping of item.toppings) {
-                    await insertOrdersItemTopping(orderItemId, topping.topping_id, "1");
+                    await insertOrdersItemTopping(orderItemId, topping.topping_id, topping.quantity);
                     console.log(`Saved topping ${topping.topping_name} for item ${item.item_name}`);
                 }
             }

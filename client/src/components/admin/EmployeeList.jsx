@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import useEmployees from '../../hooks/useEmployee';
 import EditEmployeeRow from './EditEmployeeRow';
-import RadioSelector from './RadioSelector';
+import DefaultEmployeeRow from './DefaultEmployeeRow';
 
 const EmployeeList = () => {
-    const { employees, loadingEmployee, errorEmployee, editEmployee } = useEmployees();
+    const { employees, loadingEmployee, errorEmployee, editEmployee, removeEmployee, addEmployee} = useEmployees();
     const [editingEmployeeId, setEditingEmployeeId] = useState(null);
     const [editedEmployee, setEditedEmployee] = useState({});
+    const [addingEmployee, setAddingEmployee] = useState(false);
+    const [addedEmployee, setAddedEmployee] = useState({});
 
     if (loadingEmployee) return <div>Loading employees...</div>;
     if (errorEmployee) return <div>Error fetching employees: {errorEmployee.message}</div>;
@@ -18,6 +20,7 @@ const EmployeeList = () => {
 
     const handleCancelClick = () => {
         setEditingEmployeeId(null);
+        setEditedEmployee({});
     }
 
     const handleOnEditChange = (field, value) => {
@@ -31,6 +34,18 @@ const EmployeeList = () => {
         await editEmployee(editedEmployee);
         setEditingEmployeeId(null);
     }
+
+    const handleAddEmployeeClick = () => {
+        setAddingEmployee(true);
+        setAddedEmployee({ employee_name: '', position: '', passwords: '' });
+    };
+
+    const handleAddFieldChange = (field, value) => {
+        setAddedEmployee({
+            ...addedEmployee,
+            [field]: value
+        });
+    };
 
     return(
         <div>
@@ -46,21 +61,23 @@ const EmployeeList = () => {
                 {employees.map((employee) => (
                     <li key={employee.employee_id}>
                         {editingEmployeeId === employee.employee_id ? (
-                            <EditEmployeeRow employee={editedEmployee} onEdit={handleOnEditChange} saveEdit={handleSaveclick} cancelEdit={handleCancelClick}/>
+                            <EditEmployeeRow 
+                                employee={editedEmployee}
+                                onEdit={handleOnEditChange}
+                                onSave={handleSaveclick}
+                                onCancel={handleCancelClick}
+                                deleteEmployee={removeEmployee}
+                            />
                         )
                         : (
-                            <>
-                                <p>{employee.employee_name}</p>
-                                <p>{employee.employee_id}</p>
-                                <p>{employee.position}</p>
-                                <p>{employee.passwords}</p>
-                                <div>
-                                    <button className='EditBtn' onClick={() => handleEditClick(employee)}>Edit</button>
-                                </div>
-                            </>
+                            <DefaultEmployeeRow
+                                employee={employee}
+                                onEdit={handleEditClick}
+                            />
                         )}
                     </li>
                 ))}
+                <button className="AddEmployeeBtn" onClick={() => handleAddEmployeeClick()}>Add Employee</button>
             </ul>
         </div>
     );

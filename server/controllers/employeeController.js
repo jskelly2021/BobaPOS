@@ -46,7 +46,7 @@ export const createEmployee = async (req, res) =>
     
         // Get the next available ID from the employee_id sequence.
         // The sequence name is typically <table>_<column>_seq.
-        const seqResult = await pool.query("SELECT COUNT (*) as new_id FROM employee");
+        const seqResult = await pool.query("SELECT MAX (employee_id) as new_id FROM employee");
         const newId = Number(seqResult.rows[0].new_id) + 1;
         console.log("New ID:", newId);
     

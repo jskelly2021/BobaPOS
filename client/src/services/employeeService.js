@@ -29,3 +29,32 @@ export const updateEmployee = async (employee) => {
         throw new Error(`Failed to update employee ${e.message}`);
     }
 }
+
+// Deletes a specific employee
+export const deleteEmployee = async (employee) => {
+    const deleteURL = `${API_BASE_URL}/employees/${employee.employee_id}`;
+
+    try {
+        const { data } = await axios.delete(deleteURL);
+        return data;
+    } catch (e) {
+        throw new Error(`Failed to delete employee: ${e.message}`);
+    }
+}
+
+// Creates a new employee
+export const createEmployee = async (employee) => {
+    const createURL = `${API_BASE_URL}/employees`;
+
+    try {
+        const { data } = await axios.post(createURL, {
+            employee_name: employee.employee_name,
+            position: employee.position,
+            passwords: employee.passwords
+        });
+        console.log(`Created employee: `, data);
+        return data;
+    } catch (e) {
+        throw new Error(`Failed to create employee: ${e.message}`);
+    }
+}

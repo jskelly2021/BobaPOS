@@ -7,7 +7,6 @@ const EmployeeList = () => {
     const { employees, loadingEmployee, errorEmployee, editEmployee, removeEmployee, addEmployee} = useEmployees();
     const [editingEmployeeId, setEditingEmployeeId] = useState(null);
     const [editedEmployee, setEditedEmployee] = useState({});
-    const [addingEmployee, setAddingEmployee] = useState(false);
     const [addedEmployee, setAddedEmployee] = useState({});
 
     if (loadingEmployee) return <div>Loading employees...</div>;
@@ -16,11 +15,6 @@ const EmployeeList = () => {
     const handleEditClick = (employee) => {
         setEditingEmployeeId(employee.employee_id);
         setEditedEmployee({...employee});
-    }
-
-    const handleCancelClick = () => {
-        setEditingEmployeeId(null);
-        setEditedEmployee({});
     }
 
     const handleOnEditChange = (field, value) => {
@@ -35,17 +29,15 @@ const EmployeeList = () => {
         setEditingEmployeeId(null);
     }
 
-    const handleAddEmployeeClick = () => {
-        setAddingEmployee(true);
-        setAddedEmployee({ employee_name: '', position: '', passwords: '' });
-    };
+    const handleCancelClick = () => {
+        setEditingEmployeeId(null);
+        setEditedEmployee({});
+    }
 
-    const handleAddFieldChange = (field, value) => {
-        setAddedEmployee({
-            ...addedEmployee,
-            [field]: value
-        });
-    };
+    const handleAddEmployee = async () => {
+        setAddedEmployee({ employee_name: 'New Employee', position: 'CASHIER', passwords: '123456' });
+        await addEmployee(addedEmployee);
+    }
 
     return(
         <div>
@@ -77,7 +69,7 @@ const EmployeeList = () => {
                         )}
                     </li>
                 ))}
-                <button className="AddEmployeeBtn" onClick={() => handleAddEmployeeClick()}>Add Employee</button>
+                <button className="AddEmployeeBtn" onClick={() => handleAddEmployee()}>Add Employee</button>
             </ul>
         </div>
     );

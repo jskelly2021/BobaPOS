@@ -86,9 +86,6 @@ const EmployeeList = () =>
 
     return (
 
-    const positionOptions = [{ option: 'MANAGER', value: 'MANAGER' }, { option: 'CASHIER', value: 'CASHIER' }];
-
-
         <div>
             <h2>Employees</h2>
 

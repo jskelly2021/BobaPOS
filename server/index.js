@@ -36,7 +36,7 @@ app.use( session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/auth', authRouter);
+app.use('/api/auth', authRouter);
 app.use('/api/items', itemsRouter);
 app.use('/api/ingredients', ingredientsRouter);
 app.use('/api/employees', employeesRouter);

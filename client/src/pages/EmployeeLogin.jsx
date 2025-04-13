@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import './EmployeeLogin.css'
 
 function EmployeeLogin() {
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
     const navigate = useNavigate();
     const [employeeName, setEmployeeName] = useState('');
     const [password, setPassword] = useState('');
@@ -10,11 +12,13 @@ function EmployeeLogin() {
 
     // Function to handle form submission and login process
     const handleLogin = async (e) => {
+        const url = `${API_BASE_URL}/auth/login`;
+
         e.preventDefault();
         setError(null);
 
         try {
-            const response = await fetch('http://localhost:4001/auth/login', {
+            const response = await fetch(url, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',

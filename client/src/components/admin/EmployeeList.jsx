@@ -34,9 +34,11 @@ const EmployeeList = () => {
     }
 
     const handleAddEmployee = async () => {
+        const id = await nextId();
+
         const newEmployee = {
             employee_name: '',
-            employee_id: nextId(),
+            employee_id: id,
             position: 'CASHIER',
             passwords: ''
         };

@@ -12,8 +12,8 @@ const EditEmployeeRow = ({ employee, onEdit, onSave, onCancel, deleteEmployee })
         setDeletedEmployee({ ...employee });
     };
 
-    const handleConfirmDeleteClick = async () => {
-        await deleteEmployee(deletedEmployee);
+    const handleConfirmDeleteClick = () => {
+        deleteEmployee(deletedEmployee);
         setDeletingEmployee(false);
         setDeletedEmployee({});
     };

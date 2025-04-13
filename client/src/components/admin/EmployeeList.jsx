@@ -4,10 +4,9 @@ import EditEmployeeRow from './EditEmployeeRow';
 import DefaultEmployeeRow from './DefaultEmployeeRow';
 
 const EmployeeList = () => {
-    const { employees, loadingEmployee, errorEmployee, editEmployee, removeEmployee, addEmployee} = useEmployees();
+    const { employees, loadingEmployee, errorEmployee, editEmployee, removeEmployee, addEmployee, nextId} = useEmployees();
     const [editingEmployeeId, setEditingEmployeeId] = useState(null);
     const [editedEmployee, setEditedEmployee] = useState({});
-    const [addedEmployee, setAddedEmployee] = useState({});
 
     if (loadingEmployee) return <div>Loading employees...</div>;
     if (errorEmployee) return <div>Error fetching employees: {errorEmployee.message}</div>;
@@ -35,8 +34,13 @@ const EmployeeList = () => {
     }
 
     const handleAddEmployee = async () => {
-        setAddedEmployee({ employee_name: 'New Employee', position: 'CASHIER', passwords: '123456' });
-        await addEmployee(addedEmployee);
+        const newEmployee = {
+            employee_name: '',
+            employee_id: nextId(),
+            position: 'CASHIER',
+            passwords: ''
+        };
+        await addEmployee(newEmployee);
     }
 
     return(
@@ -69,8 +73,9 @@ const EmployeeList = () => {
                         )}
                     </li>
                 ))}
-                <button className="AddEmployeeBtn" onClick={() => handleAddEmployee()}>Add Employee</button>
             </ul>
+
+            <button className="AddEmployeeBtn" onClick={() => handleAddEmployee()}>Add Employee</button>
         </div>
     );
 }

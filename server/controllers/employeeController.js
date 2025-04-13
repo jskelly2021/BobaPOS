@@ -44,7 +44,7 @@ export const createEmployee = async (req, res) => {
         const { employee_name, id, position, passwords } = req.body;
         const result = await pool.query(
             "INSERT INTO employee (employee_id, employee_name, position, passwords) VALUES ($1, $2, $3, $4) RETURNING *",
-            [id, employee_name, position, passwords]
+            [employee_id, employee_name, position, passwords]
         );
 
         res.status(201).json(result.rows[0]);

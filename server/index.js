@@ -11,8 +11,8 @@ const employeesRouter = require('./routes/employee');
 const ordersRouter = require('./routes/orders');
 const toppingsRouter = require('./routes/toppings');
 
-const authRouter = require('./routes/auth');        // Import your new auth routes
-const analyticsRouter = require('./routes/analytics'); // Import your new analytics routes
+const authRouter = require('./routes/auth');
+const analyticsRouter = require('./routes/analytics');
 
 
 const app = express();
@@ -33,7 +33,6 @@ app.use( session({
   })
 );
 
-// Initialize Passport
 app.use(passport.initialize());
 app.use(passport.session());
 

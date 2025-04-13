@@ -13,6 +13,6 @@ router.get('/totals', getTotals);
 router.post('/item-sales', getItemSales);
 router.get('/ingredient-usage', getIngredientUsage);
 router.put('/reset-totals', resetTotals);
-router.get('/usage/:id', getIngredientUsageOverTime);
+router.get('/usage/:id/:interval/:start/:end', getIngredientUsageOverTime);
 
 module.exports = router;

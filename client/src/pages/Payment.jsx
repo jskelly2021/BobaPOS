@@ -6,8 +6,8 @@ import './Payment.css'
 
 function Payment() {
     const nav = useNavigate();
-    const { placeOrder, orderPrice } = useOrderItem();
-    const [ tip, setTip ] = useState(0);
+    const { placeOrder, orderPrice } = useOrderItem(nav);
+    const [tip, setTip] = useState(0);
 
     const subtotal = orderPrice() || 0;
 
@@ -34,14 +34,14 @@ function Payment() {
             </button>
 
             <div className='PaymentBtn'>
-                <TipSelector className='Tip' subtotal = {subtotal} onTipSelect = {setTip}/>
+                <TipSelector className='Tip' subtotal={subtotal} onTipSelect={setTip} />
 
                 <div className='cashCard'>
-                    <button className='CardBtn' onClick={() => placeOrder(subtotal, "CARD", tip)}>
+                    <button className='CardBtn' onClick={() => handlePlaceOrder(subtotal, "CARD", tip)}>
                         Credit Card
                     </button>
 
-                    <button className='CashBtn' onClick={() => placeOrder(subtotal, "CASH", tip)}>
+                    <button className='CashBtn' onClick={() => handlePlaceOrder(subtotal, "CASH", tip)}>
                         Cash
                     </button>
                 </div>

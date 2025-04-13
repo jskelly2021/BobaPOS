@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import useEmployees from '../../hooks/useEmployee';
+import RadioSelector from './RadioSelector';
 
 const EmployeeList = () => 
 {
@@ -77,12 +78,17 @@ const EmployeeList = () =>
         setDeletedEmployee({});
     };
 
+
     const handleCancelDeleteClick = () => {
         setDeletingEmployee(false);
         setDeletedEmployee({});
     };
 
     return (
+
+    const positionOptions = [{ option: 'MANAGER', value: 'MANAGER' }, { option: 'CASHIER', value: 'CASHIER' }];
+
+
         <div>
             <h2>Employees</h2>
 
@@ -121,6 +127,7 @@ const EmployeeList = () =>
             <ul className='List EmployeeList'>
                 <li className='Labels'>
                     <h3>Name</h3>
+                    <h3>Id</h3>
                     <h3>Position</h3>
                     <h3>Password</h3>
                     <div></div>
@@ -129,6 +136,7 @@ const EmployeeList = () =>
                     <li key={employee.employee_id}>
                         {editingEmployeeId === employee.employee_id ? (
                             <>
+
                                 <input 
                                     type='text'
                                     value={editedEmployee.employee_name || ''}
@@ -160,6 +168,7 @@ const EmployeeList = () =>
                         ) : (
                             <>
                                 <p>{employee.employee_name}</p>
+                                <p>{employee.employee_id}</p>
                                 <p>{employee.position}</p>
                                 <p>{employee.passwords}</p>
                                 <div>

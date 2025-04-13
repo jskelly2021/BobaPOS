@@ -43,6 +43,8 @@ const EmployeeList = () => {
             passwords: ''
         };
         await addEmployee(newEmployee);
+        setEditingEmployeeId(newEmployee.employee_id);
+        setEditedEmployee({...newEmployee});
     }
 
     return(

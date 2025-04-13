@@ -35,7 +35,12 @@ function OrderReview() {
                                 <h3>{item.item_name}</h3>
                                 <p>Price: {item.price}</p>
                                 <p>Quantity: 1</p>
-                                <h4>Toppings:</h4>
+                                <h4>Toppings: </h4>
+                                {item.toppings && item.toppings.length > 0 ? (
+                                item.toppings.map((topping) => (topping.quantity > 0 && (
+                                <p key={topping.topping_id}>
+                                    {topping.topping_name} {topping.quantity === 1 ? "(Regular)" : topping.quantity === 0.5 ? "(Light)" : ""}
+                                </p>)))) : ( <p>None</p> )}
                             </div> 
                         </li> 
                     ))}

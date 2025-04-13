@@ -166,6 +166,16 @@
     background-color: ghostwhite;
 }
 
+.CustomerOrderView .OrderItemList .ItemButton .ItemDetails .ItemName {
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+
+.CustomerOrderView .OrderItemList .ItemButton .ItemDetails .ItemTopping {
+    font-size: 12.5px;
+    margin: 0px;
+}
+
 .CustomerOrderView .OrderItemList .ItemButton:hover {
     background-color: white;
 }

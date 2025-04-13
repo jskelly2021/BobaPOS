@@ -10,7 +10,7 @@ const useProductUsage = () => {
         
     })
 
+    return { data, loading, error };
 }
-return { data, loading, error };
 
 export default useProductUsage;

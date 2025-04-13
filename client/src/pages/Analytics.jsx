@@ -33,7 +33,7 @@ const Analytics = () => {
                 <button onClick={() => setActivePage('SalesOverWeeks')}>Sales Over Weeks</button>
                 <button onClick={() => setActivePage('SalesOverMonths')}>Sales Over Months</button>
                 <button onClick={() => setActivePage('ProductUsage')}>Product Usage</button>
-                <button onClick={() => setActivePage('ZReport')}>Z-Report</button>
+                <button onClick={() => setActivePage('ZReport')}>Daily Report</button>
             </div>
 
             <h1>Analytics Dashboard</h1>

@@ -39,31 +39,35 @@ export const deleteEmployee = async (req, res) => {
 }
 
 // Create a new employee
-export const createEmployee = async (req, res) => 
-    {
-        try {
-        const { employee_name, position, passwords } = req.body;
-    
-        // Get the next available ID from the employee_id sequence.
-        // The sequence name is typically <table>_<column>_seq.
+export const createEmployee = async (req, res) => {
+    try {
+        const { employee_name, id, position, passwords } = req.body;
+        const result = await pool.query(
+            "INSERT INTO employee (employee_id, employee_name, position, passwords) VALUES ($1, $2, $3, $4) RETURNING *",
+            [employee_id, employee_name, position, passwords]
+        );
+
+        res.status(201).json(result.rows[0]);
+    } catch (err) {
+        console.error("Error creating employee:", err);
+        res.status(500).json("Server Error");
+    }
+};
+
+// Get the next available ID from the employee_id sequence.
+export const getNextEmployeeId = async (req, res) => {
+    try {
         const seqResult = await pool.query("SELECT MAX (employee_id) as new_id FROM employee");
         const newId = Number(seqResult.rows[0].new_id) + 1;
         console.log("New ID:", newId);
-    
-        // Insert the new employee record using the manually-assigned ID.
-        const result = await pool.query(
-            "INSERT INTO employee (employee_id, employee_name, position, passwords) VALUES ($1, $2, $3, $4) RETURNING *",
-            [newId, employee_name, position, passwords]
-        );
-    
-        res.status(201).json(result.rows[0]);
-        } catch (err) {
-        console.error("Error creating employee:", err);
+
+        res.status(200).json(newId);
+    } catch (err) {
+        console.error("Error retrieving next employee ID:", err);
         res.status(500).json("Server Error");
-        }
-  };
-  
-  
+    }
+}
+
 //update employee
 export const updateEmployee = async (req, res) => {
     const { id } = req.params;

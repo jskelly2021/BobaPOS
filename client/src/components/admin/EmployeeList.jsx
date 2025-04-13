@@ -73,9 +73,8 @@ const EmployeeList = () => {
                         )}
                     </li>
                 ))}
+                <button className="AddEmployeeBtn" onClick={() => handleAddEmployee()}>Add Employee</button>
             </ul>
-
-            <button className="AddEmployeeBtn" onClick={() => handleAddEmployee()}>Add Employee</button>
         </div>
     );
 }

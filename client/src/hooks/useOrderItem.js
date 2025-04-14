@@ -37,7 +37,7 @@ const useOrderItem = (nav) => {
         const order_id = await insertOrders(price, new Date().toISOString(), 1, paymentMethod, tip);
 
         for (const item of orderItems) {
-            const orderItemId = await insertOrdersItems(order_id, item.item_id, 100);
+            const orderItemId = await insertOrdersItems(order_id, item.item_id, 1);
 
             if (item.toppings && item.toppings.length > 0) {
                 for (const topping of item.toppings) {

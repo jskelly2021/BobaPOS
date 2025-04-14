@@ -17,23 +17,23 @@ export const fetchTopSellingProducts = async (limit = 5) => {
 
 // Fetches the usage by an ingredient in the given interval between the start and endTime
 export const fetchProductUsage = async (ingredientId, interval, startTime, endTime) => {
-    const url = `${API_BASE_URL}/analytics/usage/${ingredientId}/${interval}/${startTime}/${endTime}`;
+  const url = `${API_BASE_URL}/analytics/usage/${ingredientId}/${interval}/${startTime}/${endTime}`;
 
-    try {
-        const { data } = await axios.get(url);
-        return data;
-    } catch (error) {
-        throw new Error(`Failed ot fetch ingredient usage for: ${ingredientId}`);
-    }
+  try {
+    const { data } = await axios.get(url);
+    return data;
+  } catch (error) {
+    throw new Error(`Failed ot fetch ingredient usage for: ${ingredientId}`);
+  }
 }
 
 // Fetch sales over days data
 export const fetchSalesOverDays = async (start, end) => {
   const url = `${API_BASE_URL}/analytics/sales-over-days`;
   try {
-    const { data } = await axios.post(url, 
+    const { data } = await axios.post(url,
       { start: start, end: end },
-      {withCredentials: true},
+      { withCredentials: true },
     );
     return data;
   } catch (error) {
@@ -74,3 +74,58 @@ export const fetchSalesOverMonths = async (start, end) => {
     throw new Error(`Failed to fetch sales data: ${error.message}`);
   }
 };
+
+// Fetch total summary data (revenue, tax, tips, etc.)
+export const fetchTotals = async () => {
+  const url = `${API_BASE_URL}/analytics/totals`;
+  try {
+    const { data } = await axios.get(url);
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to fetch totals: ${error.message}`);
+  }
+};
+
+// Fetch item sales counts for the day
+export const fetchItemSales = async () => {
+  const url = `${API_BASE_URL}/analytics/item-sales`;
+  try {
+    const { data } = await axios.post(url);  // This route uses POST!
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to fetch item sales: ${error.message}`);
+  }
+};
+
+// Fetch ingredient usage
+export const fetchIngredientUsage = async () => {
+  const url = `${API_BASE_URL}/analytics/ingredient-usage`;
+  try {
+    const { data } = await axios.get(url);
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to fetch ingredient usage: ${error.message}`);
+  }
+};
+
+// Fetch full Z-Report data
+export const fetchZReportData = async () => {
+  const urlBase = process.env.REACT_APP_API_BASE_URL || 'http://localhost:4001/api';
+
+  try {
+    const [totalsRes, usageRes, salesRes] = await Promise.all([
+      axios.get(`${urlBase}/analytics/totals`),
+      axios.get(`${urlBase}/analytics/ingredient-usage`),
+      axios.get(`${urlBase}/analytics/item-sales`)
+    ]);
+
+    return {
+      totals: totalsRes.data,
+      ingredientUsage: usageRes.data,
+      itemSales: salesRes.data
+    };
+  } catch (error) {
+    throw new Error(`Failed to load Z-Report data: ${error.message}`);
+  }
+};
+

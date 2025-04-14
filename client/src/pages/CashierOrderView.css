@@ -41,6 +41,10 @@
     height: 5vh;
 }
 
+.CashierOrderView .MenuItemList .ItemButton .ItemDetails .ItemQuantity {
+    display: none;
+}
+
 .CashierOrderView .ItemImg { display: none; }
 
 

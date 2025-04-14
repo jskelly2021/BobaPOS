@@ -33,14 +33,16 @@ function OrderReview() {
                         <li className="OrderItem" key={item.item_id}> 
                             <div className='ItemDetails'>
                                 <h3>{item.item_name}</h3>
-                                <p>Price: {item.price}</p>
-                                <p>Quantity: 1</p>
+                                <p>Price: {item.price * item.quantity}</p>
+                                <p>Quantity: {item.quantity}</p>
                                 <h4>Toppings: </h4>
-                                {item.toppings && item.toppings.length > 0 ? (
-                                item.toppings.map((topping) => (topping.quantity > 0 && (
+                                {item.toppings && item.toppings.filter(t => t.quantity > 0).length > 0 ? (
+                                item.toppings
+                                .filter(topping => topping.quantity > 0)
+                                .map((topping) => (
                                 <p key={topping.topping_id}>
                                     {topping.topping_name} {topping.quantity === 1 ? "(Regular)" : topping.quantity === 0.5 ? "(Light)" : ""}
-                                </p>)))) : ( <p>None</p> )}
+                                </p>))) : ( <p>None</p> )}
                             </div> 
                         </li> 
                     ))}

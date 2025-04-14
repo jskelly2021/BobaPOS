@@ -6,6 +6,7 @@ const ItemButton = ({ item, onClick }) => {
             <div className='ItemDetails'>
                 <p className='ItemName'>{item.item_name}</p>
                 <p className='ItemPrice'>{item.price}</p>
+                <p className='ItemQuantity'>Quantity: {item.quantity}</p>
                 <p className='ItemTopping'>
                     {item.toppings && item.toppings.length > 0 ? (
                     item.toppings.map((topping) => (topping.quantity > 0 && (

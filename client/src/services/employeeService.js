@@ -49,6 +49,7 @@ export const createEmployee = async (employee) => {
     try {
         const { data } = await axios.post(createURL, {
             employee_name: employee.employee_name,
+            employee_id: employee.employee_id,
             position: employee.position,
             passwords: employee.passwords
         });
@@ -56,5 +57,16 @@ export const createEmployee = async (employee) => {
         return data;
     } catch (e) {
         throw new Error(`Failed to create employee: ${e.message}`);
+    }
+}
+
+// Retrieves the next available employee id
+export const getNextEmployeeId = async () => {
+    const url = `${API_BASE_URL}/employees/next-id`;
+    try {
+        const { data } = await axios.get(url);
+        return data;
+    } catch (e) {
+        throw new Error(`Failed to retrieve next employee id: ${e.message}`);
     }
 }

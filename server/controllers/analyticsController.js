@@ -7,14 +7,14 @@ export const getTopSellingProducts = async (req, res) => {
     try {
         const result = await pool.query(
             "SELECT i.item_name, SUM(oi.quantity) AS total_sold " +
-            "FROM order_item oi " +
-            "JOIN item i ON oi.item_id = i.item_id " +
-            "GROUP BY i.item_name " +
-            "ORDER BY total_sold DESC " +
-            "LIMIT $1",
+                "FROM order_item oi " +
+                "JOIN item i ON oi.item_id = i.item_id " +
+                "GROUP BY i.item_name " +
+                "ORDER BY total_sold DESC " +
+                "LIMIT $1",
             [limit] // Use the limit from the query parameters
 
-
+            
         );
         res.status(200).json(result.rows);
     } catch (err) {
@@ -26,7 +26,7 @@ export const getTopSellingProducts = async (req, res) => {
 // Get Sales Over Days
 export const getSalesOverDays = async (req, res) => {
     const { start, end } = req.body;
-
+  
     const sql = `
         SELECT date_trunc('day', order_date) AS period, 
                 SUM(price) AS total_sales
@@ -43,7 +43,7 @@ export const getSalesOverDays = async (req, res) => {
         console.error('Error fetching sales over days:', err);
         res.status(500).json("Server Error");
     }
-}
+  }
 
 // Get sales during a given day
 export const getSalesDuringDay = async (req, res) => {
@@ -79,7 +79,7 @@ export const getSalesOverWeeks = async (req, res) => {
                     WHERE order_date BETWEEN $1 AND $2
                     GROUP BY period
                     ORDER BY period;`
-            , [start, end]);
+        , [start, end]);
         res.status(200).json(result.rows);
     } catch (err) {
         console.error('Error fetching sales today:', err);
@@ -98,7 +98,7 @@ export const getSalesOverMonths = async (req, res) => {
                     WHERE order_date BETWEEN $1 AND $2 
                     GROUP BY period 
                     ORDER BY period`
-            , [start, end]);
+        , [start, end]);
         res.status(200).json(result.rows);
     } catch (err) {
         console.error('Error fetching sales today:', err);
@@ -129,15 +129,10 @@ export const getTotals = async (req, res) => {
 // Get Daily Item Sales
 export const getItemSales = async (req, res) => {
     try {
-        //changed for z-report to show item name
-        const result = await pool.query(`
-            SELECT i.item_id, i.item_name, dis.sales_count
-            FROM daily_item_sales dis
-            JOIN item i ON dis.item_id = i.item_id
-        `);
+        const result = await pool.query("SELECT * FROM daily_item_sales");
         const itemSales = {};
         result.rows.forEach(row => {
-            itemSales[row.item_name] = row.sales_count;
+            itemSales[row.item_id] = row.sales_count;
         });
         res.status(200).json(itemSales);
     } catch (err) {
@@ -149,21 +144,14 @@ export const getItemSales = async (req, res) => {
 // Get Ingredient Usage
 export const getIngredientUsage = async (req, res) => {
     try {
-        const result = await pool.query(`
-            SELECT i.ingredient_name, diu.usage
-            FROM daily_ingredient_usage diu
-            JOIN ingredient i ON i.ingredient_id = diu.ingredient_id
-            WHERE diu.usage > 0
-        `);
-
-        const usageMap = {};
+        const result = await pool.query("SELECT * FROM daily_ingredient_usage");
+        const itemSales = {};
         result.rows.forEach(row => {
-            usageMap[row.ingredient_name] = row.usage;
+            itemSales[row.item_id] = row.sales_count;
         });
-
-        res.status(200).json(usageMap);
+        res.status(200).json(itemSales);
     } catch (err) {
-        console.error("Error retrieving ingredient usage:", err);
+        console.error("Error retrieving sales from daily ingredient usage:", err);
         res.status(500).json("Server Error");
     }
 };

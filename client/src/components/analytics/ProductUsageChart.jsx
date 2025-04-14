@@ -6,7 +6,7 @@ const ProductUsageChart = ({ loading, error, data, dateLabelType }) => {
     if (loading) return <p>Loading data...</p>;
     if (error) return <p>Error fetching ingredient usage data: {error.message}</p>;
 
-    const formatDate = (str) => {
+    const dateFormatter = (str) => {
         const date = new Date(str);
 
         switch (dateLabelType) {
@@ -25,7 +25,7 @@ const ProductUsageChart = ({ loading, error, data, dateLabelType }) => {
         <div>
             <LineChart width={600} height={300} data={data} margin={{ top: 10, right: 20, left: 20, bottom: 15 }}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="period" tickFormatter={formatDate}>
+                <XAxis dataKey="period" tickFormatter={dateFormatter}>
                     <Label
                             value='Date Time'
                             dy={20} 
@@ -42,7 +42,7 @@ const ProductUsageChart = ({ loading, error, data, dateLabelType }) => {
                     />
                 </YAxis>
 
-                <Tooltip />
+                <Tooltip labelFormatter={dateFormatter}/>
                 <Line type="monotone" dataKey="total_usage" stroke="#8884d8" />
             </LineChart>
         </div>

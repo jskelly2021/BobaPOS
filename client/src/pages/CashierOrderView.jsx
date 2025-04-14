@@ -25,10 +25,11 @@ function OrderView() {
         setSelectedItem(item); // Triggers modal
     };
 
-    const handleAddWithToppings = (item, selectedToppings) => {
+    const handleAddWithToppings = (item, selectedToppings, quantity) => {
         const itemWithToppings = {
             ...item,
-            toppings: selectedToppings
+            toppings: selectedToppings,
+            quantity: quantity
         };
         addToOrder(itemWithToppings);
         setSelectedItem(null); // Close modal

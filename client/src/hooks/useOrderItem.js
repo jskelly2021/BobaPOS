@@ -29,7 +29,7 @@ const useOrderItem = (nav) => {
     }
 
     const orderPrice = () => {
-        const total = orderItems.reduce((subtotal, item) => subtotal + parseFloat(item.price), 0);
+        const total = orderItems.reduce((subtotal, item) => subtotal + parseFloat(item.price * item.quantity), 0);
         return parseFloat(total).toFixed(2);
     }
 
@@ -37,7 +37,7 @@ const useOrderItem = (nav) => {
         const order_id = await insertOrders(price, new Date().toISOString(), 1, paymentMethod, tip);
 
         for (const item of orderItems) {
-            const orderItemId = await insertOrdersItems(order_id, item.item_id, 1);
+            const orderItemId = await insertOrdersItems(order_id, item.item_id, item.quantity);
 
             if (item.toppings && item.toppings.length > 0) {
                 for (const topping of item.toppings) {

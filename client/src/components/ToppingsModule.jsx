@@ -42,6 +42,14 @@ const ToppingModal = ({ item, toppings, defaultToppings = [], onConfirm, onClose
         return selectedToppings[topping.topping_id]?.quantity === numericValue ? 'active' : '';
     };
 
+    const [quantity, setQuantity] = useState(1);
+    const productQuantityChange = (e) => {
+        const value = parseInt(e.target.value, 10);
+        if (!isNaN(value) && value >= 0) {
+            setQuantity(value);
+        }
+    };
+
     return (
         <div className="ModalOverlay">
             <div className="ModalContent small">
@@ -64,8 +72,16 @@ const ToppingModal = ({ item, toppings, defaultToppings = [], onConfirm, onClose
                         </li>
                     ))}
                 </ul>
+                <label className='quantityLabel'>Quantity: </label>
+                <input 
+                    className='quantityInput'
+                    type='number' 
+                    min='1'
+                    value={quantity}
+                    onChange={productQuantityChange}>
+                </input>
                 <div className="ModalActions">
-                    <button onClick={() => onConfirm(item, Object.values(selectedToppings))}>Add to Order</button>
+                    <button onClick={() => onConfirm(item, Object.values(selectedToppings), quantity)}>Add to Order</button>
                     <button onClick={onClose}>Cancel</button>
                 </div>
             </div>

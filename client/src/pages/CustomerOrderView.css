@@ -100,6 +100,11 @@
     height: 50vh;
     font-size: 1.5vw;
 }
+
+.CustomerOrderView .MenuItemList .ItemButton .ItemDetails .ItemQuantity {
+    display: none;
+}
+
 .CustomerOrderView .MenuItemList .ItemButton:hover { background-color: white; }
 
 .CustomerOrderView .MenuItemList .ItemImg { height: 25vh; }

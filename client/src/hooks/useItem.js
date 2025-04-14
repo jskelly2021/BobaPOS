@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchItems, updateItem } from '../services/itemService';
+import { fetchItems, updateItem, createItem, deleteItem} from '../services/itemService';
 
 // Returns a list of items
 const useItem = (defaultCategory = null) => {
@@ -41,6 +41,7 @@ const useItem = (defaultCategory = null) => {
                     item_name: item.item_name,
                     category: item.category,
                     price: item.price,
+                    item_img: item.item_img,
                     active: item.active
                 } : i
             )
@@ -51,7 +52,28 @@ const useItem = (defaultCategory = null) => {
         }
       };
 
-      const getCategory = () => {
+    const removeItem = async (itemId) => {
+        try {
+            await deleteItem(itemId);
+            setItems(prevItems => prevItems.filter(i => i.item_id !== itemId));
+            console.log(`Deleted item ${itemId}`);
+        } catch (e) {
+            console.error('Error deleting item: ', e);
+        }
+    }
+
+    const addItem = async (item) => {
+        try {
+            const newItem = await createItem(item);
+            setItems(prevItems => [...prevItems, newItem]);
+            console.log(`Created item ${newItem.item_id}`);
+        } catch (e) {
+            console.error('Error creating item: ', e);
+        }
+    }
+
+    const getCategory = () => 
+    {
         switch (category) {
             case "BREWED":
                 return "Brewed Tea";
@@ -66,7 +88,7 @@ const useItem = (defaultCategory = null) => {
         }
       }
 
-    return { items, loadingItem, errorItem, updateCategory, editItem, getCategory};
+    return { items, loadingItem, errorItem, updateCategory, editItem, removeItem, addItem, getCategory};
 }
 
 export default useItem;

@@ -4,6 +4,7 @@ import { fetchAllEmployees, updateEmployee, deleteEmployee, createEmployee, getN
 // Returns a list of all employees
 const useEmployee = () => {
     const [employees, setEmployees] = useState([]);
+    const [category, setCategory] = useState(null);
     const [loadingEmployee, setLoading] = useState(true);
     const [errorEmployee, setError] = useState(null);
 

@@ -29,6 +29,7 @@ export const updateItem = async (item) => {
             item_name: item.item_name,
             category: item.category,
             price: item.price,
+            item_img: item.item_img,
             active: item.active
         });
         return data;
@@ -46,6 +47,7 @@ export const createItem = async (item) => {
             item_name: item.item_name,
             category: item.category,
             price: item.price,
+            item_img: item.item_img,
             active: item.active
         });
         return data;

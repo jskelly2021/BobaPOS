@@ -46,6 +46,7 @@ const useProductUsage = () => {
         usageData,
         loading,
         error,
+        ingredientId,
         getUsageFromLast24Hours,
         getUsageFromLast14Days,
         getUsageFromLast3Months,

@@ -1,0 +1,38 @@
+.ZReport {
+    width: 320px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border: 1px solid #000;
+    font-family: monospace;
+    background: #fff;
+    color: #000;
+}
+
+.ZReport h2 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.ZReport p,
+.ZReport div {
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.ZReport section {
+    border-top: 1px solid black;
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+}
+
+.ZReport .section-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.ZReport .amount-line {
+    display: flex;
+    justify-content: space-between;
+}

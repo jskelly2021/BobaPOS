@@ -28,4 +28,12 @@
     font-size: large;
     font-weight: bold;
 }
+
+.date-selectors {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
 .AnalyticsPages button:hover { background-color: green; }

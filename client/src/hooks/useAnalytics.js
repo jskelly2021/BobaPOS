@@ -2,15 +2,12 @@
 import { useState, useEffect } from 'react';
 import { fetchTopSellingProducts, fetchSalesOverDays } from '../services/analyticsService';
 
-const useAnalytics = (startDate, endDate) => {
+const useAnalytics = (start, end) => {
   const [topSellingData, setTopSellingData] = useState([]);
   const [salesOverDaysData, setSalesOverDaysData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Use provided dates or fallback to defaults.
-  const start = startDate || '2024-12-01';
-  const end = endDate || '2025-01-31';
 
   useEffect(() => {
     const loadData = async () => {

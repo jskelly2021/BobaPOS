@@ -1,8 +1,8 @@
 import { Tooltip, Legend, LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
 import useAnalytics from '../../hooks/useAnalytics';
 
-const SalesOverDays = () => {
-    const { salesOverDaysData, loading, error } = useAnalytics();
+const SalesOverDays = ({start, end}) => {
+    const { salesOverDaysData, loading, error } = useAnalytics(start, end);
 
     if (loading) return <p>Loading analytics data...</p>;
     if (error) return <p>Error fetching analytics data: {error.message}</p>;

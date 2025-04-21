@@ -81,3 +81,13 @@ export const updateItemQuantity = async (itemId, quantity) => {
     }
 }
 
+// Retrieves the next available item id
+export const getNextItemId = async () => {
+    const url = `${API_BASE_URL}/items/next-id`;
+    try {
+        const { data } = await axios.get(url);
+        return data;
+    } catch (e) {
+        throw new Error(`Failed to retrieve next item id: ${e.message}`);
+    }
+}

@@ -32,23 +32,24 @@ const useItem = (defaultCategory = null) => {
 
     const editItem = async (item) => {
         try {
-          await updateItem(item);
+            await updateItem(item);
 
-          setItems(prevItems =>
-            prevItems.map(i =>
-              i.item_id === item.item_id ? { 
-                    ...i,
-                    item_name: item.item_name,
-                    category: item.category,
-                    price: item.price,
-                    item_img: item.item_img,
-                    active: item.active
-                } : i
-            )
-          );
-          console.log(`Updated item ${item.item_id}`);
+            setItems(prevItems =>
+                prevItems.map(i =>
+                    i.item_id === item.item_id ? {
+                        ...i,
+                        item_name: item.item_name,
+                        category: item.category,
+                        price: item.price,
+                        calories: item.calories,
+                        item_img: item.item_img,
+                        active: item.active
+                    } : i
+                )
+            );
+            console.log(`Updated item ${item.item_id}`);
         } catch (e) {
-          console.error('Error updating item: ', e);
+            console.error('Error updating item: ', e);
         }
       };
 

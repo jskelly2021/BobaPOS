@@ -90,10 +90,10 @@ export const createItem = async (req, res) => {
 // Update Specific Item
 export const updateItem = async (req, res) => {
     const { id } = req.params;
-    const { item_name, category, price, item_img, active } = req.body;
+    const { item_name, category, price, calories, item_img, active } = req.body;
     try {
-        const result = await pool.query('UPDATE item SET item_name=$1, category=$2, price=$3, item_img=$4, active=$5 WHERE item_id=$6 RETURNING *',
-            [item_name, category, price, item_img, active, id]);
+        const result = await pool.query('UPDATE item SET item_name=$1, category=$2, price=$3, calories=$4, item_img=$5, active=$6 WHERE item_id=$7 RETURNING *',
+            [item_name, category, price, calories, item_img, active, id]);
         res.status(200).json(result.rows[0]);
     } catch (err) {
         console.error('Error updateItem', err);

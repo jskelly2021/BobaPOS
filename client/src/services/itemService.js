@@ -29,6 +29,7 @@ export const updateItem = async (item) => {
             item_name: item.item_name,
             category: item.category,
             price: item.price,
+            calories: item.calories,
             item_img: item.item_img,
             active: item.active
         });

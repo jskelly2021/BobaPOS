@@ -76,15 +76,12 @@ const ItemList = () => {
         await removeItem(deletingItem);
         setDeletingItem(false);
         setDeletedItem({});
-    }   
+    }
 
     const handleDeleteCancel = () => {
         setDeletingItem(false);
         setDeletedItem({});
     }
-
-    // Category and visibility options
-    // Category options: BREWED, MILK, FRUIT, CREAMA
 
     const categoryOptions = [{ option: 'BREWED', value: 'BREWED' },
                              { option: 'MILK',   value: 'MILK' },
@@ -181,7 +178,7 @@ const ItemList = () => {
                                     <input
                                         type='number'
                                         value={editedItem.calories || ''}
-                                        onChange={(e) => handleOnEditChange('price', e.target.value)}
+                                        onChange={(e) => handleOnEditChange('calories', e.target.value)}
                                     />
                                 </div>
 

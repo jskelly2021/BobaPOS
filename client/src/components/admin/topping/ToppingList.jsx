@@ -5,7 +5,7 @@ import EditToppingRow from './EditToppingRow';
 
 
 const ToppingList = () => {
-    const { toppings, loadingTopping, errorTopping } = useToppings();
+    const { toppings, loadingTopping, errorTopping, editTopping, removeTopping, addTopping, nextId } = useToppings();
     const [editingToppingId, setEditingToppingId] = useState(null);
     const [editedTopping, setEditedTopping] = useState({});
 

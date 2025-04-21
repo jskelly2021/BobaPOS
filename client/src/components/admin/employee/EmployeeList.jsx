@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useEmployees from '../../hooks/useEmployee';
+import useEmployees from '../../../hooks/useEmployee';
 import EditEmployeeRow from './EditEmployeeRow';
 import DefaultEmployeeRow from './DefaultEmployeeRow';
 

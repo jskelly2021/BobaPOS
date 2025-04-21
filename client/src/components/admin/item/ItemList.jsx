@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
-import useItems from '../../hooks/useItem';
-import RadioSelector from './RadioSelector';
+import useItems from '../../../hooks/useItem';
+import RadioSelector from '../RadioSelector';
+import DefaultItemRow from './DefaultItemRow';
+// import EditItemRow from './EditItemRow';
 
 const ItemList = () => {
     const { items, loadingItem, errorItem, editItem, removeItem, addItem} = useItems();
@@ -212,25 +214,10 @@ const ItemList = () => {
                                 </div>
                             </>
                         ) : (
-                            <>
-                                <p>{item.item_name}</p>
-                                <p>{item.category}</p>
-                                <p>{item.price}</p>
-                                <p>{item.calories}</p>
-                                <img className='ItemImg' src={item.item_img} alt={item.item_name} 
-                                style={{ 
-                                    display: 'block', 
-                                    margin: '0 auto',
-                                    width: '70px' , 
-                                    height: 'auto'
-                                    }}></img>
-
-                                <p>{item.active ? 'Visible' : 'Hidden'}</p>
-                                <div>
-                                    <button className='EditBtn' onClick={() => handleEditClick(item)}>Edit</button>
-                                    <button className='DeleteBtn' onClick={() => handleDeleteClick(item)}>Delete</button>
-                                </div>
-                            </>
+                            <DefaultItemRow
+                                item={item}
+                                onEdit={handleEditClick}
+                            />
                         )}
                     </li> 
                 ))}

@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import RadioSelector from './RadioSelector';
+import RadioSelector from '../RadioSelector';
 
-const EditEmployeeRow = ({ employee, onEdit, onSave, onCancel, deleteEmployee }) => {
+const EditItemRow = ({ item, onEdit, onSave, onCancel, deleteItem }) => {
     const [deletingEmployee, setDeletingEmployee] = useState(false);
     const [deletedEmployee, setDeletedEmployee] = useState({});
-
-    const positionOptions = [{ option: 'MANAGER', value: 'MANAGER' }, { option: 'CASHIER', value: 'CASHIER' }];
 
     const handleDeleteClick = (employee) => {
         setDeletingEmployee(employee.employee_id);
@@ -70,4 +68,4 @@ const EditEmployeeRow = ({ employee, onEdit, onSave, onCancel, deleteEmployee })
     );
 }
 
-export default EditEmployeeRow;
+export default EditItemRow;

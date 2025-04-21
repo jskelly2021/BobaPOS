@@ -70,10 +70,10 @@ export const deleteItem = async (req, res) => {
 // Create a new item
 export const createItem = async (req, res) => {
     try {
-        const { item_id, item_name, category, price, calories, item_img,active} = req.body;
+        const { item_id, item_name, category, price, calories, item_img, active } = req.body;
 
         const result = await pool.query(
-            "INSERT INTO item (item_id, item_name, category, price, item_img, active) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
+            "INSERT INTO item (item_id, item_name, category, price, calories, item_img, active) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
             [item_id, item_name, category, price, calories, item_img, active]
         );
         res.status(201).json(result.rows[0]);

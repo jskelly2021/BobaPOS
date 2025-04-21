@@ -45,9 +45,11 @@ export const createItem = async (item) => {
 
     try {
         const { data } = await axios.post(createURL, {
+            item_id: item.item_id,
             item_name: item.item_name,
             category: item.category,
             price: item.price,
+            calories: item.calories,
             item_img: item.item_img,
             active: item.active
         });

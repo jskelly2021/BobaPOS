@@ -1,12 +1,12 @@
-topping_id,topping_name
-1,Pearl
-2,Crystal Boba
-3,Mini Pearl
-4,Ice
-5,Lychee Jelly
-6,Pudding
-7,Aloe Vera
-8,Herb Jelly
-9,Creama
-10,Aiyu Jelly
-11,Ice Cream
+topping_id,topping_name, calories
+1,Pearl,10
+2,Crystal Boba,10
+3,Mini Pearl,10
+4,Ice,0
+5,Lychee Jelly,20
+6,Pudding,25
+7,Aloe Vera,10
+8,Herb Jelly,20
+9,Creama,50
+10,Aiyu Jelly,20
+11,Ice Cream,100

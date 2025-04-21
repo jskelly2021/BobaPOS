@@ -29,6 +29,7 @@ export const updateItem = async (item) => {
             item_name: item.item_name,
             category: item.category,
             price: item.price,
+            calories: item.calories,
             item_img: item.item_img,
             active: item.active
         });
@@ -44,9 +45,11 @@ export const createItem = async (item) => {
 
     try {
         const { data } = await axios.post(createURL, {
+            item_id: item.item_id,
             item_name: item.item_name,
             category: item.category,
             price: item.price,
+            calories: item.calories,
             item_img: item.item_img,
             active: item.active
         });
@@ -57,8 +60,8 @@ export const createItem = async (item) => {
 }
 
 // Delete an item
-export const deleteItem = async (itemId) => {
-    const deleteURL = `${API_BASE_URL}/items/${itemId}`;
+export const deleteItem = async (item) => {
+    const deleteURL = `${API_BASE_URL}/items/${item.item_id}`;
 
     try {
         const { data } = await axios.delete(deleteURL);
@@ -80,3 +83,13 @@ export const updateItemQuantity = async (itemId, quantity) => {
     }
 }
 
+// Retrieves the next available item id
+export const getNextItemId = async () => {
+    const url = `${API_BASE_URL}/items/next-id`;
+    try {
+        const { data } = await axios.get(url);
+        return data;
+    } catch (e) {
+        throw new Error(`Failed to retrieve next item id: ${e.message}`);
+    }
+}

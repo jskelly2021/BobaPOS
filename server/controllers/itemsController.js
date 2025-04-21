@@ -70,15 +70,11 @@ export const deleteItem = async (req, res) => {
 // Create a new item
 export const createItem = async (req, res) => {
     try {
-        const { item_name, category, price, item_img,active} = req.body;
-        // Get the next available ID from the item_id sequence.
-        const seqResult = await pool.query("SELECT MAX (item_id) as new_id FROM item");
-        const newId = Number(seqResult.rows[0].new_id) + 1;
-        console.log("New ID:", newId);
+        const { item_id, item_name, category, price, calories, item_img, active } = req.body;
 
         const result = await pool.query(
-            "INSERT INTO item (item_id, item_name, category, price, item_img, active) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
-            [newId, item_name, category, price, item_img, active]
+            "INSERT INTO item (item_id, item_name, category, price, calories, item_img, active) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+            [item_id, item_name, category, price, calories, item_img, active]
         );
         res.status(201).json(result.rows[0]);
     } catch (err) {
@@ -90,10 +86,10 @@ export const createItem = async (req, res) => {
 // Update Specific Item
 export const updateItem = async (req, res) => {
     const { id } = req.params;
-    const { item_name, category, price, item_img, active } = req.body;
+    const { item_name, category, price, calories, item_img, active } = req.body;
     try {
-        const result = await pool.query('UPDATE item SET item_name=$1, category=$2, price=$3, item_img=$4, active=$5 WHERE item_id=$6 RETURNING *',
-            [item_name, category, price, item_img, active, id]);
+        const result = await pool.query('UPDATE item SET item_name=$1, category=$2, price=$3, calories=$4, item_img=$5, active=$6 WHERE item_id=$7 RETURNING *',
+            [item_name, category, price, calories, item_img, active, id]);
         res.status(200).json(result.rows[0]);
     } catch (err) {
         console.error('Error updateItem', err);
@@ -115,3 +111,16 @@ export const updateItemQuantity = async (req, res) => {
     }
 }
 
+// Get the next available ID from the item_id sequence.
+export const getNextItemId = async (req, res) => {
+    try {
+        const seqResult = await pool.query("SELECT MAX (item_id) as new_id FROM item");
+        const newId = Number(seqResult.rows[0].new_id) + 1;
+        console.log("New ID:", newId);
+
+        res.status(200).json(newId);
+    } catch (err) {
+        console.error("Error retrieving next item ID:", err);
+        res.status(500).json("Server Error");
+    }
+}

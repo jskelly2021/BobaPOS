@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const { getAllItems, getItem, getDefaultToppings, deleteItem, 
-    createItem, updateItem, updateItemQuantity, getItemsByCategory} = require('../controllers/itemsController');
+    createItem, updateItem, updateItemQuantity, getItemsByCategory, getNextItemId } = require('../controllers/itemsController');
 
 router.get('/', getAllItems);
+router.get('/next-id', getNextItemId);
 router.get('/category/:category', getItemsByCategory)
 router.get('/:id', getItem);
 router.get('/:id/defaultToppings', getDefaultToppings);

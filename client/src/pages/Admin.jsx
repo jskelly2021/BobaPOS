@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './Admin.css'
-import EmployeeList from '../components/admin/EmployeeList';
+import EmployeeList from '../components/admin/employee/EmployeeList';
 import IngredientList from '../components/admin/IngredientList';
-import ItemList from '../components/admin/ItemList';
+import ItemList from '../components/admin/item/ItemList';
 
 function Inventory() {
     const nav = useNavigate();

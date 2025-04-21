@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import RadioSelector from './RadioSelector';
+import RadioSelector from '../RadioSelector';
 
 const EditEmployeeRow = ({ employee, onEdit, onSave, onCancel, deleteEmployee }) => {
     const [deletingEmployee, setDeletingEmployee] = useState(false);

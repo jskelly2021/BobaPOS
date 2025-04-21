@@ -82,6 +82,15 @@
 }
 
 
+/* Item List */
+.Admin .ItemList .ItemImg {
+    display: block; 
+    margin: 0 auto;
+    width: 5vw; 
+    height: auto;
+}
+
+
 /* Ingredient List */
 .Admin .IngredientList .OrderProductForm {
     display: flex;

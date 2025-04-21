@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchItems, updateItem, createItem, deleteItem} from '../services/itemService';
+import { fetchItems, updateItem, createItem, deleteItem, getNextItemId } from '../services/itemService';
 
 // Returns a list of items
 const useItem = (defaultCategory = null) => {
@@ -32,31 +32,32 @@ const useItem = (defaultCategory = null) => {
 
     const editItem = async (item) => {
         try {
-          await updateItem(item);
+            await updateItem(item);
 
-          setItems(prevItems =>
-            prevItems.map(i =>
-              i.item_id === item.item_id ? { 
-                    ...i,
-                    item_name: item.item_name,
-                    category: item.category,
-                    price: item.price,
-                    item_img: item.item_img,
-                    active: item.active
-                } : i
-            )
-          );
-          console.log(`Updated item ${item.item_id}`);
+            setItems(prevItems =>
+                prevItems.map(i =>
+                    i.item_id === item.item_id ? {
+                        ...i,
+                        item_name: item.item_name,
+                        category: item.category,
+                        price: item.price,
+                        calories: item.calories,
+                        item_img: item.item_img,
+                        active: item.active
+                    } : i
+                )
+            );
+            console.log(`Updated item ${item.item_id}`);
         } catch (e) {
-          console.error('Error updating item: ', e);
+            console.error('Error updating item: ', e);
         }
       };
 
-    const removeItem = async (itemId) => {
+    const removeItem = async (item) => {
         try {
-            await deleteItem(itemId);
-            setItems(prevItems => prevItems.filter(i => i.item_id !== itemId));
-            console.log(`Deleted item ${itemId}`);
+            await deleteItem(item);
+            setItems(prevItems => prevItems.filter(i => i.item_id !== item.item_id));
+            console.log(`Deleted item ${item.item_name}`);
         } catch (e) {
             console.error('Error deleting item: ', e);
         }
@@ -86,9 +87,18 @@ const useItem = (defaultCategory = null) => {
             default:
                 break;
         }
-      }
+    }
 
-    return { items, loadingItem, errorItem, updateCategory, editItem, removeItem, addItem, getCategory};
+    const nextId = async () => {
+        try {
+            const nextId = await getNextItemId();
+            return nextId
+        } catch (e) {
+            console.error('Error retrieving next Item id: ', e);
+        }
+    }
+
+    return { items, loadingItem, errorItem, updateCategory, editItem, removeItem, addItem, getCategory, nextId};
 }
 
 export default useItem;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useEmployees from '../../hooks/useEmployee';
+import useEmployees from '../../../hooks/useEmployee';
 import EditEmployeeRow from './EditEmployeeRow';
 import DefaultEmployeeRow from './DefaultEmployeeRow';
 
@@ -37,8 +37,8 @@ const EmployeeList = () => {
         const id = await nextId();
 
         const newEmployee = {
-            employee_name: '',
             employee_id: id,
+            employee_name: '',
             position: 'CASHIER',
             passwords: ''
         };

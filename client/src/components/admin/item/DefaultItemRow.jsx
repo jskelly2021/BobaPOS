@@ -17,7 +17,6 @@ const DefaultItemRow = ({ item, onEdit }) => {
             <p>{item.active ? 'Visible' : 'Hidden'}</p>
             <div>
                 <button className='EditBtn' onClick={() => onEdit(item)}>Edit</button>
-                <button className='DeleteBtn' onClick={() => onEdit(item)}>Delete</button>
             </div>
         </>
     )

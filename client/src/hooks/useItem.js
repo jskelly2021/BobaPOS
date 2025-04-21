@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchItems, updateItem, createItem, deleteItem} from '../services/itemService';
+import { fetchItems, updateItem, createItem, deleteItem, getNextItemId } from '../services/itemService';
 
 // Returns a list of items
 const useItem = (defaultCategory = null) => {
@@ -87,9 +87,18 @@ const useItem = (defaultCategory = null) => {
             default:
                 break;
         }
-      }
+    }
 
-    return { items, loadingItem, errorItem, updateCategory, editItem, removeItem, addItem, getCategory};
+    const nextId = async () => {
+        try {
+            const nextId = await getNextItemId();
+            return nextId
+        } catch (e) {
+            console.error('Error retrieving next Item id: ', e);
+        }
+    }
+
+    return { items, loadingItem, errorItem, updateCategory, editItem, removeItem, addItem, getCategory, nextId};
 }
 
 export default useItem;

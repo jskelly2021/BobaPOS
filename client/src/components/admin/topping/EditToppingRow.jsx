@@ -5,7 +5,7 @@ const EditToppingRow = ({ topping, onEdit, onSave, onCancel, deleteTopping }) =>
     const [deletedTopping, setDeletedTopping] = useState({});
 
     const handleDeleteClick = (topping) => {
-        setDeletingTopping(topping.item_id);
+        setDeletingTopping(topping.topping_id);
         setDeletedTopping({ ...topping });
     };
 

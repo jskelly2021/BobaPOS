@@ -53,11 +53,11 @@ const useItem = (defaultCategory = null) => {
         }
       };
 
-    const removeItem = async (itemId) => {
+    const removeItem = async (item) => {
         try {
-            await deleteItem(itemId);
-            setItems(prevItems => prevItems.filter(i => i.item_id !== itemId));
-            console.log(`Deleted item ${itemId}`);
+            await deleteItem(item);
+            setItems(prevItems => prevItems.filter(i => i.item_id !== item.item_id));
+            console.log(`Deleted item ${item.item_name}`);
         } catch (e) {
             console.error('Error deleting item: ', e);
         }

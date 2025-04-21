@@ -60,8 +60,8 @@ export const createItem = async (item) => {
 }
 
 // Delete an item
-export const deleteItem = async (itemId) => {
-    const deleteURL = `${API_BASE_URL}/items/${itemId}`;
+export const deleteItem = async (item) => {
+    const deleteURL = `${API_BASE_URL}/items/${item.item_id}`;
 
     try {
         const { data } = await axios.delete(deleteURL);

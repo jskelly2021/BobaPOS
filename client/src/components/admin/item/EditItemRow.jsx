@@ -13,12 +13,12 @@ const EditItemRow = ({ item, onEdit, onSave, onCancel, deleteItem }) => {
     const handleConfirmDeleteClick = () => {
         deleteItem(deletedItem);
         setDeletingItem(false);
-        setDeleteItem({});
+        setDeletedItem({});
     };
 
     const handleCancelDeleteClick = () => {
         setDeletingItem(false);
-        setDeleteItem({});
+        setDeletedItem({});
     };
 
     const categoryOptions = [{ option: 'BREWED', value: 'BREWED' },
@@ -44,47 +44,47 @@ const EditItemRow = ({ item, onEdit, onSave, onCancel, deleteItem }) => {
                     <div>
                         <input 
                             type='text'
-                            value={editedItem.item_name || ''}
-                            onChange={(e) => handleOnEditChange('item_name', e.target.value)}
+                            value={item.item_name || ''}
+                            onChange={(e) => onEdit('item_name', e.target.value)}
                         />
                     </div>
 
                     <RadioSelector
                         name='category'
                         options={categoryOptions}
-                        selectedValue={editedItem.category}
-                        onChange={(value) => handleOnEditChange('category', value)}
+                        selectedValue={item.category}
+                        onChange={(value) => onEdit('category', value)}
                     />
 
                     <div>
                         <input 
                             type='number' 
-                            value={editedItem.price || ''}
-                            onChange={(e) => handleOnEditChange('price', e.target.value)}
+                            value={item.price || ''}
+                            onChange={(e) => onEdit('price', e.target.value)}
                         />
                     </div>
 
                     <div>
                         <input
                             type='number'
-                            value={editedItem.calories || ''}
-                            onChange={(e) => handleOnEditChange('calories', e.target.value)}
+                            value={item.calories || ''}
+                            onChange={(e) => onEdit('calories', e.target.value)}
                         />
                     </div>
 
                     <div>
                         <input 
                             type='text'
-                            value={editedItem.item_img || ''}
-                            onChange={(e) => handleOnEditChange('item_img', e.target.value)}
+                            value={item.item_img || ''}
+                            onChange={(e) => onEdit('item_img', e.target.value)}
                         />
                     </div>
 
                     <RadioSelector
                         name='visibility'
                         options={visibilityOptions}
-                        selectedValue={editedItem.active}
-                        onChange={(value) => handleOnEditChange('active', value)}
+                        selectedValue={item.active}
+                        onChange={(value) => onEdit('active', value)}
                     />
 
                     <div className='Save-Cancel-Btns'>

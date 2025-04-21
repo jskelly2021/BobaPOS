@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import useItems from '../../../hooks/useItem';
-import DefaultItemRow from './DefaultItemRow';
 import EditItemRow from './EditItemRow';
+import DefaultItemRow from './DefaultItemRow';
 
 const ItemList = () => {
     const { items, loadingItem, errorItem, editItem, removeItem, addItem, nextId} = useItems();
@@ -16,31 +16,37 @@ const ItemList = () => {
         setEditedItem({...item});
     }
 
-    const handleCancelClick = () => {
-        setEditingItemId(null);
-    }
-
     const handleOnEditChange = (field, value) => { 
         setEditedItem({
             ...editedItem,
             [field]: value
         })
     }
-
+    
     const handleSaveClick = async () => {
         await editItem(editedItem);
         setEditingItemId(null);
     }
 
+    const handleCancelClick = () => {
+        setEditingItemId(null);
+        setEditedItem({});
+    }
+    
     const handleAddItem = async () => {
         const id = await nextId();
 
         const newItem = {
             item_id: id,
             item_name: '',
+            category: '',
+            price: 0,
+            calories: 0,
+            item_img: '',
+            active: 1
         };
         await addItem(newItem);
-        setEditingItemId(newItem.Item_id);
+        setEditingItemId(newItem.item_id);
         setEditedItem({...newItem});
     }
 
@@ -52,7 +58,7 @@ const ItemList = () => {
                     <h3>Name</h3>
                     <h3>Category</h3>
                     <h3>Price</h3>
-                    <h3>Calroies</h3>
+                    <h3>Calories</h3>
                     <h3>Image</h3>
                     <h3>Visibility</h3>
                     <div></div>

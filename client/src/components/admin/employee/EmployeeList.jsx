@@ -37,8 +37,8 @@ const EmployeeList = () => {
         const id = await nextId();
 
         const newEmployee = {
-            employee_name: '',
             employee_id: id,
+            employee_name: '',
             position: 'CASHIER',
             passwords: ''
         };

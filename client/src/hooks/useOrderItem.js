@@ -48,7 +48,7 @@ const useOrderItem = (nav) => {
         }
 
         setOrderItems([]);
-        sessionStorage.removeItem('orderItems'); // this should be sessionStorage, not localStorage
+        sessionStorage.setItem('orderItems', JSON.stringify([]));
     }
 
     return { orderItems, addToOrder, removeFromOrder, orderPrice, placeOrder };

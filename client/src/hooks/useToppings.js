@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchToppings, updateTopping } from '../services/toppingService';
+import { fetchToppings, updateTopping, createTopping, deleteTopping, getNextToppingId } from '../services/toppingService';
 
 const useTopping = () => {
     const [toppings, setToppings] = useState([]);
@@ -38,7 +38,37 @@ const useTopping = () => {
         }
     };
 
-    return { toppings, loadingTopping, errorTopping, editTopping };
+
+    const removeTopping = async (topping) => {
+        try {
+            await deleteTopping(topping);
+            setToppings(prevToppings => prevToppings.filter(t => t.topping_id !== topping.topping_id));
+            console.log(`Deleted topping ${topping.topping_name}`);
+        } catch (e) {
+            console.error('Error deleting topping: ', e);
+        }
+    }
+
+    const addTopping = async (topping) => {
+        try {
+            const newTopping = await createTopping(topping);
+            setToppings(prevToppings => [...prevToppings, newTopping]);
+            console.log(`Created topping ${newTopping.topping_id}`);
+        } catch (e) {
+            console.error('Error creating topping: ', e);
+        }
+    }
+
+    const nextId = async () => {
+        try {
+            const nextId = await getNextToppingId();
+            return nextId
+        } catch (e) {
+            console.error('Error retrieving next Topping id: ', e);
+        }
+    }
+
+    return { toppings, loadingTopping, errorTopping, editTopping, removeTopping, addTopping, nextId };
 };
 
 export default useTopping;

@@ -12,7 +12,6 @@ export const getAllToppings = async (req, res) => {
     }
 }
 
-
 //get topping based on ID
 export const getTopping = async (req, res) => 
 {
@@ -29,17 +28,59 @@ export const getTopping = async (req, res) =>
 }
 
 //update topping quantity
-export const updateToppingQuantity = async (req, res) => {
+export const updateTopping = async (req, res) => {
     const { id } = req.params;
-    const { quantity } = req.body;
+    const { topping_name, calories } = req.body;
     try {
-        const result = await pool.query('UPDATE topping SET quantity=$1 WHERE topping_id=$2 RETURNING *', [quantity, id]);
+        const result = await pool.query('UPDATE topping SET topping_name=$1, calories=$2 WHERE topping_id=$3 RETURNING *',
+            [topping_name, calories, id]);
         res.status(200).json(result.rows);
-        console.log(`Updating topping ${id}: New Quantity = ${quantity}`);
     }
     catch (err) {
-        console.error('Error updateToppingQuantity', err);
+        console.error('Error updateTopping', err);
         res.status(500).json("Server Error");
     }
 }
 
+// Create a new topping
+export const createTopping = async (req, res) => {
+    try {
+        const { topping_id, topping_name, calories } = req.body;
+
+        const result = await pool.query(
+            "INSERT INTO topping (topping_id, topping_name, calories) VALUES ($1, $2, $3) RETURNING *",
+            [topping_id, topping_name, calories]
+        );
+        res.status(201).json(result.rows[0]);
+    } catch (err) {
+        console.error('Error createTopping', err);
+        res.status(500).json("Server Error");
+    }
+}
+
+//Delete topping
+export const deleteTopping = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await pool.query('DELETE FROM topping WHERE topping_id=$1 RETURNING *', [id]);
+        res.status(200).json(result.rows[0]);
+    }
+    catch (err) {
+        console.error('Error deleteTopping', err);
+        res.status(500).json("Topping not found");
+    }
+}
+
+// Get the next available ID from the topping_id sequence.
+export const getNextToppingId = async (req, res) => {
+    try {
+        const seqResult = await pool.query("SELECT MAX (topping_id) as new_id FROM topping");
+        const newId = Number(seqResult.rows[0].new_id) + 1;
+        console.log("New ID:", newId);
+
+        res.status(200).json(newId);
+    } catch (err) {
+        console.error("Error retrieving next topping ID:", err);
+        res.status(500).json("Server Error");
+    }
+}

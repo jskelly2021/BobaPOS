@@ -21,7 +21,7 @@ export const addOrder = async (req, res) => {
           `, [price, tip]);
 
         res.status(201).json({ order_id });
-        //console.log(`Inserting New Order`);
+        console.log(`Inserting New Order`);
     }
     catch (err) {
         console.error('Error addOrder', err);

@@ -52,6 +52,7 @@
 
 .Admin .List input[type="text"],
 .Admin .List input[type="number"] {
+    height: 4vh; 
     text-align: center;
     width: 10vw;
     min-width: 100px;
@@ -120,4 +121,10 @@
     border-radius: 10px;
     min-width: 50px;
     height: 5vh;
+}
+
+/* Topping List */
+.Admin .ToppingList Input {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
 }

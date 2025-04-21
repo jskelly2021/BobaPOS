@@ -27,7 +27,8 @@ CREATE TABLE item (
 
 CREATE TABLE topping (
     topping_id SERIAL PRIMARY KEY,
-    topping_name VARCHAR(255) NOT NULL
+    topping_name VARCHAR(255) NOT NULL,
+    calories INT NOT NULL
 );
 
 CREATE TABLE ingredient (

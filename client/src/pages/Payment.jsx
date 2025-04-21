@@ -11,8 +11,8 @@ function Payment() {
 
     const subtotal = orderPrice() || 0;
 
-    const handlePlaceOrder = (subtotal, paymentMethod, tip) => {
-        placeOrder(subtotal, paymentMethod, tip);
+    const handlePlaceOrder = async (subtotal, paymentMethod, tip) => {
+        await placeOrder(subtotal, paymentMethod, tip);
 
         const userMode = localStorage.getItem('userMode');
 

@@ -145,8 +145,8 @@ const ItemList = () => {
                     <h3>Name</h3>
                     <h3>Category</h3>
                     <h3>Price</h3>
+                    <h3>Calroies</h3>
                     <h3>Image</h3>
-                    {/*Image*/}
                     <h3>Visibility</h3>
                     <div></div>
                 </li>
@@ -173,6 +173,14 @@ const ItemList = () => {
                                     <input 
                                         type='number' 
                                         value={editedItem.price || ''}
+                                        onChange={(e) => handleOnEditChange('price', e.target.value)}
+                                    />
+                                </div>
+
+                                <div>
+                                    <input
+                                        type='number'
+                                        value={editedItem.calories || ''}
                                         onChange={(e) => handleOnEditChange('price', e.target.value)}
                                     />
                                 </div>
@@ -211,6 +219,7 @@ const ItemList = () => {
                                 <p>{item.item_name}</p>
                                 <p>{item.category}</p>
                                 <p>{item.price}</p>
+                                <p>{item.calories}</p>
                                 <img className='ItemImg' src={item.item_img} alt={item.item_name} 
                                 style={{ 
                                     display: 'block', 

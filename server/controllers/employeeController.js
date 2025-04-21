@@ -41,7 +41,7 @@ export const deleteEmployee = async (req, res) => {
 // Create a new employee
 export const createEmployee = async (req, res) => {
     try {
-        const { employee_name, employee_id, position, passwords } = req.body;
+        const { employee_id, employee_name, position, passwords } = req.body;
         const result = await pool.query(
             "INSERT INTO employee (employee_id, employee_name, position, passwords) VALUES ($1, $2, $3, $4) RETURNING *",
             [employee_id, employee_name, position, passwords]

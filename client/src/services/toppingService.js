@@ -9,7 +9,8 @@ export const fetchToppings = async () => {
 
 export const updateTopping = async (topping) => {
     const res = await axios.put(`${API_BASE_URL}/toppings/${topping.topping_id}`, {
-        quantity: topping.quantity
+        topping_name: topping.topping_name,
+        calories: topping.calories
     });
     return res.data;
 };

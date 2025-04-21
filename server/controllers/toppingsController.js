@@ -28,16 +28,16 @@ export const getTopping = async (req, res) =>
 }
 
 //update topping quantity
-export const updateToppingQuantity = async (req, res) => {
+export const updateTopping = async (req, res) => {
     const { id } = req.params;
-    const { quantity } = req.body;
+    const { topping_name, calories } = req.body;
     try {
-        const result = await pool.query('UPDATE topping SET quantity=$1 WHERE topping_id=$2 RETURNING *', [quantity, id]);
+        const result = await pool.query('UPDATE topping SET topping_name=$1, calories=$2 WHERE topping_id=$3 RETURNING *',
+            [topping_name, calories, id]);
         res.status(200).json(result.rows);
-        console.log(`Updating topping ${id}: New Quantity = ${quantity}`);
     }
     catch (err) {
-        console.error('Error updateToppingQuantity', err);
+        console.error('Error updateTopping', err);
         res.status(500).json("Server Error");
     }
 }
@@ -45,11 +45,11 @@ export const updateToppingQuantity = async (req, res) => {
 // Create a new topping
 export const createTopping = async (req, res) => {
     try {
-        const { topping_id, topping_name, category, price, calories, topping_img, active } = req.body;
+        const { topping_id, topping_name, calories } = req.body;
 
         const result = await pool.query(
-            "INSERT INTO topping (topping_id, topping_name, category, price, calories, topping_img, active) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
-            [topping_id, topping_name, category, price, calories, topping_img, active]
+            "INSERT INTO topping (topping_id, topping_name, calories) VALUES ($1, $2, $3) RETURNING *",
+            [topping_id, topping_name, calories]
         );
         res.status(201).json(result.rows[0]);
     } catch (err) {

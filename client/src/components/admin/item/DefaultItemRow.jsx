@@ -7,6 +7,7 @@ const DefaultItemRow = ({ item, onEdit }) => {
             <p>{item.price}</p>
             <p>{item.calories}</p>
             <img className='ItemImg' src={item.item_img} alt={item.item_name}/>
+            <button>Set Toppings</button>
             <p>{item.active ? 'Visible' : 'Hidden'}</p>
             <div>
                 <button className='EditBtn' onClick={() => onEdit(item)}>Edit</button>

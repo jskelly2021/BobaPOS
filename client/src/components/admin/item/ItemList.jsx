@@ -60,6 +60,7 @@ const ItemList = () => {
                     <h3>Price</h3>
                     <h3>Calories</h3>
                     <h3>Image</h3>
+                    <h3>Toppings</h3>
                     <h3>Visibility</h3>
                     <div></div>
                 </li>

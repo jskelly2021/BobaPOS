@@ -1,12 +1,16 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import useItems from '../../../hooks/useItem';
 import EditItemRow from './EditItemRow';
 import DefaultItemRow from './DefaultItemRow';
+import useToppings from '../../../hooks/useToppings';
+import ToppingsModule from '../../ToppingsModule';
 
 const ItemList = () => {
     const { items, loadingItem, errorItem, editItem, removeItem, addItem, nextId} = useItems();
     const [editingItemId, setEditingItemId] = useState(null);
     const [editedItem, setEditedItem] = useState({});
+    const { toppings } = useToppings();
+    const [selectedItem, setSelectedItem] = useState(null);
 
     if (loadingItem) return <div>Loading items...</div>;
     if (errorItem) return <div>Error fetching items: {errorItem.message}</div>;
@@ -50,6 +54,18 @@ const ItemList = () => {
         setEditedItem({...newItem});
     }
 
+    const handleOpenToppingsClick = (item) => {
+        setSelectedItem(item);
+    };
+
+    const handleUpdateDefaultToppings = (item, selectedToppings) => {
+        const updatedItem = {
+            ...item,
+            toppings: selectedToppings,
+        };
+        setSelectedItem(null);
+    };
+
     return (
         <div>
             <h2>Items</h2>
@@ -60,7 +76,6 @@ const ItemList = () => {
                     <h3>Price</h3>
                     <h3>Calories</h3>
                     <h3>Image</h3>
-                    <h3>Toppings</h3>
                     <h3>Visibility</h3>
                     <div></div>
                 </li>
@@ -79,12 +94,21 @@ const ItemList = () => {
                             <DefaultItemRow
                                 item={item}
                                 onEdit={handleEditClick}
+                                onOpenToppings={handleOpenToppingsClick}
                             />
                         )}
                     </li> 
                 ))}
                 <button className="AddItemBtn" onClick={() => handleAddItem()}>Add Item</button>
             </ul>
+
+            {selectedItem && (
+                <ToppingsModule
+                    item={selectedItem}
+                    toppings={toppings}
+                    onClose={() => setSelectedItem(null)}
+                />
+            )}
         </div>
     );
 }

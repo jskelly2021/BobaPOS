@@ -80,9 +80,6 @@ const EditItemRow = ({ item, onEdit, onSave, onCancel, deleteItem }) => {
                         />
                     </div>
 
-                    <button>Set Toppings</button>
-
-
                     <RadioSelector
                         name='visibility'
                         options={visibilityOptions}

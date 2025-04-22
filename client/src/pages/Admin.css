@@ -52,14 +52,13 @@
 
 .Admin .List input[type="text"],
 .Admin .List input[type="number"] {
-    height: 4vh; 
     text-align: center;
     width: 10vw;
-    min-width: 100px;
 }
 
 .Admin .List .Save-Cancel-Btns {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 1vw;
 }

@@ -8,6 +8,7 @@ import useItem from '../hooks/useItem';
 import ItemMenu from '../components/ItemMenu'
 import OrderCart from '../components/OrderCart';
 import CategorySelector from '../components/CategorySelector';
+//toppings functions
 import ToppingsModule from '../components/ToppingsModule';
 import useToppings from '../hooks/useToppings';
 
@@ -16,7 +17,6 @@ function OrderView() {
     const { items, loadingItem, errorItem, updateCategory, getCategory } = useItem("BREWED");
     const { orderItems, addToOrder, removeFromOrder } = useOrderItem(nav);
     const { toppings } = useToppings();
-
     const [selectedItem, setSelectedItem] = useState(null);
 
     const handleItemClick = (item) => {
@@ -33,6 +33,9 @@ function OrderView() {
         setSelectedItem(null);
     };
 
+    if (loadingItem) return <div>Loading items...</div>;
+    if (errorItem) return <div>Error fetching items: {errorItem.message}</div>;
+
     return (
         <div className='OrderView CashierOrderView'>
             <button className='DashboardBtn' onClick={() => nav('/dashboard')}>
@@ -42,7 +45,7 @@ function OrderView() {
             <div className='content'>
                 <CategorySelector changeCategory={updateCategory} />
                 <h1>{getCategory()}</h1>
-                <ItemMenu loadingItem={loadingItem} errorItem={errorItem} menuItems={items} onItemButtonClick={handleItemClick} />
+                <ItemMenu menuItems={items} onItemButtonClick={handleItemClick} />
                 <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />
             </div>
 

@@ -19,19 +19,26 @@ function OrderView() {
     const [selectedItem, setSelectedItem] = useState(null);
     const [customizeMode, setCustomizeMode] = useState('order');
 
-    const handleItemClick = async (item, mode) => {
-        setCustomizeMode(mode);
+    const handleMenuItemClick = async (item) => {
+        setCustomizeMode('ordering');
         await getDefaultToppings(item);
         setSelectedItem(item);
     };
 
+    const handleOrderItemClick = async (item) => {
+        setCustomizeMode('editing');
+        setSelectedItem(item);
+    };
+
     const handleAddWithToppings = (item, selectedToppings, quantity) => {
-        const itemWithToppings = {
-            ...item,
-            toppings: selectedToppings,
-            quantity: quantity
-        };
-        addToOrder(itemWithToppings);
+        if (customizeMode === 'ordering') {
+            const itemWithToppings = {
+                ...item,
+                toppings: selectedToppings,
+                quantity: quantity
+            };
+            addToOrder(itemWithToppings);
+        }
         setSelectedItem(null);
     };
 
@@ -52,8 +59,8 @@ function OrderView() {
             <div className='content'>
                 <CategorySelector changeCategory={updateCategory} />
                 <h1>{getCategory()}</h1>
-                <ItemMenu menuItems={items} onItemButtonClick={handleItemClick} />
-                <OrderCart orderItems={orderItems} onItemButtonClick={handleItemClick} />
+                <ItemMenu menuItems={items} onItemButtonClick={handleMenuItemClick} />
+                <OrderCart orderItems={orderItems} onItemButtonClick={handleOrderItemClick} />
             </div>
 
             <button className='ReviewOrderBtn' onClick={() => nav('/review')}>

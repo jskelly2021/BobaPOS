@@ -74,7 +74,7 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, onR
                     ))}
                 </ul>
  
-                {mode === 'order' && (<div>
+                {mode === 'ordering' && (<div>
                     <label className='quantityLabel'>Quantity: </label>
                     <input 
                         className='quantityInput'
@@ -86,9 +86,9 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, onR
                 </div>)}
 
                 <div className="ModalActions">
-                    {mode === 'edit' && (<button onClick={() => onRemove(item)}>Remove</button>)}
+                    {mode === 'editing' && (<button onClick={() => onRemove(item)}>Remove</button>)}
                     <button onClick={() => onConfirm(item, Object.values(selectedToppings), quantity)}>
-                        {mode === 'order' ? 'Add to Order' : 'Update'}
+                        {mode === 'ordering' ? 'Add to Order' : 'Update'}
                     </button>
                     <button onClick={onClose}>Cancel</button>
                 </div>

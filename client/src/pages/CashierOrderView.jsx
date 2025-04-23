@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './CashierOrderView.css'
@@ -15,11 +15,11 @@ function OrderView() {
     const nav = useNavigate();
     const { items, loadingItem, errorItem, updateCategory, getCategory } = useItem("BREWED");
     const { orderItems, addToOrder, removeFromOrder } = useOrderItem(nav);
-    const { toppings } = useToppings();
-
+    const { toppings, defaultToppings, getDefaultToppings } = useToppings();
     const [selectedItem, setSelectedItem] = useState(null);
 
-    const handleItemClick = (item) => {
+    const handleItemClick = async (item) => {
+        await getDefaultToppings(item);
         setSelectedItem(item);
     };
 
@@ -33,6 +33,9 @@ function OrderView() {
         setSelectedItem(null);
     };
 
+    if (loadingItem) return <div>Loading items...</div>;
+    if (errorItem) return <div>Error fetching items: {errorItem.message}</div>;
+
     return (
         <div className='OrderView CashierOrderView'>
             <button className='DashboardBtn' onClick={() => nav('/dashboard')}>
@@ -42,7 +45,7 @@ function OrderView() {
             <div className='content'>
                 <CategorySelector changeCategory={updateCategory} />
                 <h1>{getCategory()}</h1>
-                <ItemMenu loadingItem={loadingItem} errorItem={errorItem} menuItems={items} onItemButtonClick={handleItemClick} />
+                <ItemMenu menuItems={items} onItemButtonClick={handleItemClick} />
                 <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />
             </div>
 
@@ -54,8 +57,10 @@ function OrderView() {
                 <ToppingsModule
                     item={selectedItem}
                     toppings={toppings}
+                    defaultToppings={defaultToppings}
                     onConfirm={handleAddWithToppings}
                     onClose={() => setSelectedItem(null)}
+                    mode={'order'}
                 />
             )}
         </div>

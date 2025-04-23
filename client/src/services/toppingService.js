@@ -53,3 +53,47 @@ export const getNextToppingId = async () => {
         throw new Error(`Failed to retrieve next topping id: ${e.message}`);
     }
 }
+
+// Retrieves the default toppings on an item
+export const getDefaultToppingsOnItem = async (item) => {
+    const url = `${API_BASE_URL}/toppings/default/${item.item_id}`;
+    try {
+        const { data } = await axios.get(url);
+        return data;
+    } catch (e) {
+        throw new Error(`Failed to retrieve default toppings on: ${item.item_name}`);
+    }
+}
+
+// Updates the default toppings on an item
+export const updateDefaultToppingsOnItem = async (item, toppings) => {
+    const url = `${API_BASE_URL}/toppings/default/${item.item_id}`;
+    try {
+
+        const currentToppings = new Map(
+            (await getDefaultToppingsOnItem(item)).map(t => [t.topping_id, t.quantity])
+        );
+
+        console.log(currentToppings);
+
+        for (const topping of toppings) {
+            const body = {
+                topping_id: topping.topping_id,
+                quantity: topping.quantity
+            }
+
+            const isExisting = currentToppings.has(topping.topping_id);
+
+            if (!isExisting) {
+                if (topping.quantity === 'none') continue;
+                await axios.post(url, body);
+            }
+            else {
+                if (currentToppings[topping.topping_id] === topping.quantity) continue;
+                await axios.put(url, body);
+            }
+        }
+    } catch (e) {
+        throw new Error(`Failed to retrieve default toppings on item: ${item.item_id}`);
+    }
+}

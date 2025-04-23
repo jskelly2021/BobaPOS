@@ -30,7 +30,7 @@ employees = [9,10,11,12,13,14,15,16,17,18,19,20]
 payment_methods = ["CASH", "CARD", "MOBILE"]
 
 # TOPPING QUANTITIES
-topping_quantities = ["LIGHT", "MEDIUM", "HEAVY"]
+topping_quantities = ["light", "regular", "heavy"]
 
 # TIP PERCENTAGES
 tip_percentages = [0.00, 0.10, 0.13, 0.15, 0.18]

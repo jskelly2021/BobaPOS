@@ -84,3 +84,51 @@ export const getNextToppingId = async (req, res) => {
         res.status(500).json("Server Error");
     }
 }
+
+// Returns the default toppings assocaited to a given item Id
+export const getDefaultToppingOnItem = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await pool.query(`
+            SELECT t.topping_id, t.topping_name, it.quantity FROM item_topping it
+            JOIN topping t ON it.topping_id = t.topping_id JOIN item i ON it.item_id = i.item_id
+            WHERE i.item_id = $1`,
+            [id]
+        );
+        res.status(200).json(result.rows);
+    } catch (err) {
+        console.error("Error retrieving the default toppings", err);
+        res.status(500).json("Server Error");
+    }
+}
+
+// Updates a the quantity of a default toppings assocaited to a given item Id
+export const updateDefaultToppingOnItem = async (req, res) => {
+    const { id } = req.params;
+    const { topping_id, quantity } = req.body;
+    try {
+        const result = await pool.query(`UPDATE item_topping SET quantity = $1 WHERE item_id = $2 AND topping_id = $3`,
+            [quantity, id, topping_id]
+        );
+        res.status(200).json(result.rows);
+    } catch (err) {
+        console.error("Error updating the default topping", err);
+        res.status(500).json("Server Error");
+    }
+}
+
+// Inserts a default topping assocaited to a given item Id
+export const insertDefaultToppingOnItem = async (req, res) => {
+    const { id } = req.params;
+    const { topping_id, quantity } = req.body;
+    try {
+        const result = await pool.query(`INSERT INTO item_topping (item_id, topping_id, quantity) VALUES ($1, $2, $3)`,
+            [id, topping_id, quantity]
+        );
+        res.status(200).json(result.rows);
+    } catch (err) {
+        console.error("Error inserting a default topping", err);
+        res.status(500).json("Server Error");
+    }
+}
+

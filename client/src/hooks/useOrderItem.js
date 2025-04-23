@@ -5,7 +5,6 @@ import { insertOrders, insertOrdersItems, insertOrdersItemTopping } from '../ser
 const useOrderItem = (nav) => {
     const [orderItems, setOrderItems] = useState(() => {
         const storedOrder = sessionStorage.getItem('orderItems');
-        console.log("Stored order data:", storedOrder);
         return storedOrder ? JSON.parse(storedOrder) : [];
     });
 
@@ -18,13 +17,10 @@ const useOrderItem = (nav) => {
             ...item,
             orderItemId: Date.now()
         }
-
-        console.log(`Adding Item: ${uniqueItem.orderItemId} - ${uniqueItem.item_name} `);
         setOrderItems((prevOrder) => [...prevOrder, uniqueItem]);
     }
 
     const removeFromOrder = (item) => {
-        console.log(`Removing Item: ${item.orderItemId} - ${item.item_name}`);
         setOrderItems((prevOrder) => prevOrder.filter(i => i.orderItemId !== item.orderItemId))
     }
 
@@ -41,8 +37,7 @@ const useOrderItem = (nav) => {
 
             if (item.toppings && item.toppings.length > 0) {
                 for (const topping of item.toppings) {
-                    await insertOrdersItemTopping(orderItemId, topping.topping_id, topping.quantity);
-                    console.log(`Saved topping ${topping.topping_name} for item ${item.item_name}`);
+                    await insertOrdersItemTopping(orderItemId, topping);
                 }
             }
         }

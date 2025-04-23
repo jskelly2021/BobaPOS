@@ -17,8 +17,10 @@ function OrderView() {
     const { orderItems, addToOrder, removeFromOrder } = useOrderItem(nav);
     const { toppings, defaultToppings, getDefaultToppings } = useToppings();
     const [selectedItem, setSelectedItem] = useState(null);
+    const [customizeMode, setCustomizeMode] = useState('order');
 
-    const handleItemClick = async (item) => {
+    const handleItemClick = async (item, mode) => {
+        setCustomizeMode(mode);
         await getDefaultToppings(item);
         setSelectedItem(item);
     };
@@ -32,6 +34,11 @@ function OrderView() {
         addToOrder(itemWithToppings);
         setSelectedItem(null);
     };
+
+    const handleRemoveFromOrder = (item) => {
+        removeFromOrder(item);
+        setSelectedItem(null);
+    }
 
     if (loadingItem) return <div>Loading items...</div>;
     if (errorItem) return <div>Error fetching items: {errorItem.message}</div>;
@@ -60,8 +67,8 @@ function OrderView() {
                     defaultToppings={defaultToppings}
                     onConfirm={handleAddWithToppings}
                     onClose={() => setSelectedItem(null)}
-                    onRemove={() => removeFromOrder()}
-                    mode={'order'}
+                    onRemove={handleRemoveFromOrder}
+                    mode={customizeMode}
                 />
             )}
         </div>

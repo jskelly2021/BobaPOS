@@ -8,7 +8,7 @@ function OrderCart({ orderItems, onItemButtonClick }) {
             <ul className='OrderItemList'>
                 {orderItems.map((item) => (
                     <li key={item.item_id}> 
-                        <ItemButton item={item} onClick={() => onItemButtonClick(item)}/>
+                        <ItemButton item={item} onClick={() => onItemButtonClick(item, 'edit')}/>
                     </li> 
                 ))}
             </ul>

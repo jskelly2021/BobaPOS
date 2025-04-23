@@ -4,6 +4,7 @@ import { fetchToppings, updateTopping, createTopping, deleteTopping, getNextTopp
 
 const useTopping = () => {
     const [toppings, setToppings] = useState([]);
+    const [defaultToppings, setDefaultToppings] = useState([]);
     const [loadingTopping, setLoading] = useState(true);
     const [errorTopping, setError] = useState(null);
 
@@ -71,14 +72,17 @@ const useTopping = () => {
 
     const getDefaultToppings = async (item) => {
         try {
-            const defaultToppings = await getDefaultToppingsOnItem(item);
-            return defaultToppings;
+            setDefaultToppings(await getDefaultToppingsOnItem(item));
+
+            console.log('in useToppings');
+            console.log(defaultToppings);
+
         } catch (e) {
             console.error('Error retrieving default toppings: ', e);
         }
     }
 
-    const updateDefaultTopping = async (item, defaultToppings) => {
+    const updateDefaultToppings = async (item, defaultToppings) => {
         try {
             for (const topping of defaultToppings) {
                 await updateDefaultToppingsOnItem(item.item_id, topping);
@@ -88,9 +92,8 @@ const useTopping = () => {
         }
     }
 
-    return { toppings, loadingTopping, errorTopping, editTopping, removeTopping, addTopping, nextId };
+    return { toppings, defaultToppings, loadingTopping, errorTopping,
+        editTopping, removeTopping, addTopping, nextId, getDefaultToppings, updateDefaultToppings};
 };
-
-
 
 export default useTopping;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './CashierOrderView.css'
@@ -16,10 +16,15 @@ function OrderView() {
     const nav = useNavigate();
     const { items, loadingItem, errorItem, updateCategory, getCategory } = useItem("BREWED");
     const { orderItems, addToOrder, removeFromOrder } = useOrderItem(nav);
-    const { toppings } = useToppings();
+    const { toppings, defaultToppings, getDefaultToppings } = useToppings();
     const [selectedItem, setSelectedItem] = useState(null);
 
-    const handleItemClick = (item) => {
+    const handleItemClick = async (item) => {
+        await getDefaultToppings(item);
+
+        console.log('in cashier');
+        console.log(defaultToppings);
+
         setSelectedItem(item);
     };
 
@@ -57,6 +62,7 @@ function OrderView() {
                 <ToppingsModule
                     item={selectedItem}
                     toppings={toppings}
+                    defaultToppings={defaultToppings}
                     onConfirm={handleAddWithToppings}
                     onClose={() => setSelectedItem(null)}
                 />

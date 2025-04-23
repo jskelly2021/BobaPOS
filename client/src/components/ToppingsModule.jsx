@@ -1,24 +1,30 @@
 import React, { useState } from 'react';
 import './ToppingsModule.css';
 
-const quantities = ['none', 'light', 'regular'];
+const quantities = ['none', 'light', 'regular', 'heavy'];
 const quantityValues = {
     none: 0,
     light: 0.5,
-    regular: 1
+    regular: 1,
+    heavy: 1.5
 };
 
-const ToppingModal = ({ item, toppings, defaultToppings = [], onConfirm, onClose }) => {
+const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose }) => {
     const [selectedToppings, setSelectedToppings] = useState(() => {
         const initial = {};
-        const defaultToppingMap = new Set(defaultToppings.map(dt => dt.topping_id));
 
         toppings.forEach(t => {
-            const isDefault = defaultToppingMap.has(t.topping_id);
             initial[t.topping_id] = {
                 ...t,
-                quantity: isDefault ? 1 : 0 //reg = 1, none = 0
+                quantity: 0
             };
+        });
+
+        console.log('in module');
+        console.log(defaultToppings);
+
+        (defaultToppings || []).forEach(t => {
+            initial[t.topping_id] = { ...t };
         });
 
         return initial;
@@ -35,6 +41,8 @@ const ToppingModal = ({ item, toppings, defaultToppings = [], onConfirm, onClose
                 quantity: current === value ? 0 : value
             }
         }));
+
+        console.log(selectedToppings);
     };
 
     const getLabel = (topping, label) => {

@@ -80,9 +80,7 @@ const useTopping = () => {
 
     const updateDefaultToppings = async (item, defaultToppings) => {
         try {
-            for (const topping of defaultToppings) {
-                await updateDefaultToppingsOnItem(item.item_id, topping);
-            }
+            await updateDefaultToppingsOnItem(item.item_id, defaultToppings);
         } catch (e) {
             console.error('Error updating default toppings: ', e);
         }

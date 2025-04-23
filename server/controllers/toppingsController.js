@@ -117,3 +117,18 @@ export const updateDefaultToppingOnItem = async (req, res) => {
     }
 }
 
+// Inserts a default topping assocaited to a given item Id
+export const insertDefaultToppingOnItem = async (req, res) => {
+    const { id } = req.params;
+    const { topping_id, quantity } = req.body;
+    try {
+        const result = await pool.query(`INSERT INTO item_topping (item_id, topping_id, quantity) VALUES ($1, $2, $3)`,
+            [id, topping_id, quantity]
+        );
+        res.status(200).json(result.rows);
+    } catch (err) {
+        console.error("Error inserting a default topping", err);
+        res.status(500).json("Server Error");
+    }
+}
+

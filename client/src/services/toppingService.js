@@ -66,14 +66,31 @@ export const getDefaultToppingsOnItem = async (item) => {
 }
 
 // Updates the default toppings on an item
-export const updateDefaultToppingsOnItem = async (itemId, topping) => {
+export const updateDefaultToppingsOnItem = async (itemId, toppings) => {
     const url = `${API_BASE_URL}/toppings/default/${itemId}`;
     try {
-        const { data } = await axios.put(url, {
-            topping_id: topping.topping_id,
-            quantity: topping.quantity
-        });
-        return data;
+
+        const currentToppings = new Map(
+            (await getDefaultToppingsOnItem(itemId)).map(t => [t.topping_id, t.quantity])
+        );
+
+        for (const topping of toppings) {
+            const body = {
+                topping_id: topping.topping_id,
+                quantity: topping.quantity
+            }
+
+            const isExisting = currentToppings.has(topping.topping_id);
+
+            if (!isExisting) {
+                if (topping.quantity === 'none') continue;
+                await axios.post(url, body);
+            }
+            else {
+                if (currentToppings[topping.topping_id].quantity === topping.quantity) continue;
+                await axios.put(url, body);
+            }
+        }
     } catch (e) {
         throw new Error(`Failed to retrieve default toppings on item: ${itemId}`);
     }

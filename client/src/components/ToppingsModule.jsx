@@ -90,5 +90,4 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose }) =
     );
 };
 
-
 export default ToppingModal;

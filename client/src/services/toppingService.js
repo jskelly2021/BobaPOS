@@ -66,13 +66,15 @@ export const getDefaultToppingsOnItem = async (item) => {
 }
 
 // Updates the default toppings on an item
-export const updateDefaultToppingsOnItem = async (itemId, toppings) => {
-    const url = `${API_BASE_URL}/toppings/default/${itemId}`;
+export const updateDefaultToppingsOnItem = async (item, toppings) => {
+    const url = `${API_BASE_URL}/toppings/default/${item.item_id}`;
     try {
 
         const currentToppings = new Map(
-            (await getDefaultToppingsOnItem(itemId)).map(t => [t.topping_id, t.quantity])
+            (await getDefaultToppingsOnItem(item)).map(t => [t.topping_id, t.quantity])
         );
+
+        console.log(currentToppings);
 
         for (const topping of toppings) {
             const body = {
@@ -87,11 +89,11 @@ export const updateDefaultToppingsOnItem = async (itemId, toppings) => {
                 await axios.post(url, body);
             }
             else {
-                if (currentToppings[topping.topping_id].quantity === topping.quantity) continue;
+                if (currentToppings[topping.topping_id] === topping.quantity) continue;
                 await axios.put(url, body);
             }
         }
     } catch (e) {
-        throw new Error(`Failed to retrieve default toppings on item: ${itemId}`);
+        throw new Error(`Failed to retrieve default toppings on item: ${item.item_id}`);
     }
 }

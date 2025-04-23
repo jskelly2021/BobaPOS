@@ -9,7 +9,7 @@ const ItemList = () => {
     const { items, loadingItem, errorItem, editItem, removeItem, addItem, nextId} = useItems();
     const [editingItemId, setEditingItemId] = useState(null);
     const [editedItem, setEditedItem] = useState({});
-    const { toppings, defaultToppings, getDefaultToppings } = useToppings();
+    const { toppings, defaultToppings, getDefaultToppings, updateDefaultToppings } = useToppings();
     const [selectedItem, setSelectedItem] = useState(null);
 
     if (loadingItem) return <div>Loading items...</div>;
@@ -26,7 +26,7 @@ const ItemList = () => {
             [field]: value
         })
     }
-    
+
     const handleSaveClick = async () => {
         await editItem(editedItem);
         setEditingItemId(null);
@@ -36,7 +36,7 @@ const ItemList = () => {
         setEditingItemId(null);
         setEditedItem({});
     }
-    
+
     const handleAddItem = async () => {
         const id = await nextId();
 
@@ -59,11 +59,8 @@ const ItemList = () => {
         setSelectedItem(item);
     };
 
-    const handleUpdateDefaultToppings = (item, selectedToppings) => {
-        const updatedItem = {
-            ...item,
-            toppings: selectedToppings,
-        };
+    const handleUpdateDefaultToppings = async (item, selectedToppings) => {
+        await updateDefaultToppings(item, selectedToppings)
         setSelectedItem(null);
     };
 

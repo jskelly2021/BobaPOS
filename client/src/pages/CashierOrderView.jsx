@@ -15,7 +15,7 @@ function OrderView() {
     const nav = useNavigate();
     const { items, loadingItem, errorItem, updateCategory, getCategory } = useItem("BREWED");
     const { orderItems, addToOrder, removeFromOrder } = useOrderItem(nav);
-    const { toppings, defaultToppings, getDefaultToppings } = useToppings();
+    const { toppings, defaultToppings, getDefaultToppings, setDefaultToppings } = useToppings();
     const [selectedItem, setSelectedItem] = useState(null);
     const [customizeMode, setCustomizeMode] = useState('order');
 
@@ -27,6 +27,7 @@ function OrderView() {
 
     const handleOrderItemClick = async (item) => {
         setCustomizeMode('editing');
+        setDefaultToppings(item.toppings);
         setSelectedItem(item);
     };
 

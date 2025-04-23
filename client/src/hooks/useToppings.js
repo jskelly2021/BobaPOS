@@ -87,7 +87,7 @@ const useTopping = () => {
     }
 
     return { toppings, defaultToppings, loadingTopping, errorTopping,
-        editTopping, removeTopping, addTopping, nextId, getDefaultToppings, updateDefaultToppings};
+        editTopping, removeTopping, addTopping, nextId, getDefaultToppings, updateDefaultToppings, setDefaultToppings };
 };
 
 export default useTopping;

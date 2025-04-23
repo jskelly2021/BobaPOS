@@ -9,7 +9,7 @@ const quantityValues = {
     heavy: 1.5
 };
 
-const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose }) => {
+const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, mode }) => {
     const [selectedToppings, setSelectedToppings] = useState(() => {
         const initial = {};
 
@@ -73,16 +73,22 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose }) =
                         </li>
                     ))}
                 </ul>
-                <label className='quantityLabel'>Quantity: </label>
-                <input 
-                    className='quantityInput'
-                    type='number' 
-                    min='1'
-                    value={quantity}
-                    onChange={productQuantityChange}>
-                </input>
+ 
+                {mode === 'order' && (<div>
+                    <label className='quantityLabel'>Quantity: </label>
+                    <input 
+                        className='quantityInput'
+                        type='number' 
+                        min='1'
+                        value={quantity}
+                        onChange={productQuantityChange}>
+                    </input>
+                </div>)}
+
                 <div className="ModalActions">
-                    <button onClick={() => onConfirm(item, Object.values(selectedToppings), quantity)}>Add to Order</button>
+                    <button onClick={() => onConfirm(item, Object.values(selectedToppings), quantity)}>
+                        {mode === 'order' ? 'Add to Order' : 'Update'}
+                    </button>
                     <button onClick={onClose}>Cancel</button>
                 </div>
             </div>

@@ -60,6 +60,7 @@ function OrderView() {
                     defaultToppings={defaultToppings}
                     onConfirm={handleAddWithToppings}
                     onClose={() => setSelectedItem(null)}
+                    mode={'order'}
                 />
             )}
         </div>

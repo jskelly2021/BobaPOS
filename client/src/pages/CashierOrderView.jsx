@@ -14,7 +14,7 @@ import useToppings from '../hooks/useToppings';
 function OrderView() {
     const nav = useNavigate();
     const { items, loadingItem, errorItem, updateCategory, getCategory } = useItem("BREWED");
-    const { orderItems, addToOrder, removeFromOrder } = useOrderItem(nav);
+    const { orderItems, addToOrder, removeFromOrder, updateItemInOrder } = useOrderItem(nav);
     const { toppings, defaultToppings, getDefaultToppings, setDefaultToppings } = useToppings();
     const [selectedItem, setSelectedItem] = useState(null);
     const [customizeMode, setCustomizeMode] = useState('order');
@@ -32,14 +32,19 @@ function OrderView() {
     };
 
     const handleAddWithToppings = (item, selectedToppings, quantity) => {
+        const itemWithToppings = {
+            ...item,
+            toppings: selectedToppings,
+            quantity: quantity
+        };
+
         if (customizeMode === 'ordering') {
-            const itemWithToppings = {
-                ...item,
-                toppings: selectedToppings,
-                quantity: quantity
-            };
             addToOrder(itemWithToppings);
         }
+        else if (customizeMode === 'editing') {
+            updateItemInOrder(itemWithToppings);
+        }
+
         setSelectedItem(null);
     };
 

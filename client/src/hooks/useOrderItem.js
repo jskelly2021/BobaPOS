@@ -24,6 +24,14 @@ const useOrderItem = (nav) => {
         setOrderItems((prevOrder) => prevOrder.filter(i => i.orderItemId !== item.orderItemId))
     }
 
+    const updateItemInOrder = (item) => {
+        setOrderItems((prevOrder) =>
+            prevOrder.map(i =>
+                i.orderItemId === item.orderItemId ? item : i
+            )
+        );
+    }
+
     const orderPrice = () => {
         const total = orderItems.reduce((subtotal, item) => subtotal + parseFloat(item.price * item.quantity), 0);
         return parseFloat(total).toFixed(2);
@@ -46,7 +54,7 @@ const useOrderItem = (nav) => {
         sessionStorage.setItem('orderItems', JSON.stringify([]));
     }
 
-    return { orderItems, addToOrder, removeFromOrder, orderPrice, placeOrder };
+    return { orderItems, addToOrder, removeFromOrder, updateItemInOrder, orderPrice, placeOrder };
 }
 
 export default useOrderItem;

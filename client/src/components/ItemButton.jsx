@@ -1,5 +1,6 @@
 
 const ItemButton = ({ item, onClick }) => {
+    console.log(item);
     return (
         <button className='ItemButton' onClick={() => onClick(item)}>
             <img className='ItemImg'
@@ -20,17 +21,21 @@ const ItemButton = ({ item, onClick }) => {
                     Quantity: {item.quantity}
                 </p>
 
-                <p className='ItemTopping'>
-                    {item.toppings && item.toppings.length > 0 
-                    ? (item.toppings.map((topping) =>
-                        (topping.quantity > 0 && (
-                            <p key={topping.topping_id}>
-                                {topping.topping_name} {topping.quantity === 1 ? "(Regular)" : topping.quantity === 0.5 ? "(Light)" : ""}
-                            </p>
-                        )))
-                    ) : ( <p></p> )
-                    }
-                </p>
+                <div className='ItemTopping'>
+                    <strong>Toppings: </strong>
+                        {item.toppings?.length > 0 ? (
+                            item.toppings
+                                .filter(t => t.quantity !== 0 && t.quantity !== 'none')
+                                .map((topping, i) => (
+                                    <span key={i}>
+                                        {topping.topping_name} ({topping.quantity})
+                                        {i < item.toppings.length - 1 ? ', ' : ''}
+                                    </span>
+                                ))
+                        ) : (
+                            <span>None</span>
+                        )}
+                    </div>
             </div>
         </button>
     );

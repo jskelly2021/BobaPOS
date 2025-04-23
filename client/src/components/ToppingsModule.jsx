@@ -37,8 +37,6 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose }) =
                 quantity: label
             }
         }));
-
-        console.log(selectedToppings);
     };
 
     const getLabel = (topping, label) => {

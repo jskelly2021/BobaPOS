@@ -9,7 +9,7 @@ const quantityValues = {
     heavy: 1.5
 };
 
-const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, mode }) => {
+const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, onRemove, mode }) => {
     const [selectedToppings, setSelectedToppings] = useState(() => {
         const initial = {};
 
@@ -86,6 +86,7 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, mod
                 </div>)}
 
                 <div className="ModalActions">
+                    <button onClick={() => onRemove()}>Remove</button>
                     <button onClick={() => onConfirm(item, Object.values(selectedToppings), quantity)}>
                         {mode === 'order' ? 'Add to Order' : 'Update'}
                     </button>

@@ -106,6 +106,7 @@ const ItemList = () => {
                 <ToppingsModule
                     item={selectedItem}
                     toppings={toppings}
+                    onConfirm={handleUpdateDefaultToppings}
                     onClose={() => setSelectedItem(null)}
                 />
             )}

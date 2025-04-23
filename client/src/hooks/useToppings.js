@@ -73,10 +73,6 @@ const useTopping = () => {
     const getDefaultToppings = async (item) => {
         try {
             setDefaultToppings(await getDefaultToppingsOnItem(item));
-
-            console.log('in useToppings');
-            console.log(defaultToppings);
-
         } catch (e) {
             console.error('Error retrieving default toppings: ', e);
         }

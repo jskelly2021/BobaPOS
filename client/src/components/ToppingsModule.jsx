@@ -16,12 +16,9 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose }) =
         toppings.forEach(t => {
             initial[t.topping_id] = {
                 ...t,
-                quantity: 0
+                quantity: 'none'
             };
         });
-
-        console.log('in module');
-        console.log(defaultToppings);
 
         (defaultToppings || []).forEach(t => {
             initial[t.topping_id] = { ...t };
@@ -32,13 +29,12 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose }) =
 
     const handleQuantityChange = (topping, label) => {
         const value = quantityValues[label];
-        const current = selectedToppings[topping.topping_id]?.quantity;
 
         setSelectedToppings(prev => ({
             ...prev,
             [topping.topping_id]: {
                 ...topping,
-                quantity: current === value ? 0 : value
+                quantity: label
             }
         }));
 
@@ -46,8 +42,7 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose }) =
     };
 
     const getLabel = (topping, label) => {
-        const numericValue = quantityValues[label];
-        return selectedToppings[topping.topping_id]?.quantity === numericValue ? 'active' : '';
+        return selectedToppings[topping.topping_id].quantity === label ? 'active' : '';
     };
 
     const [quantity, setQuantity] = useState(1);

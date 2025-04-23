@@ -21,10 +21,6 @@ function OrderView() {
 
     const handleItemClick = async (item) => {
         await getDefaultToppings(item);
-
-        console.log('in cashier');
-        console.log(defaultToppings);
-
         setSelectedItem(item);
     };
 

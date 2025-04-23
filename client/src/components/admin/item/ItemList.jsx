@@ -9,7 +9,7 @@ const ItemList = () => {
     const { items, loadingItem, errorItem, editItem, removeItem, addItem, nextId} = useItems();
     const [editingItemId, setEditingItemId] = useState(null);
     const [editedItem, setEditedItem] = useState({});
-    const { toppings } = useToppings();
+    const { toppings, defaultToppings, getDefaultToppings } = useToppings();
     const [selectedItem, setSelectedItem] = useState(null);
 
     if (loadingItem) return <div>Loading items...</div>;
@@ -54,7 +54,8 @@ const ItemList = () => {
         setEditedItem({...newItem});
     }
 
-    const handleOpenToppingsClick = (item) => {
+    const handleOpenToppingsClick = async (item) => {
+        await getDefaultToppings(item);
         setSelectedItem(item);
     };
 
@@ -106,6 +107,7 @@ const ItemList = () => {
                 <ToppingsModule
                     item={selectedItem}
                     toppings={toppings}
+                    defaultToppings={defaultToppings}
                     onConfirm={handleUpdateDefaultToppings}
                     onClose={() => setSelectedItem(null)}
                 />

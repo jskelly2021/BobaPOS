@@ -8,7 +8,6 @@ import useItem from '../hooks/useItem';
 import ItemMenu from '../components/ItemMenu'
 import OrderCart from '../components/OrderCart';
 import CategorySelector from '../components/CategorySelector';
-//toppings functions
 import ToppingsModule from '../components/ToppingsModule';
 import useToppings from '../hooks/useToppings';
 

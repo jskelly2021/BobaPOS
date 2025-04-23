@@ -53,3 +53,28 @@ export const getNextToppingId = async () => {
         throw new Error(`Failed to retrieve next topping id: ${e.message}`);
     }
 }
+
+// Retrieves the default toppings on an item
+export const getDefaultToppingsOnItem = async (item) => {
+    const url = `${API_BASE_URL}/toppings/default/${item.item_id}`;
+    try {
+        const { data } = await axios.get(url);
+        return data;
+    } catch (e) {
+        throw new Error(`Failed to retrieve default toppings on: ${item.item_name}`);
+    }
+}
+
+// Updates the default toppings on an item
+export const updateDefaultToppingsOnItem = async (itemId, topping) => {
+    const url = `${API_BASE_URL}/toppings/default/${itemId}`;
+    try {
+        const { data } = await axios.put(url, {
+            topping_id: topping.topping_id,
+            quantity: topping.quantity
+        });
+        return data;
+    } catch (e) {
+        throw new Error(`Failed to retrieve default toppings on item: ${itemId}`);
+    }
+}

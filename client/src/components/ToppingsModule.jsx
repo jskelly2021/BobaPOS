@@ -9,7 +9,7 @@ const quantityValues = {
     heavy: 1.5
 };
 
-const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, mode }) => {
+const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, onRemove, mode }) => {
     const [selectedToppings, setSelectedToppings] = useState(() => {
         const initial = {};
 
@@ -74,7 +74,7 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, mod
                     ))}
                 </ul>
  
-                {mode === 'order' && (<div>
+                {mode === 'ordering' && (<div>
                     <label className='quantityLabel'>Quantity: </label>
                     <input 
                         className='quantityInput'
@@ -86,8 +86,9 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, mod
                 </div>)}
 
                 <div className="ModalActions">
+                    {mode === 'editing' && (<button onClick={() => onRemove(item)}>Remove</button>)}
                     <button onClick={() => onConfirm(item, Object.values(selectedToppings), quantity)}>
-                        {mode === 'order' ? 'Add to Order' : 'Update'}
+                        {mode === 'ordering' ? 'Add to Order' : 'Update'}
                     </button>
                     <button onClick={onClose}>Cancel</button>
                 </div>

@@ -30,7 +30,7 @@ function OrderReview() {
             <h1 className='reviewOrderText'>Review Order</h1>
             <ul className='OrderItemList'>
                 {orderItems.map((item) => (
-                        <li className="OrderItem" key={item.item_id}> 
+                        <li className="OrderItem" key={item.orderItemId}> 
                             <div className='ItemDetails'>
                                 <h3>{item.item_name}</h3>
                                 <p>Price: {item.price * item.quantity}</p>

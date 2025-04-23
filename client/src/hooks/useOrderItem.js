@@ -7,6 +7,7 @@ const useOrderItem = (nav) => {
         const storedOrder = sessionStorage.getItem('orderItems');
         return storedOrder ? JSON.parse(storedOrder) : [];
     });
+    const [nextOrderItemId, setNextOrderItemId] = useState(1);
 
     useEffect(() => {
         sessionStorage.setItem('orderItems', JSON.stringify(orderItems));
@@ -15,13 +16,22 @@ const useOrderItem = (nav) => {
     const addToOrder = (item) => {
         const uniqueItem = {
             ...item,
-            orderItemId: Date.now()
+            orderItemId: nextOrderItemId
         }
+        setNextOrderItemId(prev => prev + 1);
         setOrderItems((prevOrder) => [...prevOrder, uniqueItem]);
     }
 
     const removeFromOrder = (item) => {
         setOrderItems((prevOrder) => prevOrder.filter(i => i.orderItemId !== item.orderItemId))
+    }
+
+    const updateItemInOrder = (item) => {
+        setOrderItems((prevOrder) =>
+            prevOrder.map(i =>
+                i.orderItemId === item.orderItemId ? item : i
+            )
+        );
     }
 
     const orderPrice = () => {
@@ -46,7 +56,7 @@ const useOrderItem = (nav) => {
         sessionStorage.setItem('orderItems', JSON.stringify([]));
     }
 
-    return { orderItems, addToOrder, removeFromOrder, orderPrice, placeOrder };
+    return { orderItems, addToOrder, removeFromOrder, updateItemInOrder, orderPrice, placeOrder };
 }
 
 export default useOrderItem;

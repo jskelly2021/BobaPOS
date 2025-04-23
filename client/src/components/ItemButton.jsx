@@ -1,6 +1,5 @@
 
 const ItemButton = ({ item, onClick }) => {
-    console.log(item);
     return (
         <button className='ItemButton' onClick={() => onClick(item)}>
             <img className='ItemImg'

@@ -46,7 +46,7 @@ function OrderView() {
                 <CategorySelector changeCategory={updateCategory} />
                 <h1>{getCategory()}</h1>
                 <ItemMenu menuItems={items} onItemButtonClick={handleItemClick} />
-                <OrderCart orderItems={orderItems} onItemButtonClick={removeFromOrder} />
+                <OrderCart orderItems={orderItems} onItemButtonClick={handleItemClick} />
             </div>
 
             <button className='ReviewOrderBtn' onClick={() => nav('/review')}>
@@ -60,6 +60,7 @@ function OrderView() {
                     defaultToppings={defaultToppings}
                     onConfirm={handleAddWithToppings}
                     onClose={() => setSelectedItem(null)}
+                    onRemove={() => removeFromOrder()}
                     mode={'order'}
                 />
             )}

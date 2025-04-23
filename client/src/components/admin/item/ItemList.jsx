@@ -107,7 +107,7 @@ const ItemList = () => {
                     defaultToppings={defaultToppings}
                     onConfirm={handleUpdateDefaultToppings}
                     onClose={() => setSelectedItem(null)}
-                    mode={'edit'}
+                    mode={'editDefaults'}
                 />
             )}
         </div>

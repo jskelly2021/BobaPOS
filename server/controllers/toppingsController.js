@@ -87,8 +87,7 @@ export const getNextToppingId = async (req, res) => {
 
 // Returns the default toppings assocaited to a given item Id
 export const getDefaultToppingOnItem = async (req, res) => {
-    const { id } = req.params
-
+    const { id } = req.params;
     try {
         const result = await pool.query(`
             SELECT t.topping_id, t.topping_name, it.quantity FROM item_topping it
@@ -102,3 +101,19 @@ export const getDefaultToppingOnItem = async (req, res) => {
         res.status(500).json("Server Error");
     }
 }
+
+// Updates a the quantity of a default toppings assocaited to a given item Id
+export const updateDefaultToppingOnItem = async (req, res) => {
+    const { id } = req.params;
+    const { topping_id, quantity } = req.body;
+    try {
+        const result = await pool.query(`UPDATE item_topping SET quantity = $1 WHERE item_id = $2 AND topping_id = $3`,
+            [quantity, id, topping_id]
+        );
+        res.status(200).json(result.rows);
+    } catch (err) {
+        console.error("Error updating the default topping", err);
+        res.status(500).json("Server Error");
+    }
+}
+

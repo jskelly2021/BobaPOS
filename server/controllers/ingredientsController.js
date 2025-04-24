@@ -12,6 +12,24 @@ export const getAllIngredients = async (req, res) => {
     }
 }
 
+// Retrieves the ingredients in a given item
+export const getIngredientsInItem = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await pool.query(`
+            SELECT i.item_name, g.ingredient_name, ig.quantity
+            FROM item i
+            INNER JOIN item_ingredient ig ON i.item_id = ig.item_id
+            INNER JOIN ingredient g ON ig.ingredient_id = g.ingredient_id
+            WHERE i.item_id = 1`,
+            [id]);
+        res.status(200).json(result.rows);
+    } catch (err) {
+        console.error('Error getting ingredients in item', err);
+        res.status(500).json("Server Error");
+    }
+}
+
 // Get ingredient based on ID
 export const getIngredient = async (req, res) => {
     const { id } = req.params;

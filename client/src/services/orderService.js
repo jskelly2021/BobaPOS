@@ -42,8 +42,9 @@ export const insertOrdersItemTopping = async (order_item_id, topping) => {
 
     try {
         const { data } = await axios.post(updateURL, {
-            order_item_id: order_item_id, topping_id: topping_id,
-            topping_quantity: topping_quantity
+            order_item_id: order_item_id, 
+            topping_id: topping.topping_id,
+            topping_quantity: topping.quantity
         }, { withCredentials: true });
            
         return data;

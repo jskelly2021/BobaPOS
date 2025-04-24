@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchAllIngredients, updateIngredientQuantity } from '../services/ingredientService';
+import { fetchAllIngredients, updateIngredientQuantity, getIngredientInItem } from '../services/ingredientService';
 
 // Returns a list of all ingredients
 const useIngredient = () => {
@@ -45,7 +45,15 @@ const useIngredient = () => {
         }
     }
 
-    return { ingredients, loadingIngredient, errorIngredient, updateQuantity };
+    const getIngredientInItem = async (item) => {
+        try {
+            setIngredients(await getIngredientInItem(item));
+        } catch (e) {
+            console.error('Error getting ingredients on item', e);
+        }
+    } 
+
+    return { ingredients, loadingIngredient, errorIngredient, updateQuantity, getIngredientInItem };
 }
 
 export default useIngredient;

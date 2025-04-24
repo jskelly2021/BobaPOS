@@ -25,3 +25,15 @@ export const updateIngredientQuantity = async (ingredientId, newQuantity) => {
         throw new Error(`Failed to upate ingredient ${e.message}`);
     }
 }
+
+// Returns all ingredients in a given item
+export const fetchIngredientsInItem = async (item) => {
+    const fetchURL = `${API_BASE_URL}/toppings/item/${item.item_id}`;
+
+    try {
+        const { data } = await axios.get(fetchURL, {withCredentials: true});
+        return data;
+    } catch (e) {
+        throw new Error(`Failed to fetch ingredients: ${e.message}`);
+    }
+}

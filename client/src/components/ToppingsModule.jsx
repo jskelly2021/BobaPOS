@@ -51,7 +51,11 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, onR
     return (
         <div className="ModalOverlay">
             <div className="ModalContent small">
-                <h2>Customize: {item.item_name}</h2>
+                <h2>{item.item_name}</h2>
+                <img className='ItemImg'
+                    src={item.item_img}
+                    alt={item.item_name}
+                />
                 <CustomizationGrid
                     toppings={toppings}
                     selectedToppings={selectedToppings}

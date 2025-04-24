@@ -103,6 +103,7 @@ const ItemList = () => {
             {selectedItem && (
                 <ToppingsModule
                     item={selectedItem}
+                    ingredients={[]}
                     toppings={toppings}
                     defaultToppings={defaultToppings}
                     onConfirm={handleUpdateDefaultToppings}

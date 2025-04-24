@@ -3,17 +3,17 @@ import axios from 'axios';
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export const fetchToppings = async () => {
-    const res = await axios.get(`${API_BASE_URL}/toppings`);
+    const res = await axios.get(`${API_BASE_URL}/toppings`, {
+        withCredentials: true
+    });
     return res.data;
 };
 
-// Updates a topping
 export const updateTopping = async (topping) => {
     const res = await axios.put(`${API_BASE_URL}/toppings/${topping.topping_id}`, {
         topping_name: topping.topping_name,
-        // price: topping.price,
         calories: topping.calories
-    });
+    }, {withCredentials: true});
     return res.data;
 };
 
@@ -26,7 +26,7 @@ export const createTopping = async (topping) => {
             topping_id: topping.topping_id,
             topping_name: topping.topping_name,
             calories: topping.calories,
-        });
+        }, { withCredentials: true });
         return data;
     } catch (e) {
         throw new Error(`Failed to create topping ${e.message}`);
@@ -38,7 +38,7 @@ export const deleteTopping = async (topping) => {
     const deleteURL = `${API_BASE_URL}/toppings/${topping.topping_id}`;
 
     try {
-        const { data } = await axios.delete(deleteURL);
+        const { data } = await axios.delete(deleteURL, { withCredentials: true });
         return data;
     } catch (e) {
         throw new Error(`Failed to delete topping ${e.message}`);
@@ -49,7 +49,7 @@ export const deleteTopping = async (topping) => {
 export const getNextToppingId = async () => {
     const url = `${API_BASE_URL}/toppings/next-id`;
     try {
-        const { data } = await axios.get(url);
+        const { data } = await axios.get(url, { withCredentials: true });
         return data;
     } catch (e) {
         throw new Error(`Failed to retrieve next topping id: ${e.message}`);
@@ -60,7 +60,7 @@ export const getNextToppingId = async () => {
 export const getDefaultToppingsOnItem = async (item) => {
     const url = `${API_BASE_URL}/toppings/default/${item.item_id}`;
     try {
-        const { data } = await axios.get(url);
+        const { data } = await axios.get(url, { withCredentials: true });
         return data;
     } catch (e) {
         throw new Error(`Failed to retrieve default toppings on: ${item.item_name}`);

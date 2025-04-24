@@ -102,5 +102,7 @@
 /* Admin */
 .Admin .ModalOverlay .ItemImg,
 .Admin .ModalOverlay .ToppingPrice,
-.Admin .ModalOverlay .ToppingCalories
+.Admin .ModalOverlay .ToppingCalories,
+.Admin .ModalOverlay .ItemCalories,
+.Admin .ModalOverlay .ItemIngredients
 { display: none; }

@@ -56,6 +56,12 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, onR
                     src={item.item_img}
                     alt={item.item_name}
                 />
+                <div className='ItemIngredients'>
+                    Ingredients:
+                </div>
+                <div className='ItemCalories'>
+                    Calories: {item.calories}
+                </div>
                 <CustomizationGrid
                     toppings={toppings}
                     selectedToppings={selectedToppings}

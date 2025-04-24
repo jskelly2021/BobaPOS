@@ -43,7 +43,8 @@
 
 .CashierOrderView .MenuItemList .ItemButton .ItemDetails .ItemQuantity,
 .CashierOrderView .MenuItemList .ItemButton .ItemDetails .ItemTopping,
-.CashierOrderView .MenuItemList .ItemButton .ItemImg 
+.CashierOrderView .MenuItemList .ItemImg,
+.CashierOrderView .OrderItemList .ItemImg
 { display: none; }
 
 

@@ -60,7 +60,7 @@ export const getNextToppingId = async () => {
 export const getDefaultToppingsOnItem = async (item) => {
     const url = `${API_BASE_URL}/toppings/default/${item.item_id}`;
     try {
-        const { data } = await axios.get(url);
+        const { data } = await axios.get(url, { withCredentials: true });
         return data;
     } catch (e) {
         throw new Error(`Failed to retrieve default toppings on: ${item.item_name}`);

@@ -44,11 +44,11 @@ app.use(passport.session());
 
 app.use('/api/auth', authRouter);
 /*app.use('/api/items', itemsRouter);
+app.use('/api/ingredients', ingredientsRouter);
 app.use('/api/employees', employeesRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/toppings', toppingsRouter);
 app.use('/api/analytics', analyticsRouter);*/
-app.use('/api/ingredients', ingredientsRouter);
 
 // both cashier & manager can read items; only manager can create/update/delete
 app.use(
@@ -58,12 +58,12 @@ app.use(
     itemsRouter
     );
 
-// app.use(
-//     '/api/ingredients',
-//     ensureLoggedIn,
-//     requireRole('CASHIER','MANAGER'),
-//     ingredientsRouter
-// );
+app.use(
+    '/api/ingredients',
+    ensureLoggedIn,
+    requireRole('CASHIER','MANAGER'),
+    ingredientsRouter
+);
 
 // manager only: employee Cridentials 
 app.use(

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CustomizationGrid from './CustomizationGrid';
 import './ToppingsModule.css';
 
 const quantities = ['none', 'light', 'regular', 'heavy'];
@@ -39,10 +40,6 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, onR
         }));
     };
 
-    const getLabel = (topping, label) => {
-        return selectedToppings[topping.topping_id].quantity === label ? 'active' : '';
-    };
-
     const [quantity, setQuantity] = useState(1);
     const productQuantityChange = (e) => {
         const value = parseInt(e.target.value, 10);
@@ -55,28 +52,12 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, onR
         <div className="ModalOverlay">
             <div className="ModalContent small">
                 <h2>Customize: {item.item_name}</h2>
-                <ul className="ToppingGrid">
-                    {toppings.map((topping) => (
-                        <li key={topping.topping_id} className="ToppingItem">
-                            <div className="NamePrice">
-                                <div className="ToppingName">{topping.topping_name}</div>
-                                <div className="ToppingPrice">$0.00</div>
-                            </div>
-                            <div className="Calories">Calories: {topping.calories}</div>
-                            <div className="ButtonGroup">
-                                {quantities.map(label => (
-                                    <button
-                                        key={label}
-                                        className={`quantityBtn ${getLabel(topping, label)}`}
-                                        onClick={() => handleQuantityChange(topping, label)}
-                                    >
-                                        {label}
-                                    </button>
-                                ))}
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+                <CustomizationGrid
+                    toppings={toppings}
+                    selectedToppings={selectedToppings}
+                    quantities={quantities}
+                    onChange={handleQuantityChange}
+                />
 
                 {mode === 'ordering' && (<div>
                     <label className='quantityLabel'>Quantity: </label>

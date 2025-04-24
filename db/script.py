@@ -15,6 +15,7 @@ items_csv_path = "db/csv/items.csv"
 toppings_csv_path = "db/csv/toppings.csv"
 ingredients_csv_path = "db/csv/ingredients.csv"
 item_toppings_csv_path = "db/csv/item_toppings.csv"
+weather_location_csv_path = "db/csv/weather_location.csv"
 
 # FILE PATHS for CSV output
 orders_csv_path = "db/csv/orders.csv"
@@ -61,7 +62,8 @@ with open(orders_csv_path, mode="w", newline="") as orders_file, \
      open(order_items_csv_path, mode="w", newline="") as order_items_file, \
      open(order_item_toppings_csv_path, mode="w", newline="") as order_item_toppings_file, \
      open(daily_ingredient_usage_csv_path, mode="w", newline="") as daily_ingredient_usage_file, \
-     open(daily_item_sales_csv_path, mode="w", newline="") as daily_item_sales_file:
+     open(daily_item_sales_csv_path, mode="w", newline="") as daily_item_sales_file, \
+     open(weather_location_csv_path, mode="w", newline="") as weather_location_file:
 
     orders_writer = csv.writer(orders_file)
     orders_writer.writerow(["order_id", "price", "order_date", "cashier_id", "payment_method", "tip"])
@@ -77,6 +79,9 @@ with open(orders_csv_path, mode="w", newline="") as orders_file, \
 
     item_sales_writer = csv.writer(daily_item_sales_file)
     item_sales_writer.writerow(["item_id", "sales_count"])
+
+    weather_location_writer = csv.writer(weather_location_file)
+    weather_location_writer.writerow(["country_name", "country_code", "region_name", "region_code", "city_name"])
 
     start_date = datetime.date.today() - datetime.timedelta(days=num_days)
     order_id = 1
@@ -129,4 +134,4 @@ with open(orders_csv_path, mode="w", newline="") as orders_file, \
             order_id += 1
 
 print(f"CSV files '{orders_csv_path}', '{order_items_csv_path}', '{order_item_toppings_csv_path}', "
-        f"'{daily_ingredient_usage_csv_path}', and '{daily_item_sales_csv_path}' generated successfully.")
+        f"'{daily_ingredient_usage_csv_path}', '{daily_item_sales_csv_path}', and '{weather_location_csv_path}' generated successfully.")

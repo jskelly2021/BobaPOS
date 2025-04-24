@@ -99,3 +99,11 @@ CREATE TABLE daily_ingredient_usage (
     ingredient_id INT NOT NULL,
     usage DECIMAL(10, 2) NOT NULL DEFAULT 0
 );
+
+CREATE TABLE weather_location (
+    country_name VARCHAR(255) NOT NULL,
+    country_code VARCHAR(255) NOT NULL,
+    region_name VARCHAR(255) NOT NULL,
+    region_code VARCHAR(255) NOT NULL,
+    city_name VARCHAR(255) NOT NULL
+);

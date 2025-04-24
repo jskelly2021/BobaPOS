@@ -6,6 +6,7 @@ import EmployeeList from '../components/admin/employee/EmployeeList';
 import IngredientList from '../components/admin/IngredientList';
 import ItemList from '../components/admin/item/ItemList';
 import ToppingList from '../components/admin/topping/ToppingList'
+import LocationSelector from '../components/admin/LocationSelector';
 
 function Inventory() {
     const nav = useNavigate();
@@ -20,6 +21,7 @@ function Inventory() {
                 <button onClick={() => setActivePage('items')}>Items</button>
                 <button onClick={() => setActivePage('employees')}>Employees</button>
                 <button onClick={() => setActivePage('toppings')}>Toppings</button>
+                <button onClick={() => setActivePage('location')}>Location</button>
             </div>
 
             <h1>Admin</h1>
@@ -28,6 +30,7 @@ function Inventory() {
             {activePage === 'items' && <ItemList />}
             {activePage === 'employees' && <EmployeeList />}
             {activePage === 'toppings' && <ToppingList />}
+            {activePage === 'location' && <LocationSelector />}
         </div>
     );
 }

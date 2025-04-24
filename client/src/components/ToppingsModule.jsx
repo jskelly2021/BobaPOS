@@ -58,7 +58,11 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, onR
                 <ul className="ToppingGrid">
                     {toppings.map((topping) => (
                         <li key={topping.topping_id} className="ToppingItem">
-                            <div className="ToppingName">{topping.topping_name}</div>
+                            <div className="NamePrice">
+                                <div className="ToppingName">{topping.topping_name}</div>
+                                <div className="ToppingPrice">$0.00</div>
+                            </div>
+                            <div className="Calories">Calories: {topping.calories}</div>
                             <div className="ButtonGroup">
                                 {quantities.map(label => (
                                     <button
@@ -73,7 +77,7 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, onR
                         </li>
                     ))}
                 </ul>
- 
+
                 {mode === 'ordering' && (<div>
                     <label className='quantityLabel'>Quantity: </label>
                     <input 

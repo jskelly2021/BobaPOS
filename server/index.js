@@ -10,6 +10,7 @@ const ingredientsRouter = require('./routes/ingredients');
 const employeesRouter = require('./routes/employee');
 const ordersRouter = require('./routes/orders');
 const toppingsRouter = require('./routes/toppings');
+const weatherRouter = require('./routes/weather');
 
 const authRouter = require('./routes/auth');
 const analyticsRouter = require('./routes/analytics');
@@ -43,6 +44,7 @@ app.use('/api/employees', employeesRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/toppings', toppingsRouter);
 app.use('/api/analytics', analyticsRouter);
+app.use('/api/weather', weatherRouter);
 
 
 app.listen(port, () => {

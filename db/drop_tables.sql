@@ -11,3 +11,4 @@ DROP TABLE item_topping CASCADE;
 DROP TABLE daily_summary CASCADE;
 DROP TABLE daily_item_sales CASCADE;
 DROP TABLE daily_ingredient_usage CASCADE;
+DROP TABLE weather_location CASCADE;

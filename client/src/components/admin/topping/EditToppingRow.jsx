@@ -44,6 +44,14 @@ const EditToppingRow = ({ topping, onEdit, onSave, onCancel, deleteTopping }) =>
                     <div>
                         <input 
                             type='number' 
+                            value={''}
+                            onChange={(e) => onEdit('price', e.target.value)}
+                        />
+                    </div>
+
+                    <div>
+                        <input 
+                            type='number' 
                             value={topping.calories || ''}
                             onChange={(e) => onEdit('calories', e.target.value)}
                         />

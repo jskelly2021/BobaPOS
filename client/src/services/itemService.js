@@ -13,7 +13,7 @@ export const fetchItems = async (category = null) => {
     }
 
     try {
-        const { data } = await axios.get(itemURL);
+        const { data } = await axios.get(itemURL, { withCredentials: true });
         return data;
     } catch (e) {
         throw new Error(`Failed to fetch items: ${e.message}`);
@@ -32,7 +32,7 @@ export const updateItem = async (item) => {
             calories: item.calories,
             item_img: item.item_img,
             active: item.active
-        });
+        }, { withCredentials: true });
         return data;
     } catch (e) {
         throw new Error(`Failed to update item ${e.message}`);
@@ -52,7 +52,7 @@ export const createItem = async (item) => {
             calories: item.calories,
             item_img: item.item_img,
             active: item.active
-        });
+        }, { withCredentials: true });
         return data;
     } catch (e) {
         throw new Error(`Failed to create item ${e.message}`);
@@ -64,7 +64,7 @@ export const deleteItem = async (item) => {
     const deleteURL = `${API_BASE_URL}/items/${item.item_id}`;
 
     try {
-        const { data } = await axios.delete(deleteURL);
+        const { data } = await axios.delete(deleteURL, { withCredentials: true });
         return data;
     } catch (e) {
         throw new Error(`Failed to delete item ${e.message}`);
@@ -76,7 +76,7 @@ export const updateItemQuantity = async (itemId, quantity) => {
     const updateQuantityURL = `${API_BASE_URL}/items/${itemId}/quantity`;
 
     try {
-        const { data } = await axios.put(updateQuantityURL, { quantity });
+        const { data } = await axios.put(updateQuantityURL, { quantity }, { withCredentials: true });
         return data;
     } catch (e) {
         throw new Error(`Failed to update item quantity ${e.message}`);
@@ -87,7 +87,7 @@ export const updateItemQuantity = async (itemId, quantity) => {
 export const getNextItemId = async () => {
     const url = `${API_BASE_URL}/items/next-id`;
     try {
-        const { data } = await axios.get(url);
+        const { data } = await axios.get(url, { withCredentials: true });
         return data;
     } catch (e) {
         throw new Error(`Failed to retrieve next item id: ${e.message}`);

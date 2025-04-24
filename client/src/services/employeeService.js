@@ -7,7 +7,7 @@ export const fetchAllEmployees = async () => {
     const itemURL = `${API_BASE_URL}/employees`;
 
     try {
-        const { data } = await axios.get(itemURL);
+        const { data } = await axios.get(itemURL, {withCredentials: true});
         return data;
     } catch (e) {
         throw new Error(`Failed to fetch employees: ${e.message}`);
@@ -23,7 +23,7 @@ export const updateEmployee = async (employee) => {
             employee_name: employee.employee_name,
             position: employee.position,
             passwords: employee.passwords
-        });
+        }, {withCredentials: true});
         return data;
     } catch (e) {
         throw new Error(`Failed to update employee ${e.message}`);
@@ -35,7 +35,7 @@ export const deleteEmployee = async (employee) => {
     const deleteURL = `${API_BASE_URL}/employees/${employee.employee_id}`;
 
     try {
-        const { data } = await axios.delete(deleteURL);
+        const { data } = await axios.delete(deleteURL, {withCredentials: true});
         return data;
     } catch (e) {
         throw new Error(`Failed to delete employee: ${e.message}`);
@@ -52,7 +52,8 @@ export const createEmployee = async (employee) => {
             employee_id: employee.employee_id,
             position: employee.position,
             passwords: employee.passwords
-        });
+        }, 
+        {withCredentials: true});
         console.log(`Created employee: `, data);
         return data;
     } catch (e) {
@@ -64,7 +65,7 @@ export const createEmployee = async (employee) => {
 export const getNextEmployeeId = async () => {
     const url = `${API_BASE_URL}/employees/next-id`;
     try {
-        const { data } = await axios.get(url);
+        const { data } = await axios.get(url, {withCredentials: true});
         return data;
     } catch (e) {
         throw new Error(`Failed to retrieve next employee id: ${e.message}`);

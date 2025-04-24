@@ -22,7 +22,7 @@ export const fetchProductUsage = async (ingredientId, interval, start, end) => {
 
     const url = `${API_BASE_URL}/analytics/usage/${ingredientId}/${interval}/${startTime}/${endTime}`;
     try {
-        const { data } = await axios.get(url);
+        const { data } = await axios.get(url, { withCredentials: true });
         return data;
     } catch (error) {
         throw new Error(`Failed to fetch ingredient usage: ${error.message}`);
@@ -82,7 +82,7 @@ export const fetchSalesOverMonths = async (start, end) => {
 export const fetchTotals = async () => {
   const url = `${API_BASE_URL}/analytics/totals`;
   try {
-    const { data } = await axios.get(url);
+    const { data } = await axios.get(url, { withCredentials: true });
     return data;
   } catch (error) {
     throw new Error(`Failed to fetch totals: ${error.message}`);
@@ -93,7 +93,7 @@ export const fetchTotals = async () => {
 export const fetchItemSales = async () => {
   const url = `${API_BASE_URL}/analytics/item-sales`;
   try {
-    const { data } = await axios.post(url);  // This route uses POST!
+    const { data } = await axios.post(url, {withCredentials: true});  // This route uses POST!
     return data;
   } catch (error) {
     throw new Error(`Failed to fetch item sales: ${error.message}`);
@@ -104,7 +104,7 @@ export const fetchItemSales = async () => {
 export const fetchIngredientUsage = async () => {
   const url = `${API_BASE_URL}/analytics/ingredient-usage`;
   try {
-    const { data } = await axios.get(url);
+    const { data } = await axios.get(url, { withCredentials: true });
     return data;
   } catch (error) {
     throw new Error(`Failed to fetch ingredient usage: ${error.message}`);
@@ -116,18 +116,32 @@ export const fetchZReportData = async () => {
   const urlBase = process.env.REACT_APP_API_BASE_URL || 'http://localhost:4001/api';
 
   try {
-    const [totalsRes, usageRes, salesRes] = await Promise.all([
-      axios.get(`${urlBase}/analytics/totals`),
-      axios.get(`${urlBase}/analytics/ingredient-usage`),
-      axios.get(`${urlBase}/analytics/item-sales`)
+    const [totalsRes, usageRes, itemSalesRes] = await Promise.all([
+      // include credentials per request
+      axios.get(
+        `${urlBase}/analytics/totals`,
+        { withCredentials: true }
+      ),
+
+      axios.get(
+        `${urlBase}/analytics/ingredient-usage`,
+        { withCredentials: true }
+      ),
+
+      // switch to POST, with empty body if your server expects it
+      axios.get(
+        `${urlBase}/analytics/item-sales`,
+        { withCredentials: true }
+      )
     ]);
 
     return {
-      totals: totalsRes.data,
-      ingredientUsage: usageRes.data,
-      itemSales: salesRes.data
+      totals:           totalsRes.data,
+      ingredientUsage:  usageRes.data,
+      itemSales:        itemSalesRes.data,
     };
   } catch (error) {
+    console.error('Z-Report fetch error:', error.response || error);
     throw new Error(`Failed to load Z-Report data: ${error.message}`);
   }
 };

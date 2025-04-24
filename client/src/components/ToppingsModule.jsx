@@ -10,7 +10,7 @@ const quantityValues = {
     heavy: 1.5
 };
 
-const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, onRemove, mode }) => {
+const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm, onClose, onRemove, mode }) => {
     const [selectedToppings, setSelectedToppings] = useState(() => {
         const initial = {};
 
@@ -57,7 +57,7 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, onR
                     alt={item.item_name}
                 />
                 <div className='ItemIngredients'>
-                    Ingredients:
+                    Ingredients: {}
                 </div>
                 <div className='ItemCalories'>
                     Calories: {item.calories}

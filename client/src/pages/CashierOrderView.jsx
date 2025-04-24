@@ -10,17 +10,20 @@ import OrderCart from '../components/OrderCart';
 import CategorySelector from '../components/CategorySelector';
 import ToppingsModule from '../components/ToppingsModule';
 import useToppings from '../hooks/useToppings';
+import useIngredient from '../hooks/useIngredient';
 
 function OrderView() {
     const nav = useNavigate();
     const { items, loadingItem, errorItem, updateCategory, getCategory } = useItem("BREWED");
     const { orderItems, addToOrder, removeFromOrder, updateItemInOrder } = useOrderItem(nav);
     const { toppings, defaultToppings, getDefaultToppings, setDefaultToppings } = useToppings();
+    const { ingredients, getIngredientsInItem } = useIngredient()
     const [selectedItem, setSelectedItem] = useState(null);
     const [customizeMode, setCustomizeMode] = useState('order');
 
     const handleMenuItemClick = async (item) => {
         setCustomizeMode('ordering');
+        await getIngredientsInItem(item);
         await getDefaultToppings(item);
         setSelectedItem(item);
     };
@@ -76,6 +79,7 @@ function OrderView() {
             {selectedItem && (
                 <ToppingsModule
                     item={selectedItem}
+                    ingredients={ingredients}
                     toppings={toppings}
                     defaultToppings={defaultToppings}
                     onConfirm={handleAddWithToppings}

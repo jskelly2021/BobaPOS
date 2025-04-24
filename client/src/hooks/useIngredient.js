@@ -45,7 +45,7 @@ const useIngredient = () => {
         }
     }
 
-    const getIngredientInItem = async (item) => {
+    const getIngredientsInItem = async (item) => {
         try {
             setIngredients(await getIngredientInItem(item));
         } catch (e) {
@@ -53,7 +53,7 @@ const useIngredient = () => {
         }
     } 
 
-    return { ingredients, loadingIngredient, errorIngredient, updateQuantity, getIngredientInItem };
+    return { ingredients, loadingIngredient, errorIngredient, updateQuantity, getIngredientsInItem };
 }
 
 export default useIngredient;

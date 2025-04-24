@@ -4,7 +4,6 @@ const passport = require('passport');
 const router = express.Router();
 
 // POST /auth/login using a custom callback for JSON responses
-
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
     if (err) {
@@ -27,6 +26,17 @@ router.post('/login', (req, res, next) => {
 });
 
 
+// GET /api/auth/user
+router.get('/user',
+  (req, res) => {
+      if (req.isAuthenticated()) {
+        const { employee_id, employee_name, position } = req.user;
+        return res.json({ employee_id, employee_name, position });
+      }
+      res.status(401).json({ message: 'Not authenticated' });
+    }
+  );
+
 
 // GET /auth/logout to destroy the session
 router.get('/logout', (req, res, next) => {
@@ -35,5 +45,6 @@ router.get('/logout', (req, res, next) => {
     res.json({ message: 'Logged out successfully' });
   });
 });
+
 
 module.exports = router;

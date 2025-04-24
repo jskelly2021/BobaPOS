@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import './EmployeeLogin.css'
 
 function EmployeeLogin() {
     const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
     const navigate = useNavigate();
+    const { setUser } = useContext(AuthContext);
     const [employeeName, setEmployeeName] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
@@ -26,6 +28,12 @@ function EmployeeLogin() {
             });
 
             const data = await response.json();
+            if (!response.ok) throw new Error();
+            // after login, fetch /auth/user
+            const userData = await fetch(`${API_BASE_URL}/auth/user`, { credentials: 'include' })
+                            .then(r => r.json());
+            setUser(userData);
+            console.log('User data:', userData);
 
             if (response.ok) {
                 navigate('/dashboard');

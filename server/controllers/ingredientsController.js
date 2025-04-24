@@ -21,7 +21,7 @@ export const getIngredientsInItem = async (req, res) => {
             FROM item i
             INNER JOIN item_ingredient ig ON i.item_id = ig.item_id
             INNER JOIN ingredient g ON ig.ingredient_id = g.ingredient_id
-            WHERE i.item_id = 1`,
+            WHERE i.item_id = $1`,
             [id]);
         res.status(200).json(result.rows);
     } catch (err) {

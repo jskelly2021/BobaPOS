@@ -57,7 +57,14 @@ const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm,
                     alt={item.item_name}
                 />
                 <div className='ItemIngredients'>
-                    Ingredients: {}
+                    Ingredients:
+                    <ul className='IngredientsList'>
+                        {ingredients.map((ingredient) => (
+                            <li key={ingredient.ingredient_id}> 
+                                {ingredient.ingredient_name}
+                            </li> 
+                        ))}
+                    </ul>
                 </div>
                 <div className='ItemCalories'>
                     Calories: {item.calories}

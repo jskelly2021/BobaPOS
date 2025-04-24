@@ -28,7 +28,7 @@ export const updateIngredientQuantity = async (ingredientId, newQuantity) => {
 
 // Returns all ingredients in a given item
 export const fetchIngredientsInItem = async (item) => {
-    const fetchURL = `${API_BASE_URL}/toppings/item/${item.item_id}`;
+    const fetchURL = `${API_BASE_URL}/ingredients/item/${item.item_id}`;
 
     try {
         const { data } = await axios.get(fetchURL, {withCredentials: true});

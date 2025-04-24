@@ -93,3 +93,14 @@
 .ModalActions button:hover {
     background: #111;
 }
+
+/* Cashier Order View */
+.CashierOrderView .ModalOverlay .ItemImg { display: none; }
+
+/* Customer Order View */
+
+/* Admin */
+.Admin .ModalOverlay .ItemImg,
+.Admin .ModalOverlay .ToppingPrice,
+.Admin .ModalOverlay .ToppingCalories
+{ display: none; }

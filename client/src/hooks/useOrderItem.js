@@ -5,9 +5,9 @@ import { insertOrders, insertOrdersItems, insertOrdersItemTopping } from '../ser
 const useOrderItem = (nav) => {
     const [orderItems, setOrderItems] = useState(() => {
         const storedOrder = sessionStorage.getItem('orderItems');
-        console.log("Stored order data:", storedOrder);
         return storedOrder ? JSON.parse(storedOrder) : [];
     });
+    const [nextOrderItemId, setNextOrderItemId] = useState(1);
 
     useEffect(() => {
         sessionStorage.setItem('orderItems', JSON.stringify(orderItems));
@@ -16,16 +16,22 @@ const useOrderItem = (nav) => {
     const addToOrder = (item) => {
         const uniqueItem = {
             ...item,
-            orderItemId: Date.now()
+            orderItemId: nextOrderItemId
         }
-
-        console.log(`Adding Item: ${uniqueItem.orderItemId} - ${uniqueItem.item_name} `);
+        setNextOrderItemId(prev => prev + 1);
         setOrderItems((prevOrder) => [...prevOrder, uniqueItem]);
     }
 
     const removeFromOrder = (item) => {
-        console.log(`Removing Item: ${item.orderItemId} - ${item.item_name}`);
         setOrderItems((prevOrder) => prevOrder.filter(i => i.orderItemId !== item.orderItemId))
+    }
+
+    const updateItemInOrder = (item) => {
+        setOrderItems((prevOrder) =>
+            prevOrder.map(i =>
+                i.orderItemId === item.orderItemId ? item : i
+            )
+        );
     }
 
     const orderPrice = () => {
@@ -41,8 +47,7 @@ const useOrderItem = (nav) => {
 
             if (item.toppings && item.toppings.length > 0) {
                 for (const topping of item.toppings) {
-                    await insertOrdersItemTopping(orderItemId, topping.topping_id, topping.quantity);
-                    console.log(`Saved topping ${topping.topping_name} for item ${item.item_name}`);
+                    await insertOrdersItemTopping(orderItemId, topping);
                 }
             }
         }
@@ -51,7 +56,7 @@ const useOrderItem = (nav) => {
         sessionStorage.setItem('orderItems', JSON.stringify([]));
     }
 
-    return { orderItems, addToOrder, removeFromOrder, orderPrice, placeOrder };
+    return { orderItems, addToOrder, removeFromOrder, updateItemInOrder, orderPrice, placeOrder };
 }
 
 export default useOrderItem;

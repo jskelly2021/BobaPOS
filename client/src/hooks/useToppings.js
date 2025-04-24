@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import { fetchToppings, updateTopping, createTopping, deleteTopping, getNextToppingId } from '../services/toppingService';
+import { fetchToppings, updateTopping, createTopping, deleteTopping, getNextToppingId,
+    getDefaultToppingsOnItem, updateDefaultToppingsOnItem } from '../services/toppingService';
 
 const useTopping = () => {
     const [toppings, setToppings] = useState([]);
+    const [defaultToppings, setDefaultToppings] = useState([]);
     const [loadingTopping, setLoading] = useState(true);
     const [errorTopping, setError] = useState(null);
 
@@ -68,7 +70,24 @@ const useTopping = () => {
         }
     }
 
-    return { toppings, loadingTopping, errorTopping, editTopping, removeTopping, addTopping, nextId };
+    const getDefaultToppings = async (item) => {
+        try {
+            setDefaultToppings(await getDefaultToppingsOnItem(item));
+        } catch (e) {
+            console.error('Error retrieving default toppings: ', e);
+        }
+    }
+
+    const updateDefaultToppings = async (item, defaultToppings) => {
+        try {
+            await updateDefaultToppingsOnItem(item, defaultToppings);
+        } catch (e) {
+            console.error('Error updating default toppings: ', e);
+        }
+    }
+
+    return { toppings, defaultToppings, loadingTopping, errorTopping,
+        editTopping, removeTopping, addTopping, nextId, getDefaultToppings, updateDefaultToppings, setDefaultToppings };
 };
 
 export default useTopping;

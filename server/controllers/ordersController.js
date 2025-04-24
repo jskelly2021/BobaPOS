@@ -68,9 +68,14 @@ export const addOrderItem = async (req, res) => {
 
 // Add to Order Item Table
 export const addOrderItemTopping = async (req, res) => {
-    const { order_item_id, topping_id, topping_quantity } = req.body;
+    const quantityValues = {
+        none: 0,
+        light: 0.5,
+        regular: 1,
+        heavy: 1.5
+    };
 
-    //console.log("addOrderItemTopping received:", req.body);
+    const { order_item_id, topping_id, topping_quantity } = req.body;
 
     try {
         const result = await pool.query(
@@ -89,10 +94,9 @@ export const addOrderItemTopping = async (req, res) => {
               WHERE topping_id = $2
             ) AS sub
             WHERE daily_ingredient_usage.ingredient_id = sub.ingredient_id
-          `, [topping_quantity, topping_id]);
+          `, [quantityValues[topping_quantity], topping_id]);
 
         res.status(201).json(result.rows);
-        //console.log(`Inserting Order Item Topping:`, result.rows[0]);
     } catch (err) {
         console.error('Error addOrderItemTopping:', err);
         res.status(500).json("Server Error");

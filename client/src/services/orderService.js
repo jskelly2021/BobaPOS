@@ -37,7 +37,7 @@ export const insertOrdersItems = async (order_id, item_id, quantity) => {
 
 
 // Inserts into the orders table
-export const insertOrdersItemTopping = async (order_item_id, topping_id, topping_quantity) => {
+export const insertOrdersItemTopping = async (order_item_id, topping) => {
     const updateURL = `${API_BASE_URL}/orders/itemtopping`;
 
     try {
@@ -45,6 +45,7 @@ export const insertOrdersItemTopping = async (order_item_id, topping_id, topping
             order_item_id: order_item_id, topping_id: topping_id,
             topping_quantity: topping_quantity
         }, { withCredentials: true });
+           
         return data;
     } catch (e) {
         throw new Error(`Failed to insert order item topping ${e.message}`);

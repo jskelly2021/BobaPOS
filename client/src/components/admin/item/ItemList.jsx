@@ -1,12 +1,16 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import useItems from '../../../hooks/useItem';
 import EditItemRow from './EditItemRow';
 import DefaultItemRow from './DefaultItemRow';
+import useToppings from '../../../hooks/useToppings';
+import ToppingsModule from '../../ToppingsModule';
 
 const ItemList = () => {
     const { items, loadingItem, errorItem, editItem, removeItem, addItem, nextId} = useItems();
     const [editingItemId, setEditingItemId] = useState(null);
     const [editedItem, setEditedItem] = useState({});
+    const { toppings, defaultToppings, getDefaultToppings, updateDefaultToppings } = useToppings();
+    const [selectedItem, setSelectedItem] = useState(null);
 
     if (loadingItem) return <div>Loading items...</div>;
     if (errorItem) return <div>Error fetching items: {errorItem.message}</div>;
@@ -22,7 +26,7 @@ const ItemList = () => {
             [field]: value
         })
     }
-    
+
     const handleSaveClick = async () => {
         await editItem(editedItem);
         setEditingItemId(null);
@@ -32,7 +36,7 @@ const ItemList = () => {
         setEditingItemId(null);
         setEditedItem({});
     }
-    
+
     const handleAddItem = async () => {
         const id = await nextId();
 
@@ -49,6 +53,16 @@ const ItemList = () => {
         setEditingItemId(newItem.item_id);
         setEditedItem({...newItem});
     }
+
+    const handleOpenToppingsClick = async (item) => {
+        await getDefaultToppings(item);
+        setSelectedItem(item);
+    };
+
+    const handleUpdateDefaultToppings = async (item, selectedToppings) => {
+        await updateDefaultToppings(item, selectedToppings)
+        setSelectedItem(null);
+    };
 
     return (
         <div>
@@ -78,12 +92,24 @@ const ItemList = () => {
                             <DefaultItemRow
                                 item={item}
                                 onEdit={handleEditClick}
+                                onOpenToppings={handleOpenToppingsClick}
                             />
                         )}
                     </li> 
                 ))}
                 <button className="AddItemBtn" onClick={() => handleAddItem()}>Add Item</button>
             </ul>
+
+            {selectedItem && (
+                <ToppingsModule
+                    item={selectedItem}
+                    toppings={toppings}
+                    defaultToppings={defaultToppings}
+                    onConfirm={handleUpdateDefaultToppings}
+                    onClose={() => setSelectedItem(null)}
+                    mode={'admin'}
+                />
+            )}
         </div>
     );
 }

@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
 import './ToppingsModule.css';
 
-const quantities = ['none', 'light', 'regular'];
+const quantities = ['none', 'light', 'regular', 'heavy'];
 const quantityValues = {
     none: 0,
     light: 0.5,
-    regular: 1
+    regular: 1,
+    heavy: 1.5
 };
 
-const ToppingModal = ({ item, toppings, defaultToppings = [], onConfirm, onClose }) => {
+const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, onRemove, mode }) => {
     const [selectedToppings, setSelectedToppings] = useState(() => {
         const initial = {};
-        const defaultToppingMap = new Set(defaultToppings.map(dt => dt.topping_id));
 
         toppings.forEach(t => {
-            const isDefault = defaultToppingMap.has(t.topping_id);
             initial[t.topping_id] = {
                 ...t,
-                quantity: isDefault ? 1 : 0 //reg = 1, none = 0
+                quantity: 'none'
             };
+        });
+
+        (defaultToppings || []).forEach(t => {
+            initial[t.topping_id] = { ...t };
         });
 
         return initial;
@@ -26,20 +29,18 @@ const ToppingModal = ({ item, toppings, defaultToppings = [], onConfirm, onClose
 
     const handleQuantityChange = (topping, label) => {
         const value = quantityValues[label];
-        const current = selectedToppings[topping.topping_id]?.quantity;
 
         setSelectedToppings(prev => ({
             ...prev,
             [topping.topping_id]: {
                 ...topping,
-                quantity: current === value ? 0 : value
+                quantity: label
             }
         }));
     };
 
     const getLabel = (topping, label) => {
-        const numericValue = quantityValues[label];
-        return selectedToppings[topping.topping_id]?.quantity === numericValue ? 'active' : '';
+        return selectedToppings[topping.topping_id].quantity === label ? 'active' : '';
     };
 
     const [quantity, setQuantity] = useState(1);
@@ -72,22 +73,28 @@ const ToppingModal = ({ item, toppings, defaultToppings = [], onConfirm, onClose
                         </li>
                     ))}
                 </ul>
-                <label className='quantityLabel'>Quantity: </label>
-                <input 
-                    className='quantityInput'
-                    type='number' 
-                    min='1'
-                    value={quantity}
-                    onChange={productQuantityChange}>
-                </input>
+ 
+                {mode === 'ordering' && (<div>
+                    <label className='quantityLabel'>Quantity: </label>
+                    <input 
+                        className='quantityInput'
+                        type='number' 
+                        min='1'
+                        value={quantity}
+                        onChange={productQuantityChange}>
+                    </input>
+                </div>)}
+
                 <div className="ModalActions">
-                    <button onClick={() => onConfirm(item, Object.values(selectedToppings), quantity)}>Add to Order</button>
+                    {mode === 'editing' && (<button onClick={() => onRemove(item)}>Remove</button>)}
+                    <button onClick={() => onConfirm(item, Object.values(selectedToppings), quantity)}>
+                        {mode === 'ordering' ? 'Add to Order' : 'Update'}
+                    </button>
                     <button onClick={onClose}>Cancel</button>
                 </div>
             </div>
         </div>
     );
 };
-
 
 export default ToppingModal;

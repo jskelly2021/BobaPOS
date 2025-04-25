@@ -8,11 +8,15 @@ const CustomizationGrid = ({ toppings, selectedToppings, quantities, onChange })
         <ul className="ToppingGrid">
         {toppings.map((topping) => (
             <li key={topping.topping_id} className="ToppingItem">
-                <div className="NamePrice">
-                    <div className="ToppingName">{topping.topping_name}</div>
+                <div className="ToppingDetails">
+                    <h3 className="ToppingName">{topping.topping_name}</h3>
                     <div className="ToppingPrice">${topping.price}</div>
                 </div>
-                <div className="ToppingCalories">Calories: {topping.calories}</div>
+                <div className="ToppingCalories">
+                    <strong>Calories:</strong>
+                    <span>{topping.calories}</span>
+                </div>
+
                 <div className="ButtonGroup">
                     {quantities.map(label => (
                         <button

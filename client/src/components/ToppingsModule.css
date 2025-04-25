@@ -24,21 +24,21 @@
     text-align: center;
 }
 
+.ModalOverlay h3 { margin: 0; }
+.ModalOverlay h4 { margin: 0; }
+
+/* Health Info */
 .ModalOverlay .HealthInfo {
     display: flex;
     flex-direction: column;
     margin: 0;
 }
 
-.ModalOverlay .HealthInfo h3 { margin: 0; }
-
-.ModalOverlay .HealthInfo .ItemIngredients {
+.ModalOverlay .HealthInfo .ItemIngredients,
+.ModalOverlay .HealthInfo .ItemCalories {
     display: flex;
     gap: 1vw;
 }
-
-.ModalOverlay .HealthInfo h4 { margin: 0; }
-
 .ModalOverlay .HealthInfo .IngredientsList {
     list-style: none;
     gap: 1vw;
@@ -46,12 +46,9 @@
     padding: 0;
     margin: 0;
 }
-.ModalOverlay .HealthInfo .ItemCalories {
-    display: flex;
-    gap: 1vw;
-}
 
 
+/* Toppings Grid */
 .ToppingGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -61,16 +58,19 @@
     list-style: none;
 }
 
+.ToppingGrid .ToppingDetails,
+.ToppingCalories {
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+}
+
 .ToppingItem {
     padding: 0.75rem;
     border-radius: 6px;
     font-size: 0.95rem;
 }
 
-.ToppingName {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
 
 .ButtonGroup {
     display: flex;

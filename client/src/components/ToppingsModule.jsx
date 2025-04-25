@@ -59,6 +59,7 @@ const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm,
 
                 <div className='HealthInfo'>
                     <h3>Health Information</h3>
+
                     <div className='ItemIngredients'>
                         <h4>Ingredients:</h4>
                         <ul className='IngredientsList'>

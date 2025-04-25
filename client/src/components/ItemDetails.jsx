@@ -34,7 +34,7 @@ const ItemDetails = ({ item, ingredients, totalCalories, totalPrice, mode, quant
                 </div>
             </div>
 
-            {mode === 'ordering' && (
+            {mode !== 'admin' && (
                 <div>
                     <label className='quantityLabel'>Quantity: </label>
                     <input 

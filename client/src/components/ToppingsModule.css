@@ -23,24 +23,7 @@
 .ModalOverlay h4 { margin: 0; }
 
 
-.ModalOverlay .Details-Grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: start;
-}
-
-/* Item Details */
-.ModalOverlay .ItemDetails {
-    display: flex;
-    flex-direction: column;
-    align-items: baseline;
-    gap: 3vh;
-    flex-grow: 1;
-}
-
 .ModalOverlay .ItemDetails .ItemDescription { align-items: start; }
-
 .ModalOverlay .ItemDetails .Pic { align-self: center; }
 
 .ModalOverlay .ItemDetails .ItemImg {
@@ -142,15 +125,37 @@
     background: #111;
 }
 
+/* Customer Order View */
+.CustomerOrderView .ModalOverlay .Details-Grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
+}
+.CustomerOrderView .ModalOverlay .ItemDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    gap: 3vh;
+    flex-grow: 1;
+}
+
+
 /* Cashier Order View */
 .CashierOrderView .ModalOverlay .ItemImg { display: none; }
+.CashierOrderView .ModalOverlay .Details-Grid {
+    display: flex;
+    flex-direction: column;
 
-/* Customer Order View */
+}
+.CashierOrderView .ModalOverlay .ItemDetails {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 /* Admin */
-.Admin .ModalOverlay .ItemImg,
+.Admin .ModalOverlay .ItemDetails,
 .Admin .ModalOverlay .ToppingPrice,
-.Admin .ModalOverlay .ToppingCalories,
-.Admin .ModalOverlay .ItemCalories,
-.Admin .ModalOverlay .ItemIngredients
+.Admin .ModalOverlay .HealthInfo
 { display: none; }

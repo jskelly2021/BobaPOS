@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CustomizationGrid from './CustomizationGrid';
+import ItemDetails from './ItemDetails';
 import './ToppingsModule.css';
 
 const quantities = ['none', 'light', 'regular', 'heavy'];
@@ -60,32 +61,7 @@ const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm,
     return (
         <div className="ModalOverlay">
             <div className="ModalContent small">
-                <h2>{item.item_name}</h2>
-                <img className='ItemImg'
-                    src={item.item_img}
-                    alt={item.item_name}
-                />
-                {totalPrice}
-
-                <div className='HealthInfo'>
-                    <h3>Health Information</h3>
-
-                    <div className='ItemIngredients'>
-                        <h4>Ingredients:</h4>
-                        <ul className='IngredientsList'>
-                            {ingredients.map((ingredient) => (
-                                <li key={ingredient.ingredient_id}> 
-                                    {ingredient.ingredient_name}
-                                </li> 
-                            ))}
-                        </ul>
-                    </div>
-
-                    <div className='ItemCalories'>
-                        <h4>Calories:</h4>
-                        {totalCalories}
-                    </div>
-                </div>
+                <ItemDetails item={item} ingredients={ingredients} totalCalories={totalCalories} totalPrice={totalPrice} />
 
                 <CustomizationGrid
                     toppings={toppings}

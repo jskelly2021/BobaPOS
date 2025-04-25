@@ -3,16 +3,10 @@ import CustomizationGrid from './CustomizationGrid';
 import './ToppingsModule.css';
 
 const quantities = ['none', 'light', 'regular', 'heavy'];
-const quantityValues = {
-    none: 0,
-    light: 0.5,
-    regular: 1,
-    heavy: 1.5
-};
 
 const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm, onClose, onRemove, mode }) => {
-    const [totalCalories, setTotalCalories] = useState(item.calories);
-    const [totalPrice, setTotalPrice] = useState(parseFloat(item.price));
+    const [totalCalories, setTotalCalories] = useState();
+    const [totalPrice, setTotalPrice] = useState();
     const [quantity, setQuantity] = useState(1);
 
     const [selectedToppings, setSelectedToppings] = useState(() => {

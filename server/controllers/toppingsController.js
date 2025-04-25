@@ -90,8 +90,10 @@ export const getDefaultToppingOnItem = async (req, res) => {
     const { id } = req.params;
     try {
         const result = await pool.query(`
-            SELECT t.topping_id, t.topping_name, it.quantity FROM item_topping it
-            JOIN topping t ON it.topping_id = t.topping_id JOIN item i ON it.item_id = i.item_id
+            SELECT t.topping_id, t.topping_name, t.price, t.calories, it.quantity
+            FROM item_topping it
+            JOIN topping t ON it.topping_id = t.topping_id
+            JOIN item i ON it.item_id = i.item_id
             WHERE i.item_id = $1`,
             [id]
         );

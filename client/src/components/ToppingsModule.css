@@ -12,20 +12,27 @@
     background: #fff;
     padding: 1.5rem;
     border-radius: 8px;
-    width: 75vw;
+    width: 80vw;
     height: auto;
     max-height: 90vh;
     overflow-y: auto;
 }
 
-.ModalTitle {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
+.ModalOverlay h2 { margin: 0; }
 .ModalOverlay h3 { margin: 0; }
 .ModalOverlay h4 { margin: 0; }
+
+
+.ModalOverlay .Details-Grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+}
+
+.ModalOverlay .ItemDetails .ItemImg {
+    width: 30vw;
+    min-width: 400px;
+}
 
 /* Health Info */
 .ModalOverlay .HealthInfo {
@@ -50,11 +57,12 @@
 
 /* Toppings Grid */
 .ToppingGrid {
+    flex-grow: 1;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1rem;
+    gap: 1vw;
     padding: 0;
-    margin: 1rem 0;
+    margin: 0;
     list-style: none;
 }
 
@@ -70,7 +78,6 @@
     border-radius: 6px;
     font-size: 0.95rem;
 }
-
 
 .ButtonGroup {
     display: flex;

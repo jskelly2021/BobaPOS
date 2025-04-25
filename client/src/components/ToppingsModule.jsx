@@ -61,14 +61,22 @@ const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm,
     return (
         <div className="ModalOverlay">
             <div className="ModalContent small">
-                <ItemDetails item={item} ingredients={ingredients} totalCalories={totalCalories} totalPrice={totalPrice} />
+                <div class='Details-Grid'>
 
-                <CustomizationGrid
-                    toppings={toppings}
-                    selectedToppings={selectedToppings}
-                    quantities={quantities}
-                    onChange={handleQuantityChange}
-                />
+                    <ItemDetails
+                        item={item}
+                        ingredients={ingredients}
+                        totalCalories={totalCalories}
+                        totalPrice={totalPrice}
+                    />
+
+                    <CustomizationGrid
+                        toppings={toppings}
+                        selectedToppings={selectedToppings}
+                        quantities={quantities}
+                        onChange={handleQuantityChange}
+                    />
+                </div>
 
                 {mode === 'ordering' && (<div>
                     <label className='quantityLabel'>Quantity: </label>

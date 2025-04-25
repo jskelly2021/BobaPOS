@@ -26,7 +26,7 @@ ORDER_ITEMS_PATH                = "db/csv/order_items.csv"
 ORDER_ITEM_TOPPINGS_PATH        = "db/csv/order_item_toppings.csv"
 DAILY_INGREDIENT_USAGE_PATH     = "db/csv/daily_ingredient_usage.csv"
 DAILY_ITEM_SALES_PATH           = "db/csv/daily_item_sales.csv"
-
+WEATHER_LOCATION_PATH           = "db/csv/weather_location.csv"
 
 
 # === LOAD DATA ===
@@ -57,13 +57,16 @@ with open(ORDERS_PATH, mode="w", newline="") as orders_file, \
      open(ORDER_ITEMS_PATH, mode="w", newline="") as order_items_file, \
      open(ORDER_ITEM_TOPPINGS_PATH, mode="w", newline="") as order_item_toppings_file, \
      open(DAILY_INGREDIENT_USAGE_PATH, mode="w", newline="") as daily_ingredient_usage_file, \
-     open(DAILY_ITEM_SALES_PATH, mode="w", newline="") as daily_item_sales_file:
+     open(DAILY_ITEM_SALES_PATH, mode="w", newline="") as daily_item_sales_file, \
+     open(WEATHER_LOCATION_PATH, mode="w", newline="") as weather_location_file:
+
 
     orders_writer = csv.writer(orders_file)
     order_items_writer = csv.writer(order_items_file)
     order_item_toppings_writer = csv.writer(order_item_toppings_file)
     ingredient_usage_writer = csv.writer(daily_ingredient_usage_file)
     item_sales_writer = csv.writer(daily_item_sales_file)
+    weather_location_writer = csv.writer(weather_location_file)
 
     # Write csv Headers
     orders_writer.writerow(["order_id", "price", "order_date", "cashier", "payment_method", "tip"])
@@ -71,8 +74,6 @@ with open(ORDERS_PATH, mode="w", newline="") as orders_file, \
     order_item_toppings_writer.writerow(["order_item_id", "topping_id", "topping_quantity"])
     ingredient_usage_writer.writerow(["ingredient_id", "usage"])
     item_sales_writer.writerow(["item_id", "sales_count"])
-
-    weather_location_writer = csv.writer(weather_location_file)
     weather_location_writer.writerow(["country_name", "country_code", "region_name", "region_code", "city_name"])
 
     # Init Daily Tables

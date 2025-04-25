@@ -10,7 +10,7 @@ const CustomizationGrid = ({ toppings, selectedToppings, quantities, onChange })
             <li key={topping.topping_id} className="ToppingItem">
                 <div className="NamePrice">
                     <div className="ToppingName">{topping.topping_name}</div>
-                    <div className="ToppingPrice">$0.00</div>
+                    <div className="ToppingPrice">${topping.price}</div>
                 </div>
                 <div className="ToppingCalories">Calories: {topping.calories}</div>
                 <div className="ButtonGroup">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CustomizationGrid from './CustomizationGrid';
 import './ToppingsModule.css';
 
@@ -11,6 +11,8 @@ const quantityValues = {
 };
 
 const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm, onClose, onRemove, mode }) => {
+    const [totalCalories, setTotalCalories] = useState(item.calories);
+
     const [selectedToppings, setSelectedToppings] = useState(() => {
         const initial = {};
 
@@ -27,6 +29,16 @@ const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm,
 
         return initial;
     });
+
+    useEffect(() => {
+        let total = item.calories || 0;
+        Object.values(selectedToppings).forEach(topping => {
+            if (topping.quantity !== 'none') {
+                total += (topping.calories || 0);
+            }
+        });
+        setTotalCalories(total);
+    }, [item.calories, selectedToppings]);
 
     const handleQuantityChange = (topping, label) => {
         const value = quantityValues[label];
@@ -73,7 +85,7 @@ const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm,
 
                     <div className='ItemCalories'>
                         <h4>Calories:</h4>
-                        {item.calories}
+                        {totalCalories}
                     </div>
                 </div>
 

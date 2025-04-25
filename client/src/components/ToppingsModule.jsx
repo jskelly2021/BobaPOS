@@ -12,6 +12,8 @@ const quantityValues = {
 
 const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm, onClose, onRemove, mode }) => {
     const [totalCalories, setTotalCalories] = useState(item.calories);
+    const [totalPrice, setTotalPrice] = useState(parseFloat(item.price));
+    const [quantity, setQuantity] = useState(1);
 
     const [selectedToppings, setSelectedToppings] = useState(() => {
         const initial = {};
@@ -31,18 +33,20 @@ const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm,
     });
 
     useEffect(() => {
-        let total = item.calories || 0;
+        let calories = item.calories || 0;
+        let price = parseFloat(item.price) || 0;
+
         Object.values(selectedToppings).forEach(topping => {
             if (topping.quantity !== 'none') {
-                total += (topping.calories || 0);
+                calories += (topping.calories || 0);
+                price += (parseFloat(topping.price) || 0);
             }
         });
-        setTotalCalories(total);
+        setTotalCalories(calories);
+        setTotalPrice(price);
     }, [item.calories, selectedToppings]);
 
     const handleQuantityChange = (topping, label) => {
-        const value = quantityValues[label];
-
         setSelectedToppings(prev => ({
             ...prev,
             [topping.topping_id]: {
@@ -52,7 +56,6 @@ const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm,
         }));
     };
 
-    const [quantity, setQuantity] = useState(1);
     const productQuantityChange = (e) => {
         const value = parseInt(e.target.value, 10);
         if (!isNaN(value) && value >= 0) {
@@ -68,6 +71,7 @@ const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm,
                     src={item.item_img}
                     alt={item.item_name}
                 />
+                {totalPrice}
 
                 <div className='HealthInfo'>
                     <h3>Health Information</h3>

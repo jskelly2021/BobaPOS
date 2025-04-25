@@ -56,19 +56,26 @@ const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm,
                     src={item.item_img}
                     alt={item.item_name}
                 />
-                <div className='ItemIngredients'>
-                    Ingredients:
-                    <ul className='IngredientsList'>
-                        {ingredients.map((ingredient) => (
-                            <li key={ingredient.ingredient_id}> 
-                                {ingredient.ingredient_name}
-                            </li> 
-                        ))}
-                    </ul>
+
+                <div className='HealthInfo'>
+                    <h3>Health Information</h3>
+                    <div className='ItemIngredients'>
+                        <h4>Ingredients:</h4>
+                        <ul className='IngredientsList'>
+                            {ingredients.map((ingredient) => (
+                                <li key={ingredient.ingredient_id}> 
+                                    {ingredient.ingredient_name}
+                                </li> 
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className='ItemCalories'>
+                        <h4>Calories:</h4>
+                        {item.calories}
+                    </div>
                 </div>
-                <div className='ItemCalories'>
-                    Calories: {item.calories}
-                </div>
+
                 <CustomizationGrid
                     toppings={toppings}
                     selectedToppings={selectedToppings}

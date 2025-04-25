@@ -24,6 +24,34 @@
     text-align: center;
 }
 
+.ModalOverlay .HealthInfo {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.ModalOverlay .HealthInfo h3 { margin: 0; }
+
+.ModalOverlay .HealthInfo .ItemIngredients {
+    display: flex;
+    gap: 1vw;
+}
+
+.ModalOverlay .HealthInfo h4 { margin: 0; }
+
+.ModalOverlay .HealthInfo .IngredientsList {
+    list-style: none;
+    gap: 1vw;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+.ModalOverlay .HealthInfo .ItemCalories {
+    display: flex;
+    gap: 1vw;
+}
+
+
 .ToppingGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));

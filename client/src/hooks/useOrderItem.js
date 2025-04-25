@@ -37,7 +37,7 @@ const useOrderItem = () => {
     }
 
     const orderPrice = () => {
-        const total = orderItems.reduce((subtotal, item) => subtotal + parseFloat(item.price * item.quantity), 0);
+        const total = orderItems.reduce((subtotal, item) => subtotal + parseFloat(item.priceWithToppings * item.quantity), 0);
         return parseFloat(total).toFixed(2);
     }
 

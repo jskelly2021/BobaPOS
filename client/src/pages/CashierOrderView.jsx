@@ -34,11 +34,12 @@ function OrderView() {
         setSelectedItem(item);
     };
 
-    const handleAddWithToppings = (item, selectedToppings, quantity) => {
+    const handleAddWithToppings = (item, selectedToppings, quantity, totalPrice) => {
         const itemWithToppings = {
             ...item,
             toppings: selectedToppings,
-            quantity: quantity
+            quantity: quantity,
+            priceWithToppings: totalPrice
         };
 
         if (customizeMode === 'ordering') {

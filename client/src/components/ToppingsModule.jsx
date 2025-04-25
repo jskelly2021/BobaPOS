@@ -113,7 +113,7 @@ const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm,
 
                 <div className="ModalActions">
                     {mode === 'editing' && (<button onClick={() => onRemove(item)}>Remove</button>)}
-                    <button onClick={() => onConfirm(item, Object.values(selectedToppings), quantity)}>
+                    <button onClick={() => onConfirm(item, Object.values(selectedToppings), quantity, totalPrice)}>
                         {mode === 'ordering' ? 'Add to Order' : 'Update'}
                     </button>
                     <button onClick={onClose}>Cancel</button>

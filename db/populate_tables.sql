@@ -11,6 +11,7 @@
 \copy daily_summary from 'db/csv/daily_summary.csv' CSV HEADER
 \copy daily_item_sales from 'db/csv/daily_item_sales.csv' CSV HEADER
 \copy daily_ingredient_usage from 'db/csv/daily_ingredient_usage.csv' CSV HEADER
+\copy weather_location from 'db/csv/weather_location.csv' CSV HEADER
 
 SELECT setval('orders_order_id_seq', COALESCE((SELECT MAX(order_id) FROM orders), 1), true);
 SELECT setval('order_item_order_item_id_seq', COALESCE((SELECT MAX(order_item_id) FROM order_item), 1), true);

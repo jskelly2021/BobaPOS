@@ -72,6 +72,9 @@ with open(ORDERS_PATH, mode="w", newline="") as orders_file, \
     ingredient_usage_writer.writerow(["ingredient_id", "usage"])
     item_sales_writer.writerow(["item_id", "sales_count"])
 
+    weather_location_writer = csv.writer(weather_location_file)
+    weather_location_writer.writerow(["country_name", "country_code", "region_name", "region_code", "city_name"])
+
     # Init Daily Tables
     for ingredient in ingredients:
         ingredient_usage_writer.writerow([ingredient, 0.00])

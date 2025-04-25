@@ -24,10 +24,10 @@ function App() {
                 <Route path="/" element={<Redirect />} />
                 <Route path="/login" element={<EmployeeLogin />} />
                 <Route path="/unauthorized" element={<Unauthorized />} />
+                <Route path="/welcome" element={<Welcome />} />
                 
                 {/* routes for both cashiers & managers */}
                 <Route element={<RequireAuth allowedRoles={['CASHIER','MANAGER']} />}>
-                  <Route path="/welcome" element={<Welcome />} />
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/menu/cashier" element={<CashierOrderView />} />
                   <Route path="/menu/customer" element={<CustomerOrderView />} />

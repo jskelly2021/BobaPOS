@@ -8,17 +8,9 @@ const ItemButton = ({ item, onClick }) => {
             />
 
             <div className='ItemDetails'>
-                <p className='ItemName'>
-                    {item.item_name}
-                </p>
-
-                <p className='ItemPrice'>
-                    {item.price}
-                </p>
-
-                <p className='ItemQuantity'>
-                    Quantity: {item.quantity}
-                </p>
+                <p className='ItemName'> {item.item_name} </p>
+                <p className='ItemPrice'> {item.priceWithToppings ? item.priceWithToppings : item.price} </p>
+                <p className='ItemQuantity'>Quantity: {item.quantity} </p>
 
                 <div className='ItemTopping'>
                     <strong>Toppings: </strong>

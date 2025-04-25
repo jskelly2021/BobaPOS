@@ -10,8 +10,10 @@ export const fetchToppings = async () => {
 };
 
 export const updateTopping = async (topping) => {
+    console.log(topping.price);
     const res = await axios.put(`${API_BASE_URL}/toppings/${topping.topping_id}`, {
         topping_name: topping.topping_name,
+        price: topping.price,
         calories: topping.calories
     }, {withCredentials: true});
     return res.data;
@@ -25,6 +27,7 @@ export const createTopping = async (topping) => {
         const { data } = await axios.post(createURL, {
             topping_id: topping.topping_id,
             topping_name: topping.topping_name,
+            price: topping.price,
             calories: topping.calories,
         }, { withCredentials: true });
         return data;
@@ -88,11 +91,11 @@ export const updateDefaultToppingsOnItem = async (item, toppings) => {
 
             if (!isExisting) {
                 if (topping.quantity === 'none') continue;
-                await axios.post(url, body);
+                await axios.post(url, body, { withCredentials: true });
             }
             else {
                 if (currentToppings[topping.topping_id] === topping.quantity) continue;
-                await axios.put(url, body);
+                await axios.put(url, body, { withCredentials: true });
             }
         }
     } catch (e) {

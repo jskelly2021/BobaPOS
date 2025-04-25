@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import CustomizationGrid from './CustomizationGrid';
+import ItemDetails from './ItemDetails';
 import './ToppingsModule.css';
 
 const quantities = ['none', 'light', 'regular', 'heavy'];
-const quantityValues = {
-    none: 0,
-    light: 0.5,
-    regular: 1,
-    heavy: 1.5
-};
 
-const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, onRemove, mode }) => {
+const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm, onClose, onRemove, mode }) => {
+    const [totalCalories, setTotalCalories] = useState();
+    const [totalPrice, setTotalPrice] = useState();
+    const [quantity, setQuantity] = useState(() => {
+        return item.quantity || 1;
+    });
+
     const [selectedToppings, setSelectedToppings] = useState(() => {
         const initial = {};
 
@@ -27,9 +29,21 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, onR
         return initial;
     });
 
-    const handleQuantityChange = (topping, label) => {
-        const value = quantityValues[label];
+    useEffect(() => {
+        let calories = item.calories || 0;
+        let price = parseFloat(item.price) || 0;
 
+        Object.values(selectedToppings).forEach(topping => {
+            if (topping.quantity !== 'none') {
+                calories += (topping.calories || 0);
+                price += (parseFloat(topping.price) || 0);
+            }
+        });
+        setTotalCalories(calories);
+        setTotalPrice(price);
+    }, [item.calories, selectedToppings]);
+
+    const handleQuantityChange = (topping, label) => {
         setSelectedToppings(prev => ({
             ...prev,
             [topping.topping_id]: {
@@ -39,11 +53,6 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, onR
         }));
     };
 
-    const getLabel = (topping, label) => {
-        return selectedToppings[topping.topping_id].quantity === label ? 'active' : '';
-    };
-
-    const [quantity, setQuantity] = useState(1);
     const productQuantityChange = (e) => {
         const value = parseInt(e.target.value, 10);
         if (!isNaN(value) && value >= 0) {
@@ -54,40 +63,29 @@ const ToppingModal = ({ item, toppings, defaultToppings, onConfirm, onClose, onR
     return (
         <div className="ModalOverlay">
             <div className="ModalContent small">
-                <h2>Customize: {item.item_name}</h2>
-                <ul className="ToppingGrid">
-                    {toppings.map((topping) => (
-                        <li key={topping.topping_id} className="ToppingItem">
-                            <div className="ToppingName">{topping.topping_name}</div>
-                            <div className="ButtonGroup">
-                                {quantities.map(label => (
-                                    <button
-                                        key={label}
-                                        className={`quantityBtn ${getLabel(topping, label)}`}
-                                        onClick={() => handleQuantityChange(topping, label)}
-                                    >
-                                        {label}
-                                    </button>
-                                ))}
-                            </div>
-                        </li>
-                    ))}
-                </ul>
- 
-                {mode === 'ordering' && (<div>
-                    <label className='quantityLabel'>Quantity: </label>
-                    <input 
-                        className='quantityInput'
-                        type='number' 
-                        min='1'
-                        value={quantity}
-                        onChange={productQuantityChange}>
-                    </input>
-                </div>)}
+                <div class='Details-Grid'>
+
+                    <ItemDetails
+                        item={item}
+                        ingredients={ingredients}
+                        totalCalories={totalCalories}
+                        totalPrice={totalPrice}
+                        mode={mode}
+                        quantity={quantity}
+                        onQuantityChange={productQuantityChange}
+                    />
+
+                    <CustomizationGrid
+                        toppings={toppings}
+                        selectedToppings={selectedToppings}
+                        quantities={quantities}
+                        onChange={handleQuantityChange}
+                    />
+                </div>
 
                 <div className="ModalActions">
                     {mode === 'editing' && (<button onClick={() => onRemove(item)}>Remove</button>)}
-                    <button onClick={() => onConfirm(item, Object.values(selectedToppings), quantity)}>
+                    <button onClick={() => onConfirm(item, Object.values(selectedToppings), quantity, totalPrice)}>
                         {mode === 'ordering' ? 'Add to Order' : 'Update'}
                     </button>
                     <button onClick={onClose}>Cancel</button>

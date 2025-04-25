@@ -68,6 +68,9 @@ const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm,
                         ingredients={ingredients}
                         totalCalories={totalCalories}
                         totalPrice={totalPrice}
+                        mode={mode}
+                        quantity={quantity}
+                        onQuantityChange={productQuantityChange}
                     />
 
                     <CustomizationGrid
@@ -77,17 +80,6 @@ const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm,
                         onChange={handleQuantityChange}
                     />
                 </div>
-
-                {mode === 'ordering' && (<div>
-                    <label className='quantityLabel'>Quantity: </label>
-                    <input 
-                        className='quantityInput'
-                        type='number' 
-                        min='1'
-                        value={quantity}
-                        onChange={productQuantityChange}>
-                    </input>
-                </div>)}
 
                 <div className="ModalActions">
                     {mode === 'editing' && (<button onClick={() => onRemove(item)}>Remove</button>)}

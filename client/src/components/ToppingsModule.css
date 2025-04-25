@@ -12,7 +12,7 @@
     background: #fff;
     padding: 1.5rem;
     border-radius: 8px;
-    width: 80vw;
+    width: 85vw;
     height: auto;
     max-height: 90vh;
     overflow-y: auto;
@@ -26,8 +26,22 @@
 .ModalOverlay .Details-Grid {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     align-items: start;
 }
+
+/* Item Details */
+.ModalOverlay .ItemDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    gap: 3vh;
+    flex-grow: 1;
+}
+
+.ModalOverlay .ItemDetails .ItemDescription { align-items: start; }
+
+.ModalOverlay .ItemDetails .Pic { align-self: center; }
 
 .ModalOverlay .ItemDetails .ItemImg {
     width: 30vw;
@@ -38,7 +52,6 @@
 .ModalOverlay .HealthInfo {
     display: flex;
     flex-direction: column;
-    margin: 0;
 }
 
 .ModalOverlay .HealthInfo .ItemIngredients,
@@ -57,7 +70,7 @@
 
 /* Toppings Grid */
 .ToppingGrid {
-    flex-grow: 1;
+    flex-grow: 10;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1vw;

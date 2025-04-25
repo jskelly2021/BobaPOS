@@ -30,6 +30,7 @@ function OrderView() {
 
     const handleOrderItemClick = async (item) => {
         setCustomizeMode('editing');
+        await getIngredientsInItem(item);
         setDefaultToppings(item.toppings);
         setSelectedItem(item);
     };

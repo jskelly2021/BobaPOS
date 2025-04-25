@@ -37,6 +37,7 @@ const ToppingList = () => {
         const newTopping = {
             topping_id: id,
             topping_name: '',
+            price: 0.00,
             calories: 0,
         };
         await addTopping(newTopping);

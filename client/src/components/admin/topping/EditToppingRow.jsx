@@ -44,7 +44,7 @@ const EditToppingRow = ({ topping, onEdit, onSave, onCancel, deleteTopping }) =>
                     <div>
                         <input 
                             type='number' 
-                            value={''}
+                            value={topping.price || ''}
                             onChange={(e) => onEdit('price', e.target.value)}
                         />
                     </div>

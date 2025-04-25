@@ -30,10 +30,10 @@ export const getTopping = async (req, res) =>
 //update topping quantity
 export const updateTopping = async (req, res) => {
     const { id } = req.params;
-    const { topping_name, calories } = req.body;
+    const { topping_name, price, calories } = req.body;
     try {
-        const result = await pool.query('UPDATE topping SET topping_name=$1, calories=$2 WHERE topping_id=$3 RETURNING *',
-            [topping_name, calories, id]);
+        const result = await pool.query('UPDATE topping SET topping_name=$1, price=$2, calories=$3 WHERE topping_id=$4 RETURNING *',
+            [topping_name, price, calories, id]);
         res.status(200).json(result.rows);
     }
     catch (err) {
@@ -45,11 +45,11 @@ export const updateTopping = async (req, res) => {
 // Create a new topping
 export const createTopping = async (req, res) => {
     try {
-        const { topping_id, topping_name, calories } = req.body;
+        const { topping_id, topping_name, price, calories } = req.body;
 
         const result = await pool.query(
-            "INSERT INTO topping (topping_id, topping_name, calories) VALUES ($1, $2, $3) RETURNING *",
-            [topping_id, topping_name, calories]
+            "INSERT INTO topping (topping_id, topping_name, price, calories) VALUES ($1, $2, $3, $4) RETURNING *",
+            [topping_id, topping_name, price, calories]
         );
         res.status(201).json(result.rows[0]);
     } catch (err) {

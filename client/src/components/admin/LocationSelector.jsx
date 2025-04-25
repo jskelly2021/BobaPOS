@@ -26,7 +26,7 @@ const LocationSelector = () => {
 
             setCountryCode(countryFound.code);
 
-            await sleep(1000);
+            await sleep(1100);
             const regionData = await findRegions(countryFound.code, regionName);
             const regionFound = regionData.data.find(
                 (c) => c.name.toLowerCase() === regionName.trim().toLowerCase()
@@ -44,9 +44,7 @@ const LocationSelector = () => {
                                                          regionFound.name, 
                                                          regionFound.isoCode,
                                                          cityName);
-            
-            alert(`Location updated`);
-            console.log(locationDetails);
+
 
         }
         catch (e) {
@@ -55,36 +53,38 @@ const LocationSelector = () => {
     };
 
     return (
-        <div>
-            <h1>Set Location for Weather Services</h1>
+        <div className='locationSelector'>
+            <h1 className='title'>Set Location for Weather Services</h1>
 
-            <input
-            type='text'
-            className='countryInput'
-            value={countryName}
-            onChange={(e) => setCountryName(e.target.value)}
-            placeholder='Country Name'
-            />
+            <div className='Inputs'>
+                <input
+                type='text'
+                className='countryInput'
+                value={countryName}
+                onChange={(e) => setCountryName(e.target.value)}
+                placeholder='Country Name'
+                />
 
-            <input
-            type='text'
-            className='regionInput'
-            value={regionName}
-            onChange={(e) => setRegionName(e.target.value)}
-            placeholder='Region Name'
-            />
+                <input
+                type='text'
+                className='regionInput'
+                value={regionName}
+                onChange={(e) => setRegionName(e.target.value)}
+                placeholder='Region Name'
+                />
 
-            <input
-            type='text'
-            className='cityInput'
-            value={cityName}
-            onChange={(e) => setCityName(e.target.value)}
-            placeholder='City Name'
-            />
+                <input
+                type='text'
+                className='cityInput'
+                value={cityName}
+                onChange={(e) => setCityName(e.target.value)}
+                placeholder='City Name'
+                />
 
-            <button className='locationSave' onClick={() => saveCodes()}>
-                Save
-            </button>
+                <button className='locationSave' onClick={() => saveCodes()}>
+                    Save
+                </button>
+            </div>
         </div>
 
     );

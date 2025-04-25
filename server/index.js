@@ -99,6 +99,14 @@ app.use(
     analyticsRouter
     );
 
+// weather is manager-only
+app.use(
+    '/api/weather',
+    ensureLoggedIn,
+    requireRole('MANAGER'),
+    weatherRouter
+    );
+
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

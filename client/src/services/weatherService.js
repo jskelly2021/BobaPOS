@@ -56,7 +56,7 @@ export const updateLocation = async (country_name, country_code, region_name, re
                      region_name: region_name,
                      region_code: region_code,
                      city_name: city_name
-        });
+        }, { withCredentials: true });
         return data;
     } catch (e) {
         throw new Error(`Failed to update location ${e.message}`);

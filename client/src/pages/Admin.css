@@ -128,3 +128,32 @@
     margin-top: 1vh;
     margin-bottom: 1vh;
 }
+
+/* Location */
+.Admin .locationSelector .Inputs {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 80vw;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.locationSelector .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.locationSelector input,
+.locationSelector button {
+    font-size: 15px;
+    border: 2px solid #ccc;
+    border-radius: 1px;
+    height: 30px;
+}
+
+.locationSelector input {
+    width: 100%;
+}

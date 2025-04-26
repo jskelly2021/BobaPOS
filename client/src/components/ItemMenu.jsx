@@ -9,7 +9,7 @@ function ItemMenu({ loadingItem, errorItem, menuItems, onItemButtonClick}) {
             <ul className='MenuItemList'>
                 {menuItems.map((item) => (
                     <li key={item.menuItemId}> 
-                        <ItemButton item={item} onClick={() => onItemButtonClick(item)}/>
+                        {item.active === 1 && (<ItemButton item={item} onClick={() => onItemButtonClick(item)}/>)}
                     </li> 
                 ))}
             </ul>

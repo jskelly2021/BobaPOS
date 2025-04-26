@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { fetchWeather, findCountries, findRegions, updateLocation } from '../../services/weatherService';
+import React, { useState, useEffect } from 'react';
+import { findCountries, findRegions, updateLocation, fetchCountryName, fetchRegionName, fetchCityName } from '../../services/weatherService';
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -11,6 +11,25 @@ const LocationSelector = () => {
     const [regionCode, setRegionCode] = useState('');
 
     const [cityName, setCityName] = useState('');
+
+    useEffect(() => {
+        const preloadLocation = async() => {
+            try {
+                const currentCountry = await fetchCountryName();
+                const currentRegion = await fetchRegionName();
+                const currentCity = await fetchCityName();
+
+                setCountryName(currentCountry || '');
+                setRegionName(currentRegion || '');
+                setCityName(currentCity || '');
+            }
+            catch (e) {
+                throw new Error(`Failed to preload current location ${e.message}`);
+            }
+        };
+
+        preloadLocation();
+    }, []);
 
     const saveCodes = async () => {
         try {
@@ -26,7 +45,7 @@ const LocationSelector = () => {
 
             setCountryCode(countryFound.code);
 
-            await sleep(1100);
+            await sleep(2000);
             const regionData = await findRegions(countryFound.code, regionName);
             const regionFound = regionData.data.find(
                 (c) => c.name.toLowerCase() === regionName.trim().toLowerCase()
@@ -45,6 +64,7 @@ const LocationSelector = () => {
                                                          regionFound.isoCode,
                                                          cityName);
 
+            await sleep(2000);
 
         }
         catch (e) {

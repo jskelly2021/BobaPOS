@@ -14,7 +14,7 @@ import useIngredient from '../hooks/useIngredient';
 
 function OrderView() {
     const nav = useNavigate();
-    const { items, loadingItem, errorItem, updateCategory, getCategory } = useItem("BREWED");
+    const { items, loadingItem, errorItem, updateCategory, getCategory } = useItem("RECOMMENDED");
     const { orderItems, addToOrder, removeFromOrder, updateItemInOrder } = useOrderItem(nav);
     const { toppings, defaultToppings, getDefaultToppings, setDefaultToppings } = useToppings();
     const { ingredients, getIngredientsInItem } = useIngredient()

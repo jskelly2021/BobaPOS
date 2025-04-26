@@ -37,6 +37,7 @@ const ToppingList = () => {
         const newTopping = {
             topping_id: id,
             topping_name: '',
+            price: 0.00,
             calories: 0,
         };
         await addTopping(newTopping);
@@ -53,6 +54,7 @@ const ToppingList = () => {
             <ul className='List ToppingList'>
                 <li className='Labels'>
                     <h3>Name</h3>
+                    <h3>Price</h3>
                     <h3>Calories</h3>
                     <div></div>
                 </li>

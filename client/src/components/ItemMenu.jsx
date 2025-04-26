@@ -8,8 +8,8 @@ function ItemMenu({ loadingItem, errorItem, menuItems, onItemButtonClick}) {
         <div className='ItemMenu'>
             <ul className='MenuItemList'>
                 {menuItems.map((item) => (
-                    <li key={item.item_id}> 
-                        <ItemButton item={item} onClick={() => onItemButtonClick(item)}/>
+                    <li key={item.menuItemId}> 
+                        {item.active === 1 && (<ItemButton item={item} onClick={() => onItemButtonClick(item)}/>)}
                     </li> 
                 ))}
             </ul>

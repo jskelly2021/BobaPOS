@@ -62,3 +62,58 @@ export const updateLocation = async (country_name, country_code, region_name, re
         throw new Error(`Failed to update location ${e.message}`);
     }
 }
+
+export const fetchCountryCode = async () => {
+    const fetchURL = `${API_BASE_URL}/weather/country`;
+
+    try {
+        const { data } = await axios.get(fetchURL, {withCredentials: true});
+        return data[0].country_code;
+    } catch (e) {
+        throw new Error(`Failed to fetch database country code: ${e.message}`);
+    }
+}
+
+export const fetchRegionCode = async () => {
+    const fetchURL = `${API_BASE_URL}/weather/region`;
+
+    try {
+        const { data } = await axios.get(fetchURL, {withCredentials: true});
+        return data[0].region_code;
+    } catch (e) {
+        throw new Error(`Failed to fetch database region code: ${e.message}`);
+    }
+}
+
+export const fetchCityName = async () => {
+    const fetchURL = `${API_BASE_URL}/weather/city`;
+
+    try {
+        const { data } = await axios.get(fetchURL, {withCredentials: true});
+        return data[0].city_name;
+    } catch (e) {
+        throw new Error(`Failed to fetch database city name: ${e.message}`);
+    }
+}
+
+export const fetchRegionName = async () => {
+    const fetchURL = `${API_BASE_URL}/weather/regionName`;
+
+    try {
+        const { data } = await axios.get(fetchURL, {withCredentials: true});
+        return data[0].region_name;
+    } catch (e) {
+        throw new Error(`Failed to fetch database city name: ${e.message}`);
+    }
+}
+
+export const fetchCountryName = async () => {
+    const fetchURL = `${API_BASE_URL}/weather/countryName`;
+
+    try {
+        const { data } = await axios.get(fetchURL, {withCredentials: true});
+        return data[0].country_name;
+    } catch (e) {
+        throw new Error(`Failed to fetch database city name: ${e.message}`);
+    }
+}

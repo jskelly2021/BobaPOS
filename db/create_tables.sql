@@ -28,6 +28,7 @@ CREATE TABLE item (
 CREATE TABLE topping (
     topping_id SERIAL PRIMARY KEY,
     topping_name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
     calories INT NOT NULL
 );
 

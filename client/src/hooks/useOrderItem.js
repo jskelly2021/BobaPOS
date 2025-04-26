@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 import { insertOrders, insertOrdersItems, insertOrdersItemTopping } from '../services/orderService';
 
 // Maintains list of items added to the current order. Stores the order items in session storage for persistence.
-const useOrderItem = (nav) => {
+const useOrderItem = () => {
     const [orderItems, setOrderItems] = useState(() => {
         const storedOrder = sessionStorage.getItem('orderItems');
         return storedOrder ? JSON.parse(storedOrder) : [];
     });
     const [nextOrderItemId, setNextOrderItemId] = useState(1);
+    const [orderItemPrice, setOrderItemPrice] = useState();
 
     useEffect(() => {
         sessionStorage.setItem('orderItems', JSON.stringify(orderItems));
@@ -16,6 +17,7 @@ const useOrderItem = (nav) => {
     const addToOrder = (item) => {
         const uniqueItem = {
             ...item,
+            orderItemPrice: orderItemPrice,
             orderItemId: nextOrderItemId
         }
         setNextOrderItemId(prev => prev + 1);
@@ -35,7 +37,7 @@ const useOrderItem = (nav) => {
     }
 
     const orderPrice = () => {
-        const total = orderItems.reduce((subtotal, item) => subtotal + parseFloat(item.price * item.quantity), 0);
+        const total = orderItems.reduce((subtotal, item) => subtotal + parseFloat(item.priceWithToppings * item.quantity), 0);
         return parseFloat(total).toFixed(2);
     }
 

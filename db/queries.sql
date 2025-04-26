@@ -1,9 +1,9 @@
--- DEMOED 1. Get ingredients in Coffee Milk Tea 
-SELECT item.item_name, ingredient.ingredient_name
-FROM item
-INNER JOIN item_ingredient ON item.item_id = item_ingredient.item_id
-INNER JOIN ingredient ON item_ingredient.ingredient_id = ingredient.ingredient_id
-WHERE item.item_name = 'Coffee Milk Tea';
+-- DEMOED 1. Get ingredients in item
+SELECT i.item_name, g.ingredient_name, ig.quantity
+FROM item i
+INNER JOIN item_ingredient ig ON i.item_id = ig.item_id
+INNER JOIN ingredient g ON ig.ingredient_id = g.ingredient_id
+WHERE i.item_id = $1;
 
 -- 2. Get toppings on Thai Pearl Milk Tea
 SELECT t.topping_id, t.topping_name, it.quantity

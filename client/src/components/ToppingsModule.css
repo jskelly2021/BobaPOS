@@ -12,36 +12,67 @@
     background: #fff;
     padding: 1.5rem;
     border-radius: 8px;
-    width: 75vw;
+    width: 85vw;
     height: auto;
     max-height: 90vh;
     overflow-y: auto;
 }
 
-.ModalTitle {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    text-align: center;
+.ModalOverlay h2 { margin: 0; }
+.ModalOverlay h3 { margin: 0; }
+.ModalOverlay h4 { margin: 0; }
+
+
+.ModalOverlay .ItemDetails .ItemDescription { align-items: start; }
+.ModalOverlay .ItemDetails .Pic { align-self: center; }
+
+.ModalOverlay .ItemDetails .ItemImg {
+    width: 30vw;
+    min-width: 400px;
 }
 
+/* Health Info */
+.ModalOverlay .HealthInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.ModalOverlay .HealthInfo .ItemIngredients,
+.ModalOverlay .HealthInfo .ItemCalories {
+    display: flex;
+    gap: 1vw;
+}
+.ModalOverlay .HealthInfo .IngredientsList {
+    list-style: none;
+    gap: 1vw;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* Toppings Grid */
 .ToppingGrid {
+    flex-grow: 10;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1rem;
+    gap: 1vw;
     padding: 0;
-    margin: 1rem 0;
+    margin: 0;
     list-style: none;
+}
+
+.ToppingGrid .ToppingDetails,
+.ToppingCalories {
+    display: flex;
+    align-items: center;
+    gap: 2vw;
 }
 
 .ToppingItem {
     padding: 0.75rem;
     border-radius: 6px;
     font-size: 0.95rem;
-}
-
-.ToppingName {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
 }
 
 .ButtonGroup {
@@ -93,3 +124,38 @@
 .ModalActions button:hover {
     background: #111;
 }
+
+/* Customer Order View */
+.CustomerOrderView .ModalOverlay .Details-Grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
+}
+.CustomerOrderView .ModalOverlay .ItemDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    gap: 3vh;
+    flex-grow: 1;
+}
+
+
+/* Cashier Order View */
+.CashierOrderView .ModalOverlay .ItemImg { display: none; }
+.CashierOrderView .ModalOverlay .Details-Grid {
+    display: flex;
+    flex-direction: column;
+
+}
+.CashierOrderView .ModalOverlay .ItemDetails {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* Admin */
+.Admin .ModalOverlay .ItemDetails,
+.Admin .ModalOverlay .ToppingPrice,
+.Admin .ModalOverlay .HealthInfo
+{ display: none; }

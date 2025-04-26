@@ -88,11 +88,11 @@ export const updateDefaultToppingsOnItem = async (item, toppings) => {
 
             if (!isExisting) {
                 if (topping.quantity === 'none') continue;
-                await axios.post(url, body);
+                await axios.post(url, body, { withCredentials: true });
             }
             else {
                 if (currentToppings[topping.topping_id] === topping.quantity) continue;
-                await axios.put(url, body);
+                await axios.put(url, body, { withCredentials: true });
             }
         }
     } catch (e) {

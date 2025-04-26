@@ -36,7 +36,8 @@ CREATE TABLE ingredient (
     ingredient_id SERIAL PRIMARY KEY,
     ingredient_name VARCHAR(255) NOT NULL,
     category VARCHAR(255) NOT NULL,
-    quantity DECIMAL(10, 2) NOT NULL
+    quantity DECIMAL(10, 2) NOT NULL,
+    threshold DECIMAL(10, 2) NOT NULL
 );
 
 CREATE TABLE order_item (

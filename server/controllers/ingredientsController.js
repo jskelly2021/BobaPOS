@@ -44,7 +44,7 @@ export const getIngredient = async (req, res) => {
 }
 
 // Update ingredient quantity
-export const updateIngredientQuantity = async (req, res) => {
+export const updateIngredient = async (req, res) => {
     const { id } = req.params;
     const { quantity, threshold } = req.body;
     try {

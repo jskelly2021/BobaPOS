@@ -45,6 +45,14 @@ const useIngredient = () => {
         }
     }
 
+    const updateIngredient = async (ingredient) => {
+        try {
+            
+        } catch (e) {
+            console.log('Error updating ingredient', e);
+        }
+    }
+
     const getIngredientsInItem = async (item) => {
         try {
             setIngredients(await fetchIngredientsInItem(item));

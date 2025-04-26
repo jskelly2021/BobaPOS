@@ -15,11 +15,16 @@ export const fetchAllIngredients = async () => {
 }
 
 // Updates the quantity of specific ingredient
-export const updateIngredientQuantity = async (ingredientId, newQuantity) => {
-    const updateURL = `${API_BASE_URL}/ingredients/${ingredientId}`;
+export const updateIngredient = async (ingredient) => {
+    const updateURL = `${API_BASE_URL}/ingredients/${ingredient.ingredient_id}`;
 
     try {
-        const { data } = await axios.put(updateURL, { quantity: newQuantity }, {withCredentials: true});
+        const { data } = await axios.put(updateURL, {
+                name: ingredient.ingredient_name,
+                quantity: ingredient.quantity,
+                threshold: ingredient.threshold
+            },
+            {withCredentials: true});
         return data;
     } catch (e) {
         throw new Error(`Failed to upate ingredient ${e.message}`);

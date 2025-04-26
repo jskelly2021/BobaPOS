@@ -46,14 +46,15 @@ export const getIngredient = async (req, res) => {
 // Update ingredient quantity
 export const updateIngredientQuantity = async (req, res) => {
     const { id } = req.params;
-    const { quantity } = req.body;
+    const { quantity, threshold } = req.body;
     try {
-        const result = await pool.query('UPDATE ingredient SET quantity=$1 WHERE ingredient_id=$2 RETURNING *', [quantity, id]);
+        const result = await pool.query('UPDATE ingredient SET quantity=$1, threshold=$2 WHERE ingredient_id=$3 RETURNING *',
+            [quantity, threshold, id]);
         res.status(200).json(result.rows);
         console.log(`Updating ingredient ${id}: New Quantity = ${quantity}`);
     }
     catch (err) {
-        console.error('Error updateIngredientQuantity', err);
+        console.error('Backend Error updating ingredient quantity', err);
         res.status(500).json("Server Error");
     }
 }

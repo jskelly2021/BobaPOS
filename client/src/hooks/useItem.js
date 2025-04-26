@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import { fetchItems, updateItem, createItem, deleteItem, getNextItemId } from '../services/itemService';
+import { fetchWeather, fetchCountryCode, fetchRegionCode, fetchCityName } from '../services/weatherService';
+
 
 // Returns a list of items
 const useItem = (defaultCategory = null) => {
     const [items, setItems] = useState([]);
     const [category, setCategory] = useState(defaultCategory);
+    const [displayedCategory, setDisplayedCategory] = useState(defaultCategory);
     const [loadingItem, setLoading] = useState(true);
     const [errorItem, setError] = useState(null);
 
@@ -14,7 +17,21 @@ const useItem = (defaultCategory = null) => {
             setError(null);
 
             try {
-                const data = await fetchItems(category);
+                let actualCategory = category;
+                
+                if (category === "RECOMMENDED") {
+                    const country = await fetchCountryCode();
+                    const region = await fetchRegionCode();
+                    const city = await fetchCityName();       
+                    const res = await fetchWeather(city, region, country);
+                    actualCategory = res.main.temp > 70 ? "FRUIT" : "BREWED";
+
+                    setDisplayedCategory("RECOMMENDED")
+                }
+                else {
+                    setDisplayedCategory(category);
+                }
+                const data = await fetchItems(actualCategory);
                 setItems(data);
             } catch (e) {
                 setError(e);
@@ -75,7 +92,9 @@ const useItem = (defaultCategory = null) => {
 
     const getCategory = () => 
     {
-        switch (category) {
+        switch (displayedCategory) {
+            case "RECOMMENDED":
+                return "Recommended Drinks for Today"; 
             case "BREWED":
                 return "Brewed Tea";
             case "MILK":

@@ -1,12 +1,13 @@
+import StatusLabel from './StatusLabel';
 
-const EditIngredientRow = ({ ingredient, onSave, onCancel }) => {
+const EditIngredientRow = ({ ingredient, onEdit, onSave, onCancel }) => {
     return (
         <>
         <div>
             <input 
                 type='text'
                 value={ingredient.ingredient_name || ''}
-                onChange={(e) => handleOnEditChange('ingredient_name', e.target.value)}
+                onChange={(e) => onEdit('ingredient_name', e.target.value)}
             />
         </div>
 
@@ -16,9 +17,11 @@ const EditIngredientRow = ({ ingredient, onSave, onCancel }) => {
             <input
                 type='number'
                 value={ingredient.threshold || ''}
-                onChange={(e) => handleOnEditChange('threshold', e.target.value)}
+                onChange={(e) => onEdit('threshold', e.target.value)}
             />
         </div>
+
+        <div></div>
 
         <StatusLabel ingredient={ingredient} />
 

@@ -73,7 +73,7 @@ const useIngredient = () => {
         }
     } 
 
-    return { ingredients, loadingIngredient, errorIngredient, editIngredient, getIngredientsInItem };
+    return { ingredients, loadingIngredient, errorIngredient, editIngredient, orderIngredient, getIngredientsInItem };
 }
 
 export default useIngredient;

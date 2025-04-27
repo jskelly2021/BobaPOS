@@ -4,20 +4,12 @@ import DefaultIngredientRow from './DefaultIngredientRow';
 import EditIngredientRow from './EditIngredientRow';
 
 const IngredientList = () => {
-    const { ingredients, loadingIngredient, errorIngredient, editIngredient } = useIngredient();
+    const { ingredients, loadingIngredient, errorIngredient, editIngredient, orderIngredient } = useIngredient();
     const [editingIngredientId, setEditingIngredientId] = useState(null);
     const [editedIngredient, setEditedIngredient] = useState({});
-    const [orderAmounts, setOrderAmounts] = useState({});
 
     if (loadingIngredient) return <div>Loading ingredients...</div>;
     if (errorIngredient) return <div>Error fetching ingredients: {errorIngredient.message}</div>;
-
-    const handleOnInputChange = (ingredient, value) => {
-        setOrderAmounts(prevAmounts => ({
-            ...prevAmounts,
-            [ingredient.ingredient_id]: value
-        }))
-    }
 
     const handleEditClick = (ingredient) => {
         setEditingIngredientId(ingredient.ingredient_id);
@@ -29,19 +21,6 @@ const IngredientList = () => {
             ...editedIngredient,
             [field]: value
         })
-    }
-
-    const handleOrderBtnClick = async (ingredient) => {
-        const id = ingredient.ingredient_id;
-        const quantityToAdd = Number(orderAmounts[id]) || 0;
-
-        if (quantityToAdd <= 0) return;
-
-        await editIngredient(ingredient, quantityToAdd);
-        setOrderAmounts(prevAmounts => ({
-            ...prevAmounts,
-            [id]: ''
-        }))
     }
 
     const handleSaveClick = async () => {
@@ -71,13 +50,16 @@ const IngredientList = () => {
                     <li key={ingredient.ingredient_id}>
                         {editingIngredientId === ingredient.ingredient_id ? (
                             <EditIngredientRow
-                                ingredient={ingredient}
+                                ingredient={editedIngredient}
+                                onEdit={handleOnEditChange}
                                 onSave={handleSaveClick}
                                 onCancel={handleCancelClick}
                             />
                         ) : (
                             <DefaultIngredientRow
                                 ingredient={ingredient}
+                                onEdit={handleEditClick}
+                                orderIngredient={orderIngredient}
                             />
                         )}
                     </li> 

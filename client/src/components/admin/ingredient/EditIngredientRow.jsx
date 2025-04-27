@@ -11,7 +11,13 @@ const EditIngredientRow = ({ ingredient, onEdit, onSave, onCancel }) => {
             />
         </div>
 
-        <p>{ingredient.quantity}</p>
+        <div>
+            <input
+                type='number'
+                value={ingredient.quantity || ''}
+                onChange={(e) => onEdit('quantity', e.target.value)}
+            />
+        </div>
 
         <div>
             <input

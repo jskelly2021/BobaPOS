@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchAllIngredients, updateIngredientQuantity, fetchIngredientsInItem } from '../services/ingredientService';
+import { fetchAllIngredients, updateIngredient, fetchIngredientsInItem } from '../services/ingredientService';
 
 // Returns a list of all ingredients
 const useIngredient = () => {
@@ -25,31 +25,43 @@ const useIngredient = () => {
         loadIngredients();
     }, []);
 
-    const updateQuantity = async (ingredientId, quantityToAdd) => {
+    const editIngredient = async (ingredient) => {
         try {
-            const ingredient = ingredients.find(i => i.ingredient_id === ingredientId);
-            if (!ingredient)
-                return;
-
-            const newQuantity = Number(ingredient.quantity) + quantityToAdd;
-
-            await updateIngredientQuantity(ingredientId, newQuantity);
+            await updateIngredient(ingredient);
             setIngredients((prevIngredients) =>
                 prevIngredients.map(i =>
-                    i.ingredient_id === ingredientId ? { ...i, quantity: newQuantity } : i
+                    i.ingredient_id === ingredientId ? {
+                        ...i,
+                        ingredient_name: ingredient.ingredient_name,
+                        quantity: newQuantity,
+                        threshold: ingredient.threshold
+                    } : i
                 )
             );
-            console.log(`Updated ingredient ${ingredientId}: New quantity = ${newQuantity}`);
+            console.log(`Updated ingredient ${ingredientId}`);
         } catch (e) {
             console.error('Error updating ingredient quantity: ', e);
         }
     }
 
-    const updateIngredient = async (ingredient) => {
+    const orderIngredient = async (ingredient, quantityToAdd) => {
         try {
-            
+            const newQuantity = Number(ingredient.quantity) + quantityToAdd;
+
+            await updateIngredient(ingredient);
+            setIngredients((prevIngredients) =>
+                prevIngredients.map(i =>
+                    i.ingredient_id === ingredientId ? {
+                        ...i,
+                        ingredient_name: ingredient.ingredient_name,
+                        quantity: newQuantity,
+                        threshold: ingredient.threshold
+                    } : i
+                )
+            );
+            console.log(`Updated ingredient ${ingredientId}`);
         } catch (e) {
-            console.log('Error updating ingredient', e);
+            console.error('Error updating ingredient quantity: ', e);
         }
     }
 
@@ -61,7 +73,7 @@ const useIngredient = () => {
         }
     } 
 
-    return { ingredients, loadingIngredient, errorIngredient, updateQuantity, getIngredientsInItem };
+    return { ingredients, loadingIngredient, errorIngredient, editIngredient, getIngredientsInItem };
 }
 
 export default useIngredient;

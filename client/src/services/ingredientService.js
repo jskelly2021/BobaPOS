@@ -20,7 +20,7 @@ export const updateIngredient = async (ingredient) => {
 
     try {
         const { data } = await axios.put(updateURL, {
-                name: ingredient.ingredient_name,
+                ingredient_name: ingredient.ingredient_name,
                 quantity: ingredient.quantity,
                 threshold: ingredient.threshold
             },

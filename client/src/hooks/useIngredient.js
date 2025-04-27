@@ -30,15 +30,15 @@ const useIngredient = () => {
             await updateIngredient(ingredient);
             setIngredients((prevIngredients) =>
                 prevIngredients.map(i =>
-                    i.ingredient_id === ingredientId ? {
+                    i.ingredient_id === ingredient.ingredient_id ? {
                         ...i,
                         ingredient_name: ingredient.ingredient_name,
-                        quantity: newQuantity,
+                        quantity: ingredient.quantity,
                         threshold: ingredient.threshold
                     } : i
                 )
             );
-            console.log(`Updated ingredient ${ingredientId}`);
+            console.log(`Updated ingredient ${ingredient.ingredient_id}`);
         } catch (e) {
             console.error('Error updating ingredient quantity: ', e);
         }
@@ -51,7 +51,7 @@ const useIngredient = () => {
             await updateIngredient(ingredient);
             setIngredients((prevIngredients) =>
                 prevIngredients.map(i =>
-                    i.ingredient_id === ingredientId ? {
+                    i.ingredient_id === ingredient.ingredient_id ? {
                         ...i,
                         ingredient_name: ingredient.ingredient_name,
                         quantity: newQuantity,
@@ -59,7 +59,7 @@ const useIngredient = () => {
                     } : i
                 )
             );
-            console.log(`Updated ingredient ${ingredientId}`);
+            console.log(`Updated ingredient ${ingredient.ingredient_id}`);
         } catch (e) {
             console.error('Error updating ingredient quantity: ', e);
         }

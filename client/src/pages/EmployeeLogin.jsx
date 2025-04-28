@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import './EmployeeLogin.css'
@@ -30,7 +30,7 @@ function EmployeeLogin() {
             const data = await response.json();
             // after login, fetch /auth/user
             const userData = await fetch(`${API_BASE_URL}/auth/user`, { credentials: 'include' })
-                            .then(r => r.json());
+                .then(r => r.json());
             setUser(userData);
 
             if (response.ok) {
@@ -51,42 +51,46 @@ function EmployeeLogin() {
     }
 
     return (
-        <div>
-            <button className='UserModeBtn' onClick={() => handleToggleMode()}>
-                Toggle User Mode
-            </button>
-
-            <h1>Employee Login</h1>
-
-            {error && <div style={{ color: 'red' }}>{error}</div>}
-
-            <form onSubmit={handleLogin}>
-                <div>
-                    <label htmlFor="employeeName">Employee Name:</label>
-                    <input
-                        id="employeeName"
-                        type="text"
-                        value={employeeName}
-                        onChange={(e) => setEmployeeName(e.target.value)}
-                        required
-                    />
+        <div className='EmployeeLoginModule'>
+            <div className='EmployeeLoginWrapper'>
+                <div className='ButtonContainer'>
+                    <button className='UserModeBtn' onClick={() => handleToggleMode()}>
+                        Toggle User Mode
+                    </button>
                 </div>
 
-                <div>
-                    <label htmlFor="password">Password:</label>
-                    <input
-                        id="password"
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
+                <h1>Employee Login</h1>
 
-                <button className='LoginBtn' type="submit">
-                    Login
-                </button>
-            </form>
+                {error && <div style={{ color: 'red' }}>{error}</div>}
+
+                <form onSubmit={handleLogin}>
+                    <div>
+                        <input
+                            id="employeeName"
+                            type="text"
+                            placeholder="Employee Name"
+                            value={employeeName}
+                            onChange={(e) => setEmployeeName(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <input
+                            id="password"
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                    <button className='LoginBtn' type="submit">
+                        Login
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }

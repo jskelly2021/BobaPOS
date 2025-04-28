@@ -1,25 +1,25 @@
-ingredient_id,ingredient_name,category,quantity
-1,Black Tea,TEA,10
-2,Green Tea,TEA,10
-3,Oolong Tea,TEA,10
-4,Matcha,TEA,10
-5,Thai Tea,TEA,10
-6,Water,RAW,100
-7,Coffee,RAW,10
-8,Sugar,RAW,50
-9,Cocoa,RAW,10
-10,Milk,RAW,40
-11,Honey,RAW,5
-12,Tapioca,RAW,10
-13,Taro,RAW,10
-14,Ginger,RAW,10
-15,Cheese Foam,RAW,50
-16,Red Bean,RAW,10
-17,Aloe Vera,FRUIT,30
-18,Kiwi,FRUIT,30
-19,Strawberry,FRUIT,30
-20,Peach,FRUIT,30
-21,Wintermelon,FRUIT,40
-22,Aiyu,FRUIT,40
-23,Lychee,FRUIT,40
-24,Lemon,FRUIT,30
+ingredient_id,ingredient_name,category,quantity,threshold
+1,Black Tea,TEA,10,3
+2,Green Tea,TEA,10,3
+3,Oolong Tea,TEA,10,3
+4,Matcha,TEA,10,3
+5,Thai Tea,TEA,10,3
+6,Water,RAW,100,30
+7,Coffee,RAW,10,5
+8,Sugar,RAW,50,20
+9,Cocoa,RAW,10,5
+10,Milk,RAW,40,15
+11,Honey,RAW,5,5
+12,Tapioca,RAW,10,3
+13,Taro,RAW,10,3
+14,Ginger,RAW,10,3
+15,Cheese Foam,RAW,30,10
+16,Red Bean,RAW,10,5
+17,Aloe Vera,FRUIT,30,5
+18,Kiwi,FRUIT,30,5
+19,Strawberry,FRUIT,30,5
+20,Peach,FRUIT,30,5
+21,Wintermelon,FRUIT,40,5
+22,Aiyu,FRUIT,40,5
+23,Lychee,FRUIT,40,5
+24,Lemon,FRUIT,30,5

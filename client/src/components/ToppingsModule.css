@@ -157,5 +157,6 @@
 /* Admin */
 .Admin .ModalOverlay .ItemDetails,
 .Admin .ModalOverlay .ToppingPrice,
+.Admin .ModalOverlay .ToppingCalories,
 .Admin .ModalOverlay .HealthInfo
 { display: none; }

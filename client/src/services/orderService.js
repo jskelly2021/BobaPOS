@@ -21,7 +21,6 @@ export const insertOrders = async (price, order_date, cashier_id, payment_method
 // Inserts into the orders items table
 export const insertOrdersItems = async (order_id, item_id, quantity) => {
     const updateURL = `${API_BASE_URL}/orders/item`;
-
     try {
         const { data } = await axios.post(updateURL, {
             order_id,

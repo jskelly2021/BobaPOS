@@ -5,7 +5,7 @@ const { getAllIngredients, getIngredient, updateIngredient, getIngredientsInItem
 
 router.get('/', getAllIngredients);
 router.get('/next-id', getNextIngredientId);
-router.get('/:id', getIngredient);
+router.get('id/:id', getIngredient);
 router.put('/:id', updateIngredient);
 router.get('/item/:id', getIngredientsInItem);
 router.delete('/:id', deleteIngredient);

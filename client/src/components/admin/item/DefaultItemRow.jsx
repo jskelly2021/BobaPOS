@@ -1,5 +1,5 @@
 
-const DefaultItemRow = ({ item, onEdit, onOpenToppings }) => {
+const DefaultItemRow = ({ item, onEdit, onOpenToppings, onOpenIngredients }) => {
     return (
         <>
             <p>{item.item_name}</p>
@@ -11,6 +11,7 @@ const DefaultItemRow = ({ item, onEdit, onOpenToppings }) => {
             <div className='DefaultBtns'>
                 <button className='EditBtn' onClick={() => onEdit(item)}>Edit</button>
                 <button onClick={() => onOpenToppings(item)}>Toppings</button>
+                <button onClick={() => onOpenIngredients(item)}>Ingredients</button>
             </div>
         </>
     )

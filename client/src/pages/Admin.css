@@ -101,27 +101,21 @@
     gap: 1vw;
 }
 
-.Admin .IngredientList .Threshold {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 2vw;
-}
 
 .Admin .IngredientList .StatusLabel {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    justify-self: center;
 
-    margin-left: 8vw;
-    margin-right: 8vw;
-    background-color: green;
     border-radius: 10px;
     min-width: 50px;
     height: 5vh;
+    width: 8vw;
 }
+
+.Admin .IngredientList .GoodStatus { background-color: green; }
+.Admin .IngredientList .LowStatus { background-color: red; }
 
 /* Topping List */
 .Admin .ToppingList Input {

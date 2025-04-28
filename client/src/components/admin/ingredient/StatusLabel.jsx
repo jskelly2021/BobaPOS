@@ -7,8 +7,8 @@ const StatusLabel = ({ ingredient }) => {
                     <p>Good</p>
                 </div>
             ) : (
-                <div className='StatusLabel BadStatus'>
-                    <p>Insufficient</p>
+                <div className='StatusLabel LowStatus'>
+                    <p>Low</p>
                 </div>
             )}
         </>

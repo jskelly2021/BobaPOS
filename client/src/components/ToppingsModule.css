@@ -120,6 +120,8 @@
     cursor: pointer;
     transition: background 0.2s ease;
 }
+.ModalActions .OutOfStockBtn { background-color: #7e7a7a; }
+
 
 .ModalActions button:hover {
     background: #111;

@@ -96,6 +96,7 @@
     font-size: 1.8vh;
     padding: 0.5vh 1vw;
     border-radius: 1vh;
+    transition: background-color 0.3s;
 }
 
 .LoginBtn:hover {

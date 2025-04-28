@@ -31,6 +31,37 @@ export const updateIngredient = async (ingredient) => {
     }
 }
 
+
+// Create a new ingredient
+export const createIngredient = async (ingredient) => {
+    const createURL = `${API_BASE_URL}/ingredients`;
+
+    try {
+        const { data } = await axios.post(createURL, {
+            ingredient_id: ingredient.ingredient_id,
+            ingredient_name: ingredient.ingredient_name,
+            category: ingredient.category,
+            quantity: ingredient.quantity,
+            threshold: ingredient.threshold
+        }, { withCredentials: true });
+        return data;
+    } catch (e) {
+        throw new Error(`Failed to create ingredient ${e.message}`);
+    }
+}
+
+// Delete an ingredient
+export const deleteIngredient = async (ingredient) => {
+    const deleteURL = `${API_BASE_URL}/ingredients/${ingredient.ingredient_id}`;
+
+    try {
+        const { data } = await axios.delete(deleteURL, { withCredentials: true });
+        return data;
+    } catch (e) {
+        throw new Error(`Failed to delete ingredient ${e.message}`);
+    }
+}
+
 // Returns all ingredients in a given item
 export const fetchIngredientsInItem = async (item) => {
     const fetchURL = `${API_BASE_URL}/ingredients/item/${item.item_id}`;
@@ -40,5 +71,16 @@ export const fetchIngredientsInItem = async (item) => {
         return data;
     } catch (e) {
         throw new Error(`Failed to fetch ingredients: ${e.message}`);
+    }
+}
+
+// Retrieves the next available ingredient id
+export const getNextIngredientId = async () => {
+    const url = `${API_BASE_URL}/ingredients/next-id`;
+    try {
+        const { data } = await axios.get(url, { withCredentials: true });
+        return data;
+    } catch (e) {
+        throw new Error(`Failed to retrieve next ingredient id: ${e.message}`);
     }
 }

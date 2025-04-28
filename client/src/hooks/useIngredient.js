@@ -98,8 +98,17 @@ const useIngredient = () => {
         }
     }
 
+    const nextId = async () => {
+        try {
+            const nextId = await getNextIngredientId();
+            return nextId
+        } catch (e) {
+            console.error('Error retrieving next Ingredient id: ', e);
+        }
+    }
+
     return { ingredients, loadingIngredient, errorIngredient,
-        addIngredient, removeIngredient, editIngredient, orderIngredient, getIngredientsInItem };
+        addIngredient, removeIngredient, editIngredient, orderIngredient, getIngredientsInItem, nextId };
 }
 
 export default useIngredient;

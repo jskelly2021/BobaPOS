@@ -20,8 +20,11 @@ const IngredientModal = ({ item, ingredients, itemIngredients, onConfirm, onClos
         return initial;
     });
 
-
     const handleQuantityChange = (id, newQuantity) => {
+        if (newQuantity < 0) {
+            newQuantity = 0;
+        }
+
         setIngredientQuantities(prev => ({
             ...prev,
             [id]: {
@@ -42,6 +45,7 @@ const IngredientModal = ({ item, ingredients, itemIngredients, onConfirm, onClos
                                 <input
                                     type='number'
                                     value={ingredient.quantity || 0.00}
+                                    min={0}
                                     onChange={(e) => handleQuantityChange(ingredient.ingredient_id, e.target.value)}
                                 />
                             </div>
@@ -50,7 +54,7 @@ const IngredientModal = ({ item, ingredients, itemIngredients, onConfirm, onClos
                 </ul>
 
                 <div className="ModalActions">
-                    <button onClick={() => onConfirm(item, Object.value(ingredientQuantities))}>
+                    <button onClick={() => onConfirm(item, Object.values(ingredientQuantities))}>
                         Update
                     </button>
                     <button onClick={() => onClose()}>Cancel</button>

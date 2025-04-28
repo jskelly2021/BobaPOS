@@ -62,7 +62,6 @@ export const insertIngredientInItem = async (req, res) => {
 export const getIngredient = async (req, res) => {
     const { id } = req.params;
     try {
-        console.log("In Get??!");
         const result = await pool.query('SELECT * FROM ingredient WHERE ingredient_id=$1', [id]);
         res.status(200).json(result.rows);
     }

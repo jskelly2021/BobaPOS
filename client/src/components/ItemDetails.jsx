@@ -22,7 +22,7 @@ const ItemDetails = ({ item, ingredients, totalCalories, totalPrice, mode, quant
                     <ul className='IngredientsList'>
                         {ingredients.map((ingredient) => (
                             <li key={ingredient.ingredient_id}> 
-                                {ingredient.ingredient_name}
+                                {ingredient.quantity > 0 && ingredient.ingredient_name}
                             </li> 
                         ))}
                     </ul>

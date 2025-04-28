@@ -10,6 +10,7 @@ const useItem = (defaultCategory = null) => {
     const [displayedCategory, setDisplayedCategory] = useState(defaultCategory);
     const [loadingItem, setLoading] = useState(true);
     const [errorItem, setError] = useState(null);
+    const [weather, setWeather] = useState(null);
 
     useEffect(() => {
         const loadItems = async () => {
@@ -24,6 +25,7 @@ const useItem = (defaultCategory = null) => {
                     const region = await fetchRegionCode();
                     const city = await fetchCityName();
                     const res = await fetchWeather(city, region, country);
+                    setWeather(res);
                     actualCategory = res.main.temp > 70 ? "FRUIT" : "BREWED";
 
                     setDisplayedCategory("RECOMMENDED")
@@ -101,17 +103,20 @@ const useItem = (defaultCategory = null) => {
     const getCategory = () => {
         switch (displayedCategory) {
             case "RECOMMENDED":
-                return "Recommended Drinks for Today";
+                return {title: "Recommended Drinks for Today", 
+                        sub: weather ?
+                        `Today's weather is ${weather.weather[0].description} with a temperature of ${weather.main.temp} degrees`
+                        : `Loading weather info`};
             case "BREWED":
-                return "Brewed Tea";
+                return {title: "Brewed Tea"};
             case "MILK":
-                return "Milk Tea";
+                return {title: "Milk Tea"};
             case "FRUIT":
-                return "Fruit Tea";
+                return {title: "Fruit Tea"};
             case "CREAMA":
-                return "Creama";
+                return {title: "Creama"};
             case "ALL":
-                return "All Drinks";
+                return {title: "All Drinks"};
             default:
                 break;
         }

@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
-import { fetchAllIngredients, updateIngredient, fetchIngredientsInItem } from '../services/ingredientService';
+import { fetchAllIngredients, updateIngredient, 
+    fetchIngredientsInItem, createIngredient, deleteIngredient, getNextIngredientId, updateIngredientsInItem } from '../services/ingredientService';
 
 // Returns a list of all ingredients
 const useIngredient = () => {
     const [ingredients, setIngredients] = useState([]);
+    const [itemIngredients, setItemIngredients] = useState([]);
     const [loadingIngredient, setLoading] = useState(true);
     const [errorIngredient, setError] = useState(null);
 
@@ -44,6 +46,26 @@ const useIngredient = () => {
         }
     }
 
+    const removeIngredient = async (ingredient) => {
+        try {
+            await deleteIngredient(ingredient);
+            setIngredients(prevIngredients => prevIngredients.filter(i => i.ingredient_id !== ingredient.ingredient_id));
+            console.log(`Deleted ingredient ${ingredient.ingredient_name}`);
+        } catch (e) {
+            console.error('Error deleting ingredient: ', e);
+        }
+    }
+
+    const addIngredient = async (ingredient) => {
+        try {
+            const newIngredient = await createIngredient(ingredient);
+            setIngredients(prevIngredients => [...prevIngredients, newIngredient]);
+            console.log(`Created ingredient ${newIngredient.ingredient_id}`);
+        } catch (e) {
+            console.error('Error creating ingredient: ', e);
+        }
+    }
+
     const orderIngredient = async (ingredient, quantityToAdd) => {
         try {
             const newQuantity = Number(ingredient.quantity) + quantityToAdd;
@@ -72,14 +94,31 @@ const useIngredient = () => {
 
     const getIngredientsInItem = async (item) => {
         try {
-            setIngredients(await fetchIngredientsInItem(item));
+            setItemIngredients(await fetchIngredientsInItem(item));
         } catch (e) {
             console.error('Error getting ingredients on item', e);
         }
     }
 
-    return { ingredients, loadingIngredient, errorIngredient,
-        editIngredient, orderIngredient, getIngredientsInItem };
+    const updateItemIngredientQuantities = async (item, ingredientQuantities) => {
+        try {
+            await updateIngredientsInItem(item, ingredientQuantities);
+        } catch (e) {
+            console.error('Error updating the ingredient quantities on item');
+        }
+    }
+
+    const nextId = async () => {
+        try {
+            const nextId = await getNextIngredientId();
+            return nextId
+        } catch (e) {
+            console.error('Error retrieving next Ingredient id: ', e);
+        }
+    }
+
+    return { ingredients, itemIngredients, loadingIngredient, errorIngredient, addIngredient, removeIngredient,
+        editIngredient, orderIngredient, getIngredientsInItem, updateItemIngredientQuantities, nextId };
 }
 
 export default useIngredient;

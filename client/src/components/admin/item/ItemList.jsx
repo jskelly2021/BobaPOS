@@ -145,9 +145,9 @@ const ItemList = () => {
             {selectedItem && showIngredients && (
                 <IngredientModal
                     item={selectedItem}
-                    ingredients={[]}
+                    ingredients={ingredients}
                     itemIngredients={itemIngredients}
-                    onConfirm={handleUpdateDefaultToppings}
+                    onConfirm={handleUpdateItemIngredients}
                     onClose={handleCancelIngredients}
                 />
             )}

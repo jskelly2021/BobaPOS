@@ -37,10 +37,10 @@
     border-color: var(--text-color);
     border-style: solid;
     border-radius: 10px;
-    background-color: var(--bg-color);
+    background-color: var(--btn-bg-color);
+    color:var(--btn-text-color);
     width: 20vw;
     height: 5vh;
-    color: ghostwhite;
 }
 
 .CashierOrderView .MenuItemList .ItemButton .ItemDetails .ItemQuantity,

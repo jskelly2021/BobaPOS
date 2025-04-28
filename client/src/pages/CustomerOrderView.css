@@ -79,6 +79,8 @@
     margin: 0;
     gap: 1vw;
     width: 75vw;
+    background-color: ghostwhite;
+    
 }
 
 
@@ -88,10 +90,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: var(--bg-color);
 
     border: solid green;
     border-radius: 10px;
-    background-color: ghostwhite;
 
     width: 23.5vw;
     min-width: 200px;
@@ -104,7 +106,7 @@
 }
 
 .CustomerOrderView .MenuItemList .ItemButton:hover {
-    background-color: white;
+    background-color: var(--btn-bg-color);
 }
 
 .CustomerOrderView .MenuItemList .ItemImg {

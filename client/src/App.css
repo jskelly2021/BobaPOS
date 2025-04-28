@@ -14,10 +14,10 @@ h1 {
 /*–– define your default color palette ––*/
 :root {
     --bg-color:       ghostwhite;
-    --text-color:     #222222;
+    --text-color:     #000000;
     --link-color:     #0066cc;
     --btn-bg-color:   #0066cc;
-    --btn-text-color: #ffffff;
+    --btn-text-color: #000000;
   }
   
   /*–– overrides when high-contrast is active ––*/

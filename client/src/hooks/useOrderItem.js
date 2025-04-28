@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { insertOrders, insertOrdersItems, insertOrdersItemTopping } from '../services/orderService';
+import { AuthContext } from '../context/AuthContext';
 
 // Maintains list of items added to the current order. Stores the order items in session storage for persistence.
 const useOrderItem = () => {
@@ -9,6 +10,8 @@ const useOrderItem = () => {
     });
     const [nextOrderItemId, setNextOrderItemId] = useState(1);
     const [orderItemPrice, setOrderItemPrice] = useState();
+    const {user} = useContext(AuthContext);
+    const userID = user ? user.employee_id : 1;
 
     useEffect(() => {
         sessionStorage.setItem('orderItems', JSON.stringify(orderItems));
@@ -42,7 +45,7 @@ const useOrderItem = () => {
     }
 
     const placeOrder = async (price, paymentMethod, tip) => {
-        const order_id = await insertOrders(price, new Date().toISOString(), 1, paymentMethod, tip);
+        const order_id = await insertOrders(price, new Date().toISOString(), userID, paymentMethod, tip);
 
         for (const item of orderItems) {
             const orderItemId = await insertOrdersItems(order_id, item.item_id, item.quantity);

@@ -86,10 +86,9 @@ export const getNextIngredientId = async () => {
 }
 
 // Updates the ingredients on an item
-export const updateIngredientInItem = async (item, ingredients) => {
+export const updateIngredientsInItem = async (item, ingredients) => {
     const url = `${API_BASE_URL}/ingredients/item/${item.item_id}`;
     try {
-
         const currentIngredients = new Map(
             (await fetchIngredientsInItem(item)).map(i => [i.ingredient_id, i.quantity])
         );

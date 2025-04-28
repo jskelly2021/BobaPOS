@@ -30,6 +30,34 @@ export const getIngredientsInItem = async (req, res) => {
     }
 }
 
+export const updateIngredientInItem = async (req, res) => {
+    const { id } = req.params;
+    const { ingredient_id, quantity } = req.body;
+    try {
+        const result = await pool.query(`UPDATE item_ingredient SET quantity = $1 WHERE item_id = $2 AND ingredient_id = $3`,
+            [quantity, id, ingredient_id]
+        );
+        res.status(200).json(result.rows);
+    } catch (err) {
+        console.error("Error updating the ingredients in an item", err);
+        res.status(500).json("Server Error");
+    }
+}
+
+export const insertIngredientInItem = async (req, res) => {
+    const { id } = req.params;
+    const { ingredient_id, quantity } = req.body;
+    try {
+        const result = await pool.query(`INSERT INTO item_ingredient (item_id, ingredient_id, quantity) VALUES ($1, $2, $3)`,
+            [id, ingredient_id, quantity]
+        );
+        res.status(200).json(result.rows);
+    } catch (err) {
+        console.error("Error inserting an ingredient in an item", err);
+        res.status(500).json("Server Error");
+    }
+}
+
 // Get ingredient based on ID
 export const getIngredient = async (req, res) => {
     const { id } = req.params;

@@ -1,25 +1,20 @@
 .CustomerOrderView {
-    background-color: white;
-
+    background-color: var(--bg-color);
 }
 
-/* Utility Bar */
 .CustomerOrderView .UtilBar {
-    Border-top: solid green;
-    background-color: white;
+    border-top: solid var(--link-color);
+    background-color: var(--bg-color);
     position: fixed;
     bottom: 0;
     display: flex;
     align-items: center;
-
     padding-left: 1vw;
     padding-right: 1vw;
     gap: 1vw;
-
     width: 98vw;
     height: 10vh;
     min-height: 10vh;
-
 }
 
 .CustomerOrderView .UtilBar button {
@@ -31,7 +26,7 @@
 
 .CustomerOrderView .UtilBar .CancelBtn {
     border: none;
-    background-color: grey;
+    background-color: var(--btn-bg-color);
     flex-grow: 4;
 }
 
@@ -51,7 +46,7 @@
 
 .CustomerOrderView .UtilBar .ReviewOrderBtn {
     flex-grow: 8;
-    background-color: cornflowerblue;
+    background-color: var(--link-color);
     border: none;
 }
 

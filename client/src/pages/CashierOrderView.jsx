@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './CashierOrderView.css'
@@ -20,6 +20,11 @@ function OrderView() {
     const { ingredients, getIngredientsInItem } = useIngredient()
     const [selectedItem, setSelectedItem] = useState(null);
     const [customizeMode, setCustomizeMode] = useState('order');
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const filteredItems = items.filter(item =>
+        item.item_name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     useEffect(() => {
             document.body.classList.add('cashier-order-page');
@@ -74,9 +79,27 @@ function OrderView() {
             </button>
 
             <div className='content'>
+                <div className="SearchContainer">
+                    <input
+                        type="text"
+                        placeholder="Search for a drink..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="SearchBar"
+                    />
+                    {searchTerm && (
+                        <button
+                            onClick={() => setSearchTerm('')}
+                            className="ClearSearchBtn"
+                        >
+                            Clear
+                        </button>
+                    )}
+                </div>
+
                 <CategorySelector changeCategory={updateCategory} />
                 <h1>{getCategory()}</h1>
-                <ItemMenu menuItems={items} onItemButtonClick={handleMenuItemClick} />
+                <ItemMenu menuItems={filteredItems} onItemButtonClick={handleMenuItemClick} />
                 <OrderCart orderItems={orderItems} onItemButtonClick={handleOrderItemClick} />
             </div>
 

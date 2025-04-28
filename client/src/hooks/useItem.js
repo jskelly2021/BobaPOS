@@ -18,11 +18,11 @@ const useItem = (defaultCategory = null) => {
 
             try {
                 let actualCategory = category;
-                
+
                 if (category === "RECOMMENDED") {
                     const country = await fetchCountryCode();
                     const region = await fetchRegionCode();
-                    const city = await fetchCityName();       
+                    const city = await fetchCityName();
                     const res = await fetchWeather(city, region, country);
                     actualCategory = res.main.temp > 70 ? "FRUIT" : "BREWED";
 
@@ -31,8 +31,16 @@ const useItem = (defaultCategory = null) => {
                 else {
                     setDisplayedCategory(category);
                 }
-                const data = await fetchItems(actualCategory);
+
+                let data;
+                if (actualCategory === "ALL") {
+                    data = await fetchItems(); // no category = fetch all drinks
+                } else {
+                    data = await fetchItems(actualCategory);
+                }
+
                 setItems(data);
+
             } catch (e) {
                 setError(e);
             } finally {
@@ -68,7 +76,7 @@ const useItem = (defaultCategory = null) => {
         } catch (e) {
             console.error('Error updating item: ', e);
         }
-      };
+    };
 
     const removeItem = async (item) => {
         try {
@@ -90,11 +98,10 @@ const useItem = (defaultCategory = null) => {
         }
     }
 
-    const getCategory = () => 
-    {
+    const getCategory = () => {
         switch (displayedCategory) {
             case "RECOMMENDED":
-                return "Recommended Drinks for Today"; 
+                return "Recommended Drinks for Today";
             case "BREWED":
                 return "Brewed Tea";
             case "MILK":
@@ -103,6 +110,8 @@ const useItem = (defaultCategory = null) => {
                 return "Fruit Tea";
             case "CREAMA":
                 return "Creama";
+            case "ALL":
+                return "All Drinks";
             default:
                 break;
         }
@@ -117,7 +126,7 @@ const useItem = (defaultCategory = null) => {
         }
     }
 
-    return { items, loadingItem, errorItem, updateCategory, editItem, removeItem, addItem, getCategory, nextId};
+    return { items, loadingItem, errorItem, updateCategory, editItem, removeItem, addItem, getCategory, nextId };
 }
 
 export default useItem;

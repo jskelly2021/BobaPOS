@@ -6,11 +6,13 @@
     align-items: center;
 }
 
-.CashierOrderView .ItemPrice { display: none; }
+.CashierOrderView .ItemPrice {
+    display: none;
+}
 
 
 /* Content*/
-.CashierOrderView .content{
+.CashierOrderView .content {
     display: flex;
     flex-flow: nowrap;
     flex-direction: column;
@@ -44,8 +46,9 @@
 .CashierOrderView .MenuItemList .ItemButton .ItemDetails .ItemQuantity,
 .CashierOrderView .MenuItemList .ItemButton .ItemDetails .ItemTopping,
 .CashierOrderView .MenuItemList .ItemImg,
-.CashierOrderView .OrderItemList .ItemImg
-{ display: none; }
+.CashierOrderView .OrderItemList .ItemImg {
+    display: none;
+}
 
 
 /* Category Selector */
@@ -102,7 +105,9 @@
     margin: 0px;
 }
 
-.CashierOrderView .OrderItemList .ItemButton:hover { background-color: white; }
+.CashierOrderView .OrderItemList .ItemButton:hover {
+    background-color: white;
+}
 
 
 .CashierOrderView .DashboardBtn,
@@ -123,4 +128,40 @@
 .CashierOrderView .ReviewOrderBtn {
     background-color: cornflowerblue;
     right: 0;
+}
+
+.SearchContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5vw;
+    margin-top: 4vh;
+    margin-bottom: 1.5vh;
+}
+
+.SearchBar {
+    width: 30vw;
+    height: 4vh;
+    font-size: 1.6vh;
+    padding: 0.8vh 1vw;
+    border: 0.15vh solid #bbb;
+    border-radius: 1vh;
+    background-color: #f9f9f9;
+    box-shadow: 0 0.3vh 0.6vh rgba(0, 0, 0, 0.1);
+}
+
+.ClearSearchBtn {
+    height: 4vh;
+    padding: 0 1.5vw;
+    font-size: 1.6vh;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 1vh;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.ClearSearchBtn:hover {
+    background-color: #d32f2f;
 }

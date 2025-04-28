@@ -17,7 +17,7 @@ export const getIngredientsInItem = async (req, res) => {
     const { id } = req.params;
     try {
         const result = await pool.query(`
-            SELECT i.item_name, g.ingredient_name, ig.quantity
+            SELECT i.item_name, g.ingredient_name, ig.quantity, g.quantity AS total_quantity, g.threshold
             FROM item i
             INNER JOIN item_ingredient ig ON i.item_id = ig.item_id
             INNER JOIN ingredient g ON ig.ingredient_id = g.ingredient_id
@@ -44,16 +44,17 @@ export const getIngredient = async (req, res) => {
 }
 
 // Update ingredient quantity
-export const updateIngredientQuantity = async (req, res) => {
+export const updateIngredient = async (req, res) => {
     const { id } = req.params;
-    const { quantity } = req.body;
+    const { ingredient_name, quantity, threshold } = req.body;
     try {
-        const result = await pool.query('UPDATE ingredient SET quantity=$1 WHERE ingredient_id=$2 RETURNING *', [quantity, id]);
+        const result = await pool.query('UPDATE ingredient SET ingredient_name=$1, quantity=$2, threshold=$3 WHERE ingredient_id=$4 RETURNING *',
+            [ingredient_name, quantity, threshold, id]);
         res.status(200).json(result.rows);
         console.log(`Updating ingredient ${id}: New Quantity = ${quantity}`);
     }
     catch (err) {
-        console.error('Error updateIngredientQuantity', err);
+        console.error('Backend Error updating ingredient quantity', err);
         res.status(500).json("Server Error");
     }
 }

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import './Admin.css'
 import EmployeeList from '../components/admin/employee/EmployeeList';
-import IngredientList from '../components/admin/IngredientList';
+import IngredientList from '../components/admin/ingredient/IngredientList';
 import ItemList from '../components/admin/item/ItemList';
 import ToppingList from '../components/admin/topping/ToppingList'
 import LocationSelector from '../components/admin/LocationSelector';

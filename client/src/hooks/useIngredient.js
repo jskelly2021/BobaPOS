@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { fetchAllIngredients, updateIngredient, fetchIngredientsInItem, createIngredient, deleteIngredient } from '../services/ingredientService';
+import { fetchAllIngredients, updateIngredient, 
+    fetchIngredientsInItem, createIngredient, deleteIngredient, getNextIngredientId } from '../services/ingredientService';
 
 // Returns a list of all ingredients
 const useIngredient = () => {

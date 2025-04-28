@@ -34,6 +34,7 @@ export const getIngredientsInItem = async (req, res) => {
 export const getIngredient = async (req, res) => {
     const { id } = req.params;
     try {
+        console.log("In Get??!");
         const result = await pool.query('SELECT * FROM ingredient WHERE ingredient_id=$1', [id]);
         res.status(200).json(result.rows);
     }
@@ -91,6 +92,8 @@ export const createIngredient = async (req, res) => {
 // Get the next available ID from the ingredient_id sequence.
 export const getNextIngredientId = async (req, res) => {
     try {
+        console.log("Getting next ID!");
+
         const seqResult = await pool.query("SELECT MAX (ingredient_id) as new_id FROM ingredient");
         const newId = Number(seqResult.rows[0].new_id) + 1;
         console.log("New ID:", newId);

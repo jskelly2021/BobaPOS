@@ -78,6 +78,7 @@ export const fetchIngredientsInItem = async (item) => {
 export const getNextIngredientId = async () => {
     const url = `${API_BASE_URL}/ingredients/next-id`;
     try {
+        console.log("In service");
         const { data } = await axios.get(url, { withCredentials: true });
         return data;
     } catch (e) {

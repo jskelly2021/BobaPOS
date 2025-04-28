@@ -54,19 +54,21 @@ app.use('/api/weather', weatherRouter);
 app.use('/api/analytics', analyticsRouter);*/
 
 // both cashier & manager can read items; only manager can create/update/delete
-app.use(
+/*app.use(
     '/api/items',
     ensureLoggedIn,
     requireRole('CASHIER','MANAGER'),
     itemsRouter
-    );
+    );*/
+app.use('/api/items', itemsRouter);
 
-app.use(
+/*app.use(
     '/api/ingredients',
     ensureLoggedIn,
     requireRole('CASHIER','MANAGER'),
     ingredientsRouter
-);
+);*/
+app.use('/api/ingredients', ingredientsRouter);
 
 // manager only: employee Cridentials 
 app.use(
@@ -77,19 +79,21 @@ app.use(
     );
 
 // cashiers & managers can place orders
-app.use(
+/*app.use(
     '/api/orders',
     ensureLoggedIn,
     requireRole('CASHIER','MANAGER'),
     ordersRouter
-    );
+    );*/
+app.use('/api/orders', ordersRouter);
 
-app.use(
+/*app.use(
     '/api/toppings',
     ensureLoggedIn,
     requireRole('CASHIER','MANAGER'),
     toppingsRouter
-    );
+    );*/
+app.use('/api/toppings', toppingsRouter);
 
 // analytics is manager-only
 app.use(
@@ -100,12 +104,13 @@ app.use(
     );
 
 // weather is manager-only
-app.use(
+/*app.use(
     '/api/weather',
     ensureLoggedIn,
     requireRole('MANAGER'),
     weatherRouter
-    );
+    );*/
+app.use('/api/weather', weatherRouter);
 
 
 app.listen(port, () => {

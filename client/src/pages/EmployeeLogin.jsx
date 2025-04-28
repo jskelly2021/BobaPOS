@@ -32,6 +32,7 @@ function EmployeeLogin() {
             const userData = await fetch(`${API_BASE_URL}/auth/user`, { credentials: 'include' })
                 .then(r => r.json());
             setUser(userData);
+            localStorage.removeItem('userMode');
 
             if (response.ok) {
                 console.log('User data:', userData);

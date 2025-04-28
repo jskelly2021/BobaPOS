@@ -93,6 +93,15 @@ export const addOrderItemTopping = async (req, res) => {
             [order_item_id, topping_id, topping_quantity]
         );
 
+        await pool.query(`
+            UPDATE ingredient
+            SET quantity = ingredient.quantity - ti.quantity
+            FROM topping_ingredient ti
+            WHERE ingredient.ingredient_id = ti.ingredient_id
+            AND ti.topping_id = $1`,
+            [topping_id]
+        );
+
         // Update ingredient usage from topping_ingredient
         await pool.query(`
             UPDATE daily_ingredient_usage

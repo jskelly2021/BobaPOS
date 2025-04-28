@@ -58,3 +58,46 @@ export const updateIngredient = async (req, res) => {
         res.status(500).json("Server Error");
     }
 }
+
+//Delete ingredient
+export const deleteIngredient = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await pool.query('DELETE FROM ingredient WHERE ingredient_id=$1 RETURNING *', [id]);
+        res.status(200).json(result.rows[0]);
+    }
+    catch (err) {
+        console.error('Error deleteIngredient', err);
+        res.status(500).json("Item not found");
+    }
+}
+
+// Create a new ingredient
+export const createIngredient = async (req, res) => {
+    try {
+        const { ingredient_id, ingredient_name, category, quantity, threshold } = req.body;
+
+        const result = await pool.query(
+            "INSERT INTO ingredient (ingredient_id, ingredient_name, category, quantity, threshold) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+            [ingredient_id, ingredient_name, category, quantity, threshold]
+        );
+        res.status(201).json(result.rows[0]);
+    } catch (err) {
+        console.error('Error createIngredient', err);
+        res.status(500).json("Server Error");
+    }
+}
+
+// Get the next available ID from the ingredient_id sequence.
+export const getNextIngredientId = async (req, res) => {
+    try {
+        const seqResult = await pool.query("SELECT MAX (ingredient_id) as new_id FROM ingredient");
+        const newId = Number(seqResult.rows[0].new_id) + 1;
+        console.log("New ID:", newId);
+
+        res.status(200).json(newId);
+    } catch (err) {
+        console.error("Error retrieving next ingredient ID:", err);
+        res.status(500).json("Server Error");
+    }
+}

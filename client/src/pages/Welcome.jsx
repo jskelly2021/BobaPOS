@@ -1,7 +1,8 @@
 import React from 'react';
+import './Welcome.css';
 import { useNavigate } from 'react-router-dom';
 
-function EmployeeLogin() {
+function Welcome() {
     const nav = useNavigate();
 
     const handleToggleMode = () => {
@@ -10,16 +11,25 @@ function EmployeeLogin() {
     }
 
     return (
-        <div>
-            <button className='UserModeBtn' onClick={() => handleToggleMode()}>
-                Toggle User Mode
-            </button>
-            <h1>Welcome</h1>
-            <button className='StartBtn' onClick={() => nav('/menu/customer')}>
-                Start Order
-            </button>
+        <div className='WelcomeModule'>
+            <div className='WelcomeWrapper'>
+                <div className='ButtonContainer'>
+                    <button className='UserModeBtn' onClick={handleToggleMode}>
+                        Toggle User Mode
+                    </button>
+                </div>
+
+                <h1 className='WelcomeText'>Welcome</h1>
+
+                <div className='StartOrderContainer'>
+                    <button className='StartBtn' onClick={() => nav('/menu/customer')}>
+                        Start Order
+                    </button>
+                </div>
+            </div>
         </div>
     );
 }
 
-export default EmployeeLogin;
+export default Welcome;
+

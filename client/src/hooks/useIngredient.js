@@ -78,26 +78,8 @@ const useIngredient = () => {
         }
     }
 
-    const checkItemStock = async (item) => {
-        try {
-            console.log(item.item_name);
-            const ingredientsInItem = await fetchIngredientsInItem(item);
-            for (const ingredient of ingredientsInItem) {
-                console.log(`${ingredient.ingredient_name} quantity: ${ingredient.quantity} threshold: ${ingredient.threshold}`);
-                if (Number(ingredient.quantity) < Number(ingredient.threshold)) {
-                    console.log(`Threshold met for ${ingredient.ingredient_name} in ${item.item_name}`);
-                    return false;
-                }
-            }
-            return true;
-        } catch (error) {
-            console.error("Error checking item stock:", error);
-            return false;
-        }
-    }
-
     return { ingredients, loadingIngredient, errorIngredient,
-        editIngredient, orderIngredient, getIngredientsInItem, checkItemStock };
+        editIngredient, orderIngredient, getIngredientsInItem };
 }
 
 export default useIngredient;

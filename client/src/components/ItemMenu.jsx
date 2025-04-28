@@ -1,25 +1,28 @@
-import ItemButton from "./ItemButton";
+import React from 'react';
+import ItemButton from './ItemButton';
 
-function ItemMenu({ loadingItem, errorItem, menuItems, onItemButtonClick}) {
+function ItemMenu({ loadingItem, errorItem, menuItems, onItemButtonClick }) {
+  if (loadingItem) return <div>Loading items…</div>;
+  if (errorItem)   return <div>Error fetching items: {errorItem.message}</div>;
 
-    if (loadingItem) return <div>Loading items...</div>;
-    if (errorItem) return <div>Error fetching items: {errorItem.message}</div>;
+  // 1) Filter first
+  const activeItems = menuItems.filter(item => item.active === 1);
 
-    return (
-        <div className='ItemMenu'>
-            <ul className='MenuItemList'>
-                {menuItems.map((item) => (
-                    <li key={item.menuItemId}> 
-                        {item.active === 1 && (
-                        <ItemButton
-                            item={item}
-                            onClick={() => onItemButtonClick(item)}
-                        />)}
-                    </li> 
-                ))}
-            </ul>
-        </div>
-    );
+  return (
+    <div className="ItemMenu">
+      <ul className="MenuItemList">
+      {activeItems.map(item => (
+          <li key={item.id || item.menuItemId}>
+
+            <ItemButton
+              item={item}
+              onClick={() => onItemButtonClick(item)}
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 export default ItemMenu;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './CustomerOrderView.css'
@@ -12,6 +12,7 @@ import ToppingsModule from '../components/ToppingsModule';
 import useToppings from '../hooks/useToppings';
 import useIngredient from '../hooks/useIngredient';
 
+
 function OrderView() {
     const nav = useNavigate();
     const { items, loadingItem, errorItem, updateCategory, getCategory } = useItem("BREWED");
@@ -20,6 +21,14 @@ function OrderView() {
     const { ingredients, getIngredientsInItem } = useIngredient()
     const [selectedItem, setSelectedItem] = useState(null);
     const [customizeMode, setCustomizeMode] = useState('order');
+    const [searchTerm, setSearchTerm] = useState('');
+
+    useEffect(() => {
+        document.body.classList.add('customer-page');
+        return () => {
+            document.body.classList.remove('customer-page');
+        };
+    }, []);
 
     const handleMenuItemClick = async (item) => {
         setCustomizeMode('ordering');
@@ -61,19 +70,39 @@ function OrderView() {
     return (
         <div className='OrderView CustomerOrderView'>
             <div className='content'>
+                <div className="SearchContainer">
+                    <input
+                        type="text"
+                        placeholder="Search for a drink..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="SearchBar"
+                    />
+                    {searchTerm && (
+                        <button
+                            onClick={() => setSearchTerm('')}
+                            className="ClearSearchBtn"
+                        >
+                            Clear
+                        </button>
+                    )}
+                </div>
                 <CategorySelector changeCategory={updateCategory} />
                 <h1>{getCategory()}</h1>
-                <ItemMenu loadingItem={loadingItem} errorItem={errorItem} menuItems={items} onItemButtonClick={handleMenuItemClick} />
+                <ItemMenu
+                    loadingItem={loadingItem}
+                    errorItem={errorItem}
+                    menuItems={items.filter(item =>
+                        item.item_name.toLowerCase().includes(searchTerm.toLowerCase())
+                    )}
+                    onItemButtonClick={handleMenuItemClick}
+                />
                 <OrderCart orderItems={orderItems} onItemButtonClick={handleOrderItemClick} />
             </div>
 
             <div className='UtilBar'>
                 <button className='CancelBtn' onClick={() => nav('/welcome')}>
                     Cancel Order
-                </button>
-
-                <button className='LanguagesBtn'>
-                    Languages
                 </button>
 
                 <div className="Separator"></div>

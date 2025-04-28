@@ -11,15 +11,36 @@ export function AuthProvider({ children }) {
 
   // on app load, fetch current session
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/auth/user`, {
-      credentials: 'include',
-    })
-      .then(res => {
-        if (res.ok) return res.json();
-        throw new Error('Not authenticated');
-      })
-      .then(data => setUser(data))
-      .catch(() => setUser(null));
+    // 1) Which routes should skip the fetch?
+    const publicPaths = ['/', '/login', '/welcome', '/menu/customer'];
+    const path = window.location.pathname;
+
+    if (publicPaths.includes(path)) {
+      // Public page — never hit /auth/user
+      setUser(null);
+      return;
+    }
+
+    // 2) Otherwise, load the session as usual
+    (async () => {
+      try {
+        const res = await fetch(
+          `${process.env.REACT_APP_API_BASE_URL}/auth/user`,
+          { credentials: 'include' }
+        );
+        if (res.ok) {
+          setUser(await res.json());
+        } else if (res.status === 401) {
+          setUser(null);
+        } else {
+          console.error('AuthContext unexpected status:', res.status);
+          setUser(null);
+        }
+      } catch (err) {
+        console.error('AuthContext network error:', err);
+        setUser(null);
+      }
+    })();
   }, []);
 
   return (

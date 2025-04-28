@@ -33,7 +33,7 @@ router.get('/user',
         const { employee_id, employee_name, position } = req.user;
         return res.json({ employee_id, employee_name, position });
       }
-      res.status(401).json({ message: 'Not authenticated' });
+      return res.status(401).json({ message: 'Not authenticated' });
     }
   );
 

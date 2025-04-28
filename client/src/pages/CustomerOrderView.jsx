@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './CustomerOrderView.css'
@@ -12,6 +12,7 @@ import ToppingsModule from '../components/ToppingsModule';
 import useToppings from '../hooks/useToppings';
 import useIngredient from '../hooks/useIngredient';
 
+
 function OrderView() {
     const nav = useNavigate();
     const { items, loadingItem, errorItem, updateCategory, getCategory } = useItem("BREWED");
@@ -20,6 +21,13 @@ function OrderView() {
     const { ingredients, getIngredientsInItem } = useIngredient()
     const [selectedItem, setSelectedItem] = useState(null);
     const [customizeMode, setCustomizeMode] = useState('order');
+
+    useEffect(() => {
+        document.body.classList.add('customer-page');
+        return () => {
+          document.body.classList.remove('customer-page');
+        };
+      }, []);
 
     const handleMenuItemClick = async (item) => {
         setCustomizeMode('ordering');
@@ -72,9 +80,8 @@ function OrderView() {
                     Cancel Order
                 </button>
 
-                <button className='LanguagesBtn'>
-                    Languages
-                </button>
+                
+
 
                 <div className="Separator"></div>
 

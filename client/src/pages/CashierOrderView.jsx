@@ -21,6 +21,13 @@ function OrderView() {
     const [selectedItem, setSelectedItem] = useState(null);
     const [customizeMode, setCustomizeMode] = useState('order');
 
+    useEffect(() => {
+            document.body.classList.add('cashier-order-page');
+            return () => {
+              document.body.classList.remove('cashier-order-page');
+            };
+          }, []);
+
     const handleMenuItemClick = async (item) => {
         setCustomizeMode('ordering');
         await getIngredientsInItem(item);

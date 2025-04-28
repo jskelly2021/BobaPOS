@@ -36,10 +36,13 @@
 }
 
 .CustomerOrderView .UtilBar .LanguagesBtn {
-    flex-grow: 1; 
+    flex-grow: 1;
     border: none;
 }
-.CustomerOrderView .UtilBar .Separator { flex-grow: 4 } 
+
+.CustomerOrderView .UtilBar .Separator {
+    flex-grow: 4
+}
 
 .CustomerOrderView .UtilBar .OrderPriceLabel {
     border: none;
@@ -105,11 +108,21 @@
     display: none;
 }
 
-.CustomerOrderView .MenuItemList .ItemButton:hover { background-color: white; }
+.CustomerOrderView .MenuItemList .ItemButton:hover {
+    background-color: white;
+}
 
-.CustomerOrderView .MenuItemList .ItemImg { height: 25vh; }
-.CustomerOrderView .MenuItemList .ItemDetails { font-size: 2vh; }
-.CustomerOrderView .MenuItemList .ItemDetails .ItemName { font-weight: bold; }
+.CustomerOrderView .MenuItemList .ItemImg {
+    height: 25vh;
+}
+
+.CustomerOrderView .MenuItemList .ItemDetails {
+    font-size: 2vh;
+}
+
+.CustomerOrderView .MenuItemList .ItemDetails .ItemName {
+    font-weight: bold;
+}
 
 
 /* Category Selector */
@@ -128,14 +141,16 @@
 
 .CustomerOrderView .CategorySelector button {
     border: solid green 1px;
-    border-right-width: 2px; 
+    border-right-width: 2px;
     background-color: ghostwhite;
     height: 25vh;
     font-size: 1.3vw;
     font-weight: bold;
 }
 
-.CustomerOrderView .CategorySelector button:hover { background-color: white; }
+.CustomerOrderView .CategorySelector button:hover {
+    background-color: white;
+}
 
 
 /* Order Cart */
@@ -151,7 +166,9 @@
     text-align: center;
 }
 
-.CustomerOrderView .OrderCart h2 { margin: 2vh; }
+.CustomerOrderView .OrderCart h2 {
+    margin: 2vh;
+}
 
 .CustomerOrderView .OrderItemList {
     list-style: none;

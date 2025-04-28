@@ -20,6 +20,11 @@ function OrderView() {
     const { ingredients, getIngredientsInItem } = useIngredient()
     const [selectedItem, setSelectedItem] = useState(null);
     const [customizeMode, setCustomizeMode] = useState('order');
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const filteredItems = items.filter(item =>
+        item.item_name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     const handleMenuItemClick = async (item) => {
         setCustomizeMode('ordering');
@@ -67,9 +72,27 @@ function OrderView() {
             </button>
 
             <div className='content'>
+                <div className="SearchContainer">
+                    <input
+                        type="text"
+                        placeholder="Search for a drink..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="SearchBar"
+                    />
+                    {searchTerm && (
+                        <button
+                            onClick={() => setSearchTerm('')}
+                            className="ClearSearchBtn"
+                        >
+                            Clear
+                        </button>
+                    )}
+                </div>
+
                 <CategorySelector changeCategory={updateCategory} />
                 <h1>{getCategory()}</h1>
-                <ItemMenu menuItems={items} onItemButtonClick={handleMenuItemClick} />
+                <ItemMenu menuItems={filteredItems} onItemButtonClick={handleMenuItemClick} />
                 <OrderCart orderItems={orderItems} onItemButtonClick={handleOrderItemClick} />
             </div>
 

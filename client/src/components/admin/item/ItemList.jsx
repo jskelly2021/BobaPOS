@@ -3,6 +3,7 @@ import useItems from '../../../hooks/useItem';
 import EditItemRow from './EditItemRow';
 import DefaultItemRow from './DefaultItemRow';
 import useToppings from '../../../hooks/useToppings';
+import useIngredient from '../../../hooks/useIngredient';
 import ToppingsModule from '../../ToppingsModule';
 
 const ItemList = () => {
@@ -10,6 +11,7 @@ const ItemList = () => {
     const [editingItemId, setEditingItemId] = useState(null);
     const [editedItem, setEditedItem] = useState({});
     const { toppings, defaultToppings, getDefaultToppings, updateDefaultToppings } = useToppings();
+    const { ingredients, itemIngredients, getIngredientsInItem, updateItemIngredientQuantities } = useIngredient();
     const [selectedItem, setSelectedItem] = useState(null);
 
     if (loadingItem) return <div>Loading items...</div>;
@@ -64,6 +66,16 @@ const ItemList = () => {
         setSelectedItem(null);
     };
 
+    const handleOpenIngredientsClick = async (item) => {
+        await getIngredientsInItem(item);
+        setSelectedItem(item);
+    }
+
+    const handleUpdateItemIngredients = async (item, ingredientQuantities) => {
+        await updateItemIngredientQuantities(item, ingredientQuantities);
+        setSelectedItem(null);
+    }
+
     return (
         <div>
             <h2>Items</h2>
@@ -93,6 +105,7 @@ const ItemList = () => {
                                 item={item}
                                 onEdit={handleEditClick}
                                 onOpenToppings={handleOpenToppingsClick}
+                                onOpenIngredients={handleOpenIngredientsClick}
                             />
                         )}
                     </li> 

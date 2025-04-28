@@ -56,7 +56,7 @@
     width: 10vw;
 }
 
-.Admin .List .Save-Cancel-Btn,
+.Admin .List .Save-Cancel-Btns,
 .Admin .List .DefaultBtns {
     display: flex;
     flex-wrap: wrap;
@@ -101,7 +101,6 @@
     gap: 1vw;
 }
 
-
 .Admin .IngredientList .StatusLabel {
     display: flex;
     flex-direction: column;
@@ -116,6 +115,7 @@
 
 .Admin .IngredientList .GoodStatus { background-color: green; }
 .Admin .IngredientList .LowStatus { background-color: red; }
+
 
 /* Topping List */
 .Admin .ToppingList Input {

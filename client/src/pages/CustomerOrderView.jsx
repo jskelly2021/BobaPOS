@@ -89,7 +89,6 @@ function OrderView() {
                 </div>
                 <CategorySelector changeCategory={updateCategory} />
 
-                <h1>{getCategory()}</h1>
                 {(() => {
                     const { title, sub } = getCategory();
                     return (

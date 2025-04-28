@@ -15,7 +15,7 @@ import useIngredient from '../hooks/useIngredient';
 
 function OrderView() {
     const nav = useNavigate();
-    const { items, loadingItem, errorItem, updateCategory, getCategory } = useItem("BREWED");
+    const { items, loadingItem, errorItem, updateCategory, getCategory } = useItem("RECOMMENDED");
     const { orderItems, addToOrder, removeFromOrder, updateItemInOrder, orderPrice } = useOrderItem(nav);
     const { toppings, defaultToppings, getDefaultToppings, setDefaultToppings } = useToppings();
     const { ingredients, getIngredientsInItem } = useIngredient()
@@ -88,7 +88,17 @@ function OrderView() {
                     )}
                 </div>
                 <CategorySelector changeCategory={updateCategory} />
+
                 <h1>{getCategory()}</h1>
+                {(() => {
+                    const { title, sub } = getCategory();
+                    return (
+                        <>
+                            <h1>{title}</h1>
+                            {sub && <h2>{sub}</h2>}
+                        </>
+                    );
+                })()}
                 <ItemMenu
                     loadingItem={loadingItem}
                     errorItem={errorItem}
@@ -97,6 +107,7 @@ function OrderView() {
                     )}
                     onItemButtonClick={handleMenuItemClick}
                 />
+                      
                 <OrderCart orderItems={orderItems} onItemButtonClick={handleOrderItemClick} />
             </div>
 

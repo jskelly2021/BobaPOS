@@ -20,6 +20,13 @@ export function AuthProvider({ children }) {
       })
       .then(data => setUser(data))
       .catch(() => setUser(null));
+       // if we're in customer mode, skip employee auth entirely
+      /*const mode = localStorage.getItem("userMode");
+      if (mode === "customer") {
+        setUser(null);
+        return;
+      }
+    */
   }, []);
 
   return (

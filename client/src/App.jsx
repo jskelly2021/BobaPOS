@@ -15,6 +15,14 @@ import Payment from './pages/Payment'
 import Unauthorized from './pages/Unauthorized'; // simple 403 page
 import { RequireAuth } from './components/RequireAuth';
 
+if (typeof window !== 'undefined') {
+  window.addEventListener('error', (event) => {
+    if (event.message === 'Script error.') {
+      event.stopImmediatePropagation();
+    }
+  }, true);
+}
+
 function App() {
   return (
     <AuthProvider>
@@ -25,12 +33,13 @@ function App() {
                 <Route path="/login" element={<EmployeeLogin />} />
                 <Route path="/unauthorized" element={<Unauthorized />} />
                 <Route path="/welcome" element={<Welcome />} />
+                <Route path="/menu/customer" element={<CustomerOrderView />} />
                 
                 {/* routes for both cashiers & managers */}
                 <Route element={<RequireAuth allowedRoles={['CASHIER','MANAGER']} />}>
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/menu/cashier" element={<CashierOrderView />} />
-                  <Route path="/menu/customer" element={<CustomerOrderView />} />
+
                   <Route path="/review" element={<OrderReview />} />
                   <Route path="/payment" element={<Payment />} />
                 </Route>

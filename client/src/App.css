@@ -7,3 +7,85 @@ body {
     font-family: "Acorn";
     src: url(./font/acorn-3.woff) format("woff");
 }
+
+
+/* src/App.css or src/index.css */
+#google_translate_element {
+    position: static;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 1000;
+  }
+  
+  /* when on .dashboard-page, move to top-left */
+  body.cashier-order-page #google_translate_element {
+    position: fixed;
+    bottom: 1rem;          /* distance from bottom */
+    left: 50%;             /* position midpoint of element at viewport center */
+    transform: translateX(-50%);  /* shift it back by half its own width */
+    /* optional: ensure no other offsets remain */
+    top: auto;
+    right: auto;
+  }
+
+  body.customer-page #google_translate_element {
+    position: fixed;
+    bottom: 1rem;                   /* stay 1rem above the bottom */
+    left: calc(50% - 200px);         /* center minus 50px */
+    transform: translateX(-50%);    /* shift back half the element’s width */
+    top: auto;
+    right: auto;
+  }
+
+  body.dashboard-page #google_translate_element {
+    position: fixed;
+    bottom: 1rem;          /* distance from bottom */
+    left: 50%;             /* position midpoint of element at viewport center */
+    transform: translateX(-50%);  /* shift it back by half its own width */
+    /* optional: ensure no other offsets remain */
+    top: auto;
+    right: auto;
+  }
+
+
+
+.goog-te-menu-frame,
+.goog-te-menu2 {
+  max-height: 200px !important;
+  overflow-y: auto !important;
+}
+
+/* The outer iframe that holds the menu */
+.goog-te-menu-frame {
+    border: 1px solid #007bff !important;
+    border-radius: 4px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+  }
+  
+  /* The inner menu container */
+  .goog-te-menu2 {
+    background-color: #f9f9f9 !important;
+    padding: 0.5rem !important;
+  }
+  
+  /* Each link in the list */
+  .goog-te-menu2 a {
+    display: block;
+    color: #333 !important;
+    text-decoration: none !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+  
+  .goog-te-menu2 a:hover {
+    background-color: #007bff !important;
+    color: #fff !important;
+  }
+  
+  /* The select combo itself (if you’re using VERTICAL layout) */
+  .goog-te-combo {
+    font-size: 0.9rem !important;
+    padding: 0.25rem !important;
+    border: none !important;
+  }
+
+  

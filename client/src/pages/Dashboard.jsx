@@ -1,40 +1,46 @@
-import React from 'react';
+// Dashboard.jsx
+import React, { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Dashboard.css'
+import './Dashboard.css';
 import { AuthContext } from '../context/AuthContext';
-import { useContext } from 'react'; 
 
 function Dashboard() {
-    const nav = useNavigate();
-    const { user } = useContext(AuthContext);
-    const userName = user ? user.employee_name : 'Customer'; // Fallback to 'Guest' if user is null
+  const nav = useNavigate();
+  const { user } = useContext(AuthContext);
+  const userName     = user?.employee_name || 'Guest';
+  const userPosition = user?.position      || 'Guest';
 
-    return (
-        <div className='Dashboard'>
-            <h1>Dashboard</h1>
-            <h4>Currently Logged in as:   
-                 {userName} ({user ? user.position : 'Customer'})
-            </h4>
+  useEffect(() => {
+              document.body.classList.add('dashboard-page');
+              return () => {
+                document.body.classList.remove('dashboard-page');
+              };
+            }, []);
 
-            <div className='DashboardNav'>
-                <button className='LogoutBtn' onClick={() => nav('/')}>
-                    Logout
-                </button>
+  
 
-                <button className='MenuBtn' onClick={() => nav('/menu/cashier')}>
-                    Menu
-                </button>
+  return (
+    <div className="Dashboard">
+      <h1>Dashboard</h1>
+      {/* This div gets replaced by the widget */}
+      <h4>
+        Currently Logged in as: {userName} ({userPosition})
+      </h4>
 
-                <button className='AdminBtn' onClick={() => nav('/admin')}>
-                    Admin
-                </button>
 
-                <button className='AnalyticsBtn' onClick={() => nav('/analytics')}>
-                    Analytics
-                </button>
-            </div>
-        </div>
-    );
+      <div className="DashboardNav">
+        <button onClick={() => nav('/')}>Logout</button>
+        <button onClick={() => nav('/menu/cashier')}>Menu</button>
+        <button onClick={() => nav('/admin')}>Admin</button>
+        <button onClick={() => nav('/analytics')}>Analytics</button>
+      </div>
+
+      
+
+
+
+    </div>
+  );
 }
 
 export default Dashboard;

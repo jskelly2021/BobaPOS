@@ -1,6 +1,6 @@
 import StatusLabel from './StatusLabel';
 
-const EditIngredientRow = ({ ingredient, onEdit, onSave, onCancel }) => {
+const EditIngredientRow = ({ ingredient, onEdit, onSave, onCancel, onDelete }) => {
     return (
         <>
         <div>

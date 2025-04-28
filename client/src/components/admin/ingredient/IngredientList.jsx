@@ -4,7 +4,8 @@ import DefaultIngredientRow from './DefaultIngredientRow';
 import EditIngredientRow from './EditIngredientRow';
 
 const IngredientList = () => {
-    const { ingredients, loadingIngredient, errorIngredient, editIngredient, orderIngredient } = useIngredient();
+    const { ingredients, loadingIngredient, errorIngredient,
+        editIngredient, orderIngredient, addIngredient, removeIngredient } = useIngredient();
     const [editingIngredientId, setEditingIngredientId] = useState(null);
     const [editedIngredient, setEditedIngredient] = useState({});
 
@@ -33,6 +34,21 @@ const IngredientList = () => {
         setEditedIngredient({});
     }
 
+    const handleAddIngredient = async () => {
+        const id = await nextId();
+
+        const newIngredient = {
+            ingredient_id: id,
+            ingredient_name: '',
+            category: 'RAW',
+            quantity: 0,
+            threshold: 0
+        };
+        await addIngredient(newIngredient);
+        setEditingIngredientId(newIngredient.ingredient_id);
+        setEditedIngredient({...newIngredient});
+    }
+
     return(
         <div>
             <h2>Ingredients</h2>
@@ -54,6 +70,7 @@ const IngredientList = () => {
                                 onEdit={handleOnEditChange}
                                 onSave={handleSaveClick}
                                 onCancel={handleCancelClick}
+                                onDelete={removeIngredient}
                             />
                         ) : (
                             <DefaultIngredientRow
@@ -64,6 +81,7 @@ const IngredientList = () => {
                         )}
                     </li> 
                 ))}
+                <button className="AddIngredientBtn" onClick={() => handleAddIngredient()}>Add Ingredient</button>
             </ul>
         </div>
     );

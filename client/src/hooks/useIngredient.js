@@ -100,6 +100,14 @@ const useIngredient = () => {
         }
     }
 
+    const updateItemIngredientQuantities = async (item, ingredientQuantities) => {
+        try {
+            
+        } catch (e) {
+            console.error('Error updating the ingredient quantities on item');
+        }
+    }
+
     const nextId = async () => {
         try {
             const nextId = await getNextIngredientId();
@@ -109,8 +117,8 @@ const useIngredient = () => {
         }
     }
 
-    return { ingredients, itemIngredients, loadingIngredient, errorIngredient,
-        addIngredient, removeIngredient, editIngredient, orderIngredient, getIngredientsInItem, nextId };
+    return { ingredients, itemIngredients, loadingIngredient, errorIngredient, addIngredient, removeIngredient,
+        editIngredient, orderIngredient, getIngredientsInItem, updateItemIngredientQuantities, nextId };
 }
 
 export default useIngredient;

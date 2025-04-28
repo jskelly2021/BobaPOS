@@ -14,9 +14,6 @@ const IngredientModal = ({ item, ingredients, itemIngredients, onConfirm, onClos
         });
 
         (itemIngredients || []).forEach(i => {
-            console.log(i.ingredient_id);
-            console.log(i.ingredient_name);
-            console.log(i.quantity);
             initial[i.ingredient_id] = { ...i };
         });
 
@@ -47,7 +44,6 @@ const IngredientModal = ({ item, ingredients, itemIngredients, onConfirm, onClos
                                     value={ingredient.quantity || 0.00}
                                     onChange={(e) => handleQuantityChange(ingredient.ingredient_id, e.target.value)}
                                 />
-                                <h3 className="IngredientName">{ingredient.quantity}</h3>
                             </div>
                         </li>
                     ))}

@@ -78,10 +78,40 @@ export const fetchIngredientsInItem = async (item) => {
 export const getNextIngredientId = async () => {
     const url = `${API_BASE_URL}/ingredients/next-id`;
     try {
-        console.log("In service");
         const { data } = await axios.get(url, { withCredentials: true });
         return data;
     } catch (e) {
         throw new Error(`Failed to retrieve next ingredient id: ${e.message}`);
+    }
+}
+
+// Updates the ingredients on an item
+export const updateIngredientInItem = async (item, ingredients) => {
+    const url = `${API_BASE_URL}/ingredients/item/${item.item_id}`;
+    try {
+
+        const currentIngredients = new Map(
+            (await fetchIngredientsInItem(item)).map(i => [i.ingredient_id, i.quantity])
+        );
+
+        for (const ingredient of ingredients) {
+            const body = {
+                ingredient_id: ingredient.ingredient_id,
+                quantity: ingredient.quantity
+            }
+
+            const isExisting = currentIngredients.has(ingredient.ingredient_id);
+
+            if (!isExisting) {
+                if (ingredient.quantity === 0) continue;
+                await axios.post(url, body, { withCredentials: true });
+            }
+            else {
+                if (currentIngredients[ingredient.ingredient_id] === ingredient.quantity) continue;
+                await axios.put(url, body, { withCredentials: true });
+            }
+        }
+    } catch (e) {
+        throw new Error(`Failed to update the ingredient quantities in item: ${e.message}`);
     }
 }

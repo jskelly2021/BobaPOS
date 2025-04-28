@@ -18,7 +18,7 @@ function OrderView() {
     const { items, loadingItem, errorItem, updateCategory, getCategory } = useItem("RECOMMENDED");
     const { orderItems, addToOrder, removeFromOrder, updateItemInOrder, orderPrice } = useOrderItem(nav);
     const { toppings, defaultToppings, getDefaultToppings, setDefaultToppings } = useToppings();
-    const { ingredients, getIngredientsInItem } = useIngredient()
+    const { itemIngredients, getIngredientsInItem } = useIngredient()
     const [selectedItem, setSelectedItem] = useState(null);
     const [customizeMode, setCustomizeMode] = useState('order');
     const [searchTerm, setSearchTerm] = useState('');
@@ -129,7 +129,7 @@ function OrderView() {
             {selectedItem && (
                 <ToppingsModule
                     item={selectedItem}
-                    ingredients={ingredients}
+                    itemIngredients={itemIngredients}
                     toppings={toppings}
                     defaultToppings={defaultToppings}
                     onConfirm={handleAddWithToppings}

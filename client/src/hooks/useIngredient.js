@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchAllIngredients, updateIngredient, fetchIngredientsInItem } from '../services/ingredientService';
+import { fetchAllIngredients, updateIngredient, fetchIngredientsInItem, createIngredient, deleteIngredient } from '../services/ingredientService';
 
 // Returns a list of all ingredients
 const useIngredient = () => {
@@ -44,6 +44,26 @@ const useIngredient = () => {
         }
     }
 
+    const removeIngredient = async (ingredient) => {
+        try {
+            await deleteIngredient(ingredient);
+            setIngredients(prevIngredients => prevIngredients.filter(i => i.ingredient_id !== ingredient.ingredient_id));
+            console.log(`Deleted ingredient ${ingredient.ingredient_name}`);
+        } catch (e) {
+            console.error('Error deleting ingredient: ', e);
+        }
+    }
+
+    const addIngredient = async (ingredient) => {
+        try {
+            const newIngredient = await createIngredient(ingredient);
+            setIngredients(prevIngredients => [...prevIngredients, newIngredient]);
+            console.log(`Created ingredient ${newIngredient.ingredient_id}`);
+        } catch (e) {
+            console.error('Error creating ingredient: ', e);
+        }
+    }
+
     const orderIngredient = async (ingredient, quantityToAdd) => {
         try {
             const newQuantity = Number(ingredient.quantity) + quantityToAdd;
@@ -79,7 +99,7 @@ const useIngredient = () => {
     }
 
     return { ingredients, loadingIngredient, errorIngredient,
-        editIngredient, orderIngredient, getIngredientsInItem };
+        addIngredient, removeIngredient, editIngredient, orderIngredient, getIngredientsInItem };
 }
 
 export default useIngredient;

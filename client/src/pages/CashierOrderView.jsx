@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState , useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './CashierOrderView.css'
@@ -25,6 +25,13 @@ function OrderView() {
     const filteredItems = items.filter(item =>
         item.item_name.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    useEffect(() => {
+            document.body.classList.add('cashier-order-page');
+            return () => {
+              document.body.classList.remove('cashier-order-page');
+            };
+          }, []);
 
     const handleMenuItemClick = async (item) => {
         setCustomizeMode('ordering');

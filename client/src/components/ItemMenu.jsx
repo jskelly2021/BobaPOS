@@ -1,6 +1,7 @@
 import ItemButton from "./ItemButton";
 
 function ItemMenu({ loadingItem, errorItem, menuItems, onItemButtonClick}) {
+
     if (loadingItem) return <div>Loading items...</div>;
     if (errorItem) return <div>Error fetching items: {errorItem.message}</div>;
 
@@ -9,7 +10,11 @@ function ItemMenu({ loadingItem, errorItem, menuItems, onItemButtonClick}) {
             <ul className='MenuItemList'>
                 {menuItems.map((item) => (
                     <li key={item.menuItemId}> 
-                        {item.active === 1 && (<ItemButton item={item} onClick={() => onItemButtonClick(item)}/>)}
+                        {item.active === 1 && (
+                        <ItemButton
+                            item={item}
+                            onClick={() => onItemButtonClick(item)}
+                        />)}
                     </li> 
                 ))}
             </ul>

@@ -11,6 +11,15 @@ const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm,
     const [quantity, setQuantity] = useState(() => {
         return item.quantity || 1;
     });
+    const [inStock] = useState (() => {
+        for (const ingredient of ingredients) {
+            if (Number(ingredient.total_quantity) < Number(ingredient.threshold)) {
+                console.log(`Threshold met for ${ingredient.ingredient_name} in ${item.item_name}`);
+                return false;
+            }
+        }
+        return true;
+    })
 
     const [selectedToppings, setSelectedToppings] = useState(() => {
         const initial = {};
@@ -41,7 +50,7 @@ const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm,
         });
         setTotalCalories(calories);
         setTotalPrice(price);
-    }, [item.calories, selectedToppings]);
+    }, [item.calories, item.price, selectedToppings]);
 
     const handleQuantityChange = (topping, label) => {
         setSelectedToppings(prev => ({
@@ -85,9 +94,15 @@ const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm,
 
                 <div className="ModalActions">
                     {mode === 'editing' && (<button onClick={() => onRemove(item)}>Remove</button>)}
-                    <button onClick={() => onConfirm(item, Object.values(selectedToppings), quantity, totalPrice)}>
-                        {mode === 'ordering' ? 'Add to Order' : 'Update'}
-                    </button>
+                    {inStock === true ? (
+                        <button onClick={() => onConfirm(item, Object.values(selectedToppings), quantity, totalPrice)}>
+                            {mode === 'ordering' ? 'Add to Order' : 'Update'}
+                        </button>
+                    ) : (
+                        <button className='OutOfStockBtn'>
+                            Out of Stock
+                        </button>
+                    )}
                     <button onClick={onClose}>Cancel</button>
                 </div>
             </div>

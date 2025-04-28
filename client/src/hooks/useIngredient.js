@@ -76,9 +76,10 @@ const useIngredient = () => {
         } catch (e) {
             console.error('Error getting ingredients on item', e);
         }
-    } 
+    }
 
-    return { ingredients, loadingIngredient, errorIngredient, editIngredient, orderIngredient, getIngredientsInItem };
+    return { ingredients, loadingIngredient, errorIngredient,
+        editIngredient, orderIngredient, getIngredientsInItem };
 }
 
 export default useIngredient;

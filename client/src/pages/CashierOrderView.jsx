@@ -98,7 +98,15 @@ function OrderView() {
                 </div>
 
                 <CategorySelector changeCategory={updateCategory} />
-                <h1>{getCategory()}</h1>
+                {(() => {
+                    const { title, sub } = getCategory();
+                    return (
+                        <>
+                            <h1>{title}</h1>
+                            {sub && <h2>{sub}</h2>}
+                        </>
+                    );
+                })()}
                 <ItemMenu menuItems={filteredItems} onItemButtonClick={handleMenuItemClick} />
                 <OrderCart orderItems={orderItems} onItemButtonClick={handleOrderItemClick} />
             </div>

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { ensureLoggedIn, requireRole } = require('../middleware/authMiddleware');
-const { getAllItems, getItem, getDefaultToppings, deleteItem, 
+const { getAllItems, getItem, getDefaultToppings, deleteItem,
     createItem, updateItem, updateItemQuantity, getItemsByCategory, getNextItemId } = require('../controllers/itemsController');
 
 

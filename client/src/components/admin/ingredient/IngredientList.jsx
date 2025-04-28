@@ -5,7 +5,7 @@ import EditIngredientRow from './EditIngredientRow';
 
 const IngredientList = () => {
     const { ingredients, loadingIngredient, errorIngredient,
-        editIngredient, orderIngredient, addIngredient, removeIngredient } = useIngredient();
+        editIngredient, orderIngredient, addIngredient, removeIngredient, nextId } = useIngredient();
     const [editingIngredientId, setEditingIngredientId] = useState(null);
     const [editedIngredient, setEditedIngredient] = useState({});
 

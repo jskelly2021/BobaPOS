@@ -1,6 +1,13 @@
 body {
-    font-family: "Acorn", sans-serif;
     margin: 0;
+}
+
+h1 {
+    font-family: "Acorn", serif;
+}
+
+* {
+    font-family: "Hanken Grotesk", serif;
 }
 
 @font-face {

@@ -35,3 +35,69 @@
     height: 5vh;
     font-size: 1.2rem;
 }
+
+/*Dahbin CSS*/
+
+.EmployeeLoginModule {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #FCFBF4;
+}
+
+.EmployeeLoginWrapper {
+    background-color: #7F9183;
+    border-radius: 2vh;
+    padding: 10vh 5vw 5vh 5vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ButtonContainer {
+    position: absolute;
+    top: 2vh;
+    left: 1vw;
+}
+
+.UserModeBtn {
+    border-radius: 1vh;
+    font-size: 1.8vh;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.UserModeBtn:hover {
+    background-color: darkgray;
+}
+
+.EmployeeLoginWrapper form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+}
+
+.EmployeeLoginWrapper input {
+    width: 20vw;
+    height: 4vh;
+    font-size: 1.8vh;
+    padding: 0.5vh 1vw;
+    border-radius: 1vh;
+    border: 0.2vh solid #ccc;
+}
+
+.LoginBtn {
+    width: 5vw;
+    height: 4vh;
+    font-size: 1.8vh;
+    padding: 0.5vh 1vw;
+    border-radius: 1vh;
+}
+
+.LoginBtn:hover {
+    background-color: darkgray;
+}

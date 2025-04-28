@@ -17,7 +17,7 @@ export const getIngredientsInItem = async (req, res) => {
     const { id } = req.params;
     try {
         const result = await pool.query(`
-            SELECT i.item_name, g.ingredient_name, ig.quantity, g.quantity AS total_quantity, g.threshold
+            SELECT i.item_name, g.ingredient_id, g.ingredient_name, ig.quantity, g.quantity AS total_quantity, g.threshold
             FROM item i
             INNER JOIN item_ingredient ig ON i.item_id = ig.item_id
             INNER JOIN ingredient g ON ig.ingredient_id = g.ingredient_id

@@ -5,10 +5,9 @@
     width: 100vw;
 }
 
-
 /* Navigation Bar */
 .AnalyticsPages {
-    background-color: ghostwhite;
+    background-color: var(--bg-color);
     display: flex;
     position: sticky;
     top: 0;
@@ -17,16 +16,20 @@
     height: 4vh;
     padding-left: 1vw;
     padding-right: 1vw;
-    border-bottom: solid black 2px;
+    border-bottom: solid var(--text-color) 2px;
 }
 
 .AnalyticsPages button {
-    background-color: ghostwhite;
+    background-color: var(--btn-bg-color);
+    color: var(--btn-text-color);
     border: none;
     border-radius: 10px;
     flex-grow: 1;
     font-size: large;
     font-weight: bold;
+}
+.AnalyticsPages button:hover {
+    background-color: var(--link-color);
 }
 
 .date-selectors {
@@ -36,4 +39,3 @@
     gap: 1rem;
     margin-bottom: 1rem;
 }
-.AnalyticsPages button:hover { background-color: green; }

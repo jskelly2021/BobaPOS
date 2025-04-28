@@ -5,10 +5,9 @@
     width: 100vw;
 }
 
-
 /* Navigation Bar */
 .AdminPages {
-    background-color: ghostwhite;
+    background-color: var(--bg-color);
     display: flex;
     position: sticky;
     top: 0;
@@ -17,19 +16,21 @@
     height: 4vh;
     padding-left: 1vw;
     padding-right: 1vw;
-    border-bottom: solid black 2px;
+    border-bottom: solid var(--text-color) 2px;
 }
 
 .AdminPages button {
-    background-color: ghostwhite;
+    background-color: var(--btn-bg-color);
+    color: var(--btn-text-color);
     border: none;
     border-radius: 10px;
     flex-grow: 1;
     font-size: large;
     font-weight: bold;
 }
-.AdminPages button:hover { background-color: green; }
-
+.AdminPages button:hover {
+    background-color: var(--link-color);
+}
 
 /* Content */
 .Admin h1 { padding: 10vh; }
@@ -44,7 +45,7 @@
 .Admin .List li {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(5vw, 1fr));
-    border-bottom: solid;
+    border-bottom: solid var(--text-color);
     text-align: center;
     align-items: center;
     padding: 0;
@@ -71,7 +72,7 @@
     justify-content: center;
 }
 
-.Admin .List .RadioBtns label { 
+.Admin .List .RadioBtns label {
     display: flex;
     flex-direction: row;
     align-items: center;

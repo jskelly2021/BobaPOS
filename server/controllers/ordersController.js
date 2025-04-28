@@ -36,6 +36,15 @@ export const addOrderItem = async (req, res) => {
         const result = await pool.query(`INSERT INTO order_item (order_id, item_id, quantity)
                                         VALUES ($1, $2, $3) RETURNING *`, [order_id, item_id, quantity]);
 
+        await pool.query(`
+            UPDATE ingredient
+            SET quantity = ingredient.quantity - ii.quantity
+            FROM item_ingredient ii
+            WHERE ingredient.ingredient_id = ii.ingredient_id
+            AND ii.item_id = $1`,
+            [item_id]
+        );
+
         // updating for z-report, update daily item sales
         await pool.query(`
             UPDATE daily_item_sales 

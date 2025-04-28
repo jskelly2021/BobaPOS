@@ -103,7 +103,7 @@ const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm,
                             Out of Stock
                         </button>
                     )}
-                    <button onClick={onClose}>Cancel</button>
+                    <button onClick={() => onClose()}>Cancel</button>
                 </div>
             </div>
         </div>

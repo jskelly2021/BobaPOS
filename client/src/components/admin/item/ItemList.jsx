@@ -5,6 +5,7 @@ import DefaultItemRow from './DefaultItemRow';
 import useToppings from '../../../hooks/useToppings';
 import useIngredient from '../../../hooks/useIngredient';
 import ToppingsModule from '../../ToppingsModule';
+import IngredientModal from '../../IngredientModal';
 
 const ItemList = () => {
     const { items, loadingItem, errorItem, editItem, removeItem, addItem, nextId} = useItems();
@@ -13,6 +14,8 @@ const ItemList = () => {
     const { toppings, defaultToppings, getDefaultToppings, updateDefaultToppings } = useToppings();
     const { ingredients, itemIngredients, getIngredientsInItem, updateItemIngredientQuantities } = useIngredient();
     const [selectedItem, setSelectedItem] = useState(null);
+    const [showToppings, setShowToppings] = useState(false);
+    const [showIngredients, setShowIngredients] = useState(false);
 
     if (loadingItem) return <div>Loading items...</div>;
     if (errorItem) return <div>Error fetching items: {errorItem.message}</div>;
@@ -58,21 +61,35 @@ const ItemList = () => {
 
     const handleOpenToppingsClick = async (item) => {
         await getDefaultToppings(item);
+        setShowToppings(true);
         setSelectedItem(item);
     };
 
     const handleUpdateDefaultToppings = async (item, selectedToppings) => {
         await updateDefaultToppings(item, selectedToppings)
+        setShowToppings(false);
         setSelectedItem(null);
     };
 
     const handleOpenIngredientsClick = async (item) => {
         await getIngredientsInItem(item);
+        setShowIngredients(true);
         setSelectedItem(item);
     }
 
     const handleUpdateItemIngredients = async (item, ingredientQuantities) => {
         await updateItemIngredientQuantities(item, ingredientQuantities);
+        setShowIngredients(false);
+        setSelectedItem(null);
+    }
+
+    const handleCancelToppings = () => {
+        setShowToppings(false);
+        setSelectedItem(null);
+    }
+
+    const handleCancelIngredients = () => {
+        setShowIngredients(false);
         setSelectedItem(null);
     }
 
@@ -113,15 +130,25 @@ const ItemList = () => {
                 <button className="AddItemBtn" onClick={() => handleAddItem()}>Add Item</button>
             </ul>
 
-            {selectedItem && (
+            {selectedItem && showToppings && (
                 <ToppingsModule
                     item={selectedItem}
                     ingredients={[]}
                     toppings={toppings}
                     defaultToppings={defaultToppings}
                     onConfirm={handleUpdateDefaultToppings}
-                    onClose={() => setSelectedItem(null)}
+                    onClose={handleCancelToppings}
                     mode={'admin'}
+                />
+            )}
+
+            {selectedItem && showIngredients && (
+                <IngredientModal
+                    item={selectedItem}
+                    ingredients={[]}
+                    itemIngredients={itemIngredients}
+                    onConfirm={handleUpdateDefaultToppings}
+                    onClose={handleCancelIngredients}
                 />
             )}
         </div>

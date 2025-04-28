@@ -9,13 +9,13 @@ const IngredientModal = ({ item, ingredients, itemIngredients, onConfirm, onClos
 
         ingredients.forEach(i => {
             initial[i.ingredient_id] = {
-                ...t,
+                ...i,
                 quantity: 0
             };
         });
 
         (itemIngredients || []).forEach(i => {
-            initial[i.ingredient_id] = { ...t };
+            initial[i.ingredient_id] = { ...i };
         });
 
         return initial;
@@ -43,7 +43,7 @@ const IngredientModal = ({ item, ingredients, itemIngredients, onConfirm, onClos
                                 <input
                                     type='number'
                                     value={ingredient.quantity || ''}
-                                    onChange={(e) => onEdit('quantity', e.target.value)}
+                                    onChange={(e) => handleQuantityChange('quantity', e.target.value)}
                                 />
                             </div>
 
@@ -52,10 +52,10 @@ const IngredientModal = ({ item, ingredients, itemIngredients, onConfirm, onClos
                 </ul>
 
                 <div className="ModalActions">
-                    <button onClick={() => onConfirm(item)}>
-                        'Update'
+                    <button onClick={() => onConfirm(item, Object.value(ingredientQuantities))}>
+                        Update
                     </button>
-                    <button onClick={onClose}>Cancel</button>
+                    <button onClick={() => onClose()}>Cancel</button>
                 </div>
             </div>
         </div>

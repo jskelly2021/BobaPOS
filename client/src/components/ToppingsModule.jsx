@@ -5,14 +5,14 @@ import './ToppingsModule.css';
 
 const quantities = ['none', 'light', 'regular', 'heavy'];
 
-const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm, onClose, onRemove, mode }) => {
+const ToppingModal = ({ item, itemIngredients, toppings, defaultToppings, onConfirm, onClose, onRemove, mode }) => {
     const [totalCalories, setTotalCalories] = useState();
     const [totalPrice, setTotalPrice] = useState();
     const [quantity, setQuantity] = useState(() => {
         return item.quantity || 1;
     });
     const [inStock] = useState (() => {
-        for (const ingredient of ingredients) {
+        for (const ingredient of itemIngredients) {
             if (Number(ingredient.total_quantity) < Number(ingredient.threshold)) {
                 console.log(`Threshold met for ${ingredient.ingredient_name} in ${item.item_name}`);
                 return false;
@@ -76,7 +76,7 @@ const ToppingModal = ({ item, ingredients, toppings, defaultToppings, onConfirm,
 
                     <ItemDetails
                         item={item}
-                        ingredients={ingredients}
+                        ingredients={itemIngredients}
                         totalCalories={totalCalories}
                         totalPrice={totalPrice}
                         mode={mode}

@@ -5,6 +5,7 @@ import { fetchAllIngredients, updateIngredient,
 // Returns a list of all ingredients
 const useIngredient = () => {
     const [ingredients, setIngredients] = useState([]);
+    const [itemIngredients, setItemIngredients] = useState([]);
     const [loadingIngredient, setLoading] = useState(true);
     const [errorIngredient, setError] = useState(null);
 
@@ -93,7 +94,7 @@ const useIngredient = () => {
 
     const getIngredientsInItem = async (item) => {
         try {
-            setIngredients(await fetchIngredientsInItem(item));
+            setItemIngredients(await fetchIngredientsInItem(item));
         } catch (e) {
             console.error('Error getting ingredients on item', e);
         }
@@ -108,7 +109,7 @@ const useIngredient = () => {
         }
     }
 
-    return { ingredients, loadingIngredient, errorIngredient,
+    return { ingredients, itemIngredients, loadingIngredient, errorIngredient,
         addIngredient, removeIngredient, editIngredient, orderIngredient, getIngredientsInItem, nextId };
 }
 

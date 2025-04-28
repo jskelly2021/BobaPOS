@@ -2,14 +2,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    height: 90vh;
 }
 
 .DashboardNav {
-    display: flex;
+    /*display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     width: 100vw;
     height: 10vh;
+    */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
 .DashboardNav button {
@@ -18,4 +25,8 @@
     width: 15vw;
     height: 5vh;
     font-size: 1.2rem;
+}
+
+.DashboardNav button:hover {
+    background-color: gray;
 }

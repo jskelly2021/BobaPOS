@@ -23,7 +23,7 @@ const port = 4001;
 
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: process.env.FRONTEND_ORIGIN,
     credentials: true,
 }));
 app.set('trust proxy', 1); // trust first proxy

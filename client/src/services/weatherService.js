@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const baseURL = 'http://api.openweathermap.org';
-const API_key = '6f3b84c2ab3f7906cb3d0624c8163276';
+const API_key = process.env.WEATHER_API_KEY;
 
 const geoURL = 'https://wft-geo-db.p.rapidapi.com/v1/geo/';
 const HEADERS = {

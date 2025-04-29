@@ -6,6 +6,7 @@ const router = express.Router();
 // POST /auth/login using a custom callback for JSON responses
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
+    //console.log('Auth callback:', { err, user, info, body: req.body });
     if (err) {
       // Internal server error while authenticating
       return next(err);

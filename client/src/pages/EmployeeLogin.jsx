@@ -27,20 +27,25 @@ function EmployeeLogin() {
                 body: JSON.stringify({ employee_name: employeeName, passwords: password }),
             });
 
+            // parse the login response
             const data = await response.json();
-            // after login, fetch /auth/user
-            const userData = await fetch(`${API_BASE_URL}/auth/user`, { credentials: 'include' })
-                .then(r => r.json());
+        
+            // if login failed, show the message and bail out
+            if (!response.ok) {
+                setError(data.message || 'Login failed.');
+                return;
+            }
+        
+            // only now do we fetch the user session
+            const userRes = await fetch(
+                `${API_BASE_URL}/auth/user`, 
+                { credentials: 'include' }
+            );
+            const userData = await userRes.json();
             setUser(userData);
             localStorage.removeItem('userMode');
-
-            if (response.ok) {
-                console.log('User data:', userData);
-                navigate('/dashboard');
-            } else {
-                setError(data.message || 'Login failed.');
-            }
-        } catch (err) {
+            navigate('/dashboard');
+            } catch (err) {
             console.error('Login error:', err);
             setError('An error occurred.');
         }

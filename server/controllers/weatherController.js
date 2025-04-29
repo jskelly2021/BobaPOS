@@ -1,6 +1,25 @@
 import pool from '../config/database.js';
+import axios from 'axios';
 
-//Update weather location
+const baseURL = 'http://api.openweathermap.org';
+
+// Calls the external weather API and returns the weather
+export const getWeather = async (req, res) => {
+    const { cityName, stateCode, countryCode } = req.query;
+    const API_key = process.env.WEATHER_API_KEY;
+
+    const weatherURL = `http://api.openweathermap.org/data/2.5/weather?q=${cityName},${stateCode},${countryCode}&appid=${API_key}&units=imperial`;
+
+    try {
+        const response = await axios.get(weatherURL);
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error fetching weather data:', error.message);
+        res.status(500).json({ error: 'Failed to fetch weather data' });
+    }
+};
+
+// Update weather location
 export const updateWeatherLocation = async (req, res) => {
     const { country_name, country_code, region_name, region_code, city_name } = req.body;
     try {

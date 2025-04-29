@@ -1,21 +1,12 @@
 import axios from 'axios';
 
-const baseURL = 'http://api.openweathermap.org';
-const API_key = process.env.WEATHER_API_KEY;
-
-const geoURL = 'https://wft-geo-db.p.rapidapi.com/v1/geo/';
-const HEADERS = {
-    'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com',
-    'x-rapidapi-key': '59af24ee95msh7d2a1ea9aa2e8c1p17da2djsn171189092128'
-};
-
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export const fetchWeather = async (cityName, stateCode, countryCode) => {
-    const fetchURL = `${baseURL}/data/2.5/weather?q=${cityName},${stateCode},${countryCode}&appid=${API_key}&units=imperial`;
+    const fetchURL = `${API_BASE_URL}/weather?cityName=${cityName}&stateCode=${stateCode}&countryCode=${countryCode}`;
 
     try {
-        const { data } = await axios.get(fetchURL);
+        const { data } = await axios.get(fetchURL, { withCredentials: true });
         return data;
     } catch (e) {
         throw new Error(`Failed to fetch weather: ${e.message}`);
@@ -23,10 +14,10 @@ export const fetchWeather = async (cityName, stateCode, countryCode) => {
 }
 
 export const findCountries = async (namePrefix) => {
-    const fetchURL = `${geoURL}countries?namePrefix=${namePrefix}`;
+    const url = `${API_BASE_URL}/geo/countries?namePrefix=${namePrefix}`;
 
     try {
-        const { data } = await axios.get(fetchURL, {headers: HEADERS});
+        const { data } = await axios.get(url, { withCredentials: true });
         return data;
     }
     catch (e) {
@@ -35,10 +26,10 @@ export const findCountries = async (namePrefix) => {
 }
 
 export const findRegions = async (countryCode, namePrefix) => {
-    const fetchURL = `${geoURL}countries/${countryCode}/regions?namePrefix=${namePrefix}`
+    const url = `${API_BASE_URL}/geo/regions?countryCode=${countryCode}&namePrefix=${namePrefix}`;
 
     try {
-        const { data } = await axios.get(fetchURL, {headers: HEADERS});
+        const { data } = await axios.get(url, { withCredentials: true });
         return data;
     }
     catch (e) {

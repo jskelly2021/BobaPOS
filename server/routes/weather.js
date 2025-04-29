@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { getCountryCode, getRegionCode, getCityName, getCountryName, getRegionName, updateWeatherLocation } = require('../controllers/weatherController');
+const { getWeather, getCountryCode, getRegionCode, getCityName, getCountryName, getRegionName, updateWeatherLocation } = require('../controllers/weatherController');
 
 router.put('/', updateWeatherLocation);
+router.get('/', getWeather);
 router.get('/country', getCountryCode);
 router.get('/region', getRegionCode);
 router.get('/city', getCityName);

@@ -12,6 +12,7 @@ const employeesRouter = require('./routes/employee');
 const ordersRouter = require('./routes/orders');
 const toppingsRouter = require('./routes/toppings');
 const weatherRouter = require('./routes/weather');
+const geoRouter = require('./routes/geo');
 
 const authRouter = require('./routes/auth');
 const analyticsRouter = require('./routes/analytics');
@@ -89,6 +90,7 @@ app.use(
 
 // weather is manager-only
 app.use('/api/weather', weatherRouter);
+app.use('/api/geo', geoRouter);
 
 
 app.listen(port, () => {

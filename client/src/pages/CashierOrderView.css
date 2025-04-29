@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 .CashierOrderView .ItemPrice {
@@ -30,7 +30,7 @@
     padding: 0;
     margin: 0;
     gap: 1vw;
-    
+
 }
 
 .CashierOrderView .MenuItemList .ItemButton {
@@ -38,7 +38,7 @@
     border-style: solid;
     border-radius: 10px;
     background-color: var(--btn-bg-color);
-    color:var(--btn-text-color);
+    color: var(--btn-text-color);
     width: 20vw;
     height: 5vh;
 }
@@ -96,12 +96,12 @@
 }
 
 .CashierOrderView .OrderItemList .ItemButton .ItemDetails .ItemName {
-    font-size: 20px;
+    font-size: 1.25rem;
     margin-bottom: 0px;
 }
 
 .CashierOrderView .OrderItemList .ItemButton .ItemDetails .ItemTopping {
-    font-size: 12.5px;
+    font-size: 0.875rem;
     margin: 0px;
 }
 
@@ -149,7 +149,7 @@
     background-color: var(--bg-color);
     box-shadow: 0 0.3vh 0.6vh rgba(0, 0, 0, 0.1);
     color: solid var(--text-color);
-    
+
 }
 
 .ClearSearchBtn {

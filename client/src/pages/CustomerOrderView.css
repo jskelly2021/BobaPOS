@@ -20,7 +20,7 @@
 .CustomerOrderView .UtilBar button {
     height: 8vh;
     border-radius: 10px;
-    font-size: 1vw;
+    font-size: 1rem;
     font-weight: bold;
 }
 
@@ -65,6 +65,7 @@
 .CustomerOrderView .content h1 {
     padding-top: 5vh;
     padding-bottom: 5vh;
+    font-size: 2rem;
 }
 
 
@@ -80,7 +81,7 @@
     gap: 1vw;
     width: 75vw;
     background-color: ghostwhite;
-    
+
 }
 
 
@@ -91,14 +92,12 @@
     justify-content: center;
     align-items: center;
     background-color: var(--bg-color);
-
     border: solid green;
     border-radius: 10px;
-
     width: 23.5vw;
     min-width: 200px;
     height: 50vh;
-    font-size: 1.5vw;
+    font-size: 1.2rem;
 }
 
 .CustomerOrderView .MenuItemList .ItemButton .ItemDetails .ItemQuantity {
@@ -114,7 +113,7 @@
 }
 
 .CustomerOrderView .MenuItemList .ItemDetails {
-    font-size: 2vh;
+    font-size: 1rem;
 }
 
 .CustomerOrderView .MenuItemList .ItemDetails .ItemName {
@@ -125,25 +124,34 @@
 /* Category Selector */
 .CustomerOrderView .CategorySelector {
     position: fixed;
-    left: 0;
     top: 0;
-
+    bottom: 0;
+    left: 0;
+    width: 10.25vw;
+    min-width: 10.25vw;
     display: flex;
     flex-direction: column;
-
-    height: 90vh;
-    width: 10vw;
-    min-width: 10vw;
+    overflow-y: auto;
+    padding: 0;
+    margin-bottom: 10vh;
 }
 
 .CustomerOrderView .CategorySelector button {
-    border: solid green 1px;
-    border-right-width: 2px;
-    background-color: ghostwhite;
-    height: 25vh;
-    font-size: 1.3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem 0.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
+    min-height: 7.75rem;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+    white-space: normal;
+    word-break: break-word;
+    flex-grow: 1;
 }
+
 
 .CustomerOrderView .CategorySelector button:hover {
     background-color: white;
@@ -153,26 +161,30 @@
 /* Order Cart */
 .CustomerOrderView .OrderCart {
     position: fixed;
-    right: 0;
     top: 0;
-    height: 90vh;
+    bottom: 0;
+    right: 0;
     width: 15vw;
-    overflow: scroll;
+    display: flex;
+    flex-direction: column;
     background-color: ghostwhite;
     border-left: solid green 2px;
     text-align: center;
+    overflow: hidden;
+    padding-bottom: 10vh;
 }
 
 .CustomerOrderView .OrderCart h2 {
     margin: 2vh;
+    font-size: 1.5rem;
 }
 
 .CustomerOrderView .OrderItemList {
+    flex: 1;
+    overflow-y: auto;
     list-style: none;
-    display: block;
     margin: 0;
     padding: 0;
-    overflow: scroll;
 }
 
 .CustomerOrderView .OrderItemList .ItemButton {
@@ -186,12 +198,12 @@
 }
 
 .CustomerOrderView .OrderItemList .ItemButton .ItemDetails .ItemName {
-    font-size: 20px;
+    font-size: 1.25rem;
     margin-bottom: 0px;
 }
 
 .CustomerOrderView .OrderItemList .ItemButton .ItemDetails .ItemTopping {
-    font-size: 12.5px;
+    font-size: 0.875rem;
     margin: 0px;
 }
 
@@ -202,6 +214,3 @@
 .CustomerOrderView .OrderItemList .ItemImg {
     width: 10vw;
 }
-
-  
-  

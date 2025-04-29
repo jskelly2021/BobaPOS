@@ -26,12 +26,13 @@ export function AuthProvider({ children }) {
       try {
         const res = await fetch(
           `${process.env.REACT_APP_API_BASE_URL}/auth/user`,
-          { credentials: 'include' }
-        );
+          { credentials: 'include' });
+        console.log('AuthContext fetch:', res)
         if (res.ok) {
           setUser(await res.json());
         } else if (res.status === 401) {
           setUser(null);
+          console.log('AuthContext: user not logged in 555');
         } else {
           console.error('AuthContext unexpected status:', res.status);
           setUser(null);

@@ -23,26 +23,39 @@ const port = 4001;
 
 app.use(express.json());
 app.use(cors({
-    origin: process.env.FRONTEND_ORIGIN,
+    origin: 'http://localhost:3000',
     credentials: true,
 }));
 app.set('trust proxy', 1); // trust first proxy
 
 // Session middleware
+/*
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: 
         {
-            secure: process.env.NODE_ENV === 'production',
+            //secure: process.env.NODE_ENV === 'production',
             sameSite: 'none',   // ← allow cross-site in dev
-            httpOnly: true,
-            maxAge: 1000 * 60 * 60 * 24,
-            //secure: false      // ← allow HTTP in dev
+            //httpOnly: true,
+            //maxAge: 1000 * 60 * 60 * 24,
+            secure: true      // ← allow HTTP in dev
         }
     })
-);
+);*/
+const isProduction = process.env.NODE_ENV === 'production';
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    sameSite: isProduction ? 'none' : 'lax',
+    secure: isProduction,      // false locally, true in prod
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24,
+  },
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());

@@ -1,15 +1,14 @@
 import axios from 'axios';
 
-const geoURL = 'https://wft-geo-db.p.rapidapi.com/v1/geo/';
 const HEADERS = {
-    'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com',
-    'x-rapidapi-key': '59af24ee95msh7d2a1ea9aa2e8c1p17da2djsn171189092128'
+    'x-rapidapi-host': process.env.RAPID_API_HOST,
+    'x-rapidapi-key': process.env.RAPID_API_KEY
 };
 
 // Calls the external geo API and returns the countries
 export const getCountries = async (req, res) => {
     const { namePrefix } = req.query;
-    const fetchURL = `${geoURL}countries?namePrefix=${namePrefix}`;
+    const fetchURL = `${process.env.GEO_URL}/countries?namePrefix=${namePrefix}`;
 
     try {
         const { data } = await axios.get(fetchURL, { headers: HEADERS });
@@ -20,11 +19,10 @@ export const getCountries = async (req, res) => {
     }
 };
 
-
 // Calls the external geo API and returns the regions
 export const getRegions = async (req, res) => {
     const { countryCode, namePrefix } = req.query;
-    const fetchURL = `${geoURL}countries/${countryCode}/regions?namePrefix=${namePrefix}`;
+    const fetchURL = `${process.env.GEO_URL}/countries/${countryCode}/regions?namePrefix=${namePrefix}`;
 
     try {
         const { data } = await axios.get(fetchURL, { headers: HEADERS });

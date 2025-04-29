@@ -25,7 +25,7 @@ app.use(cors({
     origin: process.env.FRONTEND_ORIGIN,
     credentials: true,
 }));
-
+app.set('trust proxy', 1); // trust first proxy
 
 // Session middleware
 app.use(session({
@@ -34,8 +34,11 @@ app.use(session({
     saveUninitialized: false,
     cookie: 
         {
-            sameSite: 'lax',   // ← allow cross-site in dev
-            secure: false      // ← allow HTTP in dev
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'none',   // ← allow cross-site in dev
+            httpOnly: true,
+            maxAge: 1000 * 60 * 60 * 24,
+            //secure: false      // ← allow HTTP in dev
         }
     })
 );

@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 
 const FontSizeToggle = ({ fontSize, setFontSize }) => {
     const { pathname } = useLocation();
-    const showOn = ['/welcome', '/dashboard'];
+    const showOn = ['/welcome', '/dashboard', '/menu/customer', '/payment', '/review'];
     if (!showOn.includes(pathname)) return null;
 
     const toggleFontSize = () => {
@@ -10,18 +10,12 @@ const FontSizeToggle = ({ fontSize, setFontSize }) => {
     };
 
     return (
-    <button
-        onClick={toggleFontSize}
-        style={{
-        position: 'fixed',
-        top: '1rem',
-        right: '10rem',
-        zIndex: 1000,
-        }}
-        aria-label="Toggle font size"
-    >
-        {fontSize === 100 ? 'Zoom In' : 'Reset Zoom'}
-    </button>
+        <button className='FontSizeToggleBtn'
+            onClick={toggleFontSize}
+            aria-label="Toggle font size"
+        >
+            {fontSize === 100 ? 'Zoom In' : 'Reset Zoom'}
+        </button>
     );
 }
 

@@ -34,6 +34,8 @@ const AccessibilityBar = () => {
 
     return (
         <div className='AccessibilityBar'>
+
+            <div className='Spacer'></div>
             <ContrastToggle
                 highContrast={highContrast}
                 setHighContrast={setHighContrast}

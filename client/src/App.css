@@ -13,68 +13,53 @@ h1 {
 
 /*–– define your default color palette ––*/
 :root {
-    --text-color: #000000;
-    --link-color: #0066cc;
-    --btn-bg-color: #0066cc;
-    --btn-text-color: #000000;
+    --default-bg: ghostwhite;
+    --emphasis-bg: #0066cc;
+    --deemphasis-bg: #a0a0a0;
 
-    --bg-color: ghostwhite;
-    --text-default: black;
-    --text-selected: white;
-    --accent-color: #0066cc;
-    --border-color: black;
-    --emphasis-color: #0066cc;
-    --deemphasis-color: #a0a0a0;
+    --default-text: black;
+    --emphasis-text: white;
+    --deemphasis-text: black;
 
-    --menu-item-bg-default: ghostwhite;
-    --menu-item-bg-hover: white;
+    --default-hover: white;
+    --emphasis-hover: #0066cc;
 
+    --default-border: black;
 }
 
 /*–– overrides when high-contrast is active ––*/
 .high-contrast {
-    --bg-color: #000000;
-    --text-color: #ffff00;
-    --link-color: #ffff00;
-    /* canary yellow links */
-    --btn-bg-color: #ffff00;
-    /* yellow buttons */
-    --btn-text-color: #000000;
+    --default-bg: black;
+    --emphasis-bg: #ffff00;
+    --deemphasis-bg: #a0a0a0;
+
+    --default-text: #ffff00;
+    --emphasis-text: black;
+    --deemphasis-text: black;
+
+    --default-hover: #171717;
+    --emphasis-hover: #ffff00;
+
+    --default-border: white;
 }
 
 /*–– apply throughout the site ––*/
 body {
     margin: 0;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background-color: var(--default-bg);
+    color: var(--default-text);
 }
 
 a {
-    color: var(--link-color);
+    color: var(--default-emphasis);
     text-decoration: underline;
 }
 
-.key-btn,
-.btn {
-    background-color: var(--btn-bg-color);
-    color: var(--btn-text-color);
-    border: 2px solid var(--btn-text-color);
 
-    padding: 0.6em 1.2em;
-    font-size: 1rem;
-    border-radius: 0.5rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
 
 /*–– ensure focused items remain visible ––*/
 :focus {
-    outline: 3px solid var(--link-color);
+    outline: 3px solid var(--default-emphasis);
     outline-offset: 2px;
 }
 
@@ -171,10 +156,33 @@ html {
 }
 
 .AccessibilityBar {
-    background-color: var(--accent-color);
+    background-color: var(--default-bg);
+    border-bottom : solid var(--default-border) 2px;
     position: fixed;
     top: 0;
     right: 0;
     width: 100vw;
-    height: 5vh;
+    height: 6vh;
+    z-index: 100;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    gap: 1vw;
+    width: 98vw;
 }
+
+.AccessibilityBar button {
+    background-color: var(--emphasis-bg);
+    color: var(--emphasis-text);
+    height: 4vh;
+    border-radius: 10px;
+    font-size: 1rem;
+    border: none;
+    font-weight: bold;
+}
+
+.AccessibilityBar .FontSizeToggleBtn { flex-grow: 1; }
+.AccessibilityBar .ContrastToggleBtn { flex-grow: 1; }
+.AccessibilityBar .Spacer { flex-grow: 8; }

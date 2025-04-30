@@ -25,7 +25,7 @@
 
 .UserModeBtn {
     border-radius: 1vh;
-    font-size: 1.8vh;
+    font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -44,12 +44,15 @@
 }
 
 .StartBtn {
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
     border-radius: 10px;
-    width: 15vw;
-    height: 5vh;
-    font-size: 1.2rem;
     transition: background-color 0.3s;
     cursor: pointer;
+    background-color: var(--btn-bg-color);
+    color: var(--btn-text-color);
+    border: 2px solid var(--btn-text-color);
+    text-align: center;
 }
 
 .StartBtn:hover {

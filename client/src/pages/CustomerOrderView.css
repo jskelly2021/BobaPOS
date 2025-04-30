@@ -16,7 +16,6 @@
     gap: 1vw;
     width: 98vw;
     height: 10vh;
-    min-height: 10vh;
 }
 
 .CustomerOrderView .UtilBar button {
@@ -47,6 +46,8 @@
 
 .CustomerOrderView .UtilBar .ReviewOrderBtn {
     background-color: var(--emphasis-color);
+    color: var(--text-selected);
+    font-size: large;
     flex-grow: 8;
     border: none;
 }
@@ -57,7 +58,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 10vw;
+    justify-content: center;
+    margin-left: 15vw;
     margin-right: 15vw;
     padding-bottom: 15vh;
 }
@@ -71,18 +73,14 @@
 
 /* Item List */
 .CustomerOrderView .MenuItemList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    width: 70vw;
     list-style: none;
-    display: flex;
-    flex-flow: wrap;
-    justify-content: center;
     padding: 0;
-    margin: 0;
-    gap: 1vw;
-    width: 75vw;
+    margin-left: 0;
 }
 
-
-/* Item Button */
 .CustomerOrderView .MenuItemList .ItemButton {
     background-color: var(--menu-item-bg-default);
     color: var(--menu-item-text-default);
@@ -90,10 +88,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: solid var(--accent-color);
-    border-radius: 10px;
-    width: 23.5vw;
-    min-width: 200px;
+    border: none;
+    width: 100%;
+    min-width: 250px;
     height: 50vh;
     font-size: 1.2rem;
 }
@@ -111,7 +108,7 @@
 }
 
 .CustomerOrderView .MenuItemList .ItemImg {
-    height: 25vh;
+    height: 30vh;
 }
 
 .CustomerOrderView .MenuItemList .ItemDetails {
@@ -133,7 +130,7 @@
     flex-direction: column;
     padding: 0;
     margin-bottom: 10vh;
-    width: 12vw;
+    width: 15vw;
     height: 90vh;
 }
 
@@ -171,7 +168,7 @@
     width: 15vw;
     display: flex;
     flex-direction: column;
-    border-left: solid green 2px;
+    border-left: solid var(--border-color) 2px;
     text-align: center;
     overflow: hidden;
     padding-bottom: 10vh;
@@ -188,6 +185,7 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    padding-bottom: 5vh;
 }
 
 .CustomerOrderView .OrderItemList .ItemButton {
@@ -210,7 +208,6 @@
     font-size: 0.875rem;
     margin: 0px;
 }
-
 
 .CustomerOrderView .OrderItemList .ItemImg {
     width: 10vw;

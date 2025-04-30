@@ -13,15 +13,18 @@ h1 {
 
 /*–– define your default color palette ––*/
 :root {
-    --bg-color: ghostwhite;
     --text-color: #000000;
     --link-color: #0066cc;
     --btn-bg-color: #0066cc;
     --btn-text-color: #000000;
 
+    --bg-color: ghostwhite;
     --text-default: black;
     --text-selected: white;
     --accent-color: #0066cc;
+    --border-color: black;
+    --emphasis-color: #0066cc;
+    --deemphasis-color: #a0a0a0;
 
     --menu-item-bg-default: ghostwhite;
     --menu-item-bg-hover: white;

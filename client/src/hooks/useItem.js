@@ -131,7 +131,7 @@ const useItem = (defaultCategory = null) => {
         }
     }
 
-    return { items, loadingItem, errorItem, updateCategory, editItem, removeItem, addItem, getCategory, nextId };
+    return { items, loadingItem, errorItem, displayedCategory, updateCategory, editItem, removeItem, addItem, getCategory, nextId };
 }
 
 export default useItem;

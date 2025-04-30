@@ -125,20 +125,19 @@ function App() {
             <Route path="/unauthorized" element={<Unauthorized />} />
             <Route path="/welcome" element={<Welcome />} />
             <Route path="/menu/customer" element={<CustomerOrderView />} />
+            <Route path="/review" element={<OrderReview />} />
+            <Route path="/payment" element={<Payment />} />
 
             {/* routes for both cashiers & managers */}
             <Route element={<RequireAuth allowedRoles={['CASHIER', 'MANAGER']} />}>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/menu/cashier" element={<CashierOrderView />} />
-
-              <Route path="/review" element={<OrderReview />} />
-              <Route path="/payment" element={<Payment />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/menu/cashier" element={<CashierOrderView />} />
             </Route>
 
             {/* routes for managers only */}
             <Route element={<RequireAuth allowedRoles={['MANAGER']} />}>
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/analytics" element={<Analytics />} />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="/analytics" element={<Analytics />} />
             </Route>
 
           </Routes>

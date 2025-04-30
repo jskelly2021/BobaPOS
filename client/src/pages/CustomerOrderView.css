@@ -97,12 +97,6 @@
 }
 .CustomerOrderView .MenuItemList .ItemButton:hover { background-color: var(--default-hover); }
 
-.high-contrast .CustomerOrderView .MenuItemList .ItemButton {
-    background-color: var(--default-bg);
-    color: var(--default-text);
-}
-.high-contrast .CustomerOrderView .MenuItemList .ItemButton:hover { background-color: var(--default-hover); }
-
 .CustomerOrderView .MenuItemList .ItemButton .ItemDetails .ItemQuantity,
 .CustomerOrderView .MenuItemList .ItemButton .ItemDetails .ItemTopping{
     display: none;
@@ -187,6 +181,7 @@
 
 .CustomerOrderView .OrderItemList .ItemButton {
     background-color: var(--default-bg);
+    color: var(--default-text);
     display: flex;
     flex-direction: column;
     justify-content: center;

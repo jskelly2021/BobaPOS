@@ -4,11 +4,11 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: var(--bg-color);
+    background-color: var(--default-bg);
 }
 
 .WelcomeWrapper {
-    background-color: #7F9183;
+    background-color: var(--deemphasis-bg);
     border-radius: 2vh;
     padding: 10vh 5vw 5vh 5vw;
     position: relative;
@@ -25,13 +25,14 @@
 
 .UserModeBtn {
     border-radius: 1vh;
+    border: solid var(--deemphasis-border) 2px;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .UserModeBtn:hover {
-    background-color: darkgray;
+    background-color: var(--deemphasis-hover);
 }
 
 .WelcomeText {
@@ -49,12 +50,12 @@
     border-radius: 10px;
     transition: background-color 0.3s;
     cursor: pointer;
-    background-color: var(--btn-bg-color);
-    color: var(--btn-text-color);
-    border: 2px solid var(--btn-text-color);
+    background-color: var(--emphasis-bg);
+    color: var(--emphasis-text);
+    border: 2px solid var(--emphasis-border);
     text-align: center;
 }
 
 .StartBtn:hover {
-    background-color: darkgray;
+    background-color: var(--emphasis-hover);
 }

@@ -2,8 +2,8 @@
 
 /* Util Bar */
 .OrderReview .UtilBar {
-    border-top: solid var(--border-color) 2px;
-    background-color: var(--bg-color);
+    border-top: solid var(--default-border) 2px;
+    background-color: var(--default-bg);
     position: fixed;
     bottom: 0;
     display: flex;
@@ -23,19 +23,19 @@
 }
 
 .OrderReview .UtilBar .BackBtn {
-    background-color: var(--deemphasis-color);
+    background-color: var(--deemphasis-bg);
     border: none;
     flex-grow: 4;
 }
 
 .OrderReview .UtilBar .OrderPriceLabel {
-    background-color: var(--deemphasis-color);
+    background-color: var(--deemphasis-bg);
     border: none;
     flex-grow: 1;
 }
 
 .OrderReview .UtilBar .PaymentBtn {
-    background-color: var(--emphasis-color);
+    background-color: var(--emphasis-bg);
     color: var(--text-selected);
     font-size: large;
     flex-grow: 8;
@@ -54,8 +54,8 @@
 }
 
 .OrderReview .OrderItem {
-    border-top: solid var(--border-color) 2px;
-    background-color: var(--bg-color);
+    border-top: solid var(--default-border) 2px;
+    background-color: var(--default-bg);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     list-style: none;

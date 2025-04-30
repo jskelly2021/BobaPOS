@@ -22,9 +22,12 @@ h1 {
     --deemphasis-text: black;
 
     --default-hover: white;
-    --emphasis-hover: #0066cc;
+    --emphasis-hover: #0a71d8;
+    --deemphasis-hover: #b5b5b5;
 
     --default-border: black;
+    --emphasis-border: black;
+    --deemphasis-border: black;
 }
 
 /*–– overrides when high-contrast is active ––*/
@@ -39,8 +42,11 @@ h1 {
 
     --default-hover: #171717;
     --emphasis-hover: #ffff00;
+    --deemphasis-hover: #b5b5b5;
 
     --default-border: white;
+    --emphasis-border: black;
+    --deemphasis-border: black;
 }
 
 /*–– apply throughout the site ––*/

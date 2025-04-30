@@ -12,7 +12,6 @@ import ToppingsModule from '../components/ToppingsModule';
 import useToppings from '../hooks/useToppings';
 import useIngredient from '../hooks/useIngredient';
 import AccessibilityBar from '../components/accessibility/AccessiblityBar';
-import ContrastToggle from '../components/accessibility/ContrastToggle';
 
 
 function OrderView() {

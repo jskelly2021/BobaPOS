@@ -78,7 +78,6 @@
     height: 95vh;
     width: 15vw;
     overflow: scroll;
-    background-color: ghostwhite;
     text-align: center;
 }
 
@@ -90,7 +89,6 @@
 
 .CashierOrderView .OrderItemList .ItemButton {
     border: none;
-    background-color: ghostwhite;
 
     width: 100%;
 }

@@ -58,7 +58,6 @@
     align-items: center;
     margin-left: 10vw;
     margin-right: 15vw;
-    background-color: white;
     padding-bottom: 15vh;
 }
 
@@ -80,7 +79,6 @@
     margin: 0;
     gap: 1vw;
     width: 75vw;
-    background-color: ghostwhite;
 
 }
 
@@ -92,6 +90,7 @@
     justify-content: center;
     align-items: center;
     background-color: var(--bg-color);
+    color: var(--btn-text-color);
     border: solid green;
     border-radius: 10px;
     width: 23.5vw;
@@ -100,12 +99,23 @@
     font-size: 1.2rem;
 }
 
+.high-contrast .CustomerOrderView .MenuItemList .ItemButton {
+    background-color: var(--btn-bg-color);
+    color: var(--btn-text-color);
+}
+
 .CustomerOrderView .MenuItemList .ItemButton .ItemDetails .ItemQuantity {
     display: none;
 }
 
 .CustomerOrderView .MenuItemList .ItemButton:hover {
     background-color: var(--btn-bg-color);
+    color: var(--btn-text-color);
+}
+
+.high-contrast .CustomerOrderView .MenuItemList .ItemButton:hover {
+    background-color: var(--btn-text-color);
+    color: var(--btn-bg-color);
 }
 
 .CustomerOrderView .MenuItemList .ItemImg {
@@ -167,7 +177,6 @@
     width: 15vw;
     display: flex;
     flex-direction: column;
-    background-color: ghostwhite;
     border-left: solid green 2px;
     text-align: center;
     overflow: hidden;
@@ -194,7 +203,6 @@
     align-items: center;
     width: 15vw;
     border: none;
-    background-color: ghostwhite;
 }
 
 .CustomerOrderView .OrderItemList .ItemButton .ItemDetails .ItemName {

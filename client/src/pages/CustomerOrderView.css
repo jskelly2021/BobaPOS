@@ -2,6 +2,8 @@
     background-color: var(--bg-color);
 }
 
+
+/* Util Bar */
 .CustomerOrderView .UtilBar {
     border-top: solid var(--link-color);
     background-color: var(--bg-color);
@@ -25,8 +27,8 @@
 }
 
 .CustomerOrderView .UtilBar .CancelBtn {
-    border: none;
     background-color: var(--btn-bg-color);
+    border: none;
     flex-grow: 4;
 }
 
@@ -35,9 +37,7 @@
     border: none;
 }
 
-.CustomerOrderView .UtilBar .Separator {
-    flex-grow: 4
-}
+.CustomerOrderView .UtilBar .Separator { flex-grow: 4 }
 
 .CustomerOrderView .UtilBar .OrderPriceLabel {
     border: none;
@@ -45,8 +45,8 @@
 }
 
 .CustomerOrderView .UtilBar .ReviewOrderBtn {
-    flex-grow: 8;
     background-color: var(--link-color);
+    flex-grow: 8;
     border: none;
 }
 
@@ -71,7 +71,6 @@
 /* Item List */
 .CustomerOrderView .MenuItemList {
     list-style: none;
-
     display: flex;
     flex-flow: wrap;
     justify-content: center;
@@ -79,43 +78,35 @@
     margin: 0;
     gap: 1vw;
     width: 75vw;
-
 }
 
 
 /* Item Button */
 .CustomerOrderView .MenuItemList .ItemButton {
+    background-color: var(--menu-item-bg-default);
+    color: var(--menu-item-text-default);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--bg-color);
-    color: var(--btn-text-color);
-    border: solid green;
+    border: solid var(--accent-color);
     border-radius: 10px;
     width: 23.5vw;
     min-width: 200px;
     height: 50vh;
     font-size: 1.2rem;
 }
+.CustomerOrderView .MenuItemList .ItemButton:hover { background-color: var(--menu-item-bg-hover); }
 
 .high-contrast .CustomerOrderView .MenuItemList .ItemButton {
     background-color: var(--btn-bg-color);
     color: var(--btn-text-color);
 }
+.high-contrast .CustomerOrderView .MenuItemList .ItemButton:hover { background-color: var(--btn-bg-color); }
 
-.CustomerOrderView .MenuItemList .ItemButton .ItemDetails .ItemQuantity {
+.CustomerOrderView .MenuItemList .ItemButton .ItemDetails .ItemQuantity,
+.CustomerOrderView .MenuItemList .ItemButton .ItemDetails .ItemTopping{
     display: none;
-}
-
-.CustomerOrderView .MenuItemList .ItemButton:hover {
-    background-color: var(--btn-bg-color);
-    color: var(--btn-text-color);
-}
-
-.high-contrast .CustomerOrderView .MenuItemList .ItemButton:hover {
-    background-color: var(--btn-text-color);
-    color: var(--btn-bg-color);
 }
 
 .CustomerOrderView .MenuItemList .ItemImg {
@@ -147,6 +138,7 @@
 }
 
 .CustomerOrderView .CategorySelector button {
+    background-color: var(--menu-item-bg-default);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -161,11 +153,7 @@
     word-break: break-word;
     flex-grow: 1;
 }
-
-
-.CustomerOrderView .CategorySelector button:hover {
-    background-color: white;
-}
+.CustomerOrderView .CategorySelector button:hover { background-color: var(--menu-item-bg-hover); }
 
 
 /* Order Cart */
@@ -197,6 +185,7 @@
 }
 
 .CustomerOrderView .OrderItemList .ItemButton {
+    background-color: var(--menu-item-bg-default);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -204,6 +193,7 @@
     width: 15vw;
     border: none;
 }
+.CustomerOrderView .OrderItemList .ItemButton:hover { background-color: var(--menu-item-bg-hover); }
 
 .CustomerOrderView .OrderItemList .ItemButton .ItemDetails .ItemName {
     font-size: 1.25rem;
@@ -215,9 +205,6 @@
     margin: 0px;
 }
 
-.CustomerOrderView .OrderItemList .ItemButton:hover {
-    background-color: white;
-}
 
 .CustomerOrderView .OrderItemList .ItemImg {
     width: 10vw;

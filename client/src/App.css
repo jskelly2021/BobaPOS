@@ -18,6 +18,14 @@ h1 {
     --link-color: #0066cc;
     --btn-bg-color: #0066cc;
     --btn-text-color: #000000;
+
+    --text-default: black;
+    --text-selected: white;
+    --accent-color: #0066cc;
+
+    --menu-item-bg-default: ghostwhite;
+    --menu-item-bg-hover: white;
+
 }
 
 /*–– overrides when high-contrast is active ––*/
@@ -43,7 +51,7 @@ a {
     text-decoration: underline;
 }
 
-button,
+.key-btn,
 .btn {
     background-color: var(--btn-bg-color);
     color: var(--btn-text-color);

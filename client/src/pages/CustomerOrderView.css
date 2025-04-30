@@ -108,7 +108,7 @@
 }
 
 .CustomerOrderView .MenuItemList .ItemImg {
-    height: 30vh;
+    height: 35vh;
 }
 
 .CustomerOrderView .MenuItemList .ItemDetails {
@@ -137,7 +137,6 @@
 .CustomerOrderView .CategorySelector button {
     background-color: var(--menu-item-bg-default);
     border: none;
-    border-top: solid var(--border-color) 1px;
     display: flex;
     justify-content: center;
     align-items: center;

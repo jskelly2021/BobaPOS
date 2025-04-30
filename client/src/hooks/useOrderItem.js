@@ -57,11 +57,15 @@ const useOrderItem = () => {
             }
         }
 
-        setOrderItems([]);
-        sessionStorage.setItem('orderItems', JSON.stringify([]));
+        cancelOrder();
     }
 
-    return { orderItems, addToOrder, removeFromOrder, updateItemInOrder, orderPrice, placeOrder };
+    const cancelOrder = () => {
+        setOrderItems([]);
+        sessionStorage.setItem('orderItems', JSON.stringify([]));
+    } 
+
+    return { orderItems, addToOrder, removeFromOrder, updateItemInOrder, orderPrice, placeOrder, cancelOrder };
 }
 
 export default useOrderItem;

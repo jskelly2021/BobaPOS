@@ -35,10 +35,10 @@
 
 .CashierOrderView .MenuItemList .ItemButton {
     border-color: var(--text-color);
-    border-style: solid;
-    border-radius: 10px;
     background-color: var(--btn-bg-color);
     color: var(--btn-text-color);
+    border-style: solid;
+    border-radius: 10px;
     width: 20vw;
     height: 5vh;
 }

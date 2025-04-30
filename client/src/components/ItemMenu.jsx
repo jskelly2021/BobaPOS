@@ -9,7 +9,6 @@ function ItemMenu({ loadingItem, errorItem, menuItems, onItemButtonClick }) {
   const activeItems = menuItems.filter(item => item.active === 1);
 
   return (
-    <div className="ItemMenu">
       <ul className="MenuItemList">
       {activeItems.map(item => (
           <li key={item.id || item.menuItemId}>
@@ -21,7 +20,6 @@ function ItemMenu({ loadingItem, errorItem, menuItems, onItemButtonClick }) {
           </li>
         ))}
       </ul>
-    </div>
   );
 }
 

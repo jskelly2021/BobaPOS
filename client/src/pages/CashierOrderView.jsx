@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './CashierOrderView.css'
@@ -27,11 +27,11 @@ function OrderView() {
     );
 
     useEffect(() => {
-            document.body.classList.add('cashier-order-page');
-            return () => {
-              document.body.classList.remove('cashier-order-page');
-            };
-          }, []);
+        document.body.classList.add('cashier-order-page');
+        return () => {
+            document.body.classList.remove('cashier-order-page');
+        };
+    }, []);
 
     const handleMenuItemClick = async (item) => {
         setCustomizeMode('ordering');
@@ -74,9 +74,6 @@ function OrderView() {
 
     return (
         <div className='OrderView CashierOrderView'>
-            <button className='DashboardBtn' onClick={() => nav('/dashboard')}>
-                Dashboard
-            </button>
 
             <div className='content'>
                 <div className="SearchContainer">
@@ -111,10 +108,6 @@ function OrderView() {
                 <OrderCart orderItems={orderItems} onItemButtonClick={handleOrderItemClick} />
             </div>
 
-            <button className='ReviewOrderBtn' onClick={() => nav('/review')}>
-                Review Order
-            </button>
-
             {selectedItem && (
                 <ToppingsModule
                     item={selectedItem}
@@ -127,6 +120,18 @@ function OrderView() {
                     mode={customizeMode}
                 />
             )}
+
+            <div className='UtilBar'>
+                <button className='DashboardBtn' onClick={() => nav('/dashboard')}>
+                    Dashboard
+                </button>
+
+                <div className="Separator"></div>
+
+                <button className='ReviewOrderBtn' onClick={() => nav('/review')}>
+                    Review Order
+                </button>
+            </div>
         </div>
     );
 }

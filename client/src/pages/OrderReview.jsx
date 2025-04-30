@@ -25,29 +25,43 @@ function OrderReview() {
     return (
         <div className='OrderReview'>
 
-            <h1 className='reviewOrderText'>Review Order</h1>
+            <h1 className='reviewOrderText'>Order Review</h1>
 
             <ul className='OrderItemList'>
                 {orderItems.map((item) => (
                     <li className="OrderItem" key={item.orderItemId}> 
                         <div className='ItemDetails'>
-                            <h3>{item.item_name}</h3>
-                            <p>Price: {item.price * item.quantity}</p>
-                            <p>Quantity: {item.quantity}</p>
-
-                            <h4>Toppings:</h4>
-                            {item.toppings?.length > 0 ? (
-                                item.toppings
-                                    .filter(t => t.quantity !== 0 && t.quantity !== 'none')
-                                    .map((topping, i) => (
-                                        <span key={i}>
-                                            {topping.topping_name} ({topping.quantity})
-                                        </span>
-                                    ))
-                            ) : (
-                                <span>None</span>
-                            )}
+                            <div className='Details'>
+                                <h2>{item.item_name}</h2>
+                                <p> Total Price: ${item.priceWithToppings ? item.priceWithToppings : item.price} </p>
+                                <p>Quantity: {item.quantity}</p>
                             </div>
+                        </div>
+
+                        <div className='PriceBreakdown'>
+                            <div className='ItemToppings'>
+                                <h3>Price Breakdown</h3>
+                                <p>${item.price} Base Price</p>
+                                    {item.toppings?.filter(t => t.quantity !== 0 && t.quantity !== 'none').length > 0 ? (
+                                        item.toppings
+                                            .filter(t => t.quantity !== 0 && t.quantity !== 'none')
+                                            .map((topping, i, arr) => (
+                                                <span key={i}>
+                                                    +${topping.price} {topping.topping_name} ({topping.quantity})
+                                                </span>
+                                            ))
+                                    ) : (
+                                        <span>None</span>
+                                    )}
+                            </div>
+                        </div>
+
+                        <div className='ItemImg'>
+                            <img
+                                src={item.item_img}
+                                alt={item.item_name}
+                            />
+                        </div>
                     </li> 
                 ))}
             </ul>

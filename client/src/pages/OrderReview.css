@@ -1,3 +1,50 @@
+
+
+/* Util Bar */
+.OrderReview .UtilBar {
+    border-top: solid var(--border-color) 2px;
+    background-color: var(--bg-color);
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    gap: 1vw;
+    width: 98vw;
+    height: 10vh;
+}
+
+.OrderReview .UtilBar button {
+    height: 8vh;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.OrderReview .UtilBar .BackBtn {
+    background-color: var(--deemphasis-color);
+    border: none;
+    flex-grow: 4;
+}
+
+.OrderReview .UtilBar .OrderPriceLabel {
+    background-color: var(--deemphasis-color);
+    border: none;
+    flex-grow: 1;
+}
+
+.OrderReview .UtilBar .PaymentBtn {
+    background-color: var(--emphasis-color);
+    color: var(--text-selected);
+    font-size: large;
+    flex-grow: 8;
+    border: none;
+}
+
+
+
+/* Item List */
 .OrderReview .OrderItemList {
     margin: 0;
     padding: 0;
@@ -11,28 +58,6 @@
     
 }
 
-.BackOrderBtn {
-    position: fixed;
-    left: 0;
-    top: 0;
-    font-size: 15px;
-
-    border-color: grey;
-    border-style: solid;
-    border-radius: 10px;
-    background-color: ghostwhite;
-}
-
-.PaymentBtn {
-    margin: 10px;
-    padding: 10px;
-    font-size: 20px;
-    
-    border-color: grey;
-    border-style: solid;
-    border-radius: 10px;
-    background-color: ghostwhite;
-}
 
 .reviewOrderText, .continuePayment {
     display: flex;

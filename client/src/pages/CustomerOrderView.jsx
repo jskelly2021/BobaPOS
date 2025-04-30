@@ -16,7 +16,7 @@ import useIngredient from '../hooks/useIngredient';
 function OrderView() {
     const nav = useNavigate();
     const { items, loadingItem, errorItem, displayedCategory, updateCategory, getCategory } = useItem("RECOMMENDED");
-    const { orderItems, addToOrder, removeFromOrder, updateItemInOrder, orderPrice } = useOrderItem(nav);
+    const { orderItems, addToOrder, removeFromOrder, updateItemInOrder, orderPrice, cancelOrder } = useOrderItem(nav);
     const { toppings, defaultToppings, getDefaultToppings, setDefaultToppings } = useToppings();
     const { itemIngredients, getIngredientsInItem } = useIngredient()
     const [selectedItem, setSelectedItem] = useState(null);
@@ -67,6 +67,11 @@ function OrderView() {
         setSelectedItem(null);
     }
 
+    const handleCancelOrder = () => {
+        cancelOrder();
+        nav('/welcome');
+    }
+
     return (
         <div className='OrderView CustomerOrderView'>
             <div className='content'>
@@ -106,12 +111,12 @@ function OrderView() {
                     )}
                     onItemButtonClick={handleMenuItemClick}
                 />
-                      
+
                 <OrderCart orderItems={orderItems} onItemButtonClick={handleOrderItemClick} />
             </div>
 
             <div className='UtilBar'>
-                <button className='CancelBtn' onClick={() => nav('/welcome')}>
+                <button className='CancelBtn' onClick={() => handleCancelOrder()}>
                     Cancel Order
                 </button>
 

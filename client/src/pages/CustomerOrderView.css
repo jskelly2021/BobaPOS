@@ -173,11 +173,6 @@
     padding-bottom: 10vh;
 }
 
-.CustomerOrderView .OrderCart h2 {
-    margin: 2vh;
-    font-size: 1.5rem;
-}
-
 .CustomerOrderView .OrderItemList {
     flex: 1;
     overflow-y: auto;
@@ -200,12 +195,16 @@
 
 .CustomerOrderView .OrderItemList .ItemButton .ItemDetails .ItemName {
     font-size: 1.25rem;
-    margin-bottom: 0px;
+    margin: 0;
 }
-
+.CustomerOrderView .OrderItemList .ItemButton .ItemDetails .ItemPrice {
+    font-size: 1rem;
+    margin: 0;
+}
+.CustomerOrderView .OrderItemList .ItemButton .ItemDetails .ItemQuantity,
 .CustomerOrderView .OrderItemList .ItemButton .ItemDetails .ItemTopping {
-    font-size: 0.875rem;
-    margin: 0px;
+    font-size: .8rem;
+    margin: 0;
 }
 
 .CustomerOrderView .OrderItemList .ItemImg {

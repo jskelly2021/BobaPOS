@@ -169,3 +169,12 @@ body.dashboard-page #google_translate_element {
 html {
     transition: font-size 0.3s ease;
 }
+
+.AccessibilityBar {
+    background-color: var(--accent-color);
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 5vh;
+}

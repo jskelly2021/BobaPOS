@@ -14,17 +14,13 @@ import useIngredient from '../hooks/useIngredient';
 
 function OrderView() {
     const nav = useNavigate();
-    const { items, loadingItem, errorItem, updateCategory, getCategory } = useItem("RECOMMENDED");
-    const { orderItems, addToOrder, removeFromOrder, updateItemInOrder } = useOrderItem(nav);
+    const { items, loadingItem, errorItem, displayedCategory, updateCategory, getCategory } = useItem("RECOMMENDED");
+    const { orderItems, addToOrder, removeFromOrder, updateItemInOrder, orderPrice, cancelOrder } = useOrderItem(nav);
     const { toppings, defaultToppings, getDefaultToppings, setDefaultToppings } = useToppings();
     const { itemIngredients, getIngredientsInItem } = useIngredient()
     const [selectedItem, setSelectedItem] = useState(null);
     const [customizeMode, setCustomizeMode] = useState('order');
     const [searchTerm, setSearchTerm] = useState('');
-
-    const filteredItems = items.filter(item =>
-        item.item_name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
 
     useEffect(() => {
         document.body.classList.add('cashier-order-page');
@@ -42,6 +38,7 @@ function OrderView() {
 
     const handleOrderItemClick = async (item) => {
         setCustomizeMode('editing');
+        await getIngredientsInItem(item);
         setDefaultToppings(item.toppings);
         setSelectedItem(item);
     };
@@ -69,6 +66,8 @@ function OrderView() {
         setSelectedItem(null);
     }
 
+
+
     if (loadingItem) return <div>Loading items...</div>;
     if (errorItem) return <div>Error fetching items: {errorItem.message}</div>;
 
@@ -94,7 +93,7 @@ function OrderView() {
                     )}
                 </div>
 
-                <CategorySelector changeCategory={updateCategory} />
+                <CategorySelector currentCategory={displayedCategory} changeCategory={updateCategory} />
                 {(() => {
                     const { title, sub } = getCategory();
                     return (
@@ -104,8 +103,27 @@ function OrderView() {
                         </>
                     );
                 })()}
-                <ItemMenu menuItems={filteredItems} onItemButtonClick={handleMenuItemClick} />
+                <ItemMenu
+                    loading={loadingItem}
+                    error={errorItem}
+                    menuItems={items.filter(item =>
+                        item.item_name.toLowerCase().includes(searchTerm.toLowerCase())
+                    )}
+                    onItemButtonClick={handleMenuItemClick}
+                />
                 <OrderCart orderItems={orderItems} onItemButtonClick={handleOrderItemClick} />
+            </div>
+
+            <div className='UtilBar'>
+                <button className='DashboardBtn' onClick={() => nav('/dashboard')}>
+                    Dashboard
+                </button>
+
+                <div className="Separator"></div>
+
+                <button className='ReviewOrderBtn' onClick={() => nav('/review')}>
+                    Review Order
+                </button>
             </div>
 
             {selectedItem && (
@@ -120,18 +138,6 @@ function OrderView() {
                     mode={customizeMode}
                 />
             )}
-
-            <div className='UtilBar'>
-                <button className='DashboardBtn' onClick={() => nav('/dashboard')}>
-                    Dashboard
-                </button>
-
-                <div className="Separator"></div>
-
-                <button className='ReviewOrderBtn' onClick={() => nav('/review')}>
-                    Review Order
-                </button>
-            </div>
         </div>
     );
 }

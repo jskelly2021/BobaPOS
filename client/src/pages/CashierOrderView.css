@@ -34,6 +34,13 @@
     background-color: var(--deemphasis-hover);
 }
 
+.CashierOrderView .UtilBar .OrderPriceLabel {
+    background-color: var(--deemphasis-bg);
+    color: var(--deemphasis-text);
+    border: none;
+    flex-grow: 1;
+}
+
 .CashierOrderView .UtilBar .ReviewOrderBtn {
     border: none;
     background-color: var(--emphasis-bg);

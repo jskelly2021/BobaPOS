@@ -73,11 +73,15 @@ a {
 
 /* src/App.css or src/index.css */
 #google_translate_element {
+    position: fixed;
+    top: 0;
+    left: 1vw;
+    z-index: 1000;
 }
 
-body.hide-translate #google_translate_element {
-    display: none !important;
-  }
+body > .skiptranslate {
+    display: none;
+}
 
 
 html {

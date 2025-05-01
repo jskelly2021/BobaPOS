@@ -8,7 +8,7 @@ const GoogleTranslate = () => {
         try {
             new window.google.translate.TranslateElement( {
                 pageLanguage: 'en',
-                layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+                layout: window.google.translate.TranslateElement.InlineLayout.VERTICAL,
             },
             'google_translate_element'
             );

@@ -38,7 +38,6 @@ const AccessibilityBar = () => {
 
             <div className='Spacer'></div>
 
-            <GoogleTranslate />
 
             <ContrastToggle
                 highContrast={highContrast}

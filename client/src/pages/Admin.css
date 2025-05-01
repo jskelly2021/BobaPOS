@@ -7,7 +7,7 @@
 
 /* Navigation Bar */
 .AdminPages {
-    background-color: var(--bg-color);
+    background-color: var(--default-bg);
     display: flex;
     position: sticky;
     top: 0;
@@ -16,11 +16,11 @@
     height: 4vh;
     padding-left: 1vw;
     padding-right: 1vw;
-    border-bottom: solid var(--text-color) 2px;
+    border-bottom: solid var(--default-border) 2px;
 }
 
 .AdminPages button {
-    background-color: var(--btn-bg-color);
+    background-color: var(--default-bg);
     color: var(--btn-text-color);
     border: none;
     border-radius: 10px;
@@ -28,9 +28,13 @@
     font-size: large;
     font-weight: bold;
 }
+
+.AdminPages .active,
 .AdminPages button:hover {
-    background-color: var(--link-color);
+    background-color: var(--emphasis-bg);
+    color: var(--emphasis-text);
 }
+
 
 /* Content */
 .Admin h1 { padding: 10vh; }
@@ -45,7 +49,7 @@
 .Admin .List li {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(5vw, 1fr));
-    border-bottom: solid var(--text-color);
+    border-bottom: solid var(--default-border);
     text-align: center;
     align-items: center;
     padding: 0;

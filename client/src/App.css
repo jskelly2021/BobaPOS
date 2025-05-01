@@ -30,9 +30,11 @@ h1 {
     --deemphasis-border: black;
 
     /*Wrapper Default Colors*/
-    --wrapper-bg: #7F9183;
+    --wrapper-bg: rgb(128, 128, 128);
 
-    /*off-white background is #FCFBF4*/
+    /*off-white background is #FCFBF4
+    green: --wrapper-bg: #7F9183;
+    */
 }
 
 /*–– overrides when high-contrast is active ––*/
@@ -52,6 +54,10 @@ h1 {
     --default-border: white;
     --emphasis-border: black;
     --deemphasis-border: black;
+
+    /*Wrapper Colors*/
+    --wrapper-bg: rgb(89, 89, 89);
+
 }
 
 /*–– apply throughout the site ––*/
@@ -90,7 +96,7 @@ body>.skiptranslate {
 
 body.hide-translate #google_translate_element {
     display: none !important;
-  }
+}
 
 html {
     transition: font-size 0.3s ease;

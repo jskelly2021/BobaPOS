@@ -51,7 +51,6 @@
     transition: background-color 0.3s;
     cursor: pointer;
     background-color: var(--emphasis-bg);
-    color: var(--emphasis-text);
     border: 2px solid var(--emphasis-border);
     text-align: center;
 }

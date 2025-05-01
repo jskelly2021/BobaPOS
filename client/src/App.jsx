@@ -13,6 +13,7 @@ import Admin from './pages/Admin'
 import Analytics from './pages/Analytics'
 import Payment from './pages/Payment'
 import Unauthorized from './pages/Unauthorized'; // simple 403 page
+import RouteListener from './RouteListener';
 import { RequireAuth } from './components/RequireAuth';
 
 if (typeof window !== 'undefined') {
@@ -38,17 +39,17 @@ function App() {
             <Route path="/review" element={<OrderReview />} />
             <Route path="/payment" element={<Payment />} />
 
-            {/* routes for both cashiers & managers */}
-            <Route element={<RequireAuth allowedRoles={['CASHIER', 'MANAGER']} />}>
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/menu/cashier" element={<CashierOrderView />} />
-            </Route>
+              {/* routes for both cashiers & managers */}
+              <Route element={<RequireAuth allowedRoles={['CASHIER', 'MANAGER']} />}>
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/menu/cashier" element={<CashierOrderView />} />
+              </Route>
 
-            {/* routes for managers only */}
-            <Route element={<RequireAuth allowedRoles={['MANAGER']} />}>
-                <Route path="/admin" element={<Admin />} />
-                <Route path="/analytics" element={<Analytics />} />
-            </Route>
+              {/* routes for managers only */}
+              <Route element={<RequireAuth allowedRoles={['MANAGER']} />}>
+                  <Route path="/admin" element={<Admin />} />
+                  <Route path="/analytics" element={<Analytics />} />
+              </Route>
 
           </Routes>
         </div>

@@ -73,22 +73,24 @@ a {
 
 /* src/App.css or src/index.css */
 #google_translate_element {
+    display: block;
     position: static;
     bottom: 1rem;
     right: 1rem;
     z-index: 1000;
 }
 
+body.hide-translate #google_translate_element {
+    display: none !important;
+  }
+
 /* when on .dashboard-page, move to top-left */
+/*
 body.cashier-order-page #google_translate_element {
     position: fixed;
     bottom: 1rem;
-    /* distance from bottom */
     left: 50%;
-    /* position midpoint of element at viewport center */
     transform: translateX(-50%);
-    /* shift it back by half its own width */
-    /* optional: ensure no other offsets remain */
     top: auto;
     right: auto;
 }
@@ -96,11 +98,8 @@ body.cashier-order-page #google_translate_element {
 body.customer-page #google_translate_element {
     position: fixed;
     bottom: 1rem;
-    /* stay 1rem above the bottom */
     left: calc(50% - 200px);
-    /* center minus 50px */
     transform: translateX(-50%);
-    /* shift back half the element’s width */
     top: auto;
     right: auto;
 }
@@ -108,15 +107,11 @@ body.customer-page #google_translate_element {
 body.dashboard-page #google_translate_element {
     position: fixed;
     bottom: 1rem;
-    /* distance from bottom */
     left: 50%;
-    /* position midpoint of element at viewport center */
     transform: translateX(-50%);
-    /* shift it back by half its own width */
-    /* optional: ensure no other offsets remain */
     top: auto;
     right: auto;
-}
+}*/
 
 .goog-te-menu-frame,
 .goog-te-menu2 {

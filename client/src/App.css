@@ -28,6 +28,11 @@ h1 {
     --default-border: black;
     --emphasis-border: black;
     --deemphasis-border: black;
+
+    /*Wrapper Default Colors*/
+    --wrapper-bg: #7F9183;
+
+    /*off-white background is #FCFBF4*/
 }
 
 /*–– overrides when high-contrast is active ––*/
@@ -79,7 +84,7 @@ a {
     z-index: 1000;
 }
 
-body > .skiptranslate {
+body>.skiptranslate {
     display: none;
 }
 
@@ -90,7 +95,7 @@ html {
 
 .AccessibilityBar {
     background-color: var(--default-bg);
-    border-bottom : solid var(--default-border) 2px;
+    border-bottom: solid var(--default-border) 2px;
     position: fixed;
     top: 0;
     right: 0;
@@ -115,8 +120,19 @@ html {
     font-size: 1rem;
     font-weight: bold;
 }
-.AccessibilityBar button:hover { background-color: var(--emphasis-hover); }
 
-.AccessibilityBar .FontSizeToggleBtn { flex-grow: 1; }
-.AccessibilityBar .ContrastToggleBtn { flex-grow: 1; }
-.AccessibilityBar .Spacer { flex-grow: 8; }
+.AccessibilityBar button:hover {
+    background-color: var(--emphasis-hover);
+}
+
+.AccessibilityBar .FontSizeToggleBtn {
+    flex-grow: 1;
+}
+
+.AccessibilityBar .ContrastToggleBtn {
+    flex-grow: 1;
+}
+
+.AccessibilityBar .Spacer {
+    flex-grow: 8;
+}

@@ -29,38 +29,39 @@ function EmployeeLogin() {
 
             // parse the login response
             const data = await response.json();
-        
+
             // if login failed, show the message and bail out
             if (!response.ok) {
                 setError(data.message || 'Login failed.');
                 return;
             }
-        
+
             // only now do we fetch the user session
             const userRes = await fetch(
-                `${API_BASE_URL}/auth/user`, 
+                `${API_BASE_URL}/auth/user`,
                 { credentials: 'include' }
             );
             const userData = await userRes.json();
             setUser(userData);
             localStorage.removeItem('userMode');
             navigate('/dashboard');
-            } catch (err) {
+        } catch (err) {
             console.error('Login error:', err);
             setError('An error occurred.');
         }
     };
 
-    const handleToggleMode = () => {
-        localStorage.setItem("userMode", "customer");
-        navigate('/welcome');
-    }
-
     return (
         <div className='EmployeeLoginModule'>
             <div className='EmployeeLoginWrapper'>
                 <div className='ButtonContainer'>
-                    <button className='UserModeBtn' onClick={() => handleToggleMode()}>
+                    <button
+                        className='UserModeBtn'
+                        onClick={() => {
+                            localStorage.setItem("userMode", "customer");
+                            navigate('/welcome');
+                        }}
+                    >
                         Toggle User Mode
                     </button>
                 </div>
@@ -97,7 +98,7 @@ function EmployeeLogin() {
                     </button>
                 </form>
             </div>
-        </div>
+        </div >
     );
 }
 

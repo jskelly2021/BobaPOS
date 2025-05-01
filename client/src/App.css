@@ -15,15 +15,15 @@ h1 {
 :root {
     --default-bg: ghostwhite;
     --emphasis-bg: #0066cc;
-    --deemphasis-bg: #a0a0a0;
+    --deemphasis-bg: #333;
 
     --default-text: black;
     --emphasis-text: white;
-    --deemphasis-text: black;
+    --deemphasis-text: #fff;
 
     --default-hover: white;
     --emphasis-hover: #0a71d8;
-    --deemphasis-hover: #b5b5b5;
+    --deemphasis-hover: #111;
 
     --default-border: black;
     --emphasis-border: black;
@@ -34,15 +34,15 @@ h1 {
 .high-contrast {
     --default-bg: black;
     --emphasis-bg: #ffff00;
-    --deemphasis-bg: #a0a0a0;
+    --deemphasis-bg: #333;
 
     --default-text: #ffff00;
     --emphasis-text: black;
-    --deemphasis-text: black;
+    --deemphasis-text: #fff;
 
     --default-hover: #171717;
     --emphasis-hover: #ffff00;
-    --deemphasis-hover: #b5b5b5;
+    --deemphasis-hover: #111;
 
     --default-border: white;
     --emphasis-border: black;
@@ -188,6 +188,7 @@ html {
     border: none;
     font-weight: bold;
 }
+.AccessibilityBar button:hover { background-color: var(--emphasis-hover); }
 
 .AccessibilityBar .FontSizeToggleBtn { flex-grow: 1; }
 .AccessibilityBar .ContrastToggleBtn { flex-grow: 1; }

@@ -93,9 +93,11 @@ const ToppingModal = ({ item, itemIngredients, toppings, defaultToppings, onConf
                 </div>
 
                 <div className="ModalActions">
+                    <button onClick={() => onClose()}>Cancel</button>
+
                     {mode === 'editing' && (<button onClick={() => onRemove(item)}>Remove</button>)}
                     {inStock === true ? (
-                        <button onClick={() => onConfirm(item, Object.values(selectedToppings), quantity, totalPrice)}>
+                        <button className='OrderBtn' onClick={() => onConfirm(item, Object.values(selectedToppings), quantity, totalPrice)}>
                             {mode === 'ordering' ? 'Add to Order' : 'Update'}
                         </button>
                     ) : (
@@ -103,7 +105,6 @@ const ToppingModal = ({ item, itemIngredients, toppings, defaultToppings, onConf
                             Out of Stock
                         </button>
                     )}
-                    <button onClick={() => onClose()}>Cancel</button>
                 </div>
             </div>
         </div>

@@ -27,8 +27,13 @@
 
 .CustomerOrderView .UtilBar .CancelBtn {
     background-color: var(--deemphasis-bg);
+    color: var(--deemphasis-text);
     border: none;
     flex-grow: 4;
+}
+.CustomerOrderView .UtilBar .CancelBtn:hover {
+    background-color: var(--deemphasis-hover);
+    color: var(--deemphasis-text);
 }
 
 .CustomerOrderView .UtilBar .LanguagesBtn {
@@ -40,6 +45,7 @@
 
 .CustomerOrderView .UtilBar .OrderPriceLabel {
     background-color: var(--deemphasis-bg);
+    color: var(--deemphasis-text);
     border: none;
     flex-grow: 1;
 }
@@ -50,6 +56,9 @@
     font-size: large;
     flex-grow: 8;
     border: none;
+}
+.CustomerOrderView .UtilBar .ReviewOrderBtn:hover {
+    background-color: var(--emphasis-hover);
 }
 
 

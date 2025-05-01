@@ -11,12 +11,13 @@ import CategorySelector from '../components/CategorySelector';
 import ToppingsModule from '../components/ToppingsModule';
 import useToppings from '../hooks/useToppings';
 import useIngredient from '../hooks/useIngredient';
+import AccessibilityBar from '../components/accessibility/AccessiblityBar';
 
 
 function OrderView() {
     const nav = useNavigate();
-    const { items, loadingItem, errorItem, updateCategory, getCategory } = useItem("RECOMMENDED");
-    const { orderItems, addToOrder, removeFromOrder, updateItemInOrder, orderPrice } = useOrderItem(nav);
+    const { items, loadingItem, errorItem, displayedCategory, updateCategory, getCategory } = useItem("RECOMMENDED");
+    const { orderItems, addToOrder, removeFromOrder, updateItemInOrder, orderPrice, cancelOrder } = useOrderItem(nav);
     const { toppings, defaultToppings, getDefaultToppings, setDefaultToppings } = useToppings();
     const { itemIngredients, getIngredientsInItem } = useIngredient()
     const [selectedItem, setSelectedItem] = useState(null);
@@ -67,8 +68,16 @@ function OrderView() {
         setSelectedItem(null);
     }
 
+    const handleCancelOrder = () => {
+        cancelOrder();
+        nav('/welcome');
+    }
+
     return (
         <div className='OrderView CustomerOrderView'>
+
+            <AccessibilityBar />
+
             <div className='content'>
                 <div className="SearchContainer">
                     <input
@@ -87,7 +96,7 @@ function OrderView() {
                         </button>
                     )}
                 </div>
-                <CategorySelector changeCategory={updateCategory} />
+                <CategorySelector currentCategory={displayedCategory} changeCategory={updateCategory} />
 
                 {(() => {
                     const { title, sub } = getCategory();
@@ -106,12 +115,12 @@ function OrderView() {
                     )}
                     onItemButtonClick={handleMenuItemClick}
                 />
-                      
+
                 <OrderCart orderItems={orderItems} onItemButtonClick={handleOrderItemClick} />
             </div>
 
             <div className='UtilBar'>
-                <button className='CancelBtn' onClick={() => nav('/welcome')}>
+                <button className='CancelBtn' onClick={() => handleCancelOrder()}>
                     Cancel Order
                 </button>
 

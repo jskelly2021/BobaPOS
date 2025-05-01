@@ -13,57 +13,59 @@ h1 {
 
 /*–– define your default color palette ––*/
 :root {
-    --bg-color: ghostwhite;
-    --text-color: #000000;
-    --link-color: #0066cc;
-    --btn-bg-color: #0066cc;
-    --btn-text-color: #000000;
+    --default-bg: ghostwhite;
+    --emphasis-bg: #0066cc;
+    --deemphasis-bg: #a0a0a0;
+
+    --default-text: black;
+    --emphasis-text: white;
+    --deemphasis-text: black;
+
+    --default-hover: white;
+    --emphasis-hover: #0a71d8;
+    --deemphasis-hover: #b5b5b5;
+
+    --default-border: black;
+    --emphasis-border: black;
+    --deemphasis-border: black;
 }
 
 /*–– overrides when high-contrast is active ––*/
 .high-contrast {
-    --bg-color: #000000;
-    --text-color: #ffff00;
-    --link-color: #ffff00;
-    /* canary yellow links */
-    --btn-bg-color: #ffff00;
-    /* yellow buttons */
-    --btn-text-color: #000000;
+    --default-bg: black;
+    --emphasis-bg: #ffff00;
+    --deemphasis-bg: #a0a0a0;
+
+    --default-text: #ffff00;
+    --emphasis-text: black;
+    --deemphasis-text: black;
+
+    --default-hover: #171717;
+    --emphasis-hover: #ffff00;
+    --deemphasis-hover: #b5b5b5;
+
+    --default-border: white;
+    --emphasis-border: black;
+    --deemphasis-border: black;
 }
 
 /*–– apply throughout the site ––*/
 body {
     margin: 0;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background-color: var(--default-bg);
+    color: var(--default-text);
 }
 
 a {
-    color: var(--link-color);
+    color: var(--default-emphasis);
     text-decoration: underline;
 }
 
-button,
-.btn {
-    background-color: var(--btn-bg-color);
-    color: var(--btn-text-color);
-    border: 2px solid var(--btn-text-color);
 
-    padding: 0.6em 1.2em;
-    font-size: 1rem;
-    border-radius: 0.5rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
 
 /*–– ensure focused items remain visible ––*/
 :focus {
-    outline: 3px solid var(--link-color);
+    outline: 3px solid var(--default-emphasis);
     outline-offset: 2px;
 }
 
@@ -153,3 +155,35 @@ body.dashboard-page #google_translate_element {
 html {
     transition: font-size 0.3s ease;
 }
+
+.AccessibilityBar {
+    background-color: var(--default-bg);
+    border-bottom : solid var(--default-border) 2px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 6vh;
+    z-index: 100;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    gap: 1vw;
+    width: 98vw;
+}
+
+.AccessibilityBar button {
+    background-color: var(--emphasis-bg);
+    color: var(--emphasis-text);
+    height: 4vh;
+    border-radius: 10px;
+    font-size: 1rem;
+    border: none;
+    font-weight: bold;
+}
+
+.AccessibilityBar .FontSizeToggleBtn { flex-grow: 1; }
+.AccessibilityBar .ContrastToggleBtn { flex-grow: 1; }
+.AccessibilityBar .Spacer { flex-grow: 8; }

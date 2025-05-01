@@ -12,16 +12,20 @@ function Inventory() {
     const nav = useNavigate();
     const [activePage, setActivePage] = useState('ingredients');
 
+    const getLabel = (page) => {
+        return activePage === page ? 'active' : '';
+    };
+
     return (
         <div className='Admin'>
 
             <div className='AdminPages'>
-                <button className='DashboardBtn' onClick={() => nav('/dashboard')}>Dashboard</button>
-                <button onClick={() => setActivePage('ingredients')}>Ingredients</button>
-                <button onClick={() => setActivePage('items')}>Items</button>
-                <button onClick={() => setActivePage('employees')}>Employees</button>
-                <button onClick={() => setActivePage('toppings')}>Toppings</button>
-                <button onClick={() => setActivePage('location')}>Location</button>
+                <button className={`${getLabel('dashboard')}`} onClick={() => nav('/dashboard')}>Dashboard</button>
+                <button className={`${getLabel('ingredients')}`} onClick={() => setActivePage('ingredients')}>Ingredients</button>
+                <button className={`${getLabel('items')}`} onClick={() => setActivePage('items')}>Items</button>
+                <button className={`${getLabel('employees')}`} onClick={() => setActivePage('employees')}>Employees</button>
+                <button className={`${getLabel('toppings')}`} onClick={() => setActivePage('toppings')}>Toppings</button>
+                <button className={`${getLabel('location')}`} onClick={() => setActivePage('location')}>Location</button>
             </div>
 
             <h1>Admin</h1>

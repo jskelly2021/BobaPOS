@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import useOrderItem from '../hooks/useOrderItem';
 import TipSelector from '../components/tipSelector';
 import './Payment.css'
+import AccessibilityBar from '../components/accessibility/AccessiblityBar';
 
 function Payment() {
     const nav = useNavigate();
@@ -29,7 +30,9 @@ function Payment() {
 
     return (
         <div className="Payment">
-            <button className='ExitBtn' onClick={() => nav('/review')}>
+            <AccessibilityBar />
+
+            <button className='CancelBtn' onClick={() => nav('/review')}>
                 Cancel
             </button>
 

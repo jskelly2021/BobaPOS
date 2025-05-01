@@ -8,8 +8,8 @@ function Redirect() {
         let userMode = localStorage.getItem('userMode');
 
         if (!userMode) {
-            localStorage.setItem('userMode', 'employee');
-            userMode = 'employee';
+            localStorage.setItem('userMode', 'customer');
+            userMode = 'customer';
         }
 
         if (userMode === 'employee') {

@@ -6,7 +6,7 @@ export default function RouteListener() {
 
   useEffect(() => {
     // pages where we want to *hide* the translate widget
-    const hideOn = ['/payment', '/admin', '/analytics'];
+    const hideOn = ['/admin', '/analytics'];
     if (hideOn.some(p => pathname.startsWith(p))) {
       document.body.classList.add('hide-translate');
     } else {

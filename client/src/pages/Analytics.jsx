@@ -40,17 +40,21 @@ const Analytics = () => {
     const salesMonthStartISO = new Date(salesMonthStart).toISOString();
     const salesMonthEndISO = new Date(salesMonthEnd).toISOString();
 
+    const getLabel = (page) => {
+        return activePage === page ? 'active' : '';
+    };
+
     return (
         <div className='Analytics'>
             <div className='AnalyticsPages'>
-                <button className='DashboardBtn' onClick={() => nav('/dashboard')}>Dashboard</button>
-                <button onClick={() => setActivePage('TopSellingProducts')}>Top Selling Products</button>
-                <button onClick={() => setActivePage('SalesDuringDay')}>Sales During Day</button>
-                <button onClick={() => setActivePage('SalesOverDays')}>Sales Over Days</button>
-                <button onClick={() => setActivePage('SalesOverWeeks')}>Sales Over Weeks</button>
-                <button onClick={() => setActivePage('SalesOverMonths')}>Sales Over Months</button>
-                <button onClick={() => setActivePage('ProductUsage')}>Product Usage</button>
-                <button onClick={() => setActivePage('ZReport')}>Daily Report</button>
+                <button className={`${getLabel('dashboard')}`} onClick={() => nav('/dashboard')}>Dashboard</button>
+                <button className={`${getLabel('TopSellingProducts')}`} onClick={() => setActivePage('TopSellingProducts')}>Top Selling Products</button>
+                <button className={`${getLabel('SalesDuringDay')}`} onClick={() => setActivePage('SalesDuringDay')}>Sales During Day</button>
+                <button className={`${getLabel('SalesOverDays')}`} onClick={() => setActivePage('SalesOverDays')}>Sales Over Days</button>
+                <button className={`${getLabel('SalesOverWeeks')}`} onClick={() => setActivePage('SalesOverWeeks')}>Sales Over Weeks</button>
+                <button className={`${getLabel('SalesOverMonths')}`} onClick={() => setActivePage('SalesOverMonths')}>Sales Over Months</button>
+                <button className={`${getLabel('ProductUsage')}`} onClick={() => setActivePage('ProductUsage')}>Product Usage</button>
+                <button className={`${getLabel('ZReport')}`} onClick={() => setActivePage('ZReport')}>Daily Report</button>
             </div>
 
             <h1>Analytics Dashboard</h1>

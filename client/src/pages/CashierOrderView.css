@@ -25,17 +25,26 @@
 
 .CashierOrderView .UtilBar .DashboardBtn {
     border: none;
-    background-color: var(--emphasis-bg);
+    background-color: var(--deemphasis-bg);
+    color: var(--deemphasis-text);
     flex-grow: 4;
 }
 
 .CashierOrderView .UtilBar .DashboardBtn:hover {
-    background-color: var(--emphasis-hover);
+    background-color: var(--deemphasis-hover);
+}
+
+.CashierOrderView .UtilBar .OrderPriceLabel {
+    background-color: var(--deemphasis-bg);
+    color: var(--deemphasis-text);
+    border: none;
+    flex-grow: 1;
 }
 
 .CashierOrderView .UtilBar .ReviewOrderBtn {
     border: none;
     background-color: var(--emphasis-bg);
+    color: var(--emphasis-text);
     flex-grow: 4;
 }
 
@@ -67,7 +76,7 @@
 
 .CashierOrderView .MenuItemList {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     width: 70vw;
     list-style: none;
     gap: 1rem;
@@ -83,17 +92,15 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-width: 10vw;
-    height: 25vh;
+    height: 15vh;
     border: black 2px solid;
     border-radius: 10px;
     font-size: 1.2rem;
-    background-color: rgb(170, 168, 168);
     transition: background 0.2s ease;
 }
 
 .CashierOrderView .MenuItemList .ItemButton:hover {
-    background-color: rgb(195, 195, 195);
+    background-color: var(--default-hover);
 }
 
 .CashierOrderView .MenuItemList .ItemButton .ItemDetails .ItemQuantity,
@@ -183,7 +190,7 @@
 }
 
 .CashierOrderView .OrderItemList .ItemButton {
-    background-color: rgb(217, 217, 217);
+    background-color: var(--default-bg);
     color: var(--default-text);
     display: flex;
     flex-direction: column;

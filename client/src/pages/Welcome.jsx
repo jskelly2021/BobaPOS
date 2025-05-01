@@ -14,13 +14,13 @@ function Welcome() {
     return (
         <div className='WelcomeModule'>
             <AccessibilityBar />
-    
-            <div className='WelcomeWrapper'>
                 <div className='ButtonContainer'>
                     <button className='UserModeBtn' onClick={handleToggleMode}>
                         Toggle User Mode
                     </button>
                 </div>
+
+            <div className='WelcomeWrapper'>
 
                 <h1 className='WelcomeText'>Welcome</h1>
 

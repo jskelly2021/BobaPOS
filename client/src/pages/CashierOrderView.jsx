@@ -11,6 +11,7 @@ import CategorySelector from '../components/CategorySelector';
 import ToppingsModule from '../components/ToppingsModule';
 import useToppings from '../hooks/useToppings';
 import useIngredient from '../hooks/useIngredient';
+import AccessibilityBar from '../components/accessibility/AccessiblityBar';
 
 function OrderView() {
     const nav = useNavigate();
@@ -66,13 +67,17 @@ function OrderView() {
         setSelectedItem(null);
     }
 
-
+    const handleDashboard = () => {
+        cancelOrder();
+        nav('/dashboard')
+    }
 
     if (loadingItem) return <div>Loading items...</div>;
     if (errorItem) return <div>Error fetching items: {errorItem.message}</div>;
 
     return (
         <div className='OrderView CashierOrderView'>
+            <AccessibilityBar />
 
             <div className='content'>
                 <div className="SearchContainer">
@@ -115,11 +120,15 @@ function OrderView() {
             </div>
 
             <div className='UtilBar'>
-                <button className='DashboardBtn' onClick={() => nav('/dashboard')}>
+                <button className='DashboardBtn' onClick={() => handleDashboard()}>
                     Dashboard
                 </button>
 
                 <div className="Separator"></div>
+
+                <button className="OrderPriceLabel">
+                    {'$' + orderPrice()}
+                </button>
 
                 <button className='ReviewOrderBtn' onClick={() => nav('/review')}>
                     Review Order

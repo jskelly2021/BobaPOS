@@ -25,6 +25,8 @@ function OrderReview() {
 
     return (
         <div className='OrderReview'>
+            <AccessibilityBar />
+
             <h1 className='reviewOrderText'>Order Review</h1>
 
             <ul className='OrderItemList'>

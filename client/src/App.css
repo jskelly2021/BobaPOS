@@ -83,6 +83,9 @@ body > .skiptranslate {
     display: none;
 }
 
+body.hide-translate #google_translate_element {
+    display: none !important;
+  }
 
 html {
     transition: font-size 0.3s ease;

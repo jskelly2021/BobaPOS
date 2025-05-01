@@ -2,8 +2,8 @@ import { useLocation } from 'react-router-dom';
 
 const FontSizeToggle = ({ fontSize, setFontSize }) => {
     const { pathname } = useLocation();
-    const showOn = ['/welcome', '/dashboard', '/menu/customer', '/payment', '/review'];
-    if (!showOn.includes(pathname)) return null;
+    const hideOn = [];
+    if (hideOn.includes(pathname)) return null;
 
     const toggleFontSize = () => {
     setFontSize(prev => (prev === 100 ? 140 : 100));

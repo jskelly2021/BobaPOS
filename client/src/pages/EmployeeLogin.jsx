@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import './EmployeeLogin.css'
+import AccessibilityBar from '../components/accessibility/AccessiblityBar';
 
 function EmployeeLogin() {
     const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
@@ -58,6 +59,8 @@ function EmployeeLogin() {
 
     return (
         <div className='EmployeeLoginModule'>
+            <AccessibilityBar />
+
             <div className='EmployeeLoginWrapper'>
                 <div className='ButtonContainer'>
                     <button className='UserModeBtn' onClick={() => handleToggleMode()}>

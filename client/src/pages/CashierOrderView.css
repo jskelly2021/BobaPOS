@@ -142,7 +142,6 @@
     width: 15vw;
     display: flex;
     flex-direction: column;
-    border-left: solid green 2px;
     text-align: center;
     overflow: hidden;
     padding-bottom: 10vh;

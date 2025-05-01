@@ -8,7 +8,7 @@
 }
 
 .WelcomeWrapper {
-    background-color: var(--deemphasis-bg);
+    background-color: var(--wrapper-bg);
     border-radius: 2vh;
     padding: 10vh 5vw 5vh 5vw;
     position: relative;

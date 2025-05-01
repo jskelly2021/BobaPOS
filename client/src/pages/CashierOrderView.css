@@ -29,10 +29,18 @@
     flex-grow: 4;
 }
 
+.CashierOrderView .UtilBar .DashboardBtn:hover {
+    background-color: var(--emphasis-hover);
+}
+
 .CashierOrderView .UtilBar .ReviewOrderBtn {
     border: none;
     background-color: var(--emphasis-bg);
     flex-grow: 4;
+}
+
+.CashierOrderView .UtilBar .ReviewOrderBtn:hover {
+    background-color: var(--emphasis-hover);
 }
 
 .CashierOrderView .Separator {
@@ -85,7 +93,7 @@
 }
 
 .CashierOrderView .MenuItemList .ItemButton:hover {
-    background-color: var(--default-hover);
+    background-color: rgb(195, 195, 195);
 }
 
 .CashierOrderView .MenuItemList .ItemButton .ItemDetails .ItemQuantity,

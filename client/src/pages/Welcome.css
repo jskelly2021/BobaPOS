@@ -18,21 +18,27 @@
 }
 
 .ButtonContainer {
-    position: absolute;
-    top: 2vh;
+    position: fixed;
+    top: 8vh;
     left: 1vw;
 }
 
 .UserModeBtn {
     border-radius: 1vh;
-    border: solid var(--deemphasis-border) 2px;
+    background-color: var(--default-bg);
+    color: var(--default-text);
+    border: solid var(--default-border) 2px;
     font-size: 1rem;
     cursor: pointer;
+    padding-left: .5vw;
+    padding-right: .5vw;
+    padding-top: .5vh;
+    padding-bottom: .5vh;
     transition: background-color 0.3s;
 }
 
 .UserModeBtn:hover {
-    background-color: var(--deemphasis-hover);
+    background-color: var(--default-hover);
 }
 
 .WelcomeText {
@@ -45,12 +51,13 @@
 }
 
 .StartBtn {
-    font-size: 1rem;
+    font-size: 1.5rem;
     padding: 0.5rem 1.5rem;
     border-radius: 10px;
     transition: background-color 0.3s;
     cursor: pointer;
     background-color: var(--emphasis-bg);
+    color: var(--emphasis-text);
     border: 2px solid var(--emphasis-border);
     text-align: center;
 }

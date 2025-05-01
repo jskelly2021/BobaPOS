@@ -32,7 +32,7 @@ function Dashboard() {
 
 
       <div className="DashboardNav">
-        <button onClick={() => nav('/')}>Logout</button>
+        <button onClick={() => nav('/login')}>Logout</button>
         <button onClick={() => nav('/menu/cashier')}>Menu</button>
         <button onClick={() => nav('/admin')}>Admin</button>
         <button onClick={() => nav('/analytics')}>Analytics</button>

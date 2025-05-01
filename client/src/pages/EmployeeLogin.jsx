@@ -55,20 +55,19 @@ function EmployeeLogin() {
     return (
         <div className='EmployeeLoginModule'>
             <AccessibilityBar />
+            <div className='ButtonContainer'>
+                <button
+                    className='UserModeBtn'
+                    onClick={() => {
+                        localStorage.setItem("userMode", "customer");
+                        navigate('/welcome');
+                    }}
+                >
+                    Toggle User Mode
+                </button>
+            </div>
 
             <div className='EmployeeLoginWrapper'>
-                <div className='ButtonContainer'>
-                    <button
-                        className='UserModeBtn'
-                        onClick={() => {
-                            localStorage.setItem("userMode", "customer");
-                            navigate('/welcome');
-                        }}
-                    >
-                        Toggle User Mode
-                    </button>
-                </div>
-
                 <h1>Employee Login</h1>
 
                 {error && <div style={{ color: 'red' }}>{error}</div>}

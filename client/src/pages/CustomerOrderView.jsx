@@ -75,9 +75,6 @@ function OrderView() {
 
     return (
         <div className='OrderView CustomerOrderView'>
-
-            <AccessibilityBar />
-
             <div className='content'>
                 <div className="SearchContainer">
                     <input

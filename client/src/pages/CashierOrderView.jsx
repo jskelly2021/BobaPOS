@@ -67,7 +67,10 @@ function OrderView() {
         setSelectedItem(null);
     }
 
-
+    const handleDashboard = () => {
+        cancelOrder();
+        nav('/dashboard')
+    }
 
     if (loadingItem) return <div>Loading items...</div>;
     if (errorItem) return <div>Error fetching items: {errorItem.message}</div>;
@@ -117,11 +120,15 @@ function OrderView() {
             </div>
 
             <div className='UtilBar'>
-                <button className='DashboardBtn' onClick={() => nav('/dashboard')}>
+                <button className='DashboardBtn' onClick={() => handleDashboard()}>
                     Dashboard
                 </button>
 
                 <div className="Separator"></div>
+
+                <button className="OrderPriceLabel">
+                    {'$' + orderPrice()}
+                </button>
 
                 <button className='ReviewOrderBtn' onClick={() => nav('/review')}>
                     Review Order

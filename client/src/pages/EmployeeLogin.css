@@ -7,12 +7,16 @@
     padding-left: 3vw;
 }
 
-.UserMode .UserModeBtn {
-    background-color: darkgray;
-    border-radius: 10px;
-    width: 15vw;
-    height: 5vh;
-    font-size: 1.2rem;
+.UserModeBtn {
+    background-color: var(--emphasis-bg);
+    border-radius: 1vh;
+    font-size: 1.8vh;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.UserModeBtn:hover {
+    background-color: var(--emphasis-hover);
 }
 
 .EmployeeLogin {
@@ -28,12 +32,18 @@
     margin-bottom: 2vh;
 }
 
-.EmployeeLogin .LoginBtn {
-    background-color: darkgray;
-    border-radius: 10px;
-    width: 15vw;
-    height: 5vh;
-    font-size: 1.2rem;
+.LoginBtn {
+    width: 5vw;
+    height: 4vh;
+    font-size: 1.8vh;
+    padding: 0.5vh 1vw;
+    border-radius: 1vh;
+    transition: background-color 0.3s;
+    background-color: var(--emphasis-bg);
+}
+
+.LoginBtn:hover {
+    background-color: var(--emphasis-hover);
 }
 
 /*Dahbin CSS*/
@@ -44,11 +54,11 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #FCFBF4;
+    background-color: var(--default-bg);
 }
 
 .EmployeeLoginWrapper {
-    background-color: #7F9183;
+    background-color: var(--wrapper-bg);
     border-radius: 2vh;
     padding: 10vh 5vw 5vh 5vw;
     position: relative;
@@ -61,17 +71,6 @@
     position: absolute;
     top: 2vh;
     left: 1vw;
-}
-
-.UserModeBtn {
-    border-radius: 1vh;
-    font-size: 1.8vh;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.UserModeBtn:hover {
-    background-color: darkgray;
 }
 
 .EmployeeLoginWrapper form {
@@ -88,17 +87,4 @@
     padding: 0.5vh 1vw;
     border-radius: 1vh;
     border: 0.2vh solid #ccc;
-}
-
-.LoginBtn {
-    width: 5vw;
-    height: 4vh;
-    font-size: 1.8vh;
-    padding: 0.5vh 1vw;
-    border-radius: 1vh;
-    transition: background-color 0.3s;
-}
-
-.LoginBtn:hover {
-    background-color: darkgray;
 }

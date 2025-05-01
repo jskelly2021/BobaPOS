@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     height: 90vh;
-    background-color: var(--bg-color);
+    background-color: var(--default-bg);
 }
 
 .DashboardNav {
@@ -21,8 +21,8 @@
 }
 
 .DashboardNav button {
-    background-color: var(--btn-bg-color);
-    color: var(--btn-text-color);
+    background-color: var(--emphasis-bg);
+    color: var(--default-text);
     border-radius: 10px;
     width: 20vw;
     height: 8vh;
@@ -31,5 +31,5 @@
 }
 
 .DashboardNav button:hover {
-    background-color: var(--link-color);
+    background-color: var(--emphasis-hover);
 }

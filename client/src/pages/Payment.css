@@ -6,7 +6,7 @@
     height: 100vh;
 }
 
-.CancelBtn {
+.Payment .CancelBtn {
     position: fixed;
     left: 1vw;
     top: 8vh;
@@ -20,7 +20,7 @@
     color: var(--default-text);
 }
 
-.tipSummary, .tipName {
+.Payment .tipSummary, .tipName {
     color: var(--default-text);
     display: flex;
     flex-direction: column;
@@ -29,7 +29,10 @@
     font-size: 2rem;
 }
 
-.tipBtn, .customTip, .CardBtn, .CashBtn {
+.Payment .tipBtn,
+.Payment .customTip,
+.Payment .CardBtn,
+.Payment .CashBtn {
     margin: 15px;
     padding: 10px;
     font-size: 2rem;
@@ -39,17 +42,21 @@
     background-color: var(--default-bg);
     color: var(--default-text);
 }
-.tipBtn:hover, .customTip:hover, .CardBtn:hover, .CashBtn:hover {
+
+.Payment .tipBtn:hover,
+.Payment .customTip:hover,
+.Payment .CardBtn:hover,
+.Payment .CashBtn:hover {
     background-color: var(--default-hover);
 }
 
-.tipBtn.active {
+.Payment .tipBtn.active {
     background-color: var(--emphasis-bg);
     border: solid var(--emphasis-border) 2px;
     color: var(--emphasis-text); 
 }
 
-.cashCard {
+.Payment .cashCard {
     display: flex;
     align-items: center;
     justify-content: center;

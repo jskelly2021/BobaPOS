@@ -8,12 +8,6 @@
 }
 
 .DashboardNav {
-    /*display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 100vw;
-    height: 10vh;
-    */
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
@@ -22,7 +16,8 @@
 
 .DashboardNav button {
     background-color: var(--emphasis-bg);
-    color: var(--default-text);
+    color: var(--emphasis-text);
+    border: solid var(--emphasis-border) 2px;
     border-radius: 10px;
     width: 20vw;
     height: 8vh;

@@ -11,6 +11,7 @@ import CategorySelector from '../components/CategorySelector';
 import ToppingsModule from '../components/ToppingsModule';
 import useToppings from '../hooks/useToppings';
 import useIngredient from '../hooks/useIngredient';
+import AccessibilityBar from '../components/accessibility/AccessiblityBar';
 
 function OrderView() {
     const nav = useNavigate();
@@ -73,6 +74,7 @@ function OrderView() {
 
     return (
         <div className='OrderView CashierOrderView'>
+            <AccessibilityBar />
 
             <div className='content'>
                 <div className="SearchContainer">

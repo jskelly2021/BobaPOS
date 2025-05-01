@@ -15,7 +15,7 @@ import Payment from './pages/Payment'
 import Unauthorized from './pages/Unauthorized'; // simple 403 page
 import RouteListener from './RouteListener';
 import { RequireAuth } from './components/RequireAuth';
-import AccessibilityBar from './components/accessibility/AccessiblityBar';
+import GoogleTranslate from './components/accessibility/GoogleTranslate';
 
 if (typeof window !== 'undefined') {
     window.addEventListener('error', (event) => {
@@ -32,7 +32,8 @@ function App() {
       <BrowserRouter>
         <div className="App">
 
-            <AccessibilityBar />
+            <RouteListener />
+            <GoogleTranslate />
 
           <Routes>
             <Route path="/" element={<Redirect />} />

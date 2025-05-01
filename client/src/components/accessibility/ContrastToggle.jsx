@@ -2,8 +2,8 @@ import { useLocation } from 'react-router-dom';
 
 const ContrastToggle = ({ highContrast, setHighContrast }) => {
     const { pathname } = useLocation();
-    const showOn = ['/welcome', '/dashboard', '/menu/customer', '/payment', '/review'];
-    if (!showOn.includes(pathname)) return null;
+    const hideOn = [];
+    if (hideOn.includes(pathname)) return null;
 
     return (
         <button className='ContrastToggleBtn'

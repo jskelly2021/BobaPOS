@@ -3,6 +3,7 @@ import React, { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 import { AuthContext } from '../context/AuthContext';
+import AccessibilityBar from '../components/accessibility/AccessiblityBar';
 
 function Dashboard() {
   const nav = useNavigate();
@@ -21,6 +22,8 @@ function Dashboard() {
 
   return (
     <div className="Dashboard">
+        <AccessibilityBar />
+
       <h1>Dashboard</h1>
       {/* This div gets replaced by the widget */}
       <h4>

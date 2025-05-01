@@ -1,4 +1,7 @@
 
+.OrderReview {
+    margin-top: 10vh;
+}
 
 /* Util Bar */
 .OrderReview .UtilBar {
@@ -24,23 +27,28 @@
 
 .OrderReview .UtilBar .BackBtn {
     background-color: var(--deemphasis-bg);
+    color: var(--deemphasis-text);
     border: none;
     flex-grow: 4;
 }
+.OrderReview .UtilBar .BackBtn:hover { background-color: var(--deemphasis-hover); }
+
 
 .OrderReview .UtilBar .OrderPriceLabel {
     background-color: var(--deemphasis-bg);
+    color: var(--deemphasis-text);
     border: none;
     flex-grow: 1;
 }
 
 .OrderReview .UtilBar .PaymentBtn {
     background-color: var(--emphasis-bg);
-    color: var(--text-selected);
+    color: var(--emphasis-text);
     font-size: large;
     flex-grow: 8;
     border: none;
 }
+.OrderReview .UtilBar .PaymentBtn:hover { background-color: var(--emphasis-hover); }
 
 
 
@@ -82,7 +90,7 @@
 .OrderReview .Details {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 70%;
 }
 .OrderReview .Details h2,
 .OrderReview .Details p {
@@ -92,7 +100,7 @@
 .OrderReview .PriceBreakdown .ItemToppings {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 70%;
 
 }
 .OrderReview .PriceBreakdown h3,

@@ -1,7 +1,6 @@
 import React from 'react';
 import './Welcome.css';
 import { useNavigate } from 'react-router-dom';
-import AccessibilityBar from '../components/accessibility/AccessiblityBar';
 
 function Welcome() {
     const nav = useNavigate();
@@ -13,8 +12,6 @@ function Welcome() {
 
     return (
         <div className='WelcomeModule'>
-            <AccessibilityBar />
-
             <div className='WelcomeWrapper'>
                 <div className='ButtonContainer'>
                     <button className='UserModeBtn' onClick={handleToggleMode}>

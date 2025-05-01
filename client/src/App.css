@@ -15,15 +15,15 @@ h1 {
 :root {
     --default-bg: ghostwhite;
     --emphasis-bg: #0066cc;
-    --deemphasis-bg: #a0a0a0;
+    --deemphasis-bg: #333;
 
     --default-text: black;
     --emphasis-text: white;
-    --deemphasis-text: black;
+    --deemphasis-text: #fff;
 
     --default-hover: white;
     --emphasis-hover: #0a71d8;
-    --deemphasis-hover: #b5b5b5;
+    --deemphasis-hover: #111;
 
     --default-border: black;
     --emphasis-border: black;
@@ -34,15 +34,15 @@ h1 {
 .high-contrast {
     --default-bg: black;
     --emphasis-bg: #ffff00;
-    --deemphasis-bg: #a0a0a0;
+    --deemphasis-bg: #333;
 
     --default-text: #ffff00;
     --emphasis-text: black;
-    --deemphasis-text: black;
+    --deemphasis-text: #fff;
 
     --default-hover: #171717;
     --emphasis-hover: #ffff00;
-    --deemphasis-hover: #b5b5b5;
+    --deemphasis-hover: #111;
 
     --default-border: white;
     --emphasis-border: black;
@@ -73,84 +73,16 @@ a {
 
 /* src/App.css or src/index.css */
 #google_translate_element {
-    display: block;
-    position: static;
-    bottom: 1rem;
-    right: 1rem;
+    position: fixed;
+    top: 0;
+    left: 1vw;
     z-index: 1000;
 }
 
-body.hide-translate #google_translate_element {
-    display: none !important;
-  }
-
-/* when on .dashboard-page, move to top-left */
-/*
-body.cashier-order-page #google_translate_element {
-    position: fixed;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    top: auto;
-    right: auto;
+body > .skiptranslate {
+    display: none;
 }
 
-body.customer-page #google_translate_element {
-    position: fixed;
-    bottom: 1rem;
-    left: calc(50% - 200px);
-    transform: translateX(-50%);
-    top: auto;
-    right: auto;
-}
-
-body.dashboard-page #google_translate_element {
-    position: fixed;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    top: auto;
-    right: auto;
-}*/
-
-.goog-te-menu-frame,
-.goog-te-menu2 {
-    max-height: 200px !important;
-    overflow-y: auto !important;
-}
-
-/* The outer iframe that holds the menu */
-.goog-te-menu-frame {
-    border: 1px solid #007bff !important;
-    border-radius: 4px !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-}
-
-/* The inner menu container */
-.goog-te-menu2 {
-    background-color: #f9f9f9 !important;
-    padding: 0.5rem !important;
-}
-
-/* Each link in the list */
-.goog-te-menu2 a {
-    display: block;
-    color: #333 !important;
-    text-decoration: none !important;
-    padding: 0.25rem 0.5rem !important;
-}
-
-.goog-te-menu2 a:hover {
-    background-color: #007bff !important;
-    color: #fff !important;
-}
-
-/* The select combo itself (if you’re using VERTICAL layout) */
-.goog-te-combo {
-    font-size: 0.9rem !important;
-    padding: 0.25rem !important;
-    border: none !important;
-}
 
 html {
     transition: font-size 0.3s ease;
@@ -176,13 +108,14 @@ html {
 
 .AccessibilityBar button {
     background-color: var(--emphasis-bg);
+    border: solid var(--emphasis-border) 2px;
     color: var(--emphasis-text);
     height: 4vh;
     border-radius: 10px;
     font-size: 1rem;
-    border: none;
     font-weight: bold;
 }
+.AccessibilityBar button:hover { background-color: var(--emphasis-hover); }
 
 .AccessibilityBar .FontSizeToggleBtn { flex-grow: 1; }
 .AccessibilityBar .ContrastToggleBtn { flex-grow: 1; }

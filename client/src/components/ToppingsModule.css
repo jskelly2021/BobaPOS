@@ -9,7 +9,7 @@
 }
 
 .ModalContent {
-    background: #fff;
+    background: var(--default-bg);
     padding: 1.5rem;
     border-radius: 8px;
     width: 85vw;
@@ -84,8 +84,9 @@
 .quantityBtn {
     padding: 0.3rem 0.6rem;
     font-size: 0.85rem;
-    border: 1px solid #ccc;
-    background: #eee;
+    border: 1px solid var(--default-border);
+    background: var(--default-bg);
+    color: var(--default-text);
     cursor: pointer;
     border-radius: 4px;
     transition: background 0.2s ease;
@@ -93,13 +94,13 @@
 }
 
 .quantityBtn:hover {
-    background: #ddd;
+    background: var(--default-hover);
 }
 
 .quantityBtn.active {
-    background: #2563eb;
-    color: white;
-    border-color: #2563eb;
+    background: var(--emphasis-bg);
+    color: var(--emphasis-text);
+    border-color: var(--emphasis-border);
 }
 
 .ModalActions {
@@ -113,19 +114,26 @@
     flex: 1;
     padding: 0.5rem;
     font-size: 1rem;
-    background: #333;
-    color: #fff;
+    background: var(--deemphasis-bg);
+    color: var(--deemphasis-text);
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.2s ease;
 }
-.ModalActions .OutOfStockBtn { background-color: #7e7a7a; }
+.ModalActions button:hover { background: var(--deemphasis-hover); }
 
-
-.ModalActions button:hover {
-    background: #111;
+.ModalActions .OrderBtn {
+    background-color: var(--emphasis-bg);
+    color: var(--emphasis-text);
 }
+.ModalActions .OrderBtn:hover { background: var(--emphasis-hover); }
+
+.ModalActions .OutOfStockBtn {
+    background: var(--deemphasis-bg);
+    color: var(--deemphasis-text);
+}
+.ModalActions .OutOfStockBtn:hover { background: var(--deemphasis-hover); }
 
 /* Customer Order View */
 .CustomerOrderView .ModalOverlay .Details-Grid {

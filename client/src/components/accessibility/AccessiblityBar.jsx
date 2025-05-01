@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import FontSizeToggle from './FontSizeToggle';
 import ContrastToggle from './ContrastToggle';
+import GoogleTranslate from './GoogleTranslate';
 
 const AccessibilityBar = () => {
     // load saved preference
@@ -36,6 +37,8 @@ const AccessibilityBar = () => {
         <div className='AccessibilityBar'>
 
             <div className='Spacer'></div>
+
+
             <ContrastToggle
                 highContrast={highContrast}
                 setHighContrast={setHighContrast}

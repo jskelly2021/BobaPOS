@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import useOrderItem from '../hooks/useOrderItem';
 import './OrderReview.css'
+import AccessibilityBar from '../components/accessibility/AccessiblityBar';
 
 function OrderReview() {
     const nav = useNavigate();
@@ -24,7 +25,6 @@ function OrderReview() {
 
     return (
         <div className='OrderReview'>
-
             <h1 className='reviewOrderText'>Order Review</h1>
 
             <ul className='OrderItemList'>

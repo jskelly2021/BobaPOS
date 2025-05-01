@@ -181,11 +181,11 @@ html {
 
 .AccessibilityBar button {
     background-color: var(--emphasis-bg);
+    border: solid var(--emphasis-border) 2px;
     color: var(--emphasis-text);
     height: 4vh;
     border-radius: 10px;
     font-size: 1rem;
-    border: none;
     font-weight: bold;
 }
 .AccessibilityBar button:hover { background-color: var(--emphasis-hover); }

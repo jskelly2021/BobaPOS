@@ -90,7 +90,7 @@
 .OrderReview .Details {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 70%;
 }
 .OrderReview .Details h2,
 .OrderReview .Details p {
@@ -100,7 +100,7 @@
 .OrderReview .PriceBreakdown .ItemToppings {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 70%;
 
 }
 .OrderReview .PriceBreakdown h3,
